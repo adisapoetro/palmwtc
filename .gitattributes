@@ -1,0 +1,16 @@
+# Normalize line endings
+* text=auto eol=lf
+
+# Binary files
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.pdf binary
+*.parquet binary
+
+# Notebook diff: stripped on commit via nbstripout, so diffs stay readable
+*.ipynb -text
+
+# Lock files: don't normalize; treat as opaque
+uv.lock -text -diff
