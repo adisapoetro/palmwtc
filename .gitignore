@@ -1,0 +1,56 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+
+# Build / dist
+build/
+dist/
+*.egg-info/
+*.egg
+wheels/
+
+# Environments
+.venv/
+venv/
+env/
+.env
+.python-version
+
+# uv
+.uv-cache/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+.DS_Store
+
+# Testing / coverage
+.pytest_cache/
+.coverage
+.coverage.*
+htmlcov/
+coverage.xml
+.tox/
+.mypy_cache/
+.ruff_cache/
+
+# Jupyter
+.ipynb_checkpoints/
+notebooks/executed/*.html
+notebooks/executed/*.ipynb
+
+# Docs build
+docs/_build/
+
+# Sample data downloaded on-demand from Zenodo
+src/palmwtc/data/sample/real/
+
+# Local secrets / credentials
+*.pem
+secrets/
+.envrc

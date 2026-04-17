@@ -1,0 +1,50 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it using the metadata in this file."
+title: "palmwtc: Automated whole-tree chamber workflow for oil-palm ecophysiology"
+abstract: >-
+  palmwtc processes data from automated whole-tree chambers (WTC) sized to
+  enclose individual oil palm trees, instrumented with LI-COR LI-850 gas
+  analyzers. It performs multi-stage quality control, computes CO2 and H2O
+  fluxes from concentration cycles, validates against literature ecophysiology
+  references, and produces inputs for the XPalm digital-twin calibration
+  pipeline. To our knowledge, this is the first whole-tree-chamber deployment
+  for oil palm.
+type: software
+authors:
+  - family-names: Adisaputro
+    given-names: Didi
+    email: saputrozokovic@gmail.com
+    # orcid: "https://orcid.org/0000-0000-0000-0000"  # add when available
+license: MIT
+repository-code: "https://github.com/adisapoetro/palmwtc"
+url: "https://adisapoetro.github.io/palmwtc/"
+version: 0.1.0
+date-released: "2026-04-17"
+keywords:
+  - ecophysiology
+  - flux-chamber
+  - whole-tree-chamber
+  - oil-palm
+  - co2-flux
+  - h2o-flux
+  - LI-COR
+  - digital-twin
+  - XPalm
+references:
+  - type: article
+    title: "Using models to guide field experiments: a priori predictions for the CO2 response of a nutrient- and water-limited native Eucalypt woodland"
+    authors:
+      - family-names: Medlyn
+        given-names: Belinda E.
+      - family-names: Zaehle
+        given-names: Soenke
+      - family-names: De Kauwe
+        given-names: Martin G.
+    year: 2016
+    journal: "Global Change Biology"
+    volume: 22
+    issue: 8
+    start: 2834
+    end: 2851
+    doi: "10.1111/gcb.13268"
+    notes: "Whole-tree chamber method reference for temperate broadleaf species; palmwtc extends this approach to tropical oil palm."

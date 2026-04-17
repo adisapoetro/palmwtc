@@ -1,0 +1,15 @@
+format: jb-book
+root: index
+parts:
+  - caption: Getting Started
+    chapters:
+      - file: quickstart
+  - caption: Tutorials
+    chapters:
+      - file: tutorials/index
+  - caption: Science Reference
+    chapters:
+      - file: science/index
+  - caption: API Reference
+    chapters:
+      - file: api/index

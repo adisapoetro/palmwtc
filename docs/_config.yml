@@ -1,0 +1,43 @@
+title: palmwtc
+author: Didi Adisaputro
+copyright: "2026"
+logo: ""
+
+execute:
+  execute_notebooks: cache
+  timeout: 180
+  exclude_patterns:
+    - "_build/**"
+
+repository:
+  url: https://github.com/adisapoetro/palmwtc
+  branch: main
+  path_to_book: docs
+
+html:
+  use_repository_button: true
+  use_issues_button: true
+  use_edit_page_button: true
+  baseurl: https://adisapoetro.github.io/palmwtc/
+
+sphinx:
+  extra_extensions:
+    - autoapi.extension
+    - sphinx_copybutton
+  config:
+    autoapi_type: python
+    autoapi_dirs:
+      - "../src/palmwtc"
+    autoapi_root: api
+    autoapi_keep_files: false
+    autoapi_add_toctree_entry: false
+    nb_execution_timeout: 180
+    suppress_warnings:
+      - "mystnb.unknown_mime_type"
+
+parse:
+  myst_enable_extensions:
+    - colon_fence
+    - dollarmath
+    - linkify
+    - substitution
