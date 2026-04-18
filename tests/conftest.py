@@ -4,7 +4,12 @@ from __future__ import annotations
 
 from pathlib import Path
 
+import matplotlib
 import pytest
+
+# Force a non-interactive backend so viz tests run headless on CI and macOS.
+# Must be set before any ``matplotlib.pyplot`` import.
+matplotlib.use("Agg")
 
 
 @pytest.fixture(scope="session")
