@@ -101,3 +101,19 @@ jobs:
           test -f src/palmwtc/data/sample/exports/digital_twin/01_chamber_cycles.csv
           test -f src/palmwtc/data/sample/exports/digital_twin/032_calibration_windows.csv
           ls -la src/palmwtc/data/sample/exports/digital_twin/
+      - name: Execute tutorial notebooks via papermill
+        run: |
+          uv run python -c "
+          import papermill as pm
+          from pathlib import Path
+          import sys
+          for nb in sorted(Path('notebooks').glob('*.ipynb')):
+              print(f'\\n=== {nb.name} ===', flush=True)
+              try:
+                  pm.execute_notebook(str(nb), '/tmp/' + nb.name, cwd='notebooks', timeout=300)
+                  print(f'OK: {nb.name}', flush=True)
+              except Exception as e:
+                  print(f'FAIL: {nb.name} - {e}', flush=True)
+                  sys.exit(1)
+          "
+        timeout-minutes: 10
