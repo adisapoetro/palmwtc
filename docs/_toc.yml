@@ -7,6 +7,11 @@ parts:
   - caption: Tutorials
     chapters:
       - file: tutorials/index
+        sections:
+          - file: tutorials/010_Data_Integration
+          - file: tutorials/020_QC_Rule_Based
+          - file: tutorials/030_Flux_Cycle_Calculation
+          - file: tutorials/033_Science_Validation
   - caption: Science Reference
     chapters:
       - file: science/index
