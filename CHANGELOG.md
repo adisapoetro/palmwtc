@@ -6,7 +6,22 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
-### Added
+### Added (Phase 3 — config + CLI + pipeline + sample)
+- `palmwtc.config.DataPaths` — frozen dataclass with layered resolver
+  (kwargs → env `PALMWTC_DATA_DIR` → `palmwtc.yaml` → bundled sample).
+- `palmwtc.pipeline` — library-mode orchestrator: `qc → flux → windows → validation`
+  steps callable directly from Python, no papermill.
+- `palmwtc.notebooks_runner` — port of `flux_chamber/scripts/run_notebooks.py`
+  for the `palmwtc run --notebooks` papermill mode.
+- `palmwtc.cli` real subcommands: `run`, `info`, `sample path`, `sample fetch` (stub),
+  `dashboard` (stub).
+- `scripts/make_sample_data.py` — deterministic synthetic chamber + climate dataset
+  (~3 MB, 7 days × 30 s sampling, 2 chambers, edge cases injected for QC paths).
+- Bundled synthetic sample at `src/palmwtc/data/sample/synthetic/` so
+  `palmwtc run` works zero-config.
+- CI pipeline-smoke job now runs `palmwtc run` end-to-end on the bundled sample.
+
+### Added (Phase 2 — earlier)
 - Repository skeleton: `pyproject.toml`, `LICENSE` (MIT), `README.md`,
   `CITATION.cff`, `CODE_OF_CONDUCT.md`, `CONTRIBUTING.md`.
 - Package directory layout (`src/palmwtc/{io,qc,flux,windows,validation,viz,hardware,data}/`)
