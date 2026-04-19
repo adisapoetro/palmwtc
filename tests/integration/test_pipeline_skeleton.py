@@ -1,7 +1,7 @@
-"""End-to-end pipeline skeleton tests.
+"""End-to-end pipeline integration test.
 
-Phase 1 just verifies the CLI is invokable. Phase 3 wires real pipeline runs
-against the bundled synthetic sample.
+Phase 3 wires real pipeline execution against the bundled synthetic sample.
+This is the canonical "does the package actually work" smoke test.
 """
 
 from __future__ import annotations
@@ -13,13 +13,18 @@ import pytest
 
 
 @pytest.mark.integration
-def test_cli_run_stub_exits_cleanly() -> None:
-    """The Phase 1 `run` command is a stub; it should exit 2 (NotImplemented marker)."""
+@pytest.mark.slow
+def test_cli_run_against_synthetic_sample_succeeds() -> None:
+    """`palmwtc run` exits 0 against the bundled synthetic sample (zero config)."""
     result = subprocess.run(
-        [sys.executable, "-m", "palmwtc.cli", "run", "--sample"],
+        [sys.executable, "-m", "palmwtc.cli", "run"],
         check=False,
         capture_output=True,
         text=True,
+        timeout=300,  # generous: synthetic flux step takes ~20s
     )
-    assert result.returncode == 2, result.stderr
-    assert "not yet implemented" in result.stdout.lower()
+    assert result.returncode == 0, result.stdout + "\n" + result.stderr
+    # All four steps reported in summary output.
+    for step in ("qc", "flux", "windows", "validation"):
+        assert step in result.stdout
+    assert "OK" in result.stdout

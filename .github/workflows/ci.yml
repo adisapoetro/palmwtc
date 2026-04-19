@@ -88,8 +88,16 @@ jobs:
           enable-cache: true
       - name: Install (core + ml)
         run: uv sync --extra ml
-      - name: Run pipeline on bundled sample
+      - name: CLI smoke
         run: |
           uv run palmwtc --version
           uv run palmwtc info
-          # Phase 3 onwards: uv run palmwtc run --sample
+          uv run palmwtc sample path
+      - name: Pipeline end-to-end on bundled synthetic sample
+        run: uv run palmwtc run
+        timeout-minutes: 5
+      - name: Verify expected artefacts
+        run: |
+          test -f src/palmwtc/data/sample/exports/digital_twin/01_chamber_cycles.csv
+          test -f src/palmwtc/data/sample/exports/digital_twin/032_calibration_windows.csv
+          ls -la src/palmwtc/data/sample/exports/digital_twin/

@@ -1,0 +1,3 @@
+chamber,date,trunk_height_cm,leaf_area_m2,vigor_index,event
+C1,2026-03-01,180.0,12.0,0.78,baseline_vigor_measurement
+C2,2026-03-01,175.0,11.5,0.82,baseline_vigor_measurement
