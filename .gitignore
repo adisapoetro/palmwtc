@@ -50,6 +50,11 @@ docs/_build/
 # Sample data downloaded on-demand from Zenodo
 src/palmwtc/data/sample/real/
 
+# Pipeline outputs generated when running `palmwtc run` against the bundled sample.
+# These are regenerated on every run and don't belong in the package wheel.
+src/palmwtc/data/sample/exports/
+src/palmwtc/data/sample/Data/
+
 # Local secrets / credentials
 *.pem
 secrets/
