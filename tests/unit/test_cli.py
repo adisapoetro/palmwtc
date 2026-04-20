@@ -76,7 +76,12 @@ class TestRun:
 
 
 class TestDashboard:
-    def test_dashboard_is_a_stub(self) -> None:
-        result = _run_cli("dashboard")
-        assert result.returncode == 2
-        assert "Phase 6" in result.stdout
+    """`palmwtc dashboard` either errors clearly without the extra, or launches
+    Streamlit (which is tested under tests/unit/test_dashboard.py without
+    actually starting the long-lived server). Just verify it appears in --help.
+    """
+
+    def test_dashboard_in_help(self) -> None:
+        result = _run_cli("--help")
+        assert result.returncode == 0
+        assert "dashboard" in result.stdout
