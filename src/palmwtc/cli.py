@@ -166,9 +166,19 @@ def sample_fetch(
 
 @app.command()
 def dashboard() -> None:
-    """Launch the Streamlit monitoring dashboard (requires `palmwtc[dashboard]`; Phase 6)."""
-    typer.echo("Dashboard not yet wired — see Phase 6 of the extraction plan.")
-    raise typer.Exit(code=2)
+    """Launch the Streamlit monitoring dashboard (needs the dashboard extra)."""
+    try:
+        import streamlit  # noqa: F401
+    except ImportError:
+        typer.secho(
+            "streamlit not installed. Run:  pip install 'palmwtc[dashboard]'",
+            fg=typer.colors.RED,
+        )
+        raise typer.Exit(code=2) from None
+
+    from palmwtc.dashboard.app import cli_entry
+
+    cli_entry()
 
 
 if __name__ == "__main__":
