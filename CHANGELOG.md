@@ -6,6 +6,18 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+### Added (Phase 6 — Streamlit dashboard)
+- `palmwtc.dashboard.app` — clean Streamlit monitoring app (~250 lines)
+  built on the palmwtc API. Sections: DataPaths summary, QC parquet
+  sanity, QC flag totals, inter-chamber agreement, per-cycle flux
+  (with on-demand pipeline-run button), cycle-quality distribution.
+- `palmwtc dashboard` CLI command actually launches Streamlit (was a
+  stub in Phase 3).
+- New `[dashboard]` extra now also pulls `anywidget` (for plotly
+  `FigureWidget`).
+- 6 new tests in `tests/unit/test_dashboard.py` (subpackage import,
+  helpers, CLI gate behaviour without/with extra).
+
 ### Added (Phase 3 — config + CLI + pipeline + sample)
 - `palmwtc.config.DataPaths` — frozen dataclass with layered resolver
   (kwargs → env `PALMWTC_DATA_DIR` → `palmwtc.yaml` → bundled sample).
