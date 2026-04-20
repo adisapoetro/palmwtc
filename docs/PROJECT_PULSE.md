@@ -1,7 +1,7 @@
 ---
 title: palmwtc — Project Pulse
 type: living-status-tracker
-version: 0.6.0
+version: 0.7.0
 last_updated: 2026-04-20
 owner: Didi Adisaputro
 ---
@@ -26,7 +26,7 @@ squash commit).
 | Config + CLI + pipeline (Phase 3) | 🟢 Done | `palmwtc run` works zero-config |
 | Tutorial notebooks (Phases 4-5) | 🟢 Done | 13 thin notebooks, all execute headless |
 | Streamlit dashboard (Phase 6) | 🟢 Done | `palmwtc dashboard` launches clean ~250-line app on the bundled sample |
-| Docs site publication (Phase 7) | 🟡 Partial | Jupyter-book builds in CI but no `gh-pages` deploy yet |
+| Docs site publication (Phase 7) | 🟢 Done | Live at <https://adisapoetro.github.io/palmwtc/>; CI auto-deploys on push to main |
 | First public release (Phase 8) | 🔴 Not started | PyPI name + trusted publishing + Zenodo not configured |
 | CI matrix | 🟢 Green | Py 3.11/3.12/3.13 × ubuntu/macos all pass |
 | Mypy | 🟡 Non-blocking | 2 pre-existing implicit-Optional warnings inherited from port |
@@ -43,8 +43,8 @@ squash commit).
 | 3 | DataPaths + CLI + library pipeline + bundled sample | ✓ Done | 2026-04-19 | `cb1ec03` |
 | 4 | Thin tutorial notebooks 010/020/030/033 | ✓ Done | 2026-04-19 | `64e0771` |
 | 5 | Thin tutorial notebooks 011/022/023/025/026/031/032/034/035 | ✓ Done | 2026-04-19 | `76d5c4b` |
-| 6 | Streamlit dashboard integration (`palmwtc.dashboard`) | ✓ Done | 2026-04-20 | (this PR) |
-| 7 | Docs site publication (`palmwtc.github.io/palmwtc/`) | ☐ Partial | — | — |
+| 6 | Streamlit dashboard integration (`palmwtc.dashboard`) | ✓ Done | 2026-04-20 | `f2dd517` |
+| 7 | Docs site publication (`palmwtc.github.io/palmwtc/`) | ✓ Done | 2026-04-20 | (this PR) |
 | 8 | Old-repo cutover + first PyPI release + Zenodo DOI | ☐ Pending | — | — |
 
 ---
@@ -66,6 +66,7 @@ squash commit).
 
 | Date | Phase | What | Outcome |
 |---|---|---|---|
+| 2026-04-20 | 7 | gh-pages deploy from CI (peaceiris) + Pages enabled | Live docs at adisapoetro.github.io/palmwtc/ |
 | 2026-04-20 | 6 | Streamlit dashboard wired to `palmwtc dashboard` CLI | Clean public-package version (~250 lines), [dashboard] extra |
 | 2026-04-19 | 5 | 9 thin tutorials + auto-discovery papermill CI | All 13 notebooks execute < 60s in CI |
 | 2026-04-19 | 4 | 4 first-class tutorials (010/020/030/033) | Jupyter-book ToC wired |
@@ -118,9 +119,10 @@ squash commit).
 The full implementation plan lives in the *flux_chamber* working repo at
 `~/.claude/plans/venv-bin-python-scripts-run-notebooks-p-eventual-hellman.md`.
 
-Active phase: **Phase 7 — Docs site publication.** Build jupyter-book,
-deploy to `gh-pages` via `peaceiris/actions-gh-pages`, configure
-`palmwtc.github.io/palmwtc/`. Remaining: Phase 8 (cutover + first release).
+Active phase: **Phase 8 — Cutover + first release.** Reserve `palmwtc`
+on PyPI, configure trusted publishing, enable Zenodo-GitHub integration,
+update flux_chamber to consume `pip install palmwtc`, tag `v0.1.0`,
+release. Three of these are manual maintainer items (see Open Blockers).
 
 ---
 
@@ -138,5 +140,6 @@ deploy to `gh-pages` via `peaceiris/actions-gh-pages`, configure
 
 | Version | Date | Change |
 |---|---|---|
+| 0.7.0 | 2026-04-20 | Phase 7 (docs site publication) merged. Active phase advanced to 8. |
 | 0.6.0 | 2026-04-20 | Phase 6 (Streamlit dashboard) merged. Active phase advanced to 7. |
 | 0.5.0 | 2026-04-20 | Initial PROJECT_PULSE created. Phases 1-5 logged as completed. |

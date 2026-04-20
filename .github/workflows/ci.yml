@@ -62,6 +62,8 @@ jobs:
   docs-build:
     name: docs (jupyter-book)
     runs-on: ubuntu-latest
+    permissions:
+      contents: write  # needed by gh-pages deploy step on push to main
     steps:
       - uses: actions/checkout@v4
       - uses: astral-sh/setup-uv@v3
@@ -77,6 +79,16 @@ jobs:
           name: docs-html
           path: docs/_build/html
           retention-days: 14
+      - name: Deploy to gh-pages (only on push to main)
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: docs/_build/html
+          publish_branch: gh-pages
+          cname: ""  # custom domain unused; resolves at adisapoetro.github.io/palmwtc
+          force_orphan: true  # keep gh-pages history small (one commit per deploy)
+          commit_message: "docs: deploy ${{ github.sha }}"
 
   pipeline-smoke:
     name: pipeline smoke (synthetic sample)
