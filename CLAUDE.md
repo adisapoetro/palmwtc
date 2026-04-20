@@ -192,7 +192,7 @@ Status as of palmwtc 0.1.0.dev0:
 - ✓ Phase 4 — Thin tutorial notebooks 010/020/030/033 (`64e0771`)
 - ✓ Phase 5 — Thin tutorial notebooks 011/022/023/025/026/031/032/034/035 (`76d5c4b`)
 - ✓ Phase 6 — `palmwtc.dashboard` Streamlit app + `palmwtc dashboard` CLI
-- ☐ Phase 7 — Full docs site (jupyter-book) deployed to `gh-pages`.
+- ✓ Phase 7 — Docs site auto-deploys to `adisapoetro.github.io/palmwtc/`
 - ☐ Phase 8 — Old-repo cutover + first release (PyPI + Zenodo DOI).
 
 See [`docs/PROJECT_PULSE.md`](docs/PROJECT_PULSE.md) for the per-phase

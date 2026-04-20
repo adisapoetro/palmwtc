@@ -6,6 +6,15 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+### Added (Phase 7 — docs site publication)
+- CI `docs-build` job now deploys to `gh-pages` branch on every push
+  to `main` via `peaceiris/actions-gh-pages@v4`. Force-orphan keeps
+  history one commit per deploy.
+- Live docs site: <https://adisapoetro.github.io/palmwtc/> (replaces
+  the placeholder once first post-merge CI run completes).
+- Bootstrap `gh-pages` branch with placeholder so GitHub Pages can be
+  enabled before the first real deploy lands.
+
 ### Added (Phase 6 — Streamlit dashboard)
 - `palmwtc.dashboard.app` — clean Streamlit monitoring app (~250 lines)
   built on the palmwtc API. Sections: DataPaths summary, QC parquet
