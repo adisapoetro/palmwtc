@@ -6,65 +6,77 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
-### Added (Phase 7 — docs site publication)
-- CI `docs-build` job now deploys to `gh-pages` branch on every push
-  to `main` via `peaceiris/actions-gh-pages@v4`. Force-orphan keeps
-  history one commit per deploy.
-- Live docs site: <https://adisapoetro.github.io/palmwtc/> (replaces
-  the placeholder once first post-merge CI run completes).
-- Bootstrap `gh-pages` branch with placeholder so GitHub Pages can be
-  enabled before the first real deploy lands.
+(no changes yet)
 
-### Added (Phase 6 — Streamlit dashboard)
-- `palmwtc.dashboard.app` — clean Streamlit monitoring app (~250 lines)
-  built on the palmwtc API. Sections: DataPaths summary, QC parquet
-  sanity, QC flag totals, inter-chamber agreement, per-cycle flux
-  (with on-demand pipeline-run button), cycle-quality distribution.
-- `palmwtc dashboard` CLI command actually launches Streamlit (was a
-  stub in Phase 3).
-- New `[dashboard]` extra now also pulls `anywidget` (for plotly
-  `FigureWidget`).
-- 6 new tests in `tests/unit/test_dashboard.py` (subpackage import,
-  helpers, CLI gate behaviour without/with extra).
+## [0.1.0] — 2026-04-20
 
-### Added (Phase 3 — config + CLI + pipeline + sample)
+First public release. The full library + CLI + bundled synthetic sample
++ tutorial notebooks + Streamlit dashboard + auto-deployed docs site.
+
+A user can now:
+
+```bash
+pip install palmwtc
+palmwtc run                  # ~20 s end-to-end on bundled synthetic sample
+palmwtc dashboard            # streamlit monitoring app (requires [dashboard])
+palmwtc run --notebooks      # papermill mode (requires --raw-dir or palmwtc.yaml)
+```
+
+### Added — Library
+
 - `palmwtc.config.DataPaths` — frozen dataclass with layered resolver
   (kwargs → env `PALMWTC_DATA_DIR` → `palmwtc.yaml` → bundled sample).
-- `palmwtc.pipeline` — library-mode orchestrator: `qc → flux → windows → validation`
-  steps callable directly from Python, no papermill.
-- `palmwtc.notebooks_runner` — port of `flux_chamber/scripts/run_notebooks.py`
-  for the `palmwtc run --notebooks` papermill mode.
-- `palmwtc.cli` real subcommands: `run`, `info`, `sample path`, `sample fetch` (stub),
-  `dashboard` (stub).
-- `scripts/make_sample_data.py` — deterministic synthetic chamber + climate dataset
-  (~3 MB, 7 days × 30 s sampling, 2 chambers, edge cases injected for QC paths).
-- Bundled synthetic sample at `src/palmwtc/data/sample/synthetic/` so
-  `palmwtc run` works zero-config.
-- CI pipeline-smoke job now runs `palmwtc run` end-to-end on the bundled sample.
+- `palmwtc.pipeline` — library-mode orchestrator with steps `qc → flux → windows → validation`.
+  Each step callable via `run_step(name, paths)`; whole pipeline via `run_pipeline(paths)`.
+- `palmwtc.notebooks_runner` — papermill-mode equivalent for `palmwtc run --notebooks`.
+- `palmwtc.cli` — typer app with `info`, `run`, `sample {path,fetch}`, `dashboard` subcommands.
+- 7 subpackages, 33 top-level public symbols, full backward-compat re-exports.
 
-### Added (Phase 2 — earlier)
-- Repository skeleton: `pyproject.toml`, `LICENSE` (MIT), `README.md`,
-  `CITATION.cff`, `CODE_OF_CONDUCT.md`, `CONTRIBUTING.md`.
-- Package directory layout (`src/palmwtc/{io,qc,flux,windows,validation,viz,hardware,data}/`)
-  with empty modules ready for Phase 2 port from `flux_chamber/src/`.
-- `.github/workflows/ci.yml` (lint + typecheck + test + docs + smoke matrix
-  on Python 3.11/3.12/3.13 × Ubuntu + macOS).
-- `.github/workflows/release.yml` (tag → PyPI trusted publish + GitHub Release).
-- `docs/_config.yml` + `_toc.yml` jupyter-book skeleton.
-- `tests/{unit,integration,fixtures}/` skeleton with smoke test.
-- Tooling: `ruff`, `mypy`, `pytest`, `pre-commit`, `nbstripout`, `uv`.
+### Added — Subpackages (ported from `flux_chamber/src/`, behaviour-preserving at 1e-12)
+
+- `palmwtc.io` — loaders, paths, cloud-mount adapters (from `data_utils.py`).
+- `palmwtc.qc` — rules, breakpoints, drift, ML, processor, reporting (from `qc_functions.py` + `qc_reporting.py`).
+- `palmwtc.flux` — absolute, scaling, cycles, chamber-aware (from `flux_analysis.py` + `flux_qc_fast.py` + `chamber_flux.py`).
+- `palmwtc.windows` — `WindowSelector` (from `window_selection.py`).
+- `palmwtc.validation` — science validation against literature ecophysiology bounds (from `science_validation.py`).
+- `palmwtc.viz` — matplotlib + plotly viz helpers (from `flux_visualization*.py` + `qc_visualizations.py`).
+- `palmwtc.hardware` — GPU/MPS-aware optional accelerators (from `gpu_utils.py`).
+- `palmwtc.dashboard` — clean Streamlit monitoring app (NEW; not a port of `flux_chamber/dashboard/`).
+
+### Added — Tutorials & docs
+
+- 13 thin tutorial notebooks in `notebooks/` (010, 011, 020, 022, 023, 025, 026, 030, 031, 032, 033, 034, 035), each ≤30 cells, all execute headless on bundled sample.
+- Jupyter-book docs site auto-deployed to <https://adisapoetro.github.io/palmwtc/> on every push to main.
+- `scripts/build_tutorial_notebooks.py` + `scripts/build_phase5_notebooks.py` — declarative cell-list specs (re-runnable, deterministic).
+
+### Added — Bundled synthetic sample
+
+- `scripts/make_sample_data.py` — deterministic generator (`seed=42`).
+- 1 week × 30 s sampling × 2 chambers = ~3 MB parquet + weather + biophysics.
+- Edge cases injected: NaN bursts, linear drift, OOB spikes, saturated H2O.
+
+### Added — Infrastructure
+
+- `pyproject.toml` (uv-managed, hatchling backend, compatible-bounds pinning, Python 3.11–3.13).
+- Extras: `[ml]`, `[ml-merlion]`, `[gpu]`, `[dashboard]`, `[docs]`, `[dev]`, `[all]`.
+- CI matrix: lint (ruff) + typecheck (mypy, non-blocking) + test (Py 3.11/3.12/3.13 × ubuntu/macos) + docs (jupyter-book) + pipeline-smoke (full `palmwtc run` + 13 notebook execution).
+- Release workflow (tag `v*.*.*` → PyPI Trusted Publishing + GitHub Release + Zenodo DOI).
+- 447 tests passing (13 expected skips for optional extras).
+- `.devcontainer/` for one-click VS Code dev environment.
+- `CLAUDE.md` (AI-assistant conventions) + `docs/PROJECT_PULSE.md` (living status).
+
+### Known limitations
+
+- The bundled synthetic sample only exercises `qc + flux` end-to-end. `windows` produces 0 windows on toy data; `validation` reports skip-with-message because synthetic lacks `h2o_slope` + `Global_Radiation` columns. Real LIBZ data exercises all four steps.
+- `palmwtc run --notebooks` requires a `notebooks_dir` in `palmwtc.yaml` or env (bundled notebooks are tutorial-style; the spine-runner path expects user-managed working notebooks).
+- Notebook 036 (manual cycle QC labelling, ipywidgets-interactive) is intentionally not shipped — doesn't render headless.
+- Mypy reports 2 pre-existing implicit-Optional warnings inherited from the source port; non-blocking in CI.
 
 ### Notes
-- This is Phase 1 (skeleton only). No flux/QC code yet — see plan at
-  `~/.claude/plans/venv-bin-python-scripts-run-notebooks-p-eventual-hellman.md`
-  for the full extraction roadmap from `flux_chamber/`.
-- Git history of the original `flux_chamber/{src,notebooks,scripts/run_notebooks.py,tests}`
-  is **not** carried into this repo. If `git blame` traceability becomes needed,
-  a follow-up commit can do a `git-filter-repo` of the flux_chamber repo and
-  merge with `--allow-unrelated-histories`. For now, the original repo at
-  `https://github.com/adisapoetro/flux_chamber@597ff89` is the historical
-  source of truth.
+
+- Git history of the original `flux_chamber/{src,notebooks,scripts/run_notebooks.py,tests}` is **not** carried into this repo. The original repo at <https://github.com/adisapoetro/flux_chamber> is the historical source of truth for blame archaeology.
+- This release is the artefact of an 8-phase extraction plan executed across 2026-04-17 → 2026-04-20.
 
 ## [0.1.0.dev0] — 2026-04-17
 
-Initial PyPI name reservation.
+Initial PyPI name reservation. Empty placeholder.
