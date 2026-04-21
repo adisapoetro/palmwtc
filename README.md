@@ -36,7 +36,6 @@ For your own data:
 export PALMWTC_DATA_DIR=/path/to/your/chamber/data
 palmwtc run --skip 022 025          # mirrors the original notebook-runner CLI
 palmwtc run --notebooks             # papermill mode, produces HTML reports
-palmwtc dashboard                   # streamlit monitoring (requires palmwtc[dashboard])
 ```
 
 ## Install
@@ -44,7 +43,7 @@ palmwtc dashboard                   # streamlit monitoring (requires palmwtc[das
 ```bash
 pip install palmwtc                 # core only
 pip install 'palmwtc[ml]'           # + scikit-learn IsolationForest QC
-pip install 'palmwtc[dashboard]'    # + streamlit monitoring app
+pip install 'palmwtc[interactive]'  # + ipywidgets / anywidget for Jupyter dashboards
 pip install 'palmwtc[gpu]'          # + torch (Apple-Silicon MPS / CUDA)
 pip install 'palmwtc[all]'          # everything
 ```

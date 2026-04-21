@@ -8,6 +8,39 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 (no changes yet)
 
+## [0.2.0] — 2026-04-21
+
+Scope correction: drop the Streamlit dashboard from palmwtc. Operational
+monitoring is out of scope for the public chamber-flux package. The
+companion `flux_chamber` working repo retains the LIBZ-specific
+operational dashboard (~6600 lines with auth, ngrok, email reports —
+none of which belongs in a published library).
+
+### Removed (BREAKING)
+
+- `palmwtc.dashboard` subpackage — deleted entirely.
+- `palmwtc dashboard` CLI subcommand — removed.
+- `[dashboard]` extra — removed (was: `streamlit + ipywidgets + anywidget`).
+
+### Added
+
+- `[interactive]` extra — `ipywidgets + anywidget` for the Jupyter
+  `interactive_flux_dashboard` helper in `palmwtc.viz.interactive`. Same
+  contents as the old `[dashboard]` extra minus Streamlit.
+
+### Migration from 0.1.x
+
+Users who installed `palmwtc[dashboard]` and want the Jupyter widgets:
+```bash
+pip uninstall streamlit  # optional, no longer pulled
+pip install 'palmwtc[interactive]'
+```
+
+Users who relied on the Streamlit `palmwtc dashboard` CLI: that
+operational dashboard now lives in the upstream `flux_chamber` working
+repo (private). The public `palmwtc` package focuses on the chamber-flux
+algorithms + tutorials + bundled sample only.
+
 ## [0.1.0] — 2026-04-20
 
 First public release. The full library + CLI + bundled synthetic sample

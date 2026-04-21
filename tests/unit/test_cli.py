@@ -76,12 +76,14 @@ class TestRun:
 
 
 class TestDashboard:
-    """`palmwtc dashboard` either errors clearly without the extra, or launches
-    Streamlit (which is tested under tests/unit/test_dashboard.py without
-    actually starting the long-lived server). Just verify it appears in --help.
-    """
+    """The `dashboard` subcommand was removed in v0.2.0 (out of scope)."""
 
-    def test_dashboard_in_help(self) -> None:
+    def test_dashboard_subcommand_removed(self) -> None:
         result = _run_cli("--help")
         assert result.returncode == 0
-        assert "dashboard" in result.stdout
+        assert "dashboard" not in result.stdout
+
+    def test_dashboard_invocation_errors(self) -> None:
+        result = _run_cli("dashboard")
+        # typer exits non-zero with a "no such command" message.
+        assert result.returncode != 0
