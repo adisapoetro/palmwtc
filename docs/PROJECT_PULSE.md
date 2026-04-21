@@ -1,8 +1,8 @@
 ---
 title: palmwtc — Project Pulse
 type: living-status-tracker
-version: 0.8.0
-last_updated: 2026-04-20
+version: 0.9.0
+last_updated: 2026-04-21
 owner: Didi Adisaputro
 ---
 
@@ -25,7 +25,7 @@ squash commit).
 | Library port (Phase 2) | 🟢 Done | 12 modules, behaviour-preserving, 1e-12 parity |
 | Config + CLI + pipeline (Phase 3) | 🟢 Done | `palmwtc run` works zero-config |
 | Tutorial notebooks (Phases 4-5) | 🟢 Done | 13 thin notebooks, all execute headless |
-| Streamlit dashboard (Phase 6) | 🟢 Done | `palmwtc dashboard` launches clean ~250-line app on the bundled sample |
+| Streamlit dashboard (Phase 6) | ⚪ Reverted in v0.2.0 | Out-of-scope decision; LIBZ ops dashboard stays in flux_chamber working repo |
 | Docs site publication (Phase 7) | 🟢 Done | Live at <https://adisapoetro.github.io/palmwtc/>; CI auto-deploys on push to main |
 | First public release (Phase 8) | 🟢 v0.1.0 tagged | PyPI + GitHub Release + Zenodo DOI auto-minted via release workflow |
 | CI matrix | 🟢 Green | Py 3.11/3.12/3.13 × ubuntu/macos all pass |
@@ -66,9 +66,10 @@ squash commit).
 
 | Date | Phase | What | Outcome |
 |---|---|---|---|
+| 2026-04-21 | scope | Drop palmwtc.dashboard subpackage + CLI; replace [dashboard] with [interactive] extra | Tighter package scope; tag v0.2.0 |
 | 2026-04-20 | 8 | v0.1.0 tagged → release workflow → PyPI + GitHub Release + Zenodo DOI | First public release |
 | 2026-04-20 | 7 | gh-pages deploy from CI (peaceiris) + Pages enabled | Live docs at adisapoetro.github.io/palmwtc/ |
-| 2026-04-20 | 6 | Streamlit dashboard wired to `palmwtc dashboard` CLI | Clean public-package version (~250 lines), [dashboard] extra |
+| 2026-04-20 | 6 | Streamlit dashboard wired (later reverted in v0.2.0) | Decision documented in CHANGELOG [0.2.0] |
 | 2026-04-19 | 5 | 9 thin tutorials + auto-discovery papermill CI | All 13 notebooks execute < 60s in CI |
 | 2026-04-19 | 4 | 4 first-class tutorials (010/020/030/033) | Jupyter-book ToC wired |
 | 2026-04-19 | 3 | DataPaths layered resolver + CLI + pipeline | Zero-config first-run works |
@@ -144,6 +145,7 @@ in the flux_chamber repo (not this one).
 
 | Version | Date | Change |
 |---|---|---|
+| 0.9.0 | 2026-04-21 | v0.2.0 prep: drop palmwtc.dashboard subpackage + CLI command; replace [dashboard] with [interactive] extra. Tighter scope (chamber-flux algorithms only). |
 | 0.8.0 | 2026-04-20 | v0.1.0 tagged. PyPI + GitHub Release + Zenodo DOI live. Cutover only remaining Phase 8 item. |
 | 0.7.0 | 2026-04-20 | Phase 7 (docs site publication) merged. Active phase advanced to 8. |
 | 0.6.0 | 2026-04-20 | Phase 6 (Streamlit dashboard) merged. Active phase advanced to 7. |

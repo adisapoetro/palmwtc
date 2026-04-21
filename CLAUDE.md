@@ -107,7 +107,7 @@ original `flux_chamber/scripts/run_notebooks.py` behaviour.
 | `palmwtc.validation` | Science validation against literature ecophysiology bounds |
 | `palmwtc.viz` | Static (matplotlib) + interactive (plotly) viz |
 | `palmwtc.hardware` | GPU/MPS-aware optional accelerators (cuML/sklearn) |
-| `palmwtc.dashboard` | Streamlit monitoring app (Phase 6, opt-in extra) |
+| `palmwtc.dashboard` | ~~Streamlit monitoring~~ — removed in v0.2.0 (out of scope) |
 
 ---
 
@@ -191,7 +191,7 @@ Status as of palmwtc 0.1.0.dev0:
 - ✓ Phase 3 — Config + CLI + library pipeline + bundled synthetic sample (`cb1ec03`)
 - ✓ Phase 4 — Thin tutorial notebooks 010/020/030/033 (`64e0771`)
 - ✓ Phase 5 — Thin tutorial notebooks 011/022/023/025/026/031/032/034/035 (`76d5c4b`)
-- ✓ Phase 6 — `palmwtc.dashboard` Streamlit app + `palmwtc dashboard` CLI
+- ✓ Phase 6 — `palmwtc.dashboard` Streamlit app (REVERTED in v0.2.0 — see CHANGELOG)
 - ✓ Phase 7 — Docs site auto-deploys to `adisapoetro.github.io/palmwtc/`
 - 🟡 Phase 8 — v0.1.0 released to PyPI + Zenodo. flux_chamber cutover remaining.
 

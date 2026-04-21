@@ -8,7 +8,7 @@ Two flavours of public helpers live here:
   dependency of ``palmwtc``, so these work in any install.
 * ``interactive_flux_dashboard`` — a Jupyter dashboard built on
   ``ipywidgets`` and ``IPython.display``. Both are only installed via the
-  ``palmwtc[dashboard]`` extra; they are imported *inside* the function body
+  ``palmwtc[interactive]`` extra; they are imported *inside* the function body
   to keep this module importable in a core-only install.
 
 No internal palmwtc imports are required: the upstream module is fully
