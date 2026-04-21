@@ -1,7 +1,7 @@
 ---
 title: palmwtc — Project Pulse
 type: living-status-tracker
-version: 0.7.0
+version: 0.8.0
 last_updated: 2026-04-20
 owner: Didi Adisaputro
 ---
@@ -27,7 +27,7 @@ squash commit).
 | Tutorial notebooks (Phases 4-5) | 🟢 Done | 13 thin notebooks, all execute headless |
 | Streamlit dashboard (Phase 6) | 🟢 Done | `palmwtc dashboard` launches clean ~250-line app on the bundled sample |
 | Docs site publication (Phase 7) | 🟢 Done | Live at <https://adisapoetro.github.io/palmwtc/>; CI auto-deploys on push to main |
-| First public release (Phase 8) | 🔴 Not started | PyPI name + trusted publishing + Zenodo not configured |
+| First public release (Phase 8) | 🟢 v0.1.0 tagged | PyPI + GitHub Release + Zenodo DOI auto-minted via release workflow |
 | CI matrix | 🟢 Green | Py 3.11/3.12/3.13 × ubuntu/macos all pass |
 | Mypy | 🟡 Non-blocking | 2 pre-existing implicit-Optional warnings inherited from port |
 | Test count | 🟢 447 passed | + 13 expected skips (`openpyxl`, `[ml]`, `[dashboard]`-absent paths) |
@@ -44,8 +44,8 @@ squash commit).
 | 4 | Thin tutorial notebooks 010/020/030/033 | ✓ Done | 2026-04-19 | `64e0771` |
 | 5 | Thin tutorial notebooks 011/022/023/025/026/031/032/034/035 | ✓ Done | 2026-04-19 | `76d5c4b` |
 | 6 | Streamlit dashboard integration (`palmwtc.dashboard`) | ✓ Done | 2026-04-20 | `f2dd517` |
-| 7 | Docs site publication (`palmwtc.github.io/palmwtc/`) | ✓ Done | 2026-04-20 | (this PR) |
-| 8 | Old-repo cutover + first PyPI release + Zenodo DOI | ☐ Pending | — | — |
+| 7 | Docs site publication (`palmwtc.github.io/palmwtc/`) | ✓ Done | 2026-04-20 | `e40726e` |
+| 8 | Old-repo cutover + first PyPI release + Zenodo DOI | 🟡 Tag-only | 2026-04-20 | (this PR) |
 
 ---
 
@@ -53,9 +53,9 @@ squash commit).
 
 | ID | Blocker | Owner | Severity | Opened | Notes |
 |---|---|---|---|---|---|
-| OB-001 | PyPI name not yet reserved | maintainer | 🟡 medium | 2026-04-17 | Manual `twine upload` of `0.0.1.dev0` placeholder. Blocks Phase 8. |
-| OB-002 | PyPI Trusted Publishing not configured | maintainer | 🟡 medium | 2026-04-17 | One-time setup at pypi.org/manage/account/publishing/. Blocks Phase 8. |
-| OB-003 | Zenodo-GitHub integration not enabled | maintainer | 🟡 medium | 2026-04-17 | Enable in zenodo.org *before* first tag, else first release gets no DOI. Blocks Phase 8. |
+| ~~OB-001~~ | ~~PyPI name not yet reserved~~ | maintainer | ✅ closed 2026-04-20 | `palmwtc==0.1.0.dev0` placeholder uploaded. |
+| ~~OB-002~~ | ~~PyPI Trusted Publishing not configured~~ | maintainer | ✅ closed 2026-04-20 | Configured for `release.yml` workflow + `pypi` environment. |
+| ~~OB-003~~ | ~~Zenodo-GitHub integration not enabled~~ | maintainer | ✅ closed 2026-04-20 | Toggle ON for `adisapoetro/palmwtc`. |
 | OB-004 | `flux/cycles.py` has dead-code try/except for sibling import | AI | 🟢 low | 2026-04-19 | Code-review nit, deferred follow-up. |
 | OB-005 | `viz/timeseries.py:23` docstring promises a function that was dropped | AI | 🟢 low | 2026-04-19 | Same — code-review nit, deferred. |
 | OB-006 | Mypy: 2 pre-existing implicit-Optional warnings in `io/loaders.py`, `io/cloud.py` | AI | 🟢 low | 2026-04-17 | Inherited from upstream port. Non-blocking in CI. |
@@ -66,6 +66,7 @@ squash commit).
 
 | Date | Phase | What | Outcome |
 |---|---|---|---|
+| 2026-04-20 | 8 | v0.1.0 tagged → release workflow → PyPI + GitHub Release + Zenodo DOI | First public release |
 | 2026-04-20 | 7 | gh-pages deploy from CI (peaceiris) + Pages enabled | Live docs at adisapoetro.github.io/palmwtc/ |
 | 2026-04-20 | 6 | Streamlit dashboard wired to `palmwtc dashboard` CLI | Clean public-package version (~250 lines), [dashboard] extra |
 | 2026-04-19 | 5 | 9 thin tutorials + auto-discovery papermill CI | All 13 notebooks execute < 60s in CI |
@@ -96,7 +97,9 @@ squash commit).
 
 | Date | Artefact | What |
 |---|---|---|
-| 2026-04-19 | [palmwtc-0.1.0.dev0 wheel] | Builds locally; not yet on PyPI. Awaiting Phase 8. |
+| 2026-04-20 | `palmwtc==0.1.0` on PyPI | First public release. `pip install palmwtc` works for anyone. |
+| 2026-04-20 | Zenodo DOI for v0.1.0 | Citable per release. (Update README placeholder once minted.) |
+| 2026-04-19 | [palmwtc-0.1.0.dev0 wheel] | PyPI placeholder for name reservation. |
 | 2026-04-19 | [13 tutorial notebooks](tutorials/index.md) | All execute headless on bundled sample |
 | 2026-04-19 | Bundled synthetic sample | 3 MB parquet, deterministic seed=42, 5 edge cases injected |
 | 2026-04-19 | Library API: 33 top-level + 7 subpackages | Full backward-compat re-exports for ported notebooks |
@@ -119,10 +122,11 @@ squash commit).
 The full implementation plan lives in the *flux_chamber* working repo at
 `~/.claude/plans/venv-bin-python-scripts-run-notebooks-p-eventual-hellman.md`.
 
-Active phase: **Phase 8 — Cutover + first release.** Reserve `palmwtc`
-on PyPI, configure trusted publishing, enable Zenodo-GitHub integration,
-update flux_chamber to consume `pip install palmwtc`, tag `v0.1.0`,
-release. Three of these are manual maintainer items (see Open Blockers).
+Active phase: **Phase 8 wrap-up — flux_chamber cutover** (only remaining item).
+Rewrite ~14 flux_chamber notebook imports `from src.* import …` → `from palmwtc.* import …`,
+delete `flux_chamber/src/` + `flux_chamber/scripts/run_notebooks.py` + `flux_chamber/dashboard/`,
+replace `requirements.txt` with `palmwtc[ml,dashboard]`. Done as a separate PR
+in the flux_chamber repo (not this one).
 
 ---
 
@@ -140,6 +144,7 @@ release. Three of these are manual maintainer items (see Open Blockers).
 
 | Version | Date | Change |
 |---|---|---|
+| 0.8.0 | 2026-04-20 | v0.1.0 tagged. PyPI + GitHub Release + Zenodo DOI live. Cutover only remaining Phase 8 item. |
 | 0.7.0 | 2026-04-20 | Phase 7 (docs site publication) merged. Active phase advanced to 8. |
 | 0.6.0 | 2026-04-20 | Phase 6 (Streamlit dashboard) merged. Active phase advanced to 7. |
 | 0.5.0 | 2026-04-20 | Initial PROJECT_PULSE created. Phases 1-5 logged as completed. |
