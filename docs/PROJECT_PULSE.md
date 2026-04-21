@@ -1,7 +1,7 @@
 ---
 title: palmwtc — Project Pulse
 type: living-status-tracker
-version: 0.9.0
+version: 0.9.1
 last_updated: 2026-04-21
 owner: Didi Adisaputro
 ---
@@ -145,6 +145,7 @@ in the flux_chamber repo (not this one).
 
 | Version | Date | Change |
 |---|---|---|
+| 0.9.1 | 2026-04-21 | v0.2.1 hygiene patch: close 3 deferred Phase-2 code-review nits + 4 mypy fixes. No API change. |
 | 0.9.0 | 2026-04-21 | v0.2.0 prep: drop palmwtc.dashboard subpackage + CLI command; replace [dashboard] with [interactive] extra. Tighter scope (chamber-flux algorithms only). |
 | 0.8.0 | 2026-04-20 | v0.1.0 tagged. PyPI + GitHub Release + Zenodo DOI live. Cutover only remaining Phase 8 item. |
 | 0.7.0 | 2026-04-20 | Phase 7 (docs site publication) merged. Active phase advanced to 8. |
