@@ -20,6 +20,16 @@ repository-code: "https://github.com/adisapoetro/palmwtc"
 url: "https://adisapoetro.github.io/palmwtc/"
 version: 0.2.0
 date-released: "2026-04-21"
+# Concept DOI — always resolves to the latest version. Version-specific
+# DOIs are listed on the Zenodo record's "Versions" panel:
+#   https://zenodo.org/records/19680893
+identifiers:
+  - type: doi
+    value: "10.5281/zenodo.19680893"
+    description: "Concept DOI (latest version)"
+  - type: doi
+    value: "10.5281/zenodo.19675971"
+    description: "Version DOI for v0.2.0 (specific release)"
 keywords:
   - ecophysiology
   - flux-chamber
