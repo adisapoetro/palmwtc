@@ -99,7 +99,7 @@ squash commit).
 | Date | Artefact | What |
 |---|---|---|
 | 2026-04-20 | `palmwtc==0.1.0` on PyPI | First public release. `pip install palmwtc` works for anyone. |
-| 2026-04-20 | Zenodo DOI for v0.1.0 | Citable per release. (Update README placeholder once minted.) |
+| 2026-04-21 | Zenodo DOI live | Concept DOI: [10.5281/zenodo.19680893](https://doi.org/10.5281/zenodo.19680893). v0.2.0 version DOI: [10.5281/zenodo.19675971](https://doi.org/10.5281/zenodo.19675971). |
 | 2026-04-19 | [palmwtc-0.1.0.dev0 wheel] | PyPI placeholder for name reservation. |
 | 2026-04-19 | [13 tutorial notebooks](tutorials/index.md) | All execute headless on bundled sample |
 | 2026-04-19 | Bundled synthetic sample | 3 MB parquet, deterministic seed=42, 5 edge cases injected |

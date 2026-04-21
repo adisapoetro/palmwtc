@@ -6,6 +6,7 @@
 [![Python](https://img.shields.io/pypi/pyversions/palmwtc.svg)](https://pypi.org/project/palmwtc/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![CI](https://github.com/adisapoetro/palmwtc/actions/workflows/ci.yml/badge.svg)](https://github.com/adisapoetro/palmwtc/actions/workflows/ci.yml)
+[![DOI](https://zenodo.org/badge/1213667337.svg)](https://doi.org/10.5281/zenodo.19680893)
 
 `palmwtc` is the data-processing and analysis pipeline for the first
 automated whole-tree chamber (WTC) sized to enclose individual oil palm trees,
@@ -66,18 +67,19 @@ Full API reference: [adisapoetro.github.io/palmwtc/api/](https://adisapoetro.git
 
 ## Citation
 
-If you use `palmwtc` in scientific work, please cite the Zenodo DOI for the
-release you used. The latest version is always available at
-[doi.org/10.5281/zenodo.XXXXXXX](https://doi.org/10.5281/zenodo.XXXXXXX)
-(populated after the first release).
+If you use `palmwtc` in scientific work, please cite the Zenodo DOI. The
+**concept DOI** [10.5281/zenodo.19680893](https://doi.org/10.5281/zenodo.19680893)
+always resolves to the latest version; to cite a specific release, use
+its own version DOI (visible on the [Zenodo record](https://zenodo.org/records/19680893)
+→ *Versions* panel).
 
 ```bibtex
 @software{adisaputro_palmwtc_2026,
   author  = {Adisaputro, Didi},
   title   = {palmwtc: Automated whole-tree chamber workflow for oil-palm ecophysiology},
   year    = {2026},
-  version = {0.1.0},
-  doi     = {10.5281/zenodo.XXXXXXX},
+  version = {0.2.0},
+  doi     = {10.5281/zenodo.19680893},
   url     = {https://github.com/adisapoetro/palmwtc},
 }
 ```
