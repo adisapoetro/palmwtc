@@ -6,7 +6,7 @@ bodies match the original to 1e-12. Internal cross-module references now
 resolve via ``palmwtc.io.*``.
 """
 
-# ruff: noqa: F541, F841, RUF013, UP037
+# ruff: noqa: F541, F841, UP037
 # Above ignores cover quirks carried verbatim from the original
 # ``flux_chamber/src/data_utils.py`` to honour the Phase 2 "behaviour
 # preservation" rule: F541 unused f-prefixes in print() calls, F841 unused
@@ -23,7 +23,7 @@ import numpy as np
 import pandas as pd
 
 
-def load_monthly_data(data_dir: Path, months: list = None) -> pd.DataFrame:
+def load_monthly_data(data_dir: Path, months: list | None = None) -> pd.DataFrame:
     """
     Load integrated monthly CSV files.
 

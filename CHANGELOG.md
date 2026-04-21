@@ -6,13 +6,45 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
-### Changed (docs only)
+(no changes yet)
 
-- `README.md`: added Zenodo DOI badge (concept DOI 10.5281/zenodo.19680893);
-  replaced `XXXXXXX` placeholders in citation section with the real DOI.
-- `CITATION.cff`: added `identifiers:` block listing both the concept DOI
-  and the v0.2.0 version DOI (10.5281/zenodo.19675971).
-- `docs/PROJECT_PULSE.md`: logged DOI minting as closed deliverable.
+## [0.2.1] — 2026-04-21
+
+Hygiene patch — addresses deferred code-review nits from Phase 2 + 4
+mypy warnings. No API changes; library and CLI surface identical to 0.2.0.
+
+### Fixed
+
+- `palmwtc/viz/timeseries.py` docstring: the original was claiming
+  `plot_concentration_slope_vs_date_interactive` "lives in
+  palmwtc.viz.interactive" — that function was actually retired during
+  the port (zero notebook usage). Docstring now describes the retirement
+  accurately.
+- `palmwtc/flux/cycles.py` + `palmwtc/flux/chamber.py`: removed dead
+  `try/except ImportError` around sibling `palmwtc.flux.absolute`
+  imports. The try/except was faithful to the pre-port staging when the
+  sibling file might not yet exist; once consolidated in v0.1.0 the
+  sibling is always present, so the fallbacks were unreachable.
+- `palmwtc/pipeline.py`: `find_latest_qc_file` was called with a
+  non-existent `processed_dir=` keyword; fixed to positional arg. Did
+  not manifest at runtime because the canonical path check short-circuits
+  first on synthetic + real data, but would have bitten edge cases where
+  neither canonical nor bundled-synthetic paths exist.
+
+### Changed (type safety)
+
+- `palmwtc/io/cloud.py`: added explicit type annotation for `result`
+  dict.
+- `palmwtc/io/loaders.py`: `load_monthly_data(months=...)` now typed
+  as `list | None` (was implicit Optional).
+- Added `types-PyYAML` to the `[dev]` extra.
+
+### Docs
+
+- `README.md`: Zenodo DOI badge + real DOI in citation section
+  (concept DOI 10.5281/zenodo.19680893; v0.2.0 version DOI
+  10.5281/zenodo.19675971).
+- `CITATION.cff`: `identifiers:` block listing both DOIs.
 
 ## [0.2.0] — 2026-04-21
 

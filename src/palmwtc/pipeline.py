@@ -91,7 +91,7 @@ def _find_qc_parquet(paths: DataPaths) -> Path:
     # Then find_latest_qc_file as a last resort.
     from palmwtc.io import find_latest_qc_file
 
-    found = find_latest_qc_file(processed_dir=paths.processed_dir)
+    found = find_latest_qc_file(paths.processed_dir)
     if found is None:
         raise FileNotFoundError(
             f"No QC parquet found. Tried:\n"

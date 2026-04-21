@@ -20,9 +20,10 @@ that have no current notebook callers but are kept for parity:
 - ``plot_concentration_slope_boxplot_vs_tree_age``
 - ``plot_flux_monthly_boxplot``
 
-The Plotly-based ``plot_concentration_slope_vs_date_interactive`` is NOT
-ported here; per the Phase 2 plan, Plotly figures live in
-``palmwtc.viz.interactive``.
+The Plotly-based ``plot_concentration_slope_vs_date_interactive`` from the
+original flux_visualization.py was intentionally retired during the Phase 2
+port (CLAUDE.md §1: zero notebook usage = dead code). Interactive Plotly
+helpers that were ported live in ``palmwtc.viz.interactive``.
 """
 
 import matplotlib.dates as mdates
