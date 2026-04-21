@@ -37,7 +37,7 @@ def get_cloud_sensor_dirs(chamber_base) -> dict:
         Values: list of {"path": Path, "is_flat": bool}
     """
     base = Path(chamber_base)
-    result = {k: [] for k in _SENSOR_PATTERNS}
+    result: dict[str, list[dict]] = {k: [] for k in _SENSOR_PATTERNS}
 
     # 1. Main folder (standard structure, same as local)
     main_dir = base / "main"

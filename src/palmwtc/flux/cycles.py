@@ -23,14 +23,10 @@ import numpy as np
 import pandas as pd
 from scipy.stats import linregress, theilslopes
 
-# Optional: absolute-flux conversion. The original used a try/except that
-# tolerated the import failing; we keep that exact contract because Batch 2
-# may have not landed ``palmwtc.flux.absolute`` yet when this module is first
-# imported.
-try:
-    from palmwtc.flux.absolute import calculate_absolute_flux
-except ImportError:
-    calculate_absolute_flux = None
+# Absolute-flux conversion — sibling is always present in the consolidated
+# package (the original flux_chamber try/except was needed during the staged
+# Phase-2 port when absolute.py might not yet be on disk; dead since v0.1.0).
+from palmwtc.flux.absolute import calculate_absolute_flux
 
 # ML anomaly detection (optional dependency)
 try:
@@ -597,11 +593,7 @@ def evaluate_cycle(
         "bimodal_upper_mean": bimodal["upper_mean"],
     }
 
-    if calculate_absolute_flux is not None:
-        row["flux_absolute"] = float(calculate_absolute_flux(pd.Series(row)))
-    else:
-        row["flux_absolute"] = np.nan
-
+    row["flux_absolute"] = float(calculate_absolute_flux(pd.Series(row)))
     return row
 
 

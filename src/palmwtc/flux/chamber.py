@@ -41,12 +41,6 @@ from palmwtc.flux.cycles import (
     score_cycle,  # noqa: F401  — re-exported for notebooks that import via chamber
 )
 
-try:
-    from palmwtc.flux.absolute import calculate_absolute_flux, calculate_h2o_absolute_flux
-except Exception:
-    calculate_absolute_flux = None
-    calculate_h2o_absolute_flux = None
-
 # ---------------------------------------------------------------------------
 # Default Configuration
 # ---------------------------------------------------------------------------
