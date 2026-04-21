@@ -6,7 +6,13 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
-(no changes yet)
+### Changed (docs only)
+
+- `README.md`: added Zenodo DOI badge (concept DOI 10.5281/zenodo.19680893);
+  replaced `XXXXXXX` placeholders in citation section with the real DOI.
+- `CITATION.cff`: added `identifiers:` block listing both the concept DOI
+  and the v0.2.0 version DOI (10.5281/zenodo.19675971).
+- `docs/PROJECT_PULSE.md`: logged DOI minting as closed deliverable.
 
 ## [0.2.0] — 2026-04-21
 
