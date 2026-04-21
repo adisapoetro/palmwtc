@@ -1,13 +1,15 @@
-"""palmwtc CLI entry point — Phase 3.
+"""palmwtc CLI entry point.
 
 Subcommands:
 
 - ``palmwtc info`` — print version + resolved DataPaths.
 - ``palmwtc run`` — run the QC → flux → windows → validation pipeline.
   Library-mode by default; ``--notebooks`` switches to papermill mode.
-- ``palmwtc sample fetch`` — placeholder for Zenodo sample download.
-- ``palmwtc dashboard`` — launch the Streamlit monitoring app
-  (requires ``palmwtc[dashboard]`` extra; wired in Phase 6).
+- ``palmwtc sample {path,fetch}`` — bundled / downloadable sample helpers.
+
+The Streamlit dashboard subcommand was removed in v0.2.0 — operational
+monitoring is out of scope for the public package. The companion
+flux_chamber working repo retains the LIBZ-specific dashboard.
 """
 
 from __future__ import annotations
@@ -162,23 +164,6 @@ def sample_fetch(
     )
     sample_path()
     raise typer.Exit(code=2)
-
-
-@app.command()
-def dashboard() -> None:
-    """Launch the Streamlit monitoring dashboard (needs the dashboard extra)."""
-    try:
-        import streamlit  # noqa: F401
-    except ImportError:
-        typer.secho(
-            "streamlit not installed. Run:  pip install 'palmwtc[dashboard]'",
-            fg=typer.colors.RED,
-        )
-        raise typer.Exit(code=2) from None
-
-    from palmwtc.dashboard.app import cli_entry
-
-    cli_entry()
 
 
 if __name__ == "__main__":

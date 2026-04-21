@@ -14,8 +14,7 @@ def test_palmwtc_imports() -> None:
 
 
 def test_subpackages_import() -> None:
-    """All planned subpackages exist as importable modules (Phase 1: empty stubs)."""
-    import palmwtc.dashboard
+    """All planned subpackages exist as importable modules."""
     import palmwtc.data
     import palmwtc.flux
     import palmwtc.hardware

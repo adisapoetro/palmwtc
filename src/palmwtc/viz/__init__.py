@@ -1,16 +1,15 @@
 """palmwtc.viz — static + interactive visualisation helpers.
 
-Phase 2 splits ``flux_chamber/src/flux_visualization.py`` into
-``style.py``, ``diagnostics.py``, ``timeseries.py``;
-``flux_visualization_interactive.py`` lands as ``interactive.py`` (gated
-behind ``palmwtc[dashboard]`` extra at call time);
-``qc_visualizations.py`` lands as ``qc_plots.py``.
+- ``style.py`` / ``diagnostics.py`` / ``timeseries.py`` — matplotlib helpers (no extras).
+- ``qc_plots.py`` — matplotlib QC visualisation.
+- ``interactive.py`` — Plotly + ipywidgets Jupyter dashboards (call sites
+  need ``palmwtc[interactive]`` for ipywidgets / anywidget; bare imports
+  succeed without the extra).
 
-This umbrella re-exports the public plotting API used by notebooks
-010, 020, 030, 031, 032, 033, 035, 070, 080. Helpers that are only
-used inside the interactive Plotly dashboard remain reachable via
-``palmwtc.viz.interactive.*`` and are NOT re-exported here to keep the
-top-level namespace focused.
+The umbrella re-exports the public plotting API used by tutorial
+notebooks 010, 020, 030, 031, 032, 033, 035. Helpers used only inside
+the interactive Plotly dashboard are reachable via
+``palmwtc.viz.interactive.*`` and not re-exported here.
 """
 
 from palmwtc.viz.diagnostics import (
