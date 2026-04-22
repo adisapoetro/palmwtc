@@ -167,7 +167,22 @@ def step_flux(paths: DataPaths, qc_df: pd.DataFrame | None = None) -> StepResult
 
         all_cycles: list[pd.DataFrame] = []
         for suffix in chamber_suffixes:
-            prepared = prepare_chamber_data(qc_df.copy(), chamber_suffix=suffix)
+            # The LI-COR LI-850 (and the broader LI-7x00 / LI-8x0 chamber-analyser
+            # class palmwtc targets) applies the Webb-Pearman-Leuning dilution
+            # correction *inside the analyser firmware* before reporting CO2 ppm.
+            # Re-applying WPL in software here would be a double-correction and
+            # also shrinks the cycle window because rows lacking a valid H2O
+            # reading get filtered out by `require_h2o_for_wpl=True`.
+            #
+            # The original flux_chamber notebook 030 explicitly disabled both
+            # for this reason; we mirror that here to match real-instrument
+            # behaviour out of the box.
+            prepared = prepare_chamber_data(
+                qc_df.copy(),
+                chamber_suffix=suffix,
+                apply_wpl=False,
+                require_h2o_for_wpl=False,
+            )
             cycles = calculate_flux_cycles(prepared, chamber_name=suffix)
             if cycles is not None and len(cycles) > 0:
                 cycles = cycles.copy()
