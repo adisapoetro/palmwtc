@@ -24,6 +24,7 @@ from __future__ import annotations
 
 import json
 import time
+import warnings
 from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Any
@@ -119,18 +120,39 @@ def _apply_tree_volume_correction(cycles_df: pd.DataFrame, paths: DataPaths) -> 
         )
         chamber_flux_df["flux_absolute"] = chamber_flux_df.apply(calculate_absolute_flux, axis=1)
 
-    No-op (returns cycles_df unchanged) if biophysics are unavailable.
+    Opt-in via ``paths.extras["correct_tree_volume"] = True`` in palmwtc.yaml.
+    Default OFF (matches the post-cutover flux_chamber baseline). When opted-in
+    and biophysics fail to load, emits a warning rather than silently no-op'ing
+    so users know why ``tree_volume`` is missing from the cycles output.
     """
     if cycles_df.empty:
         return cycles_df
 
     extras = paths.extras or {}
+
+    # Opt-in flag. Off by default because the original flux_chamber baseline
+    # cycles CSV (`Data/digital_twin/01_chamber_cycles.csv`, post-cutover)
+    # was produced without tree-volume correction; turning it on by default
+    # would break parity. Users who want the scientifically-correct correction
+    # set `correct_tree_volume: true` in palmwtc.yaml.
+    if not extras.get("correct_tree_volume", False):
+        return cycles_df
+
     biophys_dir = extras.get("biophys_data_dir")
     if not biophys_dir:
+        warnings.warn(
+            "correct_tree_volume=True but biophys_data_dir is not set in "
+            "palmwtc.yaml extras; tree-volume correction skipped.",
+            stacklevel=2,
+        )
         return cycles_df
 
     biophys_path = Path(biophys_dir).expanduser()
     if not biophys_path.exists():
+        warnings.warn(
+            f"biophys_data_dir does not exist: {biophys_path} — tree-volume correction skipped.",
+            stacklevel=2,
+        )
         return cycles_df
 
     chamber_tree_map = extras.get("chamber_tree_map", _DEFAULT_CHAMBER_TREE_MAP)
@@ -142,9 +164,14 @@ def _apply_tree_volume_correction(cycles_df: pd.DataFrame, paths: DataPaths) -> 
         from palmwtc.flux.chamber import get_tree_volume_at_date, load_tree_biophysics
 
         df_vigor = load_tree_biophysics(biophys_path)
-    except Exception:
-        # Don't fail the pipeline step if biophysics load errors; just keep
-        # uncorrected fluxes and let downstream notebooks decide.
+    except Exception as exc:
+        warnings.warn(
+            f"tree-volume correction failed to load biophysics from "
+            f"{biophys_path}: {type(exc).__name__}: {exc}. "
+            "Install `openpyxl` if the biophysics data is .xlsx. "
+            "Cycles will keep un-corrected flux_absolute.",
+            stacklevel=2,
+        )
         return cycles_df
 
     out = cycles_df.copy()
@@ -255,19 +282,12 @@ def step_flux(paths: DataPaths, qc_df: pd.DataFrame | None = None) -> StepResult
 
         cycles_df = pd.concat(all_cycles, ignore_index=True) if all_cycles else pd.DataFrame()
 
-        # Tree-volume correction (optional). The chamber air-volume divisor in
-        # `calculate_absolute_flux` accounts for the tree displacing some chamber
-        # air. The original flux_chamber notebook 030 looks up the per-tree
-        # vigor at flux_date and re-runs `calculate_absolute_flux` so each
-        # cycle's flux_absolute reflects that day's tree volume.
-        #
-        # We do the same here when the user provides:
-        #   - paths.extras["biophys_data_dir"]  (absolute path)
-        #   - paths.extras["chamber_tree_map"]  (dict {"C1": "tree-id-string", ...})
-        #
-        # Defaults match the LIBZ deployment; collaborators with different
-        # chambers override via palmwtc.yaml. If biophysics aren't available
-        # the cycles_df keeps the un-corrected flux_absolute (tree_volume=0).
+        # Tree-volume correction is opt-in via palmwtc.yaml extras:
+        #   correct_tree_volume: true
+        #   biophys_data_dir: /path/to/BiophysicalParam
+        #   chamber_tree_map: {C1: "<tree-id>", C2: "<tree-id>"}  # optional override
+        # See `_apply_tree_volume_correction` for rationale (default OFF preserves
+        # parity with the post-cutover flux_chamber baseline CSV).
         tree_corrected_cycles = _apply_tree_volume_correction(cycles_df, paths)
 
         out_dir = paths.exports_dir / "digital_twin"
