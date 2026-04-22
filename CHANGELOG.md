@@ -8,6 +8,71 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 (no changes yet)
 
+## [0.2.4] — 2026-04-22
+
+Third hotfix in the post-cutover-verification series. After v0.2.3
+fixed WPL double-correction, mean `flux_absolute` divergence dropped
+from 5% to 0.4% — but a residual outlier tail (p99 ≈ 1.3 µmol/m²/s,
+max ≈ 22) persisted on real LIBZ data. Cause: missing tree-volume
+correction in `step_flux`.
+
+### Added
+
+- `palmwtc.pipeline._apply_tree_volume_correction` — replays the
+  tree-volume re-calculation from `flux_chamber/notebooks/030` cell 18.
+  Per cycle: look up tree biophysics at `flux_date`, compute
+  `tree_volume_m³`, re-run `calculate_absolute_flux` so the chamber
+  air-volume divisor accounts for tree displacement.
+- Two new optional `palmwtc.yaml` extras:
+  - `biophys_data_dir`: absolute path to the biophysics folder
+    (containing `Vigor Index.xlsx`, etc.). Required to enable correction.
+  - `chamber_tree_map`: dict `{"C1": "tree-id-string", ...}`. Defaults
+    to the LIBZ deployment map (`{"C1": "2.2/EKA-1/2107", "C2": "2.4/EKA-2/2858"}`)
+    when not specified.
+- New `tree_volume_corrected: <int>` field in `step_flux` result metrics
+  reporting how many cycles got the per-tree correction applied.
+
+### Behaviour change
+
+- When `biophys_data_dir` is configured and the directory exists,
+  `step_flux` now returns `cycles_df` with `tree_id`, `tree_volume`,
+  and a recomputed `flux_absolute` column. Previously these columns
+  were absent.
+- When `biophys_data_dir` is **not** configured (or doesn't exist on
+  disk), behaviour is identical to v0.2.3 — silently no-op, no new
+  columns added.
+
+### Tests
+
+- `TestStepFluxTreeVolume` adds 3 cases: no-op when biophys missing,
+  no-op when configured path doesn't exist, no-op on empty cycles.
+
+### Migration
+
+To enable tree-volume correction in your `flux_chamber2/palmwtc.yaml`:
+
+```yaml
+processed_dir:    /path/to/Data/Integrated_QC_Data
+exports_dir:     /path/to/your/exports
+biophys_data_dir: /path/to/Raw/local/BiophysicalParam   # ← NEW
+# chamber_tree_map: defaults to LIBZ — override only for other deployments
+#   C1: "2.2/EKA-1/2107"
+#   C2: "2.4/EKA-2/2858"
+```
+
+### Discovery context
+
+Found during the v0.2.3 verification re-run (same harness):
+
+- v0.2.3: mean `flux_absolute` = -3.07 (vs baseline -3.09, diff 0.014)
+- p99 |diff| = 1.33; max = 22.4 still
+- Reading `flux_chamber/notebooks/030` cell 18 line-by-line revealed
+  the post-`calculate_flux_cycles` tree-volume merge + re-apply that
+  palmwtc was missing.
+
+Recommend re-running `~/Projects/flux_chamber2/run.sh` after pulling
+0.2.4 + adding `biophys_data_dir:` to `palmwtc.yaml`.
+
 ## [0.2.3] — 2026-04-22
 
 Second hotfix found by the same `flux_chamber2` real-data verification
