@@ -8,6 +8,60 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 (no changes yet)
 
+## [0.2.3] — 2026-04-22
+
+Second hotfix found by the same `flux_chamber2` real-data verification
+harness. After v0.2.2 fixed the chamber-detection over-count, the
+remaining cycle-count was right (~60K) but per-cycle `flux_absolute`
+diverged from baseline by a median of 0.075 µmol/m²/s and up to
+22 µmol/m²/s on outliers. Root cause: WPL double-correction.
+
+### Fixed
+
+- `palmwtc.pipeline.step_flux` now calls
+  `prepare_chamber_data(..., apply_wpl=False, require_h2o_for_wpl=False)`
+  matching the real-instrument behaviour and the original
+  `flux_chamber/notebooks/030` call.
+
+  **Why this was wrong:** the LI-COR LI-850 (and the broader LI-7x00 /
+  LI-8x0 chamber-analyser class palmwtc targets) applies the
+  Webb–Pearman–Leuning dilution correction *inside the analyser
+  firmware* before reporting CO2 ppm. Re-applying WPL in software is a
+  double-correction. It also shrank the cycle-fit window because rows
+  lacking a valid H2O reading got filtered out by
+  `require_h2o_for_wpl=True`, dropping cycle durations by ~80 sec and
+  shifting per-cycle slopes.
+
+  Symptom on real LIBZ data:
+  - Median `|flux_absolute| diff` vs baseline = 0.075 µmol/m²/s
+  - p99 = 2.16 µmol/m²/s
+  - max = 22.3 µmol/m²/s (cycles where window-shrinkage was severe)
+
+  After fix (expected): per-cycle diff < 1e-6 against the original
+  notebook output.
+
+### Tests
+
+- Added `tests/unit/test_pipeline.py::TestStepFluxWplDefaults::test_step_flux_passes_wpl_false_to_prepare`
+  that monkey-patches `prepare_chamber_data` and asserts step_flux
+  passes both `apply_wpl=False` and `require_h2o_for_wpl=False`.
+
+### Discovery context
+
+Found during the same real-data verification as v0.2.2's chamber bug.
+Verification harness (`~/Projects/flux_chamber2/`):
+1. Wipe outputs, install palmwtc 0.2.2, re-run pipeline
+2. Notebook reported PARITY FAILED — per-cycle diff > tolerance
+3. Per-cycle inspection of worst-diff cycle (Chamber 1, 2026-01-17 15:15)
+   showed `cycle_duration_sec = 144 (new) vs 224 (old)` — exactly an
+   80-second shorter window
+4. Reading the original `flux_chamber/notebooks/030` cell 18 showed
+   the explicit `apply_wpl=False, require_h2o_for_wpl=False` kwargs
+   that step_flux was missing
+
+Recommend re-running `~/Projects/flux_chamber2/run.sh` (or
+`verify_palmwtc.ipynb`) after pulling 0.2.3 to confirm parity.
+
 ## [0.2.2] — 2026-04-22
 
 Critical bug fix found during real-data verification of the
