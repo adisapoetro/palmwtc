@@ -2,6 +2,8 @@
 
 from __future__ import annotations
 
+from pathlib import Path
+
 import pandas as pd
 import pytest
 
@@ -78,6 +80,66 @@ class TestStepFluxChamberDetection:
     def test_no_co2_columns_returns_empty(self) -> None:
         df = self._df_with_columns("TIMESTAMP", "H2O_C1")
         assert self._detect(df) == []
+
+
+class TestStepFluxWplDefaults:
+    """Regression tests for the WPL kwargs in step_flux.
+
+    Bug found 2026-04-22 during the user-driven flux_chamber2 verification:
+    palmwtc 0.2.0-0.2.2 inherited prepare_chamber_data's default
+    `apply_wpl=True`, but LI-COR LI-850 chamber analysers apply the
+    Webb-Pearman-Leuning correction *inside the device*. Re-applying it
+    in software is a double-correction and shrinks the cycle window.
+    The original flux_chamber notebook 030 explicitly used
+    `apply_wpl=False, require_h2o_for_wpl=False`. v0.2.3 makes that the
+    default in step_flux.
+    """
+
+    def test_step_flux_passes_wpl_false_to_prepare(
+        self, monkeypatch: pytest.MonkeyPatch, tmp_path: Path
+    ) -> None:
+        """Capture the kwargs step_flux passes to prepare_chamber_data."""
+        from palmwtc.config import DataPaths
+        from palmwtc.pipeline import step_flux
+
+        captured: list[dict] = []
+
+        def _spy_prepare(data, chamber_suffix, **kwargs):
+            captured.append({"chamber_suffix": chamber_suffix, **kwargs})
+            return data
+
+        def _spy_calculate_flux_cycles(prepared, chamber_name, **kwargs):
+            return pd.DataFrame()  # short-circuit
+
+        # Build a tiny synthetic QC dataframe with both chambers.
+        qc = pd.DataFrame(
+            {
+                "TIMESTAMP": pd.date_range("2026-01-01", periods=4, freq="1min"),
+                "CO2_C1": [410.0, 411, 412, 413],
+                "CO2_C2": [410.0, 411, 412, 413],
+            }
+        )
+
+        import palmwtc.flux as palmwtc_flux
+
+        monkeypatch.setattr(palmwtc_flux, "prepare_chamber_data", _spy_prepare)
+        monkeypatch.setattr(palmwtc_flux, "calculate_flux_cycles", _spy_calculate_flux_cycles)
+
+        # Use a paths whose exports_dir is writable in this test.
+        paths = DataPaths.resolve(raw_dir=tmp_path)
+
+        result = step_flux(paths, qc_df=qc)
+        assert result.ok, result.error
+
+        # Both chambers should have been prepared with WPL disabled.
+        assert len(captured) == 2
+        for call in captured:
+            assert call.get("apply_wpl") is False, (
+                "step_flux must pass apply_wpl=False (LI-850 already corrects)"
+            )
+            assert call.get("require_h2o_for_wpl") is False, (
+                "step_flux must pass require_h2o_for_wpl=False to keep rows lacking H2O"
+            )
 
 
 class TestStepQc:
