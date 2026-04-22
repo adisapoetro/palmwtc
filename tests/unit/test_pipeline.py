@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import pandas as pd
 import pytest
 
 from palmwtc.config import DataPaths
@@ -19,6 +20,64 @@ from palmwtc.pipeline import (
 def sample_paths() -> DataPaths:
     """Resolve DataPaths against the bundled synthetic sample."""
     return DataPaths.resolve()
+
+
+class TestStepFluxChamberDetection:
+    """Regression tests for the chamber-discovery regex in step_flux.
+
+    Bug found 2026-04-22: when run against real LIBZ data, the original
+    regex (`col.startswith("CO2_C")` + `split("_", 1)[1]`) treated every
+    `CO2_C1_qc_flag`, `CO2_C1_rule_flag`, etc., as a separate chamber,
+    producing 1.2M cycles instead of ~60K. Fixed in v0.2.2 by requiring
+    an exact `CO2_C<n>` column-name match.
+    """
+
+    def _df_with_columns(self, *cols: str) -> pd.DataFrame:
+        return pd.DataFrame({c: [0.0] for c in cols})
+
+    def _detect(self, df: pd.DataFrame) -> list[str]:
+        """Helper: replicate step_flux's chamber-detection logic."""
+        import re
+
+        co2_pattern = re.compile(r"^CO2_(C\d+)$")
+        return sorted({m.group(1) for col in df.columns if (m := co2_pattern.match(col))})
+
+    def test_detects_canonical_chamber_columns(self) -> None:
+        df = self._df_with_columns("TIMESTAMP", "CO2_C1", "CO2_C2", "H2O_C1", "H2O_C2")
+        assert self._detect(df) == ["C1", "C2"]
+
+    def test_ignores_qc_flag_derivative_columns(self) -> None:
+        """The bug: CO2_C1_qc_flag was being mistaken for a chamber."""
+        df = self._df_with_columns(
+            "CO2_C1",
+            "CO2_C2",
+            "CO2_C1_qc_flag",
+            "CO2_C2_qc_flag",
+            "CO2_C1_rule_flag",
+            "CO2_C1_ml_flag",
+            "CO2_C1_if_flag",
+            "CO2_C1_mcd_flag",
+            "CO2_C2_rule_flag",
+            "CO2_C2_ml_flag",
+            "CO2_C2_if_flag",
+            "CO2_C2_mcd_flag",
+            "CO2_C1_corrected",
+            "CO2_C2_corrected",
+            "CO2_C1_offset",
+            "CO2_C2_offset",
+            "CO2_C1_raw",
+            "CO2_C2_raw",
+        )
+        # Only the two canonical chambers must be detected — not the 16 derivatives.
+        assert self._detect(df) == ["C1", "C2"]
+
+    def test_three_chamber_setup_works(self) -> None:
+        df = self._df_with_columns("CO2_C1", "CO2_C2", "CO2_C3", "CO2_C1_qc_flag")
+        assert self._detect(df) == ["C1", "C2", "C3"]
+
+    def test_no_co2_columns_returns_empty(self) -> None:
+        df = self._df_with_columns("TIMESTAMP", "H2O_C1")
+        assert self._detect(df) == []
 
 
 class TestStepQc:

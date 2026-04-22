@@ -138,6 +138,8 @@ def step_flux(paths: DataPaths, qc_df: pd.DataFrame | None = None) -> StepResult
     """
     t0 = time.time()
     try:
+        import re
+
         from palmwtc.flux import calculate_flux_cycles, prepare_chamber_data
 
         if qc_df is None:
@@ -145,9 +147,14 @@ def step_flux(paths: DataPaths, qc_df: pd.DataFrame | None = None) -> StepResult
             qc_df = pd.read_parquet(qc_path)
         rows_in = len(qc_df)
 
-        # Discover chambers from CO2_C<n> columns.
+        # Discover chambers from CO2_C<n> columns. Real LIBZ data has many
+        # `CO2_C1_*` derivative columns (`_qc_flag`, `_rule_flag`, `_ml_flag`,
+        # `_corrected`, ...), so we must match the canonical column NAME
+        # exactly — not just the prefix — to avoid treating each derivative
+        # as a separate chamber.
+        co2_pattern = re.compile(r"^CO2_(C\d+)$")
         chamber_suffixes = sorted(
-            {col.split("_", 1)[1] for col in qc_df.columns if col.startswith("CO2_C")}
+            {m.group(1) for col in qc_df.columns if (m := co2_pattern.match(col))}
         )
         if not chamber_suffixes:
             return StepResult(
@@ -155,7 +162,7 @@ def step_flux(paths: DataPaths, qc_df: pd.DataFrame | None = None) -> StepResult
                 ok=False,
                 elapsed_seconds=time.time() - t0,
                 rows_in=rows_in,
-                error="no CO2_C* columns found in QC parquet",
+                error="no canonical CO2_C<n> columns found in QC parquet",
             )
 
         all_cycles: list[pd.DataFrame] = []
