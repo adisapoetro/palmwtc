@@ -142,6 +142,72 @@ class TestStepFluxWplDefaults:
             )
 
 
+class TestStepFluxTreeVolume:
+    """Regression tests for tree-volume correction in step_flux (v0.2.4).
+
+    The original flux_chamber notebook 030 re-runs `calculate_absolute_flux`
+    after merging tree biophysics so each cycle's `flux_absolute` reflects
+    that day's tree volume in the chamber air-volume divisor. v0.2.4 ports
+    this to `palmwtc.pipeline.step_flux`, gated on:
+      - paths.extras["biophys_data_dir"]
+      - paths.extras["chamber_tree_map"] (or built-in LIBZ default)
+
+    Without those, tree-volume correction silently no-ops (cycles keep
+    `tree_volume=0`, matching v0.2.3 behaviour).
+    """
+
+    def test_no_op_when_biophys_dir_missing(self) -> None:
+        """If `biophys_data_dir` isn't set in extras, cycles_df returns unchanged."""
+        from palmwtc.config import DataPaths
+        from palmwtc.pipeline import _apply_tree_volume_correction
+
+        paths = DataPaths.resolve()  # extras is {} by default
+        cycles = pd.DataFrame(
+            {
+                "chamber": ["C1", "C2"],
+                "flux_date": pd.to_datetime(["2026-01-01", "2026-01-02"]),
+                "flux_absolute": [-3.5, -2.8],
+                "flux_slope": [-0.05, -0.04],
+                "mean_temp": [25.0, 26.0],
+            }
+        )
+        out = _apply_tree_volume_correction(cycles, paths)
+
+        # No tree_volume column added (biophys not configured).
+        assert "tree_volume" not in out.columns
+        # flux_absolute unchanged.
+        assert out["flux_absolute"].tolist() == cycles["flux_absolute"].tolist()
+
+    def test_no_op_when_biophys_dir_does_not_exist(self, tmp_path: Path) -> None:
+        """If `biophys_data_dir` is set but the directory doesn't exist, no-op."""
+        from palmwtc.config import DataPaths
+        from palmwtc.pipeline import _apply_tree_volume_correction
+
+        nonexistent = tmp_path / "no-such-dir"
+        # Hand-build a DataPaths with extras (resolve() doesn't take extras kwarg).
+        paths = DataPaths.resolve()
+        paths_with_extras = paths.with_overrides(extras={"biophys_data_dir": str(nonexistent)})
+
+        cycles = pd.DataFrame(
+            {
+                "chamber": ["C1"],
+                "flux_date": pd.to_datetime(["2026-01-01"]),
+                "flux_absolute": [-3.0],
+            }
+        )
+        out = _apply_tree_volume_correction(cycles, paths_with_extras)
+        assert "tree_volume" not in out.columns
+
+    def test_empty_cycles_returns_unchanged(self) -> None:
+        from palmwtc.config import DataPaths
+        from palmwtc.pipeline import _apply_tree_volume_correction
+
+        paths = DataPaths.resolve()
+        empty = pd.DataFrame()
+        out = _apply_tree_volume_correction(empty, paths)
+        assert out.empty
+
+
 class TestStepQc:
     def test_qc_loads_synthetic_parquet(self, sample_paths: DataPaths) -> None:
         result = step_qc(sample_paths)

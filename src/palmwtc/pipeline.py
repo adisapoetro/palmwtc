@@ -101,6 +101,70 @@ def _find_qc_parquet(paths: DataPaths) -> Path:
     return Path(found)
 
 
+# Default LIBZ chamber → tree-id mapping. The original flux_chamber
+# notebooks/030 hardcoded this in cell 4 as CHAMBER_TREE_MAP. Override
+# via palmwtc.yaml `chamber_tree_map:` dict for deployments at other sites.
+_DEFAULT_CHAMBER_TREE_MAP = {
+    "C1": "2.2/EKA-1/2107",
+    "C2": "2.4/EKA-2/2858",
+}
+
+
+def _apply_tree_volume_correction(cycles_df: pd.DataFrame, paths: DataPaths) -> pd.DataFrame:
+    """Re-compute `flux_absolute` per cycle with tree-volume correction.
+
+    Mirrors flux_chamber/notebooks/030 cell 18:
+        chamber_flux_df["tree_volume"] = chamber_flux_df["flux_date"].apply(
+            lambda d: get_tree_volume_at_date(df_vigor, tree_id, d)
+        )
+        chamber_flux_df["flux_absolute"] = chamber_flux_df.apply(calculate_absolute_flux, axis=1)
+
+    No-op (returns cycles_df unchanged) if biophysics are unavailable.
+    """
+    if cycles_df.empty:
+        return cycles_df
+
+    extras = paths.extras or {}
+    biophys_dir = extras.get("biophys_data_dir")
+    if not biophys_dir:
+        return cycles_df
+
+    biophys_path = Path(biophys_dir).expanduser()
+    if not biophys_path.exists():
+        return cycles_df
+
+    chamber_tree_map = extras.get("chamber_tree_map", _DEFAULT_CHAMBER_TREE_MAP)
+    if not chamber_tree_map or "chamber" not in cycles_df.columns:
+        return cycles_df
+
+    try:
+        from palmwtc.flux.absolute import calculate_absolute_flux
+        from palmwtc.flux.chamber import get_tree_volume_at_date, load_tree_biophysics
+
+        df_vigor = load_tree_biophysics(biophys_path)
+    except Exception:
+        # Don't fail the pipeline step if biophysics load errors; just keep
+        # uncorrected fluxes and let downstream notebooks decide.
+        return cycles_df
+
+    out = cycles_df.copy()
+    out["tree_id"] = out["chamber"].map(chamber_tree_map)
+    out["tree_volume"] = out.apply(
+        lambda r: (
+            get_tree_volume_at_date(df_vigor, r["tree_id"], r["flux_date"])
+            if pd.notna(r.get("tree_id"))
+            else None
+        ),
+        axis=1,
+    )
+    # Re-apply absolute flux only on rows where tree_volume resolved.
+    mask = out["tree_volume"].notna()
+    if mask.any():
+        out.loc[mask, "flux_absolute"] = out[mask].apply(calculate_absolute_flux, axis=1)
+
+    return out
+
+
 def step_qc(paths: DataPaths) -> StepResult:
     """Load QC parquet. Phase 3: no real QC processing — just verify the artefact is loadable."""
     t0 = time.time()
@@ -191,10 +255,30 @@ def step_flux(paths: DataPaths, qc_df: pd.DataFrame | None = None) -> StepResult
 
         cycles_df = pd.concat(all_cycles, ignore_index=True) if all_cycles else pd.DataFrame()
 
+        # Tree-volume correction (optional). The chamber air-volume divisor in
+        # `calculate_absolute_flux` accounts for the tree displacing some chamber
+        # air. The original flux_chamber notebook 030 looks up the per-tree
+        # vigor at flux_date and re-runs `calculate_absolute_flux` so each
+        # cycle's flux_absolute reflects that day's tree volume.
+        #
+        # We do the same here when the user provides:
+        #   - paths.extras["biophys_data_dir"]  (absolute path)
+        #   - paths.extras["chamber_tree_map"]  (dict {"C1": "tree-id-string", ...})
+        #
+        # Defaults match the LIBZ deployment; collaborators with different
+        # chambers override via palmwtc.yaml. If biophysics aren't available
+        # the cycles_df keeps the un-corrected flux_absolute (tree_volume=0).
+        tree_corrected_cycles = _apply_tree_volume_correction(cycles_df, paths)
+
         out_dir = paths.exports_dir / "digital_twin"
         out_dir.mkdir(parents=True, exist_ok=True)
         out_path = out_dir / "01_chamber_cycles.csv"
-        cycles_df.to_csv(out_path, index=False)
+        tree_corrected_cycles.to_csv(out_path, index=False)
+        cycles_df = tree_corrected_cycles
+
+        n_with_tree_vol = (
+            int(cycles_df["tree_volume"].notna().sum()) if "tree_volume" in cycles_df.columns else 0
+        )
 
         return StepResult(
             name="flux",
@@ -210,6 +294,7 @@ def step_flux(paths: DataPaths, qc_df: pd.DataFrame | None = None) -> StepResult
                     s: int((cycles_df["chamber"] == s).sum()) if len(cycles_df) else 0
                     for s in chamber_suffixes
                 },
+                "tree_volume_corrected": n_with_tree_vol,
             },
         )
     except Exception as e:
