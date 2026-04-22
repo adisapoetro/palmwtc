@@ -8,6 +8,61 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 (no changes yet)
 
+## [0.2.5] — 2026-04-22
+
+Fourth hotfix in the post-cutover-verification series. v0.2.4 ported
+notebook 030 cell 18's tree-volume correction and turned it on whenever
+`biophys_data_dir` was set. Real-data verification revealed the
+post-cutover flux_chamber baseline CSV (`Data/digital_twin/01_chamber_cycles.csv`)
+was itself produced WITHOUT tree-volume correction — so v0.2.4's
+"always-on if biophys is available" default broke parity (88.5%
+bit-exact match dropped to 1.2%). v0.2.5 re-gates the correction
+behind an explicit opt-in flag and stops swallowing biophys-load errors.
+
+### Changed (BEHAVIOUR)
+
+- Tree-volume correction in `step_flux` is now **opt-in**. To enable,
+  add to `palmwtc.yaml`:
+
+  ```yaml
+  correct_tree_volume: true
+  biophys_data_dir: /path/to/BiophysicalParam
+  ```
+
+  Without `correct_tree_volume: true`, `step_flux` produces the same
+  cycles output as v0.2.3 — preserving parity with the post-cutover
+  flux_chamber baseline. This mirrors the original notebook 030's
+  `CORRECT_TREE_VOLUME` flag semantics.
+
+### Fixed
+
+- `_apply_tree_volume_correction` no longer silently swallows biophys
+  load errors. When opt-in is on but biophysics fail to load (missing
+  `openpyxl`, missing dir, malformed xlsx, etc.) the function now emits
+  a `UserWarning` so users can see *why* `tree_volume` is missing from
+  their cycles output.
+
+### Added
+
+- `openpyxl>=3.1,<4.0` is now a core dependency. Tree-volume correction
+  reads `Vigor Index.xlsx`-style files via `pandas.read_excel`, which
+  needs `openpyxl`. Adding it as a core dep ensures opt-in actually
+  works without forcing users to discover the silent ImportError.
+- Three updated regression tests pinning the v0.2.5 opt-in contract:
+  - `test_no_op_when_correct_tree_volume_flag_unset` — default off.
+  - `test_warns_when_flag_on_but_biophys_dir_missing` — loud warn.
+  - `test_warns_when_flag_on_but_biophys_dir_does_not_exist` — loud warn.
+
+### Notes
+
+- v0.2.4 will remain on PyPI but should be considered a transient
+  release; pin to 0.2.5+ to get the opt-in semantics.
+- Verified on real LIBZ data (974 MB QC parquet, 53,671 aligned
+  cycles): default-off produces 88.5% bit-exact match against the
+  flux_chamber baseline; opt-in produces tree-volume-corrected fluxes
+  as a scientifically-correct alternative when the user accepts the
+  baseline divergence.
+
 ## [0.2.4] — 2026-04-22
 
 Third hotfix in the post-cutover-verification series. After v0.2.3
