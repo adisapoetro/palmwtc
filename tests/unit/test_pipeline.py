@@ -143,25 +143,31 @@ class TestStepFluxWplDefaults:
 
 
 class TestStepFluxTreeVolume:
-    """Regression tests for tree-volume correction in step_flux (v0.2.4).
+    """Regression tests for tree-volume correction in step_flux.
 
-    The original flux_chamber notebook 030 re-runs `calculate_absolute_flux`
-    after merging tree biophysics so each cycle's `flux_absolute` reflects
-    that day's tree volume in the chamber air-volume divisor. v0.2.4 ports
-    this to `palmwtc.pipeline.step_flux`, gated on:
-      - paths.extras["biophys_data_dir"]
-      - paths.extras["chamber_tree_map"] (or built-in LIBZ default)
+    History:
+      - v0.2.4 ported notebook 030 cell 18's tree-volume recompute, gated on
+        `biophys_data_dir`. But the post-cutover flux_chamber baseline CSV
+        was produced WITHOUT tree-volume correction, so an "always-on if
+        biophys is available" default broke parity (88.5% bit-exact baseline
+        match dropped to 1.2%).
+      - v0.2.5 makes tree-volume strictly opt-in via
+        `paths.extras["correct_tree_volume"] = True`. Default off → matches
+        baseline. Users who want the scientifically-correct correction set
+        the flag in palmwtc.yaml and add `biophys_data_dir`.
 
-    Without those, tree-volume correction silently no-ops (cycles keep
-    `tree_volume=0`, matching v0.2.3 behaviour).
+    These tests pin v0.2.5's opt-in contract.
     """
 
-    def test_no_op_when_biophys_dir_missing(self) -> None:
-        """If `biophys_data_dir` isn't set in extras, cycles_df returns unchanged."""
+    def test_no_op_when_correct_tree_volume_flag_unset(self) -> None:
+        """Default: flag missing → no-op even if biophys_data_dir is provided."""
         from palmwtc.config import DataPaths
         from palmwtc.pipeline import _apply_tree_volume_correction
 
-        paths = DataPaths.resolve()  # extras is {} by default
+        paths = DataPaths.resolve()
+        # Provide a biophys_data_dir but DON'T flip correct_tree_volume.
+        paths_with_biophys_only = paths.with_overrides(extras={"biophys_data_dir": "/tmp/whatever"})
+
         cycles = pd.DataFrame(
             {
                 "chamber": ["C1", "C2"],
@@ -171,23 +177,16 @@ class TestStepFluxTreeVolume:
                 "mean_temp": [25.0, 26.0],
             }
         )
-        out = _apply_tree_volume_correction(cycles, paths)
-
-        # No tree_volume column added (biophys not configured).
+        out = _apply_tree_volume_correction(cycles, paths_with_biophys_only)
         assert "tree_volume" not in out.columns
-        # flux_absolute unchanged.
         assert out["flux_absolute"].tolist() == cycles["flux_absolute"].tolist()
 
-    def test_no_op_when_biophys_dir_does_not_exist(self, tmp_path: Path) -> None:
-        """If `biophys_data_dir` is set but the directory doesn't exist, no-op."""
+    def test_warns_when_flag_on_but_biophys_dir_missing(self) -> None:
+        """Opt-in but no biophys_data_dir → warn (don't silently no-op)."""
         from palmwtc.config import DataPaths
         from palmwtc.pipeline import _apply_tree_volume_correction
 
-        nonexistent = tmp_path / "no-such-dir"
-        # Hand-build a DataPaths with extras (resolve() doesn't take extras kwarg).
-        paths = DataPaths.resolve()
-        paths_with_extras = paths.with_overrides(extras={"biophys_data_dir": str(nonexistent)})
-
+        paths = DataPaths.resolve().with_overrides(extras={"correct_tree_volume": True})
         cycles = pd.DataFrame(
             {
                 "chamber": ["C1"],
@@ -195,7 +194,31 @@ class TestStepFluxTreeVolume:
                 "flux_absolute": [-3.0],
             }
         )
-        out = _apply_tree_volume_correction(cycles, paths_with_extras)
+        with pytest.warns(UserWarning, match="biophys_data_dir is not set"):
+            out = _apply_tree_volume_correction(cycles, paths)
+        assert "tree_volume" not in out.columns
+
+    def test_warns_when_flag_on_but_biophys_dir_does_not_exist(self, tmp_path: Path) -> None:
+        """Opt-in but biophys_data_dir doesn't exist → warn."""
+        from palmwtc.config import DataPaths
+        from palmwtc.pipeline import _apply_tree_volume_correction
+
+        nonexistent = tmp_path / "no-such-dir"
+        paths = DataPaths.resolve().with_overrides(
+            extras={
+                "correct_tree_volume": True,
+                "biophys_data_dir": str(nonexistent),
+            }
+        )
+        cycles = pd.DataFrame(
+            {
+                "chamber": ["C1"],
+                "flux_date": pd.to_datetime(["2026-01-01"]),
+                "flux_absolute": [-3.0],
+            }
+        )
+        with pytest.warns(UserWarning, match="biophys_data_dir does not exist"):
+            out = _apply_tree_volume_correction(cycles, paths)
         assert "tree_volume" not in out.columns
 
     def test_empty_cycles_returns_unchanged(self) -> None:
