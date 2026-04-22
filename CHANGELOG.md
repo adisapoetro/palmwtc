@@ -8,6 +8,47 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 (no changes yet)
 
+## [0.2.2] — 2026-04-22
+
+Critical bug fix found during real-data verification of the
+`flux_chamber` cutover. Anyone running `palmwtc run` against real LIBZ
+data on 0.2.0 or 0.2.1 was getting wildly wrong cycle counts (~20× the
+correct number); zero impact on the bundled-synthetic-sample CI smoke,
+which is why automated tests didn't catch it.
+
+### Fixed
+
+- `palmwtc.pipeline.step_flux` chamber-detection regex.
+  Old logic: `col.startswith("CO2_C")` + `col.split("_", 1)[1]` —
+  treated every `CO2_C1_qc_flag`, `CO2_C1_rule_flag`, `CO2_C1_ml_flag`,
+  `CO2_C1_corrected`, `CO2_C1_offset`, `CO2_C1_raw`, `CO2_C1_dp_upper`,
+  etc. as a separate "chamber". On real LIBZ data with 286 columns,
+  this produced **26 phantom chambers** instead of 2.
+  New logic: exact regex match `^CO2_(C\d+)$`. Only canonical CO2_C1
+  and CO2_C2 columns count as chambers.
+
+### Tests
+
+- Added `tests/unit/test_pipeline.py::TestStepFluxChamberDetection`
+  with 4 regression tests:
+  - `test_detects_canonical_chamber_columns` — basic case
+  - `test_ignores_qc_flag_derivative_columns` — the actual bug
+    (16 derivative columns + 2 chambers → only chambers)
+  - `test_three_chamber_setup_works` — generalises to N chambers
+  - `test_no_co2_columns_returns_empty` — graceful handling
+
+### Discovery context
+
+Found during user-driven `flux_chamber2` verification harness run
+against the 974 MB real LIBZ QC parquet on 2026-04-22:
+
+- Expected: ~61K cycles (matching pre-cutover baseline)
+- Actual on 0.2.1: 1,243,377 cycles (≈20× too many)
+- Root cause: chamber-detection over-counts by 13×
+
+Cutover of `flux_chamber` PR #1 was correctly held until this fix
+ships. After 0.2.2 lands, re-run `flux_chamber2/run.sh` to reverify.
+
 ## [0.2.1] — 2026-04-21
 
 Hygiene patch — addresses deferred code-review nits from Phase 2 + 4
