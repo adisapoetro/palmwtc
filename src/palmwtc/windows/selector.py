@@ -1,40 +1,27 @@
 # ruff: noqa: F841, RUF002, RUF003, SIM108
-"""
-window_selection (palmwtc port)
-================================
-Multi-criteria high-confidence window selector for carbon flux calibration data.
+"""Calibration window selection from per-cycle flux quality scores.
 
-Ported verbatim from ``flux_chamber/src/window_selection.py``.
+A *window* is a contiguous date range of high-confidence chamber cycles
+used as input for downstream calibration of the XPalm oil-palm
+digital-twin model.  :class:`WindowSelector` walks the scored cycles
+from :mod:`palmwtc.flux.cycles`, filters by minimum score and cycle
+count, and returns the windows together with summary statistics.
 
-Consumed by:
-  - notebooks/031_High_Confidence_Window_Selection.ipynb   (original, kept for reference)
-  - notebooks/032_Window_Selection_Physically_Grounded.ipynb (scientifically corrected v2)
-  - notebooks/040_Core_Julia_Calibration_XPalm_Flux.ipynb  (can import WindowSelector
-                                                             to load an existing manifest)
+Pipeline position: after flux cycle scoring (notebook 030) and before
+XPalm calibration (notebook 040).
 
-Pipeline position: after 030 (flux cycles) and before 040 (XPalm calibration).
+Common workflow::
 
-Funnel (audited 2026-04-15 against current exports):
-  Input      01_chamber_cycles.csv                 61,161 cycles (37,847 Ch1 + 23,314 Ch2)
-    co2 QC label A: 12,114 / B: 36,989 / C: 12,058
-    h2o QC label A: 10,831 / B:  8,905 / C: 39,642 / missing: 1,783
-    trainable_co2:           31,344
-    trainable_co2_ml:        30,534
-    trainable_co2_advanced:  28,597
-  Output     032_calibration_windows.csv           23,034 cycles (17,247 Ch1 + 5,787 Ch2)
-    n_windows in manifest: 49 (excluded_windows: 0)
-Retention from input → windows: 37.7 %. Track A (chamber-LIBZ) calibration should
-cite these numbers rather than stale '~22,618 window cycles' figures.
+    from palmwtc.windows import WindowSelector
 
-Usage
------
-    from palmwtc.windows import WindowSelector, DEFAULT_CONFIG
-
-    ws = WindowSelector(cycles_df, config=DEFAULT_CONFIG)
+    ws = WindowSelector(cycles_df, config={"min_window_days": 7})
     ws.detect_drift()
     ws.score_cycles()
     ws.identify_windows()
     filtered_df, manifest = ws.export()
+
+See :data:`DEFAULT_CONFIG` for all tunable thresholds and their physical
+meaning.
 """
 
 from __future__ import annotations
@@ -51,6 +38,148 @@ from scipy import stats  # noqa: F401  — preserved from upstream module surfac
 # Default configuration
 # ---------------------------------------------------------------------------
 
+#: Default configuration for :class:`WindowSelector`.
+#:
+#: All thresholds are physically motivated for automated whole-tree chambers
+#: enclosing individual oil-palm trees (LI-COR LI-850, ~2–4 m³ headspace).
+#: Override individual keys by passing ``config={"key": value}`` to the
+#: constructor — unspecified keys fall back to these defaults.
+#:
+#: **I/O paths** (override in calling code to point at your data directory):
+#:
+#: ``export_cycles_path`` : :class:`pathlib.Path`
+#:     Destination CSV for the filtered cycle-level data
+#:     (e.g. ``Data/digital_twin/032_calibration_windows.csv``).
+#:
+#: ``export_manifest_path`` : :class:`pathlib.Path`
+#:     Destination JSON for the window manifest
+#:     (e.g. ``Data/digital_twin/032_calibration_window_manifest.json``).
+#:
+#: ``regime_audit_path`` : :class:`pathlib.Path`
+#:     Path to the 026 cross-chamber regime audit CSV.
+#:     If absent, ``cross_chamber`` component defaults to neutral (0.5).
+#:
+#: **Composite confidence weights** (``score_weights`` sub-dict, must sum to 1.0):
+#:
+#: ``regression`` : float = 0.35
+#:     Weight for the regression quality score (R², NRMSE, SNR, outlier fraction).
+#:     Largest weight because regression quality is the primary quality signal.
+#:
+#: ``robustness`` : float = 0.25
+#:     Weight for robustness score (OLS vs Theil-Sen slope agreement, AICc
+#:     curvature test).  Detects fits that are sensitive to leverage points.
+#:
+#: ``sensor_qc`` : float = 0.15
+#:     Weight for mean CO₂/H₂O sensor QC flag from the 021 parquet
+#:     (0 = clean, 2 = bad, linearly mapped to 1.0–0.0).
+#:
+#: ``drift`` : float = 0.15
+#:     Weight for the seasonally detrended instrument drift score.
+#:     Derived from ``night_intercept`` and ``slope_divergence`` signals.
+#:
+#: ``cross_chamber`` : float = 0.10
+#:     Weight for cross-chamber agreement from the 026 regime diagnostics.
+#:     When the audit file is unavailable, this weight is redistributed
+#:     proportionally across the other four components.
+#:
+#: ``closure`` : float = 0.00
+#:     *Diagnostic only* — CO₂/H₂O stoichiometric ratio is a biological variable
+#:     (respiratory quotient varies by substrate, WUE varies with VPD).
+#:     It is not a physical leakage indicator for tree-sized chambers.
+#:
+#: ``anomaly`` : float = 0.00
+#:     *Diagnostic only* — statistical anomaly detectors (LOF, IForest, STL)
+#:     flag physiological extremes (drought stress, cyclone recovery, rapid
+#:     leaf flush) that have *high* calibration value and must not be penalised.
+#:
+#: **Regression quality thresholds** (three-tier: good / ok / fail):
+#:
+#: ``r2_good`` : float = 0.90  |  ``r2_ok`` : float = 0.70
+#:     CO₂ slope R² thresholds.  Scores → 1.0 / 0.5 / 0.0 respectively.
+#:
+#: ``nrmse_good`` : float = 0.10  |  ``nrmse_ok`` : float = 0.20
+#:     Normalised RMSE of the CO₂ slope fit.  Lower is better.
+#:
+#: ``snr_good`` : float = 5.0  |  ``snr_ok`` : float = 1.5
+#:     Signal-to-noise ratio.  Thresholds are lower than typical eddy-covariance
+#:     values because large chamber headspaces dilute the concentration signal.
+#:
+#: ``outlier_good`` : float = 0.05  |  ``outlier_ok`` : float = 0.15
+#:     Fraction of within-cycle CO₂ samples flagged as outliers.  Lower is better.
+#:
+#: ``slope_diff_good`` : float = 0.30  |  ``slope_diff_ok`` : float = 0.60
+#:     Fractional difference between OLS and Theil-Sen slopes.  Lower is better.
+#:
+#: **Drift detection** (seasonally detrended rolling z-score):
+#:
+#: ``drift_window_days`` : int = 30
+#:     Rolling window for the short-term z-score (days).
+#:     Longer than typical (14 d) to reduce sensitivity to weather-scale variability.
+#:
+#: ``drift_zscore_bad`` : float = 2.5
+#:     Z-score threshold above which drift is classified as severe (score = 0.0).
+#:
+#: ``drift_zscore_moderate`` : float = 1.5
+#:     Z-score threshold above which drift is classified as moderate (score = 0.5).
+#:
+#: ``seasonal_detrend_days`` : int = 90
+#:     Window for the long-term rolling median subtracted from each signal before
+#:     z-scoring.  Removes the seasonal biological baseline (leaf flush, drought)
+#:     so only residual *instrument* drift is captured.
+#:
+#: ``drift_signals`` : list of str = ["night_intercept", "slope_divergence"]
+#:     Active drift channels.  ``night_intercept`` tracks zero-point baseline shift
+#:     using nighttime ``flux_intercept``.  ``slope_divergence`` tracks OLS-vs-Theil-Sen
+#:     disagreement.  ``co2_slope`` and ``h2o_slope`` are intentionally *not* active
+#:     by default because their rolling z-scores conflate seasonal phenology (leaf
+#:     flush, drought) with instrument drift.
+#:
+#: **Window identification**:
+#:
+#: ``min_daily_coverage_frac`` : float = 0.70
+#:     A day qualifies only when its cycle count is ≥ 70 % of the 95th-percentile
+#:     cycles-per-day for that chamber.  Excludes power-outage half-days.
+#:
+#: ``min_window_days`` : int = 5
+#:     Minimum number of *qualifying* days required within any candidate window span.
+#:
+#: ``window_flexibility_buffer`` : int = 2
+#:     Allow up to this many non-qualifying gap days (power outages, maintenance)
+#:     within a window without breaking it.
+#:     Effective span = ``min_window_days + window_flexibility_buffer`` (default 7 d).
+#:
+#: ``min_confidence_frac`` : float = 0.60
+#:     A day qualifies only when ≥ 60 % of its cycles have
+#:     ``cycle_confidence ≥ confidence_good_threshold``.
+#:
+#: ``confidence_good_threshold`` : float = 0.65
+#:     Cycle-level threshold used for both daily qualifying and the window score.
+#:
+#: ``min_grade_ab_frac`` : float = 0.60
+#:     *Informational only* — NOT a qualifying gate.  Grade A/B already feeds into
+#:     ``sensor_qc``; using it again would double-count sensor quality and reject
+#:     valid rapid-drawdown cycles flagged by 021 ROC rules.
+#:
+#: ``daytime_hours`` : list of int = [6, 18]
+#:     ``[start_hour, end_hour)`` used to derive ``is_nighttime`` from
+#:     ``flux_datetime.dt.hour``.  The ``is_nighttime`` column in the 030 CSV is
+#:     unreliable; this re-derivation is always applied.
+#:
+#: ``nighttime_weight`` : float = 1.0
+#:     Multiplier applied to nighttime cycle confidence in the composite score.
+#:     1.0 (full weight) because dark respiration is the primary constraint for
+#:     Ra and Q10 calibration in XPalm.
+#:
+#: ``exclude_instrumental_regimes`` : bool = True
+#:     When True, days with ``is_instrumental_regime_change == True`` do not
+#:     qualify.  This rejects days bracketing known sensor replacements or
+#:     calibration events that appear in the 026 regime audit.
+#:
+#: **Window export**:
+#:
+#: ``min_window_score_for_export`` : float = 0.55
+#:     Overall window score threshold below which a window is excluded from the
+#:     calibration export.  Override to 0 to export all windows for inspection.
 DEFAULT_CONFIG: dict = {
     # --- I/O paths (notebook should override these) ---
     "export_cycles_path": Path("Data/digital_twin/032_calibration_windows.csv"),
@@ -253,30 +382,84 @@ def _group_mean(indices: np.ndarray, values: np.ndarray, n: int) -> np.ndarray:
 
 
 class WindowSelector:
-    """Multi-criteria window selector for flux calibration data.
+    """Select high-confidence calibration windows from per-cycle flux quality scores.
 
-    Workflow (call in order)::
+    A *window* is a contiguous date range of oil-palm chamber cycles whose
+    per-cycle confidence scores are high enough to use as training data for the
+    XPalm digital-twin model.  The selector walks the scored cycles, identifies
+    qualifying spans, and packages them as a cycle CSV + JSON manifest.
 
-        ws = WindowSelector(cycles_df, config)
-        ws.detect_drift()      # adds drift_df; required before score_cycles
-        ws.score_cycles()      # adds cycle_confidence column to cycles_df
-        ws.identify_windows()  # builds windows_df summary table
-        df, manifest = ws.export()
+    Parameters
+    ----------
+    cycles_df : pd.DataFrame
+        Cycle-level data from notebook 030 (``01_chamber_cycles.csv``).
+        Required columns: ``flux_datetime``, ``Source_Chamber``.
+        Optional but used when present: ``cycle_end``, ``co2_r2``, ``co2_nrmse``,
+        ``co2_snr``, ``co2_outlier_frac``, ``slope_diff_pct``, ``delta_aicc``,
+        ``sensor_co2_qc_mean``, ``sensor_h2o_qc_mean``, ``flux_intercept``,
+        ``anomaly_ensemble_score``, ``closure_confidence``, ``co2_qc``.
+    config : dict, optional
+        Key-value overrides merged on top of :data:`DEFAULT_CONFIG`.
+        Pass only the keys you want to change; all others keep their defaults.
 
     Attributes
     ----------
     cycles_df : pd.DataFrame
-        Input + enriched cycle DataFrame (102+ cols).  Modified in-place by
-        ``score_cycles`` (adds confidence columns).
+        Working copy of the input cycles.  After :meth:`score_cycles` this gains
+        per-component score columns (``score_regression``, ``score_robustness``,
+        etc.) and the composite ``cycle_confidence`` column.
     config : dict
-        All tunable thresholds.  See ``DEFAULT_CONFIG`` for documented keys.
+        Merged configuration (your overrides + :data:`DEFAULT_CONFIG` fallbacks).
     drift_df : pd.DataFrame or None
-        Per (date, chamber) drift summary — set by ``detect_drift``.
+        Per ``(date, Source_Chamber)`` drift summary — set by :meth:`detect_drift`.
+        Columns: ``date``, ``Source_Chamber``, ``drift_severity``, z-score columns.
+    regime_agreement : dict or None
+        Date → cross-chamber agreement score from the 026 regime audit.
+        Set by :meth:`load_regime_diagnostics`; None if the file was not found.
     windows_df : pd.DataFrame or None
-        Window summary table — set by ``identify_windows``.
+        Window summary table — set by :meth:`identify_windows`.
+        One row per window; columns include ``window_id``, ``start_date``,
+        ``end_date``, ``n_cycles``, ``window_score``, ``qualifies_for_export``.
     approved_windows : dict
-        ``{window_id: {"approved": bool, "notes": str}}`` — populated by
-        the interactive inspector in notebook 031; persisted via ``export``.
+        ``{window_id: {"approved": bool, "notes": str}}`` — populated by the
+        interactive inspector in the calibration notebook.  Persisted via
+        :meth:`export`.
+
+    Methods
+    -------
+    load_regime_diagnostics(path)
+        Load cross-chamber agreement scores from the 026 audit CSV.
+    detect_drift()
+        Compute per-day rolling drift severity per chamber.
+    score_cycles()
+        Add ``cycle_confidence`` and per-component sub-scores to ``cycles_df``.
+    identify_windows()
+        Find high-confidence date windows per chamber.
+    export(approved_only, exclude_list)
+        Filter cycles to approved windows, write CSV + JSON, return both.
+    summary()
+        Print a brief text overview of selection results.
+
+    Examples
+    --------
+    Build a selector on a small fixture and inspect the result:
+
+    >>> import pandas as pd
+    >>> from palmwtc.windows import WindowSelector
+    >>> cycles = pd.DataFrame({
+    ...     "flux_datetime": pd.date_range("2024-01-01", periods=4, freq="6h"),
+    ...     "Source_Chamber": ["Chamber 1"] * 4,
+    ... })
+    >>> ws = WindowSelector(cycles)
+    >>> len(ws.cycles_df)
+    4
+    >>> ws.config["min_window_days"]
+    5
+
+    Full pipeline (needs a real cycles DataFrame with flux columns):
+
+    >>> ws.detect_drift().score_cycles().identify_windows()  # doctest: +SKIP
+    >>> filtered_df, manifest = ws.export()  # doctest: +SKIP
     """
 
     def __init__(self, cycles_df: pd.DataFrame, config: dict | None = None):
@@ -390,6 +573,11 @@ class WindowSelector:
 
         ``drift_severity`` = max across active signals, mapped to
         0.0 (clean) / 0.5 (moderate) / 1.0 (severe).
+
+        Returns
+        -------
+        self : WindowSelector
+            Returns ``self`` to allow method chaining.
         """
         win = self.config["drift_window_days"]
         z_bad = self.config["drift_zscore_bad"]
@@ -585,23 +773,46 @@ class WindowSelector:
     # ------------------------------------------------------------------
 
     def score_cycles(self) -> WindowSelector:
-        """Add ``cycle_confidence`` (0-1) and per-component sub-scores to ``cycles_df``.
+        """Add ``cycle_confidence`` (0–1) and per-component sub-scores to ``cycles_df``.
 
-        New columns added (all 0–1):
-            ``score_regression``    — R², NRMSE, SNR, outlier_frac (4 components; monotonicity removed)
-            ``score_robustness``    — OLS vs Theil-Sen slope agreement, AICc curvature test
-            ``score_sensor_qc``     — CO₂/H₂O sensor flag mean from 021 parquet
-            ``score_drift``         — seasonally detrended instrument drift score
-            ``score_cross_chamber`` — cross-chamber agreement from 026 regime diagnostics (NaN if unavailable)
-            ``score_closure``       — diagnostic only (not in composite); CO₂/H₂O ratio is biological
-            ``score_anomaly``       — diagnostic only (not in composite); flags biology as noise
-            ``cycle_confidence``    — weighted composite of the five active components
+        New columns added to ``self.cycles_df`` (all 0–1):
 
-        Nighttime de-emphasis removed: nighttime cycles carry full weight because dark
-        respiration measurements are the primary constraint for Ra and Q10 parameters.
+        * ``score_regression``    — R², NRMSE, SNR, outlier fraction (4 components;
+          monotonicity is intentionally excluded because non-monotonic CO₂ traces
+          in a tree chamber under variable irradiance reflect real photosynthesis).
+        * ``score_robustness``    — OLS vs Theil-Sen slope agreement, AICc curvature test.
+        * ``score_sensor_qc``     — CO₂/H₂O sensor flag mean from 021 parquet.
+        * ``score_drift``         — seasonally detrended instrument drift score.
+        * ``score_cross_chamber`` — cross-chamber agreement from 026 regime diagnostics
+          (NaN when the 026 audit file was not loaded).
+        * ``score_closure``       — *diagnostic only*, not in composite; CO₂/H₂O ratio
+          is a biological variable, not a physical leakage indicator.
+        * ``score_anomaly``       — *diagnostic only*, not in composite; anomaly detectors
+          flag drought stress and rapid leaf flush that have calibration value.
+        * ``cycle_confidence``    — weighted composite of the five active components
+          (see ``score_weights`` in :data:`DEFAULT_CONFIG`).
 
-        Requires ``detect_drift()`` to have been called first (for drift scores).
-        If not called, drift component defaults to 1.0 (no drift assumed).
+        Nighttime cycles carry full weight (``nighttime_weight = 1.0``) because dark
+        respiration is the primary constraint for Ra and Q10 calibration in XPalm.
+
+        When cross-chamber data is unavailable, its weight (0.10 by default) is
+        redistributed proportionally across the remaining four components.
+
+        Returns
+        -------
+        self : WindowSelector
+            Returns ``self`` to allow method chaining.
+
+        Raises
+        ------
+        (no explicit raises)
+            Silently proceeds even when optional score columns are absent from
+            ``cycles_df``; missing columns default to ``NaN`` → neutral score.
+
+        Notes
+        -----
+        Call :meth:`detect_drift` first.  If not called, drift component defaults
+        to 1.0 (no drift assumed), which gives slightly optimistic scores.
         """
         df = self.cycles_df
         cfg = self.config
@@ -798,6 +1009,17 @@ class WindowSelector:
             n_cycles, mean_confidence, mean_coverage, mean_drift_severity,
             mean_daytime_grade_ab_frac, mean_all_grade_ab_frac, mean_grade_a_frac,
             diurnal_hour_coverage, window_score, qualifies_for_export
+
+        Returns
+        -------
+        self : WindowSelector
+            Returns ``self`` to allow method chaining.
+
+        Raises
+        ------
+        RuntimeError
+            If :meth:`score_cycles` has not been called yet
+            (``cycle_confidence`` column is missing from ``cycles_df``).
         """
         if "cycle_confidence" not in self.cycles_df.columns:
             raise RuntimeError("Call score_cycles() before identify_windows().")
@@ -1109,7 +1331,16 @@ class WindowSelector:
     # ------------------------------------------------------------------
 
     def summary(self) -> None:
-        """Print a quick overview of the selection results."""
+        """Print a brief overview of the selection results to stdout.
+
+        Shows total cycle count, mean confidence, severe-drift day count, and
+        window counts.  Safe to call at any pipeline stage; lines whose
+        prerequisite step has not run are silently omitted.
+
+        Returns
+        -------
+        None
+        """
         print("=== WindowSelector summary ===")
         print(f"  Total cycles loaded : {len(self.cycles_df):,}")
         if "cycle_confidence" in self.cycles_df.columns:
