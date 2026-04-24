@@ -1,17 +1,26 @@
-"""
-Cycle-level diagnostic plots for chamber flux QC review.
+"""Cycle-level diagnostic plots for chamber flux QC review.
 
-Ported verbatim from ``flux_chamber/src/flux_visualization.py`` — the
-"Cycle Diagnostic Plots" block plus ``plot_chamber_resizing_validation``.
+Provides functions to inspect individual measurement cycles from the
+whole-tree chamber flux pipeline.  Each function creates a matplotlib
+figure showing CO₂ concentration traces, regression fits, and residuals
+so that flux quality can be reviewed visually.
 
-Includes:
-
-- ``plot_cycle_diagnostics`` — fit + residual panels for a single cycle.
-- ``plot_specific_cycle`` — locate a cycle by chamber + datetime string.
-- ``plot_cycle_by_id`` — locate a cycle by chamber + cycle_id.
-- ``show_sample_cycles`` — show ``n`` random cycles for a QC tier.
-- ``plot_chamber_resizing_validation`` — +/- 60 day window around the
-  chamber resizing date to inspect for artefacts.
+Public functions
+----------------
+:func:`plot_chamber_resizing_validation`
+    Time-series scatter around the chamber resizing event with a
+    rolling-mean trend and a vertical marker at the resize date.
+:func:`plot_cycle_diagnostics`
+    Fit + residual panels for a single cycle, with optional WPL
+    correction labelling.
+:func:`plot_specific_cycle`
+    Locate a cycle by chamber name and datetime string, then call
+    :func:`plot_cycle_diagnostics`.
+:func:`plot_cycle_by_id`
+    Locate a cycle by chamber name and integer cycle ID, then call
+    :func:`plot_cycle_diagnostics`.
+:func:`show_sample_cycles`
+    Draw ``n`` random cycles from a QC tier and plot each one.
 """
 
 import matplotlib.pyplot as plt
@@ -20,9 +29,50 @@ import pandas as pd
 import seaborn as sns
 
 
-def plot_chamber_resizing_validation(flux_df, resize_date="2025-07-01", variable="flux_absolute"):
-    """
-    Visualizes signal around the chamber resizing event to check for artifacts. Faceted.
+def plot_chamber_resizing_validation(
+    flux_df: pd.DataFrame,
+    resize_date: str = "2025-07-01",
+    variable: str = "flux_absolute",
+) -> "plt.Figure | None":
+    """Plot the flux signal in a ±60-day window around the chamber resizing date.
+
+    Creates one subplot per chamber (stacked vertically) showing the chosen
+    flux variable as a scatter plot, a 50-point centred rolling-mean trend
+    line, and a vertical dashed line marking the resize date.  Use this to
+    check for artefacts (step changes, drift) introduced by the physical
+    chamber adjustment.
+
+    Parameters
+    ----------
+    flux_df : pandas.DataFrame
+        Flux results table.  Must contain columns:
+
+        - ``flux_date`` (datetime64) — timestamp of each flux cycle.
+        - ``Source_Chamber`` (str) — chamber identifier
+          (e.g. ``"Chamber 1"``).
+        - ``<variable>`` (float) — the flux column to plot.
+
+    resize_date : str, default ``"2025-07-01"``
+        ISO-format date string for the chamber resizing event.  Passed to
+        :func:`pandas.to_datetime`.
+    variable : str, default ``"flux_absolute"``
+        Name of the column in *flux_df* to plot on the y-axis.
+
+    Returns
+    -------
+    matplotlib.figure.Figure or None
+        The figure object, or ``None`` if *flux_df* is empty or no data
+        falls within the ±60-day window.
+
+    Notes
+    -----
+    The rolling trend uses a window of 50 cycles centred on each point.
+    This smooths noise without over-fitting at the edges of the window.
+
+    Examples
+    --------
+    >>> from palmwtc.viz.diagnostics import plot_chamber_resizing_validation
+    >>> fig = plot_chamber_resizing_validation(flux_df, resize_date="2025-07-01")  # doctest: +SKIP
     """
     if flux_df.empty:
         return
@@ -80,18 +130,72 @@ def plot_chamber_resizing_validation(flux_df, resize_date="2025-07-01", variable
 # ---------------------------------------------------------------------------
 
 
-def plot_cycle_diagnostics(raw_df, flux_row, apply_wpl=False):
-    """
-    Plot single cycle with fit line, residuals, and optional WPL info.
+def plot_cycle_diagnostics(
+    raw_df: pd.DataFrame,
+    flux_row: pd.Series,
+    apply_wpl: bool = False,
+) -> None:
+    """Plot a single flux cycle with its fit line, residuals, and QC metadata.
+
+    Produces a 1x2 figure:
+
+    - **Left panel** — CO₂ concentration vs. time.  Shows the raw wet CO₂
+      signal (gray, if available), the dry (or WPL-corrected) CO₂ used for
+      fitting (blue), the fitting window subset (orange), and the regression
+      fit line (red dashed).
+    - **Right panel** — Residuals of the fit within the fitting window.
+
+    After displaying the figure, prints the QC reason string and, when
+    *apply_wpl* is ``True`` and ``wpl_delta_ppm`` is present in *raw_df*,
+    also prints the median WPL delta and 95th-percentile relative change.
 
     Parameters
     ----------
-    raw_df : pd.DataFrame
-        Raw chamber data (from ``prepare_chamber_data``).
-    flux_row : pd.Series
-        Single row from flux results DataFrame.
-    apply_wpl : bool
-        If True, label traces assuming WPL correction was applied.
+    raw_df : pandas.DataFrame
+        Raw chamber time-series.  Must contain columns:
+
+        - ``TIMESTAMP`` (datetime64) — measurement time.
+        - ``CO2`` (float) — dry (or WPL-corrected) CO₂ concentration (ppm).
+        - ``CO2_raw`` (float, optional) — uncorrected wet CO₂ concentration
+          (ppm).  Plotted in gray if present.
+        - ``wpl_delta_ppm`` (float, optional) — WPL correction magnitude.
+          Printed if *apply_wpl* is ``True``.
+        - ``wpl_rel_change`` (float, optional) — relative WPL change.
+          Printed if *apply_wpl* is ``True``.
+
+    flux_row : pandas.Series
+        Single row from a flux results DataFrame.  Must contain:
+
+        - ``flux_date`` (datetime64) — cycle start time.
+        - ``cycle_duration_sec`` (float) — cycle length in seconds.
+        - ``window_start_sec`` (float) — fit window start offset (s).
+        - ``window_end_sec`` (float) — fit window end offset (s).
+        - ``flux_slope`` (float) — regression slope (ppm s⁻¹).
+        - ``flux_intercept`` (float) — regression intercept (ppm).
+        - ``flux_qc_label`` (str) — QC tier label.
+        - ``cycle_id`` (int or float) — unique cycle identifier.
+        - ``Source_Chamber`` (str) — chamber name.
+        - ``qc_reason`` (str, optional) — human-readable QC reason.
+
+    apply_wpl : bool, default False
+        If ``True``, label the CO₂ trace as WPL-corrected and print WPL
+        summary statistics after the plot.
+
+    Returns
+    -------
+    None
+        Displays the figure inline (calls :func:`matplotlib.pyplot.show`)
+        and prints QC metadata to stdout.  Does not return the figure object.
+
+    Notes
+    -----
+    The function returns early (prints a message, no figure) if no raw data
+    falls within the cycle window, or if the fitting window subset is empty.
+
+    Examples
+    --------
+    >>> from palmwtc.viz.diagnostics import plot_cycle_diagnostics
+    >>> plot_cycle_diagnostics(raw_df, flux_row)  # doctest: +SKIP
     """
     import matplotlib.pyplot as plt
 
@@ -157,14 +261,49 @@ def plot_cycle_diagnostics(raw_df, flux_row, apply_wpl=False):
             print(msg)
 
 
-def plot_specific_cycle(data, raw_lookup, chamber, date_str, apply_wpl=False):
-    """
-    Plot diagnostics for a specific cycle by chamber and datetime string.
+def plot_specific_cycle(
+    data: pd.DataFrame,
+    raw_lookup: dict,
+    chamber: str,
+    date_str: str,
+    apply_wpl: bool = False,
+) -> None:
+    """Plot diagnostics for a cycle identified by chamber name and datetime string.
+
+    Finds the cycle in *data* whose ``flux_date`` is closest to *date_str*
+    (within 2 seconds), then delegates to :func:`plot_cycle_diagnostics`.
 
     Parameters
     ----------
+    data : pandas.DataFrame
+        Flux results table.  Must contain ``Source_Chamber`` (str) and
+        ``flux_date`` (datetime64) columns.
+    raw_lookup : dict[str, pandas.DataFrame]
+        Mapping from chamber name to the corresponding raw time-series
+        DataFrame.  Same structure as the *raw_df* argument of
+        :func:`plot_cycle_diagnostics`.
+    chamber : str
+        Chamber name to filter on (e.g. ``"Chamber 1"``).
     date_str : str
-        Format: ``"DD/MM/YY HH:MM:SS"`` (dayfirst).
+        Target datetime in ``"DD/MM/YY HH:MM:SS"`` format (day-first).
+    apply_wpl : bool, default False
+        Forwarded to :func:`plot_cycle_diagnostics`.
+
+    Returns
+    -------
+    None
+        Calls :func:`plot_cycle_diagnostics` and returns nothing.  Prints
+        an informative message if the cycle or raw data cannot be found.
+
+    Notes
+    -----
+    The 2-second tolerance on ``flux_date`` matching covers the rounding
+    that may occur when timestamps are stored at 1 Hz resolution.
+
+    Examples
+    --------
+    >>> from palmwtc.viz.diagnostics import plot_specific_cycle
+    >>> plot_specific_cycle(data, raw_lookup, "Chamber 1", "01/07/25 08:30:00")  # doctest: +SKIP
     """
     try:
         target_dt = pd.to_datetime(date_str, dayfirst=True)
@@ -198,8 +337,44 @@ def plot_specific_cycle(data, raw_lookup, chamber, date_str, apply_wpl=False):
     plot_cycle_diagnostics(raw_df, best_row, apply_wpl=apply_wpl)
 
 
-def plot_cycle_by_id(data, raw_lookup, chamber, cycle_id, apply_wpl=False):
-    """Plot diagnostics for a specific cycle by chamber and cycle_id."""
+def plot_cycle_by_id(
+    data: pd.DataFrame,
+    raw_lookup: dict,
+    chamber: str,
+    cycle_id: int | float,
+    apply_wpl: bool = False,
+) -> None:
+    """Plot diagnostics for a cycle identified by chamber name and cycle ID.
+
+    Finds the row in *data* matching *chamber* and *cycle_id*, then
+    delegates to :func:`plot_cycle_diagnostics`.
+
+    Parameters
+    ----------
+    data : pandas.DataFrame
+        Flux results table.  Must contain ``Source_Chamber`` (str) and
+        ``cycle_id`` (int or float) columns.
+    raw_lookup : dict[str, pandas.DataFrame]
+        Mapping from chamber name to raw time-series DataFrame.
+    chamber : str
+        Chamber name (e.g. ``"Chamber 1"``).
+    cycle_id : int or float
+        Numeric cycle identifier.  Compared with
+        :func:`numpy.isclose` to handle floating-point IDs.
+    apply_wpl : bool, default False
+        Forwarded to :func:`plot_cycle_diagnostics`.
+
+    Returns
+    -------
+    None
+        Calls :func:`plot_cycle_diagnostics` and returns nothing.  Prints
+        an informative message if the cycle or raw data cannot be found.
+
+    Examples
+    --------
+    >>> from palmwtc.viz.diagnostics import plot_cycle_by_id
+    >>> plot_cycle_by_id(data, raw_lookup, "Chamber 1", cycle_id=1042)  # doctest: +SKIP
+    """
     subset = data[(data["Source_Chamber"] == chamber) & (np.isclose(data["cycle_id"], cycle_id))]
 
     if subset.empty:
@@ -217,8 +392,53 @@ def plot_cycle_by_id(data, raw_lookup, chamber, cycle_id, apply_wpl=False):
     plot_cycle_diagnostics(raw_df, row, apply_wpl=apply_wpl)
 
 
-def show_sample_cycles(data, raw_lookup, tier, n=5, seed=42, label=None, apply_wpl=False):
-    """Show random sample of cycles for a QC tier."""
+def show_sample_cycles(
+    data: pd.DataFrame,
+    raw_lookup: dict,
+    tier: int | str,
+    n: int = 5,
+    seed: int = 42,
+    label: str | None = None,
+    apply_wpl: bool = False,
+) -> None:
+    """Plot a random sample of cycles from a given QC tier.
+
+    Randomly draws up to *n* cycles from the rows where ``flux_qc == tier``
+    and calls :func:`plot_cycle_diagnostics` for each one.
+
+    Parameters
+    ----------
+    data : pandas.DataFrame
+        Flux results table.  Must contain ``flux_qc`` (int or str) and
+        ``Source_Chamber`` (str) columns, plus all columns required by
+        :func:`plot_cycle_diagnostics`.
+    raw_lookup : dict[str, pandas.DataFrame]
+        Mapping from chamber name to raw time-series DataFrame.
+    tier : int or str
+        QC tier value to filter on (e.g. ``1``, ``2``, ``"HQ"``).
+    n : int, default 5
+        Maximum number of cycles to plot.  If fewer than *n* cycles exist
+        in the tier, all available cycles are shown.
+    seed : int, default 42
+        Random seed passed to :meth:`pandas.DataFrame.sample` for
+        reproducible sampling.
+    label : str or None, default None
+        Display label for the printed header.  Defaults to
+        ``"QC tier <tier>"`` when ``None``.
+    apply_wpl : bool, default False
+        Forwarded to :func:`plot_cycle_diagnostics` for each cycle.
+
+    Returns
+    -------
+    None
+        Calls :func:`plot_cycle_diagnostics` for each sampled cycle.
+        Prints a header line and skips chambers with no raw data loaded.
+
+    Examples
+    --------
+    >>> from palmwtc.viz.diagnostics import show_sample_cycles
+    >>> show_sample_cycles(data, raw_lookup, tier=1, n=3, seed=0)  # doctest: +SKIP
+    """
     subset = data[data["flux_qc"] == tier]
     if subset.empty:
         print(f"No cycles for QC tier {tier}")
