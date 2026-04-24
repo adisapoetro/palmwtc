@@ -1,8 +1,19 @@
-"""Cloud / shared-drive adapters for the palmwtc package.
+"""Cloud / shared-drive adapters for palmwtc.
 
-Ported verbatim from ``flux_chamber/src/data_utils.py`` (Phase 2).
-Walks the Google Drive cloud mount layout used by the LIBZ chamber deployment.
-Behaviour preservation is the prime directive.
+The LIBZ automated whole-tree chamber deployment exports raw logger files to
+a shared Google Drive folder that is mounted locally as a drive letter or
+FUSE mount.  The folder hierarchy inside this mount follows a two-level
+layout:
+
+- ``<chamber_base>/main/<sensor>/`` — the primary archive, mirrors the
+  on-site local backup.  Chamber subdirectories contain monthly sub-folders;
+  climate and soil-sensor subdirectories are flat.
+- ``<chamber_base>/update_YYMMDD/<MM_sensortype>/`` — one or more
+  incremental update folders appended whenever the SD cards are downloaded
+  in the field.  All update sub-folders are flat.
+
+:func:`get_cloud_sensor_dirs` walks this layout and returns a structured
+dict that :func:`~palmwtc.io.load_from_multiple_dirs` can consume directly.
 """
 
 from __future__ import annotations
@@ -22,19 +33,52 @@ _SENSOR_PATTERNS = {
 }
 
 
-def get_cloud_sensor_dirs(chamber_base) -> dict:
-    """
-    Discover all raw data directories for each sensor type under the cloud Chamber base.
+def get_cloud_sensor_dirs(chamber_base: Path | str) -> dict[str, list[dict]]:
+    """Discover all raw-data directories for each sensor type under the cloud chamber base.
 
-    Searches:
-      - ``<chamber_base>/main/<sensor>/``  (monthly sub-dirs for chambers, flat for others)
-      - ``<chamber_base>/update_YYMMDD/<MM_sensortype>/``  (all flat, sorted chronologically)
+    Walks the Google Drive mount layout used by the LIBZ deployment.  The
+    result is a dict of directory entries ready for
+    :func:`~palmwtc.io.load_from_multiple_dirs`.
+
+    Search order (determines deduplication priority in
+    :func:`~palmwtc.io.load_from_multiple_dirs`):
+
+    1. ``<chamber_base>/main/<sensor>/`` — primary archive; chamber
+       subdirectories have monthly sub-folders (``is_flat=False``); climate
+       and soil-sensor subdirectories are flat (``is_flat=True``).
+    2. ``<chamber_base>/update_YYMMDD/<MM_sensortype>/`` — incremental update
+       folders, sorted chronologically.  All are flat (``is_flat=True``).
+
+    Sensor-type detection uses case-insensitive substring matching against
+    the subdirectory name:
+
+    - ``"chamber_1"`` — names containing ``"chamber1"`` or ``"chamber_1"``.
+    - ``"chamber_2"`` — names containing ``"chamber2"`` or ``"chamber_2"``.
+    - ``"climate"``   — names containing ``"climate"``.
+    - ``"soil_sensor"`` — names containing ``"soil"``.
+
+    Parameters
+    ----------
+    chamber_base : Path or str
+        Root of the mounted Google Drive share for one chamber site
+        (e.g. the local path of the shared drive folder).
 
     Returns
     -------
     dict[str, list[dict]]
-        Keys: "chamber_1", "chamber_2", "climate", "soil_sensor"
-        Values: list of {"path": Path, "is_flat": bool}
+        Keys are ``"chamber_1"``, ``"chamber_2"``, ``"climate"``, and
+        ``"soil_sensor"``.  Each value is a list of ``{"path": Path,
+        "is_flat": bool}`` dicts, suitable as the *dir_entries* argument of
+        :func:`~palmwtc.io.load_from_multiple_dirs`.  Missing sensor types
+        have an empty list.
+
+    Examples
+    --------
+    >>> from pathlib import Path
+    >>> from palmwtc.io import get_cloud_sensor_dirs
+    >>> dirs = get_cloud_sensor_dirs(Path("/mnt/gdrive/LIBZ_Chamber"))  # doctest: +SKIP
+    >>> list(dirs.keys())  # doctest: +SKIP
+    ['chamber_1', 'chamber_2', 'climate', 'soil_sensor']
     """
     base = Path(chamber_base)
     result: dict[str, list[dict]] = {k: [] for k in _SENSOR_PATTERNS}

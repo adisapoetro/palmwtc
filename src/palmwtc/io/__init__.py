@@ -1,14 +1,22 @@
-"""palmwtc.io — data loading, path resolution, cloud-mount adapters.
+"""palmwtc.io — data loading, path resolution, and cloud-mount adapters.
 
-Phase 2 port from ``flux_chamber/src/data_utils.py``, split into:
+This subpackage handles everything between raw logger files on disk and a
+clean :class:`pandas.DataFrame` ready for the QC and flux pipelines.  Three
+modules cover distinct concerns:
 
-- ``loaders.py`` — ``load_*`` functions plus TOA5 readers and ``export_monthly``
-- ``paths.py`` — QC-file resolvers and the ``data_integrity_report`` helper
-- ``cloud.py`` — Google-Drive cloud-mount adapter (``get_cloud_sensor_dirs``)
+- :mod:`palmwtc.io.loaders` — reads the pre-integrated monthly CSV files
+  (``Integrated_Data_YYYY-MM.csv``) and raw TOA5 ``.dat`` files from one
+  or more directories.  Also writes monthly export CSVs.
+- :mod:`palmwtc.io.paths` — resolves QC-file paths given a data directory,
+  and produces a :func:`~palmwtc.io.paths.data_integrity_report` summary.
+- :mod:`palmwtc.io.cloud` — walks the Google Drive mount layout used by the
+  LIBZ deployment to discover all raw-data directories for each sensor type.
 
-The public functions are re-exported here so callers can write
-``from palmwtc.io import find_latest_qc_file`` without knowing the
-sub-module layout.
+All public helpers are re-exported here.  Callers can write::
+
+    from palmwtc.io import load_monthly_data, get_cloud_sensor_dirs
+
+without needing to know which sub-module each function lives in.
 """
 
 from palmwtc.io.cloud import get_cloud_sensor_dirs
