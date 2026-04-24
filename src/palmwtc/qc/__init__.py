@@ -1,24 +1,25 @@
-"""palmwtc.qc — quality control: rules, breakpoints, drift, ML, processor, reporting.
+"""Quality control for whole-tree chamber sensor streams.
 
-Phase 2 port from ``flux_chamber/src/qc_functions.py`` (1452 lines), split
-across five sub-modules (plus the previously ported reporting module):
+Rule-based flagging (physical bounds, IQR, rate of change, persistence,
+battery proxy, sensor exclusions) lives in :mod:`~palmwtc.qc.rules`.
+Breakpoint and drift detection are in :mod:`~palmwtc.qc.breakpoints`
+and :mod:`~palmwtc.qc.drift` respectively. ML-assisted outlier
+detection (Isolation Forest, optional GPU acceleration) lives in
+:mod:`~palmwtc.qc.ml`. A stateful orchestrator,
+:class:`~palmwtc.qc.QCProcessor`, is in :mod:`~palmwtc.qc.processor`.
+HTML field-alert reporting is in :mod:`~palmwtc.qc.reporting`.
 
-- ``rules.py``       — physical bounds, IQR, RoC, persistence, battery,
-                        sensor exclusion, the procedural ``process_variable_qc``
-                        orchestrator, and ``add_cycle_id``
-- ``breakpoints.py`` — ``detect_breakpoints_ruptures`` plus baseline-drift /
-                        cross-variable consistency checks
-- ``drift.py``       — ``detect_drift_windstats`` + ``apply_drift_correction``
-- ``ml.py``          — placeholder; re-exports ``get_isolation_forest`` from
-                        ``palmwtc.hardware.gpu`` for the ML-anchored import path
-- ``processor.py``   — the user-preferred OOP wrapper ``QCProcessor``
-- ``reporting.py``   — Parquet/CSV export + Jinja2 field-alert HTML report
-                        (ported earlier from ``flux_chamber/src/qc_reporting.py``)
+Tuned for:
 
-The public functions are re-exported here so callers can write
-``from palmwtc.qc import apply_physical_bounds_flags`` without knowing the
-sub-module layout — this is the backward-compat contract that lets the
-ported notebooks (020, 022, 025, 026) stay intact.
+- CO2 and H2O concentration from a LI-COR LI-850 gas analyser inside a
+  whole-tree chamber enclosing an individual oil palm.
+- Soil water content and temperature at 5, 15, 30, 60, and 80 cm depths.
+- Ambient climate (air temperature, humidity, rainfall, shortwave
+  radiation) from a co-located weather station.
+
+All public symbols from the sub-modules are re-exported here so callers
+can write ``from palmwtc.qc import apply_physical_bounds_flags`` without
+knowing the sub-module layout. See :attr:`__all__` for the full list.
 """
 
 from palmwtc.qc.breakpoints import (
