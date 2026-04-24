@@ -9,11 +9,11 @@ Multi-level flagging system (0-2) using physical bounds, IQR, rate-of-change,
 persistence, battery proxy, and date-range exclusion windows.
 
 Example:
-    >>> import pandas as pd
-    >>> from palmwtc.qc import process_variable_qc
+    >>> import pandas as pd  # doctest: +SKIP
+    >>> from palmwtc.qc import process_variable_qc  # doctest: +SKIP
     >>>
     >>> # Process QC (bounds, IQR, RoC, persistence)
-    >>> results = process_variable_qc(df, 'AirTC_Avg', config)
+    >>> results = process_variable_qc(df, 'AirTC_Avg', config)  # doctest: +SKIP
 """
 
 # ruff: noqa: B007, E712, F841, I001, RUF010
