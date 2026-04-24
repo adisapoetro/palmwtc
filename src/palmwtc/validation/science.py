@@ -1,23 +1,33 @@
-# ruff: noqa: RUF046, RUF059
-# Behaviour-preserving port from flux_chamber/src/science_validation.py.
-# Pre-existing style nits (redundant int() on len(), unused tuple unpack)
-# left intact per Phase 2 mandate; can be cleaned up in a follow-up commit.
-"""Scientific plausibility validation of CO2/H2O flux cycles.
+# ruff: noqa: RUF002, RUF003, RUF046, RUF059
+"""Science validation: compare flux results against literature ecophysiology bounds.
 
-Implements the four ecophysiology tests from notebook 033 as a single callable
-function so that 035 (threshold sensitivity sweep) can re-run them on the same
-dataframe under many different QC filters without duplicating logic.
+Runs four canonical ecophysiology sanity checks against per-cycle flux output
+from oil-palm automated whole-tree chambers (LIBZ field site, Riau, Indonesia):
 
-Tests
------
-1. Light response curve: rectangular hyperbola fit (Amax, alpha, Rd) per chamber.
-2. Q10 temperature-respiration: van't Hoff exponential per chamber.
-3. Water use efficiency: WUE median + WUE-VPD Pearson correlation.
-4. Inter-chamber consistency: daytime Pearson r between chambers.
+1. **Light response** — fits a rectangular-hyperbola (Michaelis-Menten) model per
+   chamber to daytime cycles; checks Amax and quantum yield (alpha) against
+   whole-canopy bounds for tropical perennial crops (Lamade & Bouillet 2005 [1]_).
+2. **Temperature response (Q10)** — fits van't Hoff exponential on nighttime
+   respiration vs air temperature; checks Q10 within 1.5–3.0.
+3. **Water use efficiency (WUE)** — checks median WUE against the Medlyn g₁-based
+   range and tests for a negative WUE–VPD correlation (Medlyn et al. 2011 [2]_).
+4. **Inter-chamber agreement** — Pearson r > 0.70 between the two chambers'
+   daytime hourly means.
 
-This module is the canonical implementation. As of 2026-04-15, notebook 033
-also delegates to `run_science_validation()` (no longer carries an inline
-copy), so changes here take effect in both 033 and 035 with a simple re-run.
+Each test returns ``"PASS"``, ``"BORDERLINE"``, ``"FAIL"``, or ``"N/A"``
+(when data are insufficient or the test condition is not identifiable).
+
+Main entry point: :func:`run_science_validation`.
+Helper for daytime classification: :func:`derive_is_daytime`.
+Configurable thresholds: :data:`DEFAULT_CONFIG`.
+
+References
+----------
+.. [1] Lamade, E. & Bouillet, J.-P. (2005). Carbon storage and global change:
+       the case of oil palm. *Oléagineux, Corps gras, Lipides*, 12(2), 154–160.
+.. [2] Medlyn, B. E., et al. (2011). Reconciling the optimal and empirical
+       approaches to modelling stomatal conductance. *Global Change Biology*,
+       17(6), 2134–2144. https://doi.org/10.1111/j.1365-2486.2010.02375.x
 """
 
 from __future__ import annotations
@@ -30,8 +40,97 @@ import scipy.stats as stats
 from scipy.optimize import curve_fit
 
 # ---------------------------------------------------------------------------
-# Default literature thresholds — kept identical to notebook 033 CONFIG
+# Default literature thresholds
 # ---------------------------------------------------------------------------
+
+#: Default configuration for :func:`run_science_validation`.
+#:
+#: Column name keys map to the 030 export schema.  Override only the keys
+#: you want to change; pass ``config={"key": value}`` to
+#: :func:`run_science_validation`.
+#:
+#: **Column names** (override when your DataFrame uses different names):
+#:
+#: ``co2_flux_col`` : str = ``"flux_absolute"``
+#:     CO₂ flux column (µmol m⁻² s⁻², negative = uptake).
+#:
+#: ``h2o_flux_col`` : str = ``"h2o_slope"``
+#:     H₂O flux column (used for WUE denominator).
+#:
+#: ``co2_slope_col`` : str = ``"co2_slope"``
+#:     Raw CO₂ slope used in the WUE numerator.
+#:
+#: ``radiation_col`` : str = ``"Global_Radiation"``
+#:     Shortwave radiation (W m⁻²).  Converted to PAR via factor 2.02
+#:     (Meek et al. 1984).  Also used in :func:`derive_is_daytime`.
+#:
+#: ``temp_col`` : str = ``"mean_temp"``
+#:     Air temperature (°C) used for Q10 fit.
+#:
+#: ``vpd_col`` : str = ``"vpd_kPa"``
+#:     Vapour pressure deficit (kPa) used for WUE–VPD correlation.
+#:
+#: ``chamber_col`` : str = ``"Source_Chamber"``
+#:     Column identifying each measurement chamber.
+#:
+#: ``datetime_col`` : str = ``"flux_datetime"``
+#:     Datetime column used for day/night classification.
+#:
+#: **Light-response bounds** (whole-canopy, chamber-footprint basis) [1]_:
+#:
+#: ``Amax_range`` : tuple of float = (5.0, 35.0)
+#:     Gross maximum assimilation (µmol CO₂ m⁻² s⁻²).  Widened from leaf-level
+#:     (2–15 µmol m⁻² s⁻¹) because ``flux_absolute`` is per m² chamber footprint
+#:     and oil-palm LAI of 2–4 scales leaf Amax proportionally.
+#:
+#: ``alpha_range`` : tuple of float = (0.02, 0.12)
+#:     Apparent quantum yield (µmol CO₂ µmol photons⁻¹).
+#:
+#: ``light_response_min_n`` : int = 200
+#:     Minimum daytime cycles required to attempt the light-response fit.
+#:
+#: ``light_response_par_iqr_min`` : float = 300.0
+#:     Minimum IQR of PAR (µmol m⁻² s⁻¹) required for a defensible fit.
+#:     If the PAR range is too narrow the fit is underdetermined; result is ``"N/A"``.
+#:
+#: **Q10 temperature-response bounds**:
+#:
+#: ``Q10_range`` : tuple of float = (1.5, 3.0)
+#:     Acceptable Q10 range for dark respiration.
+#:
+#: ``Q10_r2_min`` : float = 0.10
+#:     Minimum R² for the Q10 regression.  Below this the fit is uninformative.
+#:
+#: ``Q10_min_n`` : int = 50
+#:     Minimum nighttime cycles required per chamber.
+#:
+#: ``Q10_min_T_iqr`` : float = 3.0
+#:     Minimum IQR of nighttime air temperature (°C).  Narrow temperature range
+#:     makes Q10 unidentifiable — result is ``"N/A"``.
+#:
+#: **Water use efficiency bounds** [2]_:
+#:
+#: ``WUE_range`` : tuple of float = (2.0, 8.0)
+#:     Acceptable median WUE (mmol CO₂ mol⁻¹ H₂O).
+#:
+#: ``WUE_VPD_r_max`` : float = -0.10
+#:     WUE–VPD Pearson r must be more negative than this (i.e. r < –0.10).
+#:     A positive or weakly negative correlation is inconsistent with
+#:     stomatal optimality theory.
+#:
+#: **Inter-chamber agreement**:
+#:
+#: ``chamber_r_min`` : float = 0.70
+#:     Minimum daytime Pearson r between the two chambers' hourly means.
+#:
+#: **Shared**:
+#:
+#: ``T_ref`` : float = 25.0
+#:     Reference temperature (°C) for the Q10 van't Hoff fit.
+#:
+#: ``daytime_hours`` : tuple of int = (6, 18)
+#:     ``(start_hour, end_hour)`` used when radiation is unavailable in
+#:     :func:`derive_is_daytime`.
 DEFAULT_CONFIG: dict[str, Any] = {
     "co2_flux_col": "flux_absolute",
     "h2o_flux_col": "h2o_slope",
@@ -94,14 +193,45 @@ def derive_is_daytime(
     config: dict[str, Any] | None = None,
     radiation_threshold: float = 10.0,
 ) -> pd.Series:
-    """Re-derive a daytime mask from Global_Radiation, falling back to hour-of-day.
+    """Derive a Boolean daytime mask from radiation or, as a fallback, hour-of-day.
 
-    Kept as a defensive utility. As of 2026-04-15 the 030 export writes an
-    authoritative `is_nighttime` column to 01_chamber_cycles.csv, so consumers
-    that trust the CSV no longer need this function. Retain for downstream use
-    on legacy parquet files or mid-pipeline frames where `is_nighttime` may be
-    stale. Uses radiation when available (>= radiation_threshold W/m2 means
-    day) and hour-of-day [6, 18) for NaN-radiation rows.
+    **Primary criterion** — if ``Global_Radiation`` (or the column named in
+    ``config["radiation_col"]``) is present and has at least one non-NaN value,
+    a cycle is classified as daytime when its radiation ≥ ``radiation_threshold``
+    W m⁻².
+
+    **Fallback criterion** — for rows where radiation is NaN, or when the
+    radiation column is entirely absent, the mask falls back to hour-of-day:
+    daytime = ``[config["daytime_hours"][0], config["daytime_hours"][1])``,
+    i.e. ``[6, 18)`` by default.
+
+    Parameters
+    ----------
+    cycles : pd.DataFrame
+        Cycle-level DataFrame.  Must contain the column named in
+        ``config["datetime_col"]`` (default ``"flux_datetime"``).
+        The radiation column (default ``"Global_Radiation"``) is optional.
+    config : dict, optional
+        Override keys from :data:`DEFAULT_CONFIG`.  Relevant keys:
+        ``radiation_col``, ``datetime_col``, ``daytime_hours``.
+    radiation_threshold : float, default 10.0
+        Minimum shortwave radiation (W m⁻²) to classify a cycle as daytime.
+
+    Returns
+    -------
+    pd.Series of bool
+        Same index as ``cycles``.  ``True`` = daytime.
+
+    Examples
+    --------
+    >>> import pandas as pd
+    >>> from palmwtc.validation import derive_is_daytime
+    >>> cycles = pd.DataFrame({
+    ...     "flux_datetime": pd.to_datetime(["2024-01-01 08:00", "2024-01-01 22:00"]),
+    ...     "Global_Radiation": [150.0, float("nan")],
+    ... })
+    >>> derive_is_daytime(cycles).tolist()
+    [True, False]
     """
     cfg = {**DEFAULT_CONFIG, **(config or {})}
     rad_col = cfg["radiation_col"]
@@ -293,6 +423,33 @@ def test_q10(cycles: pd.DataFrame, config: dict[str, Any]) -> dict[str, dict]:
 
 
 def test_wue(cycles: pd.DataFrame, config: dict[str, Any]) -> dict[str, Any]:
+    """Compute median WUE and WUE–VPD correlation across daytime uptake cycles.
+
+    Water use efficiency (WUE) is calculated as the ratio of CO₂ slope to H₂O
+    slope for daytime cycles where the chamber shows net CO₂ uptake.  The
+    median WUE is compared against ``config["WUE_range"]`` and the Pearson
+    correlation between WUE and VPD must be more negative than
+    ``config["WUE_VPD_r_max"]`` (consistent with Medlyn stomatal optimality).
+
+    Parameters
+    ----------
+    cycles : pd.DataFrame
+        Cycle-level DataFrame with a pre-computed ``_is_daytime`` column.
+        Required columns: ``flux_absolute``, ``h2o_slope``, ``co2_slope``,
+        and optionally ``vpd_kPa``.
+    config : dict
+        Configuration dict; see :data:`DEFAULT_CONFIG` for keys used here:
+        ``co2_flux_col``, ``h2o_flux_col``, ``co2_slope_col``, ``vpd_col``,
+        ``WUE_range``, ``WUE_VPD_r_max``.
+
+    Returns
+    -------
+    dict
+        Keys: ``"n"``, ``"median"``, ``"p25"``, ``"p75"``, ``"wue_status"``,
+        optionally ``"vpd_r"``, ``"vpd_p"``, ``"vpd_status"``, and ``"status"``.
+        Returns ``{"n": ..., "status": "N/A", "reason": ...}`` when there are
+        fewer than 20 qualifying cycles.
+    """
     flux_col = config["co2_flux_col"]
     h2o_col = config["h2o_flux_col"]
     co2_slope_col = config["co2_slope_col"]
@@ -337,6 +494,31 @@ def test_wue(cycles: pd.DataFrame, config: dict[str, Any]) -> dict[str, Any]:
 
 
 def test_inter_chamber(cycles: pd.DataFrame, config: dict[str, Any]) -> dict[str, Any]:
+    """Compute daytime and nighttime Pearson r between the two chamber CO₂ fluxes.
+
+    Pivots the flux data by ``(date, hour)`` so the two chambers share a common
+    time axis, then computes Pearson r for daytime and nighttime hour subsets.
+    The test passes when the daytime r ≥ ``config["chamber_r_min"]``.
+
+    Parameters
+    ----------
+    cycles : pd.DataFrame
+        Cycle-level DataFrame.  Required columns: the chamber column
+        (``config["chamber_col"]``), datetime column, and flux column.
+        Must contain data from at least two distinct chambers.
+    config : dict
+        Configuration dict; see :data:`DEFAULT_CONFIG` for keys used here:
+        ``co2_flux_col``, ``chamber_col``, ``datetime_col``,
+        ``daytime_hours``, ``chamber_r_min``.
+
+    Returns
+    -------
+    dict
+        Keys: ``"n_day_pairs"``, ``"n_night_pairs"``, ``"r_daytime"``,
+        ``"p_daytime"``, ``"r_nighttime"``, ``"status"``.
+        Returns ``{"status": "N/A", "reason": ...}`` when fewer than 2
+        chambers are present or fewer than 20 matched time-pairs exist.
+    """
     flux_col = config["co2_flux_col"]
     chamber_col = config["chamber_col"]
     dt_col = config["datetime_col"]
@@ -385,27 +567,92 @@ def run_science_validation(
     label: str = "default",
     derive_daytime: bool = True,
 ) -> dict[str, Any]:
-    """Run the four science validation tests on a (filtered) cycles dataframe.
+    """Run all four ecophysiology validation tests on a cycles DataFrame.
+
+    Executes the light-response, Q10, WUE, and inter-chamber tests in sequence
+    and returns a structured scorecard.  Each test returns ``"PASS"``,
+    ``"BORDERLINE"``, ``"FAIL"``, or ``"N/A"`` per chamber (or globally for
+    WUE and inter-chamber tests).
 
     Parameters
     ----------
-    cycles : DataFrame
-        Cycles already filtered to the desired QC subset. Must contain the
-        columns named in `config` (defaults match the 030 export schema).
+    cycles : pd.DataFrame
+        Cycle-level data, already filtered to the desired QC subset.
+        Required columns (names configurable via ``config``):
+
+        * ``flux_datetime``    — cycle start datetime.
+        * ``Source_Chamber``   — chamber identifier (e.g. ``"Chamber 1"``).
+        * ``flux_absolute``    — CO₂ flux (µmol m⁻² s⁻², negative = uptake).
+        * ``h2o_slope``        — H₂O slope (mmol m⁻² s⁻¹).
+        * ``co2_slope``        — raw CO₂ slope (µmol m⁻² s⁻¹).
+        * ``Global_Radiation`` — shortwave radiation (W m⁻²); used for daytime
+          classification and PAR proxy.
+        * ``mean_temp``        — air temperature (°C) for Q10 fit.
+        * ``vpd_kPa``          — vapour pressure deficit (kPa) for WUE–VPD test.
+
     config : dict, optional
-        Override DEFAULT_CONFIG keys (column names, literature ranges, T_ref).
-    label : str
-        Free-form label stored in the result for later identification (e.g.
-        "cycle_conf=0.65, day_score=0.60").
-    derive_daytime : bool
-        If True (default), derive `_is_daytime` from Global_Radiation in-place,
-        healing the broken `is_nighttime` column. Set False if `_is_daytime`
-        is already provided.
+        Key-value overrides merged on top of :data:`DEFAULT_CONFIG`.
+        Pass only keys you want to change.
+    label : str, default ``"default"``
+        Free-form label stored in the result dict for later identification
+        (e.g. ``"cycle_conf=0.65, day_score=0.60"``).
+    derive_daytime : bool, default True
+        When ``True``, derive ``_is_daytime`` from ``Global_Radiation``
+        (falling back to hour-of-day) via :func:`derive_is_daytime`.
+        Set to ``False`` if the column is already present in ``cycles``.
 
     Returns
     -------
-    dict with keys: label, n_cycles, light_response, q10, wue, inter_chamber,
-        scorecard {n_pass, n_borderline, n_fail, n_na, rows}.
+    dict
+        Top-level keys:
+
+        * ``"label"`` : str — the ``label`` argument.
+        * ``"n_cycles"`` : int — total cycles in the input DataFrame.
+        * ``"n_daytime"`` : int — number of daytime cycles.
+        * ``"n_nighttime"`` : int — number of nighttime cycles.
+        * ``"light_response"`` : dict — per-chamber light-response results
+          (keys ``"Amax"``, ``"alpha"``, ``"Rd"``, ``"r2"``, ``"status"``).
+        * ``"q10"`` : dict — per-chamber Q10 results
+          (keys ``"Q10"``, ``"r2"``, ``"t_iqr"``, ``"status"``).
+        * ``"wue"`` : dict — WUE results
+          (keys ``"median"``, ``"vpd_r"``, ``"status"``).
+        * ``"inter_chamber"`` : dict — inter-chamber agreement
+          (keys ``"r_daytime"``, ``"r_nighttime"``, ``"status"``).
+        * ``"scorecard"`` : dict with keys:
+
+          - ``"n_pass"`` : int — tests with status ``"PASS"``.
+          - ``"n_borderline"`` : int — tests with status ``"BORDERLINE"``.
+          - ``"n_fail"`` : int — tests with status ``"FAIL"``.
+          - ``"n_na"`` : int — tests with status ``"N/A"``.
+          - ``"rows"`` : list of dicts, one per test row, each with
+            ``"section"``, ``"test"``, ``"expected"``, ``"observed"``,
+            ``"status"``.
+
+    Examples
+    --------
+    Build a minimal fixture and run the validator.  With only a few rows
+    most tests return ``"N/A"`` due to insufficient data — that is the
+    correct scientific response:
+
+    >>> import pandas as pd, numpy as np
+    >>> from palmwtc.validation import run_science_validation
+    >>> cycles = pd.DataFrame({
+    ...     "flux_datetime": pd.date_range("2024-01-01 07:00", periods=6, freq="2h"),
+    ...     "Source_Chamber": ["Chamber 1"] * 6,
+    ...     "flux_absolute": [-5.0, -8.0, -10.0, -7.0, -4.0, 2.0],
+    ...     "h2o_slope": [0.5, 0.6, 0.7, 0.5, 0.4, 0.2],
+    ...     "co2_slope": [-5.0, -8.0, -10.0, -7.0, -4.0, 2.0],
+    ...     "Global_Radiation": [200.0, 500.0, 800.0, 600.0, 100.0, 0.0],
+    ...     "mean_temp": [28.0, 30.0, 32.0, 31.0, 29.0, 25.0],
+    ...     "vpd_kPa": [1.2, 1.8, 2.1, 1.9, 1.4, 0.8],
+    ... })
+    >>> result = run_science_validation(cycles, label="fixture")
+    >>> result["label"]
+    'fixture'
+    >>> result["n_cycles"]
+    6
+    >>> result["scorecard"]["n_na"] >= 0
+    True
     """
     cfg = {**DEFAULT_CONFIG, **(config or {})}
     df = cycles.copy()
