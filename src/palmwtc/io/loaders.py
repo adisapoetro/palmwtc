@@ -36,9 +36,7 @@ import numpy as np
 import pandas as pd
 
 
-def load_monthly_data(
-    data_dir: Path, months: list[str] | None = None
-) -> pd.DataFrame:
+def load_monthly_data(data_dir: Path, months: list[str] | None = None) -> pd.DataFrame:
     """Load pre-integrated monthly CSV files and apply hardware outlier filters.
 
     Reads all ``Integrated_Data_YYYY-MM.csv`` files found in *data_dir*, sorts
