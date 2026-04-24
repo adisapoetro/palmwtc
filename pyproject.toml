@@ -167,11 +167,14 @@ files = ["src/palmwtc"]
 
 [tool.pytest.ini_options]
 minversion = "8.0"
-testpaths = ["tests"]
+testpaths = ["tests", "src/palmwtc"]
 addopts = [
     "-ra",
     "--strict-markers",
     "--strict-config",
+    "--doctest-modules",
+    "--doctest-glob=*.md",
+    "-o", "doctest_optionflags=NORMALIZE_WHITESPACE ELLIPSIS",
 ]
 markers = [
     "slow: tests that take >5s",
