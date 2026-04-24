@@ -5,14 +5,17 @@ This file is loaded into every AI-assistant session that touches the
 each time. **Read it before making non-trivial changes.**
 
 `palmwtc` is the **public package** — clean, MIT-licensed, PyPI-published.
-The companion **working / data repo** is `flux_chamber/` (private), which
-holds raw chamber data, exports, presentations, and the Streamlit
-dashboard. They are siblings; they share an author but not a release
-cadence.
+The companion **working / data repo** is the private `research/` sibling
+under the `flux_chamber/` umbrella (`../research/` from this directory),
+which holds raw chamber data, exports, presentations, and the Streamlit
+dashboard. They sit side-by-side in the umbrella but have independent
+`.git/`, release cadence, and branch strategy. See the umbrella
+[CLAUDE.md](../CLAUDE.md) for the cross-repo layer (venv discipline, version
+flow, cutover history).
 
-If you are confused about palmwtc vs flux_chamber, the rule is:
+If you are confused about palmwtc vs research, the rule is:
 - **palmwtc** = the algorithms + library + CLI + tutorials. Public.
-- **flux_chamber** = the LIBZ field data + day-to-day analysis workspace. Private.
+- **research** = the LIBZ field data + day-to-day analysis workspace. Private.
 
 ---
 
@@ -133,7 +136,7 @@ The last layer always succeeds — `palmwtc run` works with zero config.
 
 ## 4. Verification
 
-Run from `/Users/adisapoetro/Projects/palmwtc/`:
+Run from `/Users/adisapoetro/Projects/flux_chamber/palmwtc/`:
 
 ```bash
 unset VIRTUAL_ENV && uv sync --all-extras
