@@ -1,25 +1,36 @@
-"""Rule-based QC flag application.
+"""Rule-based QC flag generators for whole-tree chamber sensor streams.
 
-Ported verbatim from ``flux_chamber/src/qc_functions.py`` (Phase 2).
-Behaviour preservation is the prime directive: function signatures and bodies
-match the original to 1e-12. Internal cross-module references inside the
-``palmwtc.qc`` subpackage now resolve via ``palmwtc.qc.*``.
+Each function in this module takes one sensor variable's time series
+(plus its variable config) and returns either a flag ``pd.Series`` or
+the input frame augmented with per-row QC flag information. Rules cover:
 
-Multi-level flagging system (0-2) using physical bounds, IQR, rate-of-change,
-persistence, battery proxy, and date-range exclusion windows.
+- Physical bounds (hard and soft limits from sensor specifications).
+- Statistical outliers (IQR-based, column-wise).
+- Rate of change (spike detection between consecutive samples).
+- Persistence (stuck / flat-line detection over a rolling time window).
+- Battery-voltage proxy (data-logger health propagated to measurements).
+- Sensor date-range exclusions (maintenance windows, sensor swapouts).
 
-Example:
-    >>> import pandas as pd  # doctest: +SKIP
-    >>> from palmwtc.qc import process_variable_qc  # doctest: +SKIP
-    >>>
-    >>> # Process QC (bounds, IQR, RoC, persistence)
-    >>> results = process_variable_qc(df, 'AirTC_Avg', config)  # doctest: +SKIP
+Flag values carry a three-level severity scale:
+
+- ``0`` — Good: within all bounds, no anomaly detected.
+- ``1`` — Suspect: outside soft bounds or flagged by IQR / RoC /
+  persistence; use with caution.
+- ``2`` — Bad: outside hard bounds or inside an exclusion window;
+  exclude from flux calculations.
+
+``combine_qc_flags`` merges per-rule flag series into a single mask per
+variable. ``process_variable_qc`` orchestrates all rule checks in order
+for one variable and returns a dict of individual plus combined flags.
+
+Tuned for the LI-COR LI-850 gas analyser (CO₂, H₂O) inside a
+whole-tree chamber around an individual oil palm, plus soil sensors at
+5, 15, 30, 60, and 80 cm depths (Campbell CS616 / CS655 type).
 """
 
 # ruff: noqa: B007, E712, F841, I001, RUF010
 # Above ignores cover quirks carried verbatim from the original
-# ``flux_chamber/src/qc_functions.py`` to honour the Phase 2 "behaviour
-# preservation" rule:
+# qc_functions implementation to preserve numeric output parity:
 # - F841 ``indexer`` assigned-but-never-used (twice) inside
 #   ``apply_persistence_flags`` — the original keeps these dead local
 #   FixedForwardWindowIndexer constructions next to the real rolling call;
@@ -38,25 +49,59 @@ import pandas as pd
 
 
 def apply_physical_bounds_flags(df, var_name, config):
-    """
-    Apply physical bounds flagging (hard and soft limits).
+    """Flag rows where a variable falls outside its physical bounds.
 
-    Parameters:
-    -----------
+    Compares each value of ``var_name`` in ``df`` against hard and soft
+    limits defined in the variable config. Hard bounds represent absolute
+    sensor limits (saturation, cable disconnect); soft bounds represent
+    expected operating range under normal field conditions.
+
+    Parameters
+    ----------
     df : pd.DataFrame
-        Data containing the variable column
+        Time-indexed sensor data. Must contain at least the column
+        ``var_name``. Non-numeric values are coerced to ``NaN`` and
+        treated as missing (not flagged).
     var_name : str
-        Variable column name
+        Name of the column in ``df`` to check
+        (e.g. ``"CO2_C1"``, ``"SWC_C1_15cm"``).
     config : dict
-        Variable configuration with 'hard' and 'soft' bounds
+        Variable config dict. Recognised keys:
 
-    Returns:
-    --------
+        ``"hard"`` : list of [low, high], optional
+            Absolute sensor limits in native units. Values outside this
+            range receive flag ``2`` (Bad).
+        ``"soft"`` : list of [low, high], optional
+            Expected operating limits in native units. Values outside
+            soft but inside hard receive flag ``1`` (Suspect).
+
+    Returns
+    -------
     pd.Series
-        Quality flags (0, 1, or 2)
-        - 0: Within soft bounds (good)
-        - 1: Outside soft bounds but within hard bounds (suspect)
-        - 2: Outside hard bounds (bad)
+        Integer flag series aligned to ``df.index``:
+
+        - ``0`` — within soft bounds (or no bounds configured).
+        - ``1`` — outside soft bounds but within hard bounds (Suspect).
+        - ``2`` — outside hard bounds (Bad).
+
+    Notes
+    -----
+    Both ``"hard"`` and ``"soft"`` keys are optional. If only ``"hard"``
+    is present, there are no Suspect flags — values are either 0 or 2.
+    If only ``"soft"`` is present, there are no Bad flags.
+
+    For the LI-850 CO₂ channel (range 0-20 000 ppm), typical hard
+    limits are ``[0, 20000]`` and soft limits are ``[350, 2000]`` for
+    tropical oil-palm chambers.
+
+    Examples
+    --------
+    >>> import pandas as pd
+    >>> df = pd.DataFrame({"CO2_C1": [300.0, 1500.0, 25000.0]})
+    >>> cfg = {"hard": [0.0, 20000.0], "soft": [350.0, 2000.0]}
+    >>> flags = apply_physical_bounds_flags(df, "CO2_C1", cfg)
+    >>> flags.tolist()
+    [1, 0, 2]
     """
     flags = pd.Series(0, index=df.index)  # Initialize all as good
 
@@ -86,24 +131,51 @@ def apply_physical_bounds_flags(df, var_name, config):
 
 
 def apply_iqr_flags(df, var_name, iqr_factor=1.5):
-    """
-    Apply IQR-based outlier flagging.
+    """Flag statistical outliers using the interquartile range (IQR) method.
 
-    Parameters:
-    -----------
+    Computes Q1, Q3, and IQR over all valid (non-NaN) rows in the
+    column, then flags values outside ``[Q1 - k*IQR, Q3 + k*IQR]``
+    where ``k = iqr_factor``.
+
+    Parameters
+    ----------
     df : pd.DataFrame
-        Data containing the variable column
+        Time-indexed sensor data. Must contain at least the column
+        ``var_name``. Non-numeric values are coerced to ``NaN``.
     var_name : str
-        Variable column name
-    iqr_factor : float
-        Multiplier for IQR to define outliers (default 1.5)
+        Name of the column in ``df`` to check
+        (e.g. ``"H2O_C1"``, ``"AirTC_Avg"``).
+    iqr_factor : float, optional
+        Multiplier applied to the IQR to define the outlier fence.
+        Default ``1.5`` (the classic Tukey fence). Use a larger value
+        (e.g. ``3.0``) for variables with heavy right tails such as
+        soil CO₂ efflux.
 
-    Returns:
-    --------
+    Returns
+    -------
     pd.Series
-        Quality flags for IQR check (0 or 1)
-        - 0: Within IQR bounds (good)
-        - 1: Outside IQR bounds (suspect outlier)
+        Integer flag series aligned to ``df.index``:
+
+        - ``0`` — within the IQR fence (Good).
+        - ``1`` — outside the IQR fence (Suspect).
+
+    Notes
+    -----
+    IQR-based flagging assumes a roughly symmetric distribution. Tropical
+    chamber CO₂ is typically log-normal within a day, so this is a
+    coarse filter intended to catch orders-of-magnitude anomalies rather
+    than subtle drift. At least 4 valid data points are required;
+    fewer returns all zeros. If all values are identical (IQR = 0) the
+    function also returns all zeros to avoid flagging constant series
+    that may represent a gap period.
+
+    Examples
+    --------
+    >>> import pandas as pd
+    >>> df = pd.DataFrame({"CO2_C1": [400.0, 410.0, 405.0, 395.0, 9999.0]})
+    >>> flags = apply_iqr_flags(df, "CO2_C1", iqr_factor=1.5)
+    >>> flags.tolist()
+    [0, 0, 0, 0, 1]
     """
     flags = pd.Series(0, index=df.index)
 
@@ -141,29 +213,44 @@ def apply_iqr_flags(df, var_name, iqr_factor=1.5):
 
 
 def combine_qc_flags(bounds_flags, iqr_flags, roc_flags=None, persistence_flags=None):
-    """
-    Combine multiple QC flags into final quality flag.
+    """Merge per-rule flag series into a single combined quality flag.
 
-    Priority order:
-    1. Physical bounds (can set flag to 2)
-    2. Rate of Change (can elevate flag to 1)
-    3. IQR, Persistence (elevate to 1)
+    Applies a worst-case (maximum) merge logic with priority ordering:
 
-    Parameters:
-    -----------
+    1. Physical bounds flags set the base (can produce flag 2).
+    2. IQR, rate-of-change, and persistence flags elevate 0 → 1.
+    3. A flag 2 value is never demoted to 1 or 0.
+
+    Parameters
+    ----------
     bounds_flags : pd.Series
-        Flags from physical bounds check (0, 1, or 2)
+        Flags from the physical bounds check (values 0, 1, or 2).
+        Used as the starting base for the merge.
     iqr_flags : pd.Series
-        Flags from IQR check (0, 1)
+        Flags from the IQR outlier check (values 0 or 1).
+        Must share the same index as ``bounds_flags``.
     roc_flags : pd.Series, optional
-        Flags from Rate of Change check (0, 1)
+        Flags from the rate-of-change (spike) check (values 0 or 1).
+        If ``None``, treated as all zeros.
     persistence_flags : pd.Series, optional
-        Flags from Persistence check (0, 1)
+        Flags from the persistence (flat-line) check (values 0 or 1).
+        If ``None``, treated as all zeros.
 
-    Returns:
-    --------
+    Returns
+    -------
     pd.Series
-        Combined quality flags (0, 1, or 2)
+        Combined integer flag series (0, 1, or 2) aligned to
+        ``bounds_flags.index``.
+
+    Examples
+    --------
+    >>> import pandas as pd
+    >>> bounds = pd.Series([0, 2, 0, 0])
+    >>> iqr    = pd.Series([0, 0, 1, 0])
+    >>> roc    = pd.Series([0, 0, 0, 1])
+    >>> combined = combine_qc_flags(bounds, iqr, roc_flags=roc)
+    >>> combined.tolist()
+    [0, 2, 1, 1]
     """
     # Start with physical bounds as base
     final_flags = bounds_flags.copy()
@@ -189,20 +276,43 @@ def combine_qc_flags(bounds_flags, iqr_flags, roc_flags=None, persistence_flags=
 
 
 def generate_qc_summary(df, flag_column):
-    """
-    Generate summary statistics for quality flags.
+    """Count and summarise flag levels for one QC flag column.
 
-    Parameters:
-    -----------
+    Parameters
+    ----------
     df : pd.DataFrame
-        Data with quality flag column
+        Data frame containing at least the column ``flag_column``.
     flag_column : str
-        Name of the quality flag column
+        Name of the integer flag column to summarise
+        (e.g. ``"CO2_C1_rule_flag"``).
 
-    Returns:
-    --------
+    Returns
+    -------
     dict
-        Summary statistics including counts and percentages for each flag level
+        Summary statistics with the following keys:
+
+        ``"total_points"`` : int
+            Total number of rows.
+        ``"flag_0_count"`` : int
+            Number of rows with flag 0 (Good).
+        ``"flag_1_count"`` : int
+            Number of rows with flag 1 (Suspect).
+        ``"flag_2_count"`` : int
+            Number of rows with flag 2 (Bad).
+        ``"flag_0_percent"`` : float
+            Percentage of rows with flag 0.
+        ``"flag_1_percent"`` : float
+            Percentage of rows with flag 1.
+        ``"flag_2_percent"`` : float
+            Percentage of rows with flag 2.
+
+    Examples
+    --------
+    >>> import pandas as pd
+    >>> df = pd.DataFrame({"CO2_rule_flag": [0, 0, 1, 2, 0]})
+    >>> s = generate_qc_summary(df, "CO2_rule_flag")
+    >>> s["total_points"], s["flag_0_count"], s["flag_1_count"], s["flag_2_count"]
+    (5, 3, 1, 1)
     """
     total = len(df)
     flag_counts = df[flag_column].value_counts()
@@ -221,22 +331,48 @@ def generate_qc_summary(df, flag_column):
 
 
 def get_variable_config(var_name, var_config_dict):
-    """
-    Get configuration for a specific variable.
+    """Look up the QC configuration for a specific variable column name.
 
-    Handles both direct column names and pattern-based variables (e.g., soil sensors).
+    Handles both direct column-name matches (e.g. ``"CO2_C1"``) and
+    prefix-pattern matches used for soil sensor arrays
+    (e.g. ``"SWC_C1"`` matching columns like ``"SWC_C1_5cm"``).
 
-    Parameters:
-    -----------
+    Parameters
+    ----------
     var_name : str
-        Variable column name
+        Variable column name to look up (e.g. ``"CO2_C1"``,
+        ``"SWC_C1_30cm"``).
     var_config_dict : dict
-        Variable configuration dictionary
+        Variable configuration dictionary, typically loaded from
+        ``variable_config.json``. Each entry is either:
 
-    Returns:
-    --------
+        - A config with ``"columns": [...]`` — list of exact column names
+          that share this config.
+        - A config with ``"pattern": "<prefix>"`` — all columns whose
+          name starts with ``"<prefix>_"`` share this config.
+
+    Returns
+    -------
     dict or None
-        Configuration for the variable, or None if not found
+        Configuration dict for the variable if found, otherwise ``None``.
+
+    Notes
+    -----
+    Direct column matches are checked before pattern matches. If a
+    variable matches both, the direct match wins.
+
+    Examples
+    --------
+    >>> cfg_dict = {
+    ...     "co2": {"columns": ["CO2_C1", "CO2_C2"], "hard": [0, 20000]},
+    ...     "swc": {"pattern": "SWC_C1", "hard": [0.0, 0.8]},
+    ... }
+    >>> get_variable_config("CO2_C1", cfg_dict)
+    {'columns': ['CO2_C1', 'CO2_C2'], 'hard': [0, 20000]}
+    >>> get_variable_config("SWC_C1_30cm", cfg_dict)
+    {'pattern': 'SWC_C1', 'hard': [0.0, 0.8]}
+    >>> get_variable_config("Temp_air", cfg_dict) is None
+    True
     """
     # First, check for direct column match
     for config_name, config in var_config_dict.items():
@@ -254,26 +390,61 @@ def get_variable_config(var_name, var_config_dict):
 
 
 def apply_rate_of_change_flags(df, var_name, config):
-    """
-    Apply Rate of Change (RoC) flagging.
+    """Flag rows where consecutive-sample change exceeds a spike limit.
 
-    Checks if the absolute difference between consecutive values exceeds a limit.
+    Computes the absolute first-difference of the column and compares it
+    against a configured ``rate_of_change.limit``. Accounts for time
+    gaps (e.g. chamber open periods) by skipping the check at transitions
+    where the elapsed time exceeds three times the typical sampling
+    interval.
 
-    Parameters:
-    -----------
+    Parameters
+    ----------
     df : pd.DataFrame
-        Data containing the variable column
+        Time-indexed sensor data with a ``pd.DatetimeIndex`` (preferred).
+        Must contain at least the column ``var_name``. Non-numeric values
+        are coerced to ``NaN``.
     var_name : str
-        Variable column name
+        Name of the column in ``df`` to check
+        (e.g. ``"CO2_C1"``, ``"AirTC_Avg"``).
     config : dict
-        Variable configuration with 'rate_of_change' settings
+        Variable config dict. Recognised key:
 
-    Returns:
-    --------
+        ``"rate_of_change"`` : dict, optional
+            Sub-dict with:
+
+            ``"limit"`` : float
+                Maximum allowed absolute change between consecutive
+                samples in native units. If missing, the check is
+                skipped and all flags return 0.
+
+    Returns
+    -------
     pd.Series
-        Quality flags (0 or 1)
-        - 0: Within rate of change limit (good)
-        - 1: Exceeds rate of change limit (suspect)
+        Integer flag series aligned to ``df.index``:
+
+        - ``0`` — change within the allowed limit (Good).
+        - ``1`` — change exceeds the limit (Suspect spike).
+
+    Notes
+    -----
+    The gap-aware logic estimates the typical sampling interval as the
+    median of all consecutive time differences. Differences larger than
+    3 times that median are treated as legitimate data gaps rather than
+    physical spikes and are excluded from flagging. For 4-second chamber
+    data this means jumps across gaps longer than 12 seconds are never
+    flagged as spikes; for 15-minute soil data the threshold is 45
+    minutes.
+
+    Examples
+    --------
+    >>> import pandas as pd
+    >>> idx = pd.date_range("2024-01-01", periods=5, freq="4s")
+    >>> df = pd.DataFrame({"CO2_C1": [400.0, 401.0, 500.0, 402.0, 403.0]}, index=idx)
+    >>> cfg = {"rate_of_change": {"limit": 20.0}}
+    >>> flags = apply_rate_of_change_flags(df, "CO2_C1", cfg)
+    >>> flags.tolist()
+    [0, 0, 1, 1, 0]
     """
     flags = pd.Series(0, index=df.index)
 
@@ -321,26 +492,64 @@ def apply_rate_of_change_flags(df, var_name, config):
 
 
 def apply_persistence_flags(df, var_name, config):
-    """
-    Apply Persistence (Flat Line) flagging.
+    """Flag rows where a variable shows no meaningful variation (flat line).
 
-    Checks if values remain within a small epsilon range for a specified duration.
+    Computes the rolling max-minus-min range over a backward-looking
+    time window and flags rows where that range is at or below an
+    epsilon threshold. A persistently flat sensor reading usually
+    indicates a stuck analogue output, a disconnected probe, or a
+    data-logger averaging artefact.
 
-    Parameters:
-    -----------
+    Parameters
+    ----------
     df : pd.DataFrame
-        Data containing the variable column (must have DatetimeIndex)
+        Time-indexed sensor data with a ``pd.DatetimeIndex`` (required
+        for the time-based rolling window). Must contain at least the
+        column ``var_name``. Non-numeric values are coerced to ``NaN``.
     var_name : str
-        Variable column name
+        Name of the column in ``df`` to check
+        (e.g. ``"CO2_C1"``, ``"SWC_C1_5cm"``).
     config : dict
-        Variable configuration with 'persistence' settings
+        Variable config dict. Recognised key:
 
-    Returns:
-    --------
+        ``"persistence"`` : dict, optional
+            Sub-dict with:
+
+            ``"window_hours"`` : float
+                Rolling window length in hours. If missing the check is
+                skipped and all flags return 0.
+            ``"epsilon"`` : float, optional
+                Maximum range (max - min) that is still considered flat.
+                Default ``0.0`` (exact equality required). Set higher
+                for noisy sensors, e.g. ``0.01`` for SWC.
+
+    Returns
+    -------
     pd.Series
-        Quality flags (0 or 1)
-        - 0: Normal variation (good)
-        - 1: Persistently flat (suspect)
+        Integer flag series aligned to ``df.index``:
+
+        - ``0`` — normal variation within the window (Good).
+        - ``1`` — range within the window is <= epsilon (Suspect flat).
+
+    Notes
+    -----
+    A row is flagged when the *entire backward-looking window ending at
+    that row* had suspiciously low variation. This means the flag
+    appears at the end of a flat sequence, not at its start.
+    Short sequences at the beginning of a file that are shorter than
+    ``window_hours`` use ``min_periods=1`` and may receive false positives
+    if the variable genuinely does not change during the initial window.
+
+    Examples
+    --------
+    >>> import pandas as pd
+    >>> idx = pd.date_range("2024-01-01", periods=6, freq="30min")
+    >>> vals = [400.0, 400.0, 400.0, 400.0, 400.0, 500.0]
+    >>> df = pd.DataFrame({"CO2_C1": vals}, index=idx)
+    >>> cfg = {"persistence": {"window_hours": 1.5, "epsilon": 0.01}}
+    >>> flags = apply_persistence_flags(df, "CO2_C1", cfg)
+    >>> flags.tolist()
+    [1, 1, 1, 1, 1, 0]
     """
     flags = pd.Series(0, index=df.index)
 
@@ -414,24 +623,89 @@ def apply_persistence_flags(df, var_name, config):
 
 
 def apply_battery_proxy_flags(df, battery_proxy_config):
-    """
-    Propagate battery-low flags to measurement variables.
+    """Propagate data-logger battery health flags to dependent measurements.
 
-    For each configured battery sensor: where battery voltage < bad_below,
-    elevate target variable rule_flags to 2; where < warn_below, elevate to 1.
-    Existing Flag 2 values on targets are never demoted.
+    For each configured battery sensor column: when the battery voltage
+    falls below a warning threshold, dependent measurement variables are
+    elevated to Suspect (flag 1); below a bad threshold they are elevated
+    to Bad (flag 2). Existing flag 2 values are never demoted.
 
     Parameters
     ----------
     df : pd.DataFrame
-        DataFrame with battery columns and {var}_rule_flag / {var}_qc_flag columns (modified in place).
+        DataFrame containing battery voltage columns and, for each
+        target variable, both a ``{var}_rule_flag`` column and
+        optionally a ``{var}_qc_flag`` column. Modified in place.
     battery_proxy_config : dict
-        The 'battery_proxy' section from variable_config.json.
+        The ``"battery_proxy"`` section from the variable config JSON.
+        Expected structure::
+
+            {
+              "sensors": {
+                "<batt_col>": {
+                  "warn_below": <float>,
+                  "bad_below": <float>,
+                  "targets": ["<var1>", "<var2>", ...]
+                },
+                ...
+              }
+            }
+
+        Where:
+
+        ``"<batt_col>"`` : str
+            Column name of the battery voltage sensor
+            (e.g. ``"BattV_Min"``).
+        ``"warn_below"`` : float
+            Voltage threshold in volts below which target flags are
+            elevated to 1 (Suspect).
+        ``"bad_below"`` : float
+            Voltage threshold in volts below which target flags are
+            elevated to 2 (Bad).
+        ``"targets"`` : list of str
+            Variable names whose ``{var}_rule_flag`` columns are updated
+            when the battery voltage is low.
 
     Returns
     -------
     dict
-        {sensor_col: {'warn_count': int, 'bad_count': int, 'targets_updated': list}}
+        ``{batt_col: {"warn_count": int, "bad_count": int,
+        "targets_updated": list}}`` — one entry per configured battery
+        sensor, reporting how many rows were affected at each severity
+        level and which target variables were updated.
+
+    Notes
+    -----
+    Battery-voltage proxy flagging matters in the whole-tree chamber
+    setup because the data-logger (CR1000X) runs from a 12 V sealed
+    lead-acid battery charged by a small solar panel. During cloudy
+    multi-day periods the battery can drop enough to cause the LI-850
+    to produce noisy or clipped readings before the logger shuts down.
+    Flagging those measurements proactively prevents erroneous
+    flux estimates.
+
+    Examples
+    --------
+    >>> import pandas as pd
+    >>> df = pd.DataFrame({
+    ...     "BattV_Min": [12.5, 11.5, 10.8],
+    ...     "CO2_C1_rule_flag": [0, 0, 0],
+    ...     "CO2_C1_qc_flag":   [0, 0, 0],
+    ... })
+    >>> batt_cfg = {
+    ...     "sensors": {
+    ...         "BattV_Min": {
+    ...             "warn_below": 11.8,
+    ...             "bad_below": 11.0,
+    ...             "targets": ["CO2_C1"],
+    ...         }
+    ...     }
+    ... }
+    >>> result = apply_battery_proxy_flags(df, batt_cfg)
+    >>> df["CO2_C1_rule_flag"].tolist()
+    [0, 1, 2]
+    >>> result["BattV_Min"]["warn_count"]
+    2
     """
     summary = {}
     sensors = battery_proxy_config.get("sensors", {})
@@ -512,24 +786,74 @@ def _load_sensor_exclusions(config_path=None):
 
 
 def apply_sensor_exclusion_flags(df, var_name, config_path=None):
-    """Return a flag Series for date-range exclusion windows.
+    """Flag rows that fall inside a sensor maintenance or swap-out window.
 
-    Reads ``config/sensor_exclusions.yaml`` and flags rows whose index falls
-    inside any exclusion window defined for *var_name*.
+    Reads exclusion windows from ``config/sensor_exclusions.yaml`` and
+    flags every row whose timestamp is inside any window defined for
+    ``var_name``. This step is applied before other QC rules so that
+    hardware-verified bad periods are always marked Bad (flag 2)
+    regardless of what the IQR or physical-bounds checks produce.
 
     Parameters
     ----------
     df : pd.DataFrame
-        DataFrame with a DatetimeIndex.
+        DataFrame with a ``pd.DatetimeIndex``. Row timestamps are
+        compared directly against window boundaries.
     var_name : str
-        Column name to look up (e.g. ``'CO2_C1'``).
+        Column name to look up in the exclusion config
+        (e.g. ``"CO2_C1"``).
     config_path : str or Path, optional
-        Override path to the YAML config.
+        Override path to ``sensor_exclusions.yaml``. If ``None``, the
+        file is resolved relative to the package ``config/`` directory.
 
     Returns
     -------
     pd.Series
-        Integer flags (0 = no exclusion, 1 or 2 per config).
+        Integer flag series aligned to ``df.index``:
+
+        - ``0`` — no exclusion window applies.
+        - ``1`` or ``2`` — per the ``flag`` field in the YAML config
+          (most windows use ``2`` for Bad).
+
+    Notes
+    -----
+    Exclusion windows are inclusive on both start and end dates (end date
+    extended to 23:59:59 to cover sub-daily data). Within each window,
+    flags are only ever elevated — existing higher flags are preserved.
+
+    The YAML config structure for one variable::
+
+        sensor_exclusions:
+          CO2_C1:
+            - start: "2024-03-10"
+              end:   "2024-03-14"
+              flag:  2
+              reason: "Sensor removed for cleaning"
+              source: "manual"
+
+    Examples
+    --------
+    >>> import pandas as pd
+    >>> import tempfile, os, textwrap
+    >>> yaml_txt = textwrap.dedent('''
+    ...     sensor_exclusions:
+    ...       CO2_C1:
+    ...         - start: "2024-01-02"
+    ...           end:   "2024-01-02"
+    ...           flag:  2
+    ...           reason: "test"
+    ...           source: "manual"
+    ... ''')
+    >>> with tempfile.NamedTemporaryFile(mode="w", suffix=".yaml", delete=False) as f:
+    ...     _ = f.write(yaml_txt)
+    ...     tmp = f.name
+    >>> idx = pd.date_range("2024-01-01", periods=3, freq="1D")
+    >>> df = pd.DataFrame({"CO2_C1": [400.0, 500.0, 410.0]}, index=idx)
+    >>> flags = apply_sensor_exclusion_flags(df, "CO2_C1", config_path=tmp)
+        Exclusion: CO2_C1 2024-01-02 → 2024-01-02 (flag=2, 1 rows) — test
+    >>> flags.tolist()
+    [0, 2, 0]
+    >>> os.unlink(tmp)
     """
     exclusions = _load_sensor_exclusions(config_path)
     flags = pd.Series(0, index=df.index)
@@ -558,30 +882,65 @@ def apply_sensor_exclusion_flags(df, var_name, config_path=None):
 def generate_exclusion_recommendations(
     audit_path=None, config_path=None, agreement_threshold=0.3, write=False
 ):
-    """Auto-detect exclusion windows from 026 regime audit.
+    """Auto-detect exclusion windows from a cross-chamber agreement audit.
 
-    Reads ``026_regime_audit.csv``, identifies regimes where cross-chamber
-    agreement is poor, merges contiguous bad regimes, and returns
-    recommendations.  Optionally writes to ``config/sensor_exclusions.yaml``
-    (preserving ``source: "manual"`` entries).
+    Reads a regime-audit CSV that records per-regime cross-chamber
+    agreement scores and drift-slope warnings. Identifies regimes where
+    agreement is poor, merges contiguous bad regimes into date windows,
+    and returns per-sensor exclusion recommendations. Optionally writes
+    the merged recommendations to ``config/sensor_exclusions.yaml``
+    while preserving any ``source: "manual"`` entries already there.
 
     Parameters
     ----------
     audit_path : str or Path, optional
-        Path to 026_regime_audit.csv. Auto-resolved if None.
+        Path to the regime audit CSV
+        (e.g. ``Data/Integrated_QC_Data/026_regime_audit.csv``).
+        Auto-resolved relative to the package root if ``None``.
     config_path : str or Path, optional
-        Path to sensor_exclusions.yaml for writing. Auto-resolved if None.
-    agreement_threshold : float
-        Regimes with ``agreement_score < threshold`` OR ``slope_warning=True``
-        are flagged.
-    write : bool
-        If True, write merged recommendations to YAML config.
+        Path to ``sensor_exclusions.yaml`` for writing. Auto-resolved
+        relative to the package root if ``None``.
+    agreement_threshold : float, optional
+        Regimes with ``agreement_score < threshold`` OR
+        ``slope_warning=True`` are considered bad. Default ``0.3``.
+    write : bool, optional
+        If ``True``, write merged recommendations to the YAML config
+        file (preserving ``source: "manual"`` entries). Default
+        ``False`` (dry-run, returns dict only).
 
     Returns
     -------
     dict
         ``{sensor_col: [{"start": str, "end": str, "flag": 2,
-          "reason": str, "regimes": list, "source": "026_regime_audit"}, ...]}``
+        "reason": str, "regimes": list, "source": "026_regime_audit"},
+        ...]}``
+
+        Where ``sensor_col`` is the chamber column to exclude
+        (e.g. ``"CO2_C2"``), ``"start"`` and ``"end"`` are
+        ``"YYYY-MM-DD"`` strings covering the merged bad window, and
+        ``"regimes"`` is a list of per-regime metadata dicts.
+
+    Notes
+    -----
+    The regime audit CSV is expected to have at least these columns:
+    ``agreement_score``, ``slope_warning``, ``start``, ``end``,
+    ``variable``, ``reference``, ``regime``, ``slope``.
+
+    The ``reference`` column indicates which chamber had the more
+    reliable reading during that regime. The *other* chamber's column is
+    the one recommended for exclusion.
+
+    Contiguous regimes (gap <= 1 day) are merged into a single window to
+    avoid fragmented exclusion entries.
+
+    Examples
+    --------
+    >>> generate_exclusion_recommendations(
+    ...     audit_path="/path/to/026_regime_audit.csv",
+    ...     agreement_threshold=0.3,
+    ...     write=False,
+    ... )  # doctest: +SKIP
+    {}
     """
     import yaml
     from pathlib import Path
@@ -755,29 +1114,95 @@ def process_variable_qc(
     use_sensor_exclusions=False,
     exclusion_config_path=None,
 ):
-    """
-    Process all QC checks for a single variable.
+    """Run all QC rule checks for one variable and return combined flags.
 
-    Parameters:
-    -----------
+    Orchestrates the full QC pipeline in order:
+
+    1. Sensor exclusion windows (optional; flag 2 never demoted).
+    2. Physical bounds (hard and soft limits).
+    3. IQR-based outlier detection.
+    4. Rate-of-change (spike) detection.
+    5. Persistence (flat-line) detection.
+    6. Combine all flags into a single worst-case flag per row.
+
+    Parameters
+    ----------
     df : pd.DataFrame
-        Data containing the variable
+        Time-indexed sensor data. Must contain at least the column
+        ``var_name``. Non-numeric values in ``var_name`` are coerced to
+        ``NaN``.
     var_name : str
-        Variable column name
+        Name of the column in ``df`` to process
+        (e.g. ``"CO2_C1"``, ``"SWC_C1_15cm"``).
     var_config_dict : dict
-        Variable configuration dictionary
+        Variable configuration dictionary (typically from
+        ``variable_config.json``). Passed to ``get_variable_config``
+        to look up the per-variable config block.
     random_seed : int, optional
-        Kept for API compatibility, not used.
-    use_sensor_exclusions : bool
-        If True, apply sensor exclusion windows from config/sensor_exclusions.yaml
-        as the first QC step. Flag=2 exclusions can never be demoted.
+        Accepted for API compatibility but not used. Has no effect.
+    skip_persistence_for : list of str, optional
+        If ``var_name`` is in this list, the persistence check is
+        skipped and its flags default to 0. Useful for variables with
+        naturally flat periods (e.g. soil temperature at depth).
+    skip_rate_of_change_for : list of str, optional
+        If ``var_name`` is in this list, the rate-of-change check is
+        skipped and its flags default to 0. Useful for variables where
+        fast step-changes are physically expected (e.g. chamber CO₂
+        at cycle transitions).
+    use_sensor_exclusions : bool, optional
+        If ``True``, load and apply date-range exclusion windows from
+        ``config/sensor_exclusions.yaml`` before other QC checks.
+        Default ``False``.
     exclusion_config_path : str or Path, optional
-        Override path to sensor_exclusions.yaml.
+        Override path to ``sensor_exclusions.yaml``. Only used when
+        ``use_sensor_exclusions=True``.
 
-    Returns:
-    --------
+    Returns
+    -------
     dict
-        Dictionary containing all QC results and summary statistics
+        Dictionary with the following keys:
+
+        ``"final_flags"`` : pd.Series
+            Combined worst-case flag (0, 1, or 2) for each row.
+        ``"exclusion_flags"`` : pd.Series
+            Flags from sensor exclusion windows (0, 1, or 2).
+        ``"bounds_flags"`` : pd.Series
+            Flags from physical bounds check (0, 1, or 2).
+        ``"iqr_flags"`` : pd.Series
+            Flags from IQR outlier check (0 or 1).
+        ``"roc_flags"`` : pd.Series
+            Flags from rate-of-change check (0 or 1).
+        ``"persistence_flags"`` : pd.Series
+            Flags from persistence check (0 or 1).
+        ``"summary"`` : dict
+            Counts and percentages per flag level from
+            ``generate_qc_summary``.
+        ``"config"`` : dict
+            The variable config block that was used (absent when no
+            config was found for ``var_name``).
+
+    Notes
+    -----
+    When no config is found for ``var_name`` in ``var_config_dict``, a
+    warning is printed and all flag series are returned as zeros (no
+    filtering applied). This allows the pipeline to proceed even for
+    variables without explicit configuration.
+
+    Examples
+    --------
+    >>> import pandas as pd
+    >>> idx = pd.date_range("2024-01-01", periods=5, freq="4s")
+    >>> df = pd.DataFrame({"CO2_C1": [400.0, 405.0, 402.0, 410.0, 50000.0]}, index=idx)
+    >>> cfg = {
+    ...     "co2": {
+    ...         "columns": ["CO2_C1"],
+    ...         "hard": [0.0, 20000.0],
+    ...         "soft": [350.0, 2000.0],
+    ...     }
+    ... }
+    >>> result = process_variable_qc(df, "CO2_C1", cfg)
+    >>> result["final_flags"].tolist()
+    [0, 0, 0, 0, 2]
     """
     # Get configuration
     config = get_variable_config(var_name, var_config_dict)
@@ -846,9 +1271,49 @@ def process_variable_qc(
 
 
 def add_cycle_id(df, time_col="TIMESTAMP", gap_threshold_sec=300):
-    """
-    Adds a 'cycle_id' column to the DataFrame based on time gaps.
-    A new cycle is computed if the time difference is > gap_threshold_sec.
+    """Assign a sequential cycle ID to rows based on time gaps.
+
+    A new measurement cycle begins whenever the time difference between
+    consecutive rows exceeds ``gap_threshold_sec`` seconds. In the
+    whole-tree chamber setup, each automated flux measurement cycle is
+    separated from the next by a ventilation period during which the
+    chamber is open; those open periods create gaps in the logged data.
+
+    Parameters
+    ----------
+    df : pd.DataFrame
+        Sensor data. The function works with either a ``TIMESTAMP``
+        column (or another column given by ``time_col``) or a
+        ``pd.DatetimeIndex``. If neither is present a warning is printed
+        and ``df`` is returned unchanged.
+    time_col : str, optional
+        Name of the timestamp column. Default ``"TIMESTAMP"``.
+    gap_threshold_sec : float, optional
+        Minimum gap duration in seconds that triggers a new cycle ID.
+        Default ``300`` (5 minutes). Set lower for higher-frequency data
+        or shorter ventilation periods.
+
+    Returns
+    -------
+    pd.DataFrame
+        Copy of ``df`` with an added integer column ``"cycle_id"``
+        starting at 1 and incrementing at each detected gap.
+
+    Notes
+    -----
+    The first row always starts cycle 1 (its time-diff is ``NaT``/NaN).
+    Cycle IDs are contiguous integers; they do not encode absolute time
+    or date.
+
+    Examples
+    --------
+    >>> import pandas as pd
+    >>> idx = pd.date_range("2024-01-01", periods=6, freq="4s")
+    >>> df = pd.DataFrame({"CO2_C1": [400.0] * 6}, index=idx)
+    >>> df_with_gap = pd.concat([df.iloc[:3], df.iloc[3:].shift(freq="10min")])
+    >>> result = add_cycle_id(df_with_gap)
+    >>> result["cycle_id"].tolist()
+    [1, 1, 1, 2, 2, 2]
     """
     if df.empty:
         return df

@@ -1,12 +1,15 @@
-"""palmwtc.flux — flux calculation: absolute, cycles, chamber-aware, scaling.
+"""CO₂ and H₂O flux calculation from whole-tree chamber cycles.
 
-Phase 2 ports from ``flux_chamber/src/{chamber_flux,flux_analysis,flux_qc_fast}.py``,
-split by responsibility:
-
-- ``absolute.py`` — ``calculate_absolute_flux``, ``calculate_h2o_absolute_flux`` primitives
-- ``scaling.py`` — LAI / leaf-basis helpers (``estimate_leaf_area``, ``scale_to_leaf_basis``, ...)
-- ``cycles.py`` — cycle identification + scoring (``identify_cycles``, ``score_cycle``, ...)
-- ``chamber.py`` — chamber-aware flux orchestration (``prepare_chamber_data``, ``calculate_flux_cycles``, ...)
+- :mod:`~palmwtc.flux.absolute` — single-cycle ppm s⁻¹ → µmol m⁻² s⁻¹
+  conversion (CO₂) and mmol mol⁻¹ s⁻¹ → mmol m⁻² s⁻¹ (H₂O) via
+  ideal gas law.
+- :mod:`~palmwtc.flux.chamber` — chamber geometry, tree-biomass lookup,
+  and batch per-cycle flux computation. Also holds the default QC
+  threshold dicts used by cycle scoring.
+- :mod:`~palmwtc.flux.cycles` — cycle identification, quality scoring,
+  bimodal-fault detection, and daily-score aggregation.
+- :mod:`~palmwtc.flux.scaling` — LAI estimation and ground → leaf-area
+  flux conversion; PAR estimation from shortwave radiation.
 """
 
 from palmwtc.flux.absolute import (
