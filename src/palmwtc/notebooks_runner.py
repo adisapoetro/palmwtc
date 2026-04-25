@@ -197,7 +197,7 @@ def run_notebooks(
     results: list[NotebookResult] = []
     aborted = False
 
-    # Phase 1: spine — always sequential.
+    # Spine notebooks: always sequential (each depends on the previous).
     for i, nb in enumerate(spine, 1):
         print(f"\n[spine {i}/{len(spine)}] {nb['name']} ({nb['language']}) ...")
         ok, elapsed, err = _run_with_papermill(nb["path"], _output_for(nb), timeout)
@@ -210,7 +210,7 @@ def run_notebooks(
             aborted = True
             break
 
-    # Phase 2: non-spine — sequential or parallel.
+    # Non-spine notebooks: independent, may run sequentially or in parallel.
     if rest and not aborted:
         workers = max(1, parallel)
         if workers == 1:

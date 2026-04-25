@@ -113,8 +113,7 @@ def run(
         else:
             typer.secho(
                 "  [error] --notebooks mode requires a 'notebooks_dir' entry in palmwtc.yaml "
-                "or an env override; the bundled sample has no notebooks bundled yet "
-                "(those land in Phase 4).",
+                "or an env override; the bundled sample does not yet ship bundled notebooks.",
                 fg=typer.colors.RED,
             )
             raise typer.Exit(code=2)
@@ -150,20 +149,6 @@ def sample_path() -> None:
     from palmwtc.data import sample_dir
 
     typer.echo(str(sample_dir("synthetic")))
-
-
-@sample_app.command("fetch")
-def sample_fetch(
-    kind: str = typer.Argument("real", help="Sample kind to fetch (currently 'real' from Zenodo)."),
-) -> None:
-    """Download the real-downsampled LIBZ sample from Zenodo. (Stub — Phase 7.)"""
-    typer.secho(
-        f"sample fetch '{kind}' not yet implemented — Zenodo wiring lands in Phase 7. "
-        f"Bundled synthetic sample is already on disk at:",
-        fg=typer.colors.YELLOW,
-    )
-    sample_path()
-    raise typer.Exit(code=2)
 
 
 if __name__ == "__main__":
