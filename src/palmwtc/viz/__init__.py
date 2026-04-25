@@ -1,15 +1,17 @@
-"""palmwtc.viz — static + interactive visualisation helpers.
+"""Visualization helpers — static (matplotlib) and interactive (plotly).
 
-- ``style.py`` / ``diagnostics.py`` / ``timeseries.py`` — matplotlib helpers (no extras).
-- ``qc_plots.py`` — matplotlib QC visualisation.
-- ``interactive.py`` — Plotly + ipywidgets Jupyter dashboards (call sites
-  need ``palmwtc[interactive]`` for ipywidgets / anywidget; bare imports
-  succeed without the extra).
+Five families:
 
-The umbrella re-exports the public plotting API used by tutorial
-notebooks 010, 020, 030, 031, 032, 033, 035. Helpers used only inside
-the interactive Plotly dashboard are reachable via
-``palmwtc.viz.interactive.*`` and not re-exported here.
+- :mod:`~palmwtc.viz.style` — rcParams defaults for consistent look.
+- :mod:`~palmwtc.viz.timeseries` — seasonal / diurnal / tree-age patterns, flux heatmaps.
+- :mod:`~palmwtc.viz.diagnostics` — per-cycle inspection plots.
+- :mod:`~palmwtc.viz.qc_plots` — QC flag visualisations.
+- :mod:`~palmwtc.viz.interactive` — Plotly-based interactive dashboards (use inside Jupyter only).
+
+All static helpers (``style``, ``diagnostics``, ``timeseries``, ``qc_plots``) work
+on a core install.  Interactive helpers require ``palmwtc[interactive]`` for
+ipywidgets / anywidget; bare imports succeed without the extra, but calling
+the dashboard raises an informative error at runtime.
 """
 
 from palmwtc.viz.diagnostics import (
