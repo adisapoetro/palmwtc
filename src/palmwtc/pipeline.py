@@ -15,9 +15,10 @@ Steps (each is independently runnable):
 - ``"windows"`` — select high-confidence calibration windows
 - ``"validation"`` — science validation against literature ecophysiology bounds
 
-Phase 3 ships the simplest implementation that runs end-to-end against
-the bundled synthetic sample. Phase 4 will expand step bodies as the
-notebooks are thinned.
+The current implementation runs end-to-end against the bundled synthetic
+sample with thin step bodies; production callers will typically replace
+:func:`step_qc` and :func:`step_flux` with calls into the algorithm-rich
+helpers under :mod:`palmwtc.qc` and :mod:`palmwtc.flux` directly.
 """
 
 from __future__ import annotations
@@ -193,7 +194,7 @@ def _apply_tree_volume_correction(cycles_df: pd.DataFrame, paths: DataPaths) -> 
 
 
 def step_qc(paths: DataPaths) -> StepResult:
-    """Load QC parquet. Phase 3: no real QC processing — just verify the artefact is loadable."""
+    """Load QC parquet and verify the artefact is loadable; no rule re-application."""
     t0 = time.time()
     try:
         qc_path = _find_qc_parquet(paths)
