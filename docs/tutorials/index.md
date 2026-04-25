@@ -1,9 +1,17 @@
 # Tutorials
 
-Thirteen tutorial notebooks cover the full palmwtc workflow. Each is a
+Fourteen tutorial notebooks cover the full palmwtc workflow. Each is a
 thin wrapper around the library API: `DataPaths.resolve()` →
 `run_step(...)` → plot → narrative. All algorithmic logic stays in the
 `palmwtc.*` package.
+
+## Recommended starting point
+
+**[000 — Integrated end-to-end](000_Integrated_End_to_End.ipynb)** runs
+the full pipeline (qc → flux → windows → validation → plot) in a single
+notebook against the bundled synthetic sample. Markdown cells explain
+the scientific meaning of each step. New users should open this first
+before diving into the per-stage tutorials below.
 
 ## Pipeline spine (run in order)
 
@@ -37,6 +45,7 @@ thin wrapper around the library API: `DataPaths.resolve()` →
 :maxdepth: 1
 :hidden:
 
+000_Integrated_End_to_End
 010_Data_Integration
 011_Weather_vs_Chamber
 020_QC_Rule_Based
