@@ -152,19 +152,5 @@ def sample_path() -> None:
     typer.echo(str(sample_dir("synthetic")))
 
 
-@sample_app.command("fetch")
-def sample_fetch(
-    kind: str = typer.Argument("real", help="Sample kind to fetch (currently 'real' from Zenodo)."),
-) -> None:
-    """Download the real-downsampled LIBZ sample from Zenodo. (Stub — Phase 7.)"""
-    typer.secho(
-        f"sample fetch '{kind}' not yet implemented — Zenodo wiring lands in Phase 7. "
-        f"Bundled synthetic sample is already on disk at:",
-        fg=typer.colors.YELLOW,
-    )
-    sample_path()
-    raise typer.Exit(code=2)
-
-
 if __name__ == "__main__":
     app()

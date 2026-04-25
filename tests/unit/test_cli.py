@@ -48,11 +48,6 @@ class TestSample:
         assert result.returncode == 0
         assert "synthetic" in result.stdout
 
-    def test_sample_fetch_is_a_stub(self) -> None:
-        result = _run_cli("sample", "fetch")
-        assert result.returncode == 2
-        assert "not yet implemented" in result.stdout.lower()
-
 
 class TestRun:
     @pytest.mark.slow
