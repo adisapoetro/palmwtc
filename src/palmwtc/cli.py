@@ -113,8 +113,7 @@ def run(
         else:
             typer.secho(
                 "  [error] --notebooks mode requires a 'notebooks_dir' entry in palmwtc.yaml "
-                "or an env override; the bundled sample has no notebooks bundled yet "
-                "(those land in Phase 4).",
+                "or an env override; the bundled sample does not yet ship bundled notebooks.",
                 fg=typer.colors.RED,
             )
             raise typer.Exit(code=2)
