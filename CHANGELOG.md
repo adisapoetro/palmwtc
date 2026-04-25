@@ -8,6 +8,63 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 (no changes yet)
 
+## [0.2.6] — 2026-04-25
+
+Documentation sprint. No behaviour changes; the 463-test pretest suite
+remains green and consumer-parity tests in downstream sandbox + research
+projects pass against this release.
+
+### Changed
+
+- Comprehensive NumPy-style docstrings on every public function, class,
+  and method across all subpackages (`io`, `qc`, `flux`, `windows`,
+  `validation`, `viz`, `hardware`) plus `palmwtc.config.DataPaths`.
+  Each docstring documents required input columns (for DataFrame-taking
+  functions), units (SI throughout), sign conventions, and includes a
+  runnable Examples block where practical.
+- Type hints on every public signature. Backward-compatible — no caller
+  code breaks.
+- `pyproject.toml` enables `pytest --doctest-modules` so the runnable
+  examples in docstrings are validated as tests.
+- Rewritten `docs/quickstart.md` as a 3-minute scientist-facing
+  walkthrough from `pip install` → first flux plot. Every snippet runs
+  copy-paste against the bundled synthetic sample.
+- New `docs/tutorials/000_Integrated_End_to_End.ipynb` — executable
+  end-to-end tutorial covering qc → flux → windows → validation against
+  the bundled synthetic sample. Markdown cells explain the scientific
+  meaning of each step. Sorts before the existing 13 per-stage tutorials.
+- Rewritten `docs/science/index.md` with proper bibliographic citations
+  (Medlyn 2011/2016, Lamade & Bouillet 2005, Liu 2008, Truong 2020,
+  McCree 1972).
+- Removed all internal project-management references ("Phase N",
+  `flux_chamber/src/*` paths, "behaviour preservation rule") from
+  published source and docs. Verification:
+  `grep -rn "Phase [0-9]\|flux_chamber/src" src/palmwtc/ docs/` returns
+  zero hits.
+
+### Removed
+
+- `docs/PROJECT_PULSE.md` — internal phase-progress tracker, not
+  appropriate for published documentation.
+- `docs/api/index.md` — orphaned static placeholder; sphinx-autoapi
+  auto-generates the API reference page from the source docstrings.
+- `palmwtc sample fetch` CLI subcommand — was a stub printing "not yet
+  implemented — Zenodo wiring lands in Phase 7" with exit code 2. Will
+  be re-added when there is a real Zenodo DOI to fetch from.
+
+### Known issues (deferred to v0.3.0)
+
+- **Column-name inconsistency.** `calculate_flux_cycles` emits
+  `flux_date` (date), but downstream `WindowSelector` and
+  `run_science_validation` expect `flux_datetime` (timestamp). The
+  quickstart and integrated tutorial both apply a `rename()` between
+  the stages. Cleanup pending.
+- **`run_science_validation` requires extra columns** beyond what the
+  minimal QC → flux path produces (`Global_Radiation`, `h2o_slope`,
+  `co2_slope`, `vpd_kPa`). The quickstart fills these with NaN
+  placeholders for the demo; real validation requires the full
+  pipeline.
+
 ## [0.2.5] — 2026-04-22
 
 Fourth hotfix in the post-cutover-verification series. v0.2.4 ported
