@@ -6,7 +6,14 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
-(no changes yet)
+### Queued for next release
+
+- Rewrite the README intro paragraph to make clear that QC operates across the
+  full sensor set — gas concentrations (CO₂, H₂O), air temperature, humidity,
+  vapor pressure, atmospheric pressure, and battery proxy — not just CO₂/H₂O
+  fluxes. The current wording undersells the QC scope; the QC pipeline (in
+  `palmwtc.qc`) is fully generic and ships with `variable_config.json` examples
+  for soil sensors as well.
 
 ## [0.2.7] — 2026-04-27
 
