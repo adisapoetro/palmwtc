@@ -14,6 +14,100 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
   fluxes. The current wording undersells the QC scope; the QC pipeline (in
   `palmwtc.qc`) is fully generic and ships with `variable_config.json` examples
   for soil sensors as well.
+- `palmwtc.flux.run_flux_pipeline()` — single function that ties together the
+  orchestration currently inline in `research/notebooks/030` (per-row
+  tree-volume recompute, score_cycle, day_score, ML anomaly, is_nighttime
+  re-derivation, additional cycle filtering). Closes the residual sandbox-vs-
+  baseline gap by letting downstream consumers run the full pipeline with one
+  call.
+
+## [0.3.0] — 2026-04-28
+
+**Breaking change release.** Promotes 5 LIBZ-tested overrides to package
+defaults so calling palmwtc with no kwargs produces the same result as the
+research notebooks. Motivation: the 2026-04-27 sandbox parity audit traced
+the 11.5% bit-exact gap between sandbox and baseline to 5 kwargs that the
+research notebooks override at every call site. Promoting them to defaults
+eliminates the divergence by construction. Audit:
+[`research/docs/Audit/2026-04-27_palmwtc_0.3.0_defaults_audit.md`](https://github.com/adisapoetro/flux_chamber/blob/main/docs/Audit/2026-04-27_palmwtc_0.3.0_defaults_audit.md).
+
+The full test suite (512 tests) passes at the new defaults — no behaviour
+relying on the old defaults was tested.
+
+### Changed (BREAKING)
+
+- **`palmwtc.flux.prepare_chamber_data`** — four default flips:
+
+  | Kwarg | Old default | New default |
+  |---|---|---|
+  | `accepted_co2_qc_flags` | `None` | `(0,)` |
+  | `accepted_h2o_qc_flags` | `None` | `(0, 1)` |
+  | `apply_wpl` | `True` | `False` |
+  | `require_h2o_for_wpl` | `True` | `False` |
+
+  Why: LI-COR LI-850 firmware applies WPL internally, so software-side WPL
+  is double-correction (originally fixed in 0.2.3 as a flag flip; now hard
+  default). And `accepted_*_qc_flags=None` was silently permissive — keeping
+  every QC flag value, including `flag=2` (= bad data). The notebooks
+  always overrode these to `[0]` (CO₂) and `[0, 1]` (H₂O) to filter
+  scientifically. New defaults match.
+
+  **Migration to restore old behaviour:**
+
+  ```python
+  # If you relied on the old "no QC filter + apply WPL in software" defaults:
+  prepare_chamber_data(
+      df, suffix,
+      accepted_co2_qc_flags=None,    # disable filter
+      accepted_h2o_qc_flags=None,    # disable filter
+      apply_wpl=True,                # software WPL
+      require_h2o_for_wpl=True,
+  )
+  ```
+
+  Passing `None` explicitly still works as a backward-compatible "use
+  DEFAULT_CONFIG fallback" path (see `prepare_chamber_data` body lines
+  611-614 — preserved for legacy callers).
+
+- **`palmwtc.validation.run_science_validation`** — `derive_daytime` default
+  flipped from `True` to `False`. The notebooks always pass `False` because
+  the LIBZ pipeline computes `is_daytime` from `Global_Radiation` upstream
+  (more reliable than the function's hour-of-day fallback). Passing
+  `derive_daytime=True` explicitly restores old behaviour.
+
+- **`palmwtc.qc.process_variable_qc`** — `use_sensor_exclusions` default
+  flipped from `False` to `True`. If a `config/sensor_exclusions.yaml` file
+  exists in the configured directory, the exclusion windows are now applied
+  by default (was previously silently skipped unless explicitly enabled).
+  Passing `use_sensor_exclusions=False` explicitly restores old behaviour.
+
+### Unchanged (already at LIBZ defaults — audit confirmed)
+
+- `palmwtc.flux.compute_ml_anomaly_flags` — all 13 kwargs already at the
+  LIBZ-tested values; no change needed.
+- `palmwtc.validation.derive_is_daytime.radiation_threshold` — already
+  defaults to `10.0` W/m²; no change needed.
+
+### Migration recipe
+
+For research/notebooks/030 and similar consumers, the explicit kwargs that
+match the new defaults can simply be **removed** from call sites. For
+example:
+
+```python
+# BEFORE:
+prepare_chamber_data(
+    df, "C1",
+    accepted_co2_qc_flags=[0],
+    accepted_h2o_qc_flags=[0, 1],
+    apply_wpl=False,
+    require_h2o_for_wpl=False,
+    prefer_corrected_h2o=True,
+)
+
+# AFTER (palmwtc 0.3.0):
+prepare_chamber_data(df, "C1")    # all defaults already correct
+```
 
 ## [0.2.8] — 2026-04-27
 
