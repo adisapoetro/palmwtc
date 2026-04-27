@@ -396,15 +396,37 @@ def test_render_field_alert_html_renders_template(tmp_path):
     assert "Temp Humidity" in html
 
 
-def test_render_field_alert_html_uses_default_template_dir_signature(tmp_path):
-    """``template_dir=None`` falls back to a path computed from ``__file__``."""
-    # Just make sure the call signature accepts None and computes a Path
-    # without exploding before reading the template (we expect a TemplateNotFound
-    # because the default path won't exist in palmwtc layout).
-    from jinja2 import TemplateNotFound
+def test_render_field_alert_html_default_template_dir_resolves():
+    """``template_dir=None`` must find the bundled ``field_alert.html`` template.
 
-    with pytest.raises((TemplateNotFound, FileNotFoundError, OSError)):
-        render_field_alert_html({}, template_dir=None)
+    Regression test for the v0.2.0 → v0.2.7 bug where the default
+    ``template_dir`` pointed at the deleted ``palmwtc.dashboard`` subpackage.
+    Fixed in v0.2.8: templates now live in ``palmwtc/qc/templates/``.
+    """
+    # Minimal valid context — every key referenced by field_alert.html must
+    # be present, but values can be empty / placeholder.
+    context = {
+        "report_date": "2026-04-27 12:00",
+        "lookback_days": 1,
+        "window_start": "2026-04-26 12:00",
+        "window_end": "2026-04-27 12:00",
+        "system_status": "HEALTHY",
+        "status_color": "#2ecc71",
+        "avg_score": "100",
+        "total_sensors": 0,
+        "healthy_count": 0,
+        "attention_sensors": [],
+        "critical_recs": [],
+        "warning_recs": [],
+        "cv_issues": [],
+        "qc_source": "020",
+        "health_rows": [],
+        "recommendations": [],
+    }
+    html = render_field_alert_html(context, template_dir=None)
+    assert html.startswith("<!DOCTYPE html") or "<html" in html
+    # Sanity check that template variables actually rendered.
+    assert "2026-04-27" in html or "HEALTHY" in html
 
 
 # ---------------------------------------------------------------------------

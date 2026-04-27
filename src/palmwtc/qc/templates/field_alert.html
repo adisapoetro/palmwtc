@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Field QC Alert — {{ report_date }}</title>
+</head>
+<body style="font-family: Arial, Helvetica, sans-serif; margin: 0; padding: 0; background-color: #f5f6fa;">
+
+<div style="max-width: 650px; margin: 0 auto; background: white;">
+    <!-- Header -->
+    <div style="background: #2c3e50; color: white; padding: 20px; text-align: center;">
+        <h1 style="margin: 0; font-size: 20px; color: white;">Field QC Alert</h1>
+        <p style="margin: 6px 0 0 0; color: #bdc3c7; font-size: 13px;">
+            Last {{ lookback_days }} days &mdash; report generated {{ report_date }}
+        </p>
+        <p style="margin: 4px 0 0 0; color: #bdc3c7; font-size: 12px;">
+            Data window: {{ window_start }} &rarr; {{ window_end }}
+        </p>
+    </div>
+
+    <div style="padding: 20px;">
+        <!-- System Status Badge -->
+        <div style="text-align: center; margin-bottom: 20px;">
+            <div style="display: inline-block; background: {{ status_color }}; color: white;
+                        padding: 10px 25px; border-radius: 8px; font-size: 16px; font-weight: bold;">
+                {{ system_status }}
+            </div>
+            <p style="margin: 8px 0 0 0; color: #666; font-size: 13px;">
+                Average Health Score: <strong>{{ avg_score }}/100</strong> &nbsp;|&nbsp;
+                {{ healthy_count }}/{{ total_sensors }} sensors healthy
+            </p>
+        </div>
+
+        {% if critical_recs or warning_recs %}
+        <!-- Action Required -->
+        <h2 style="color: #c0392b; font-size: 15px; border-bottom: 2px solid #e74c3c; padding-bottom: 6px; margin-bottom: 10px;">
+            &#9888; Action Required
+        </h2>
+
+        {% for rec in critical_recs %}
+        <div style="background: #fdedec; border-left: 4px solid #e74c3c; padding: 10px; margin-bottom: 8px;">
+            <strong style="color: #c0392b;">{{ rec.sensor }}</strong>
+            <span style="float: right; background: #e74c3c; color: white; padding: 2px 8px; border-radius: 3px; font-size: 11px;">
+                {{ rec.action }}
+            </span>
+            <p style="margin: 5px 0 0 0; color: #555; font-size: 12px;">{{ rec.message }}</p>
+        </div>
+        {% endfor %}
+
+        {% for rec in warning_recs %}
+        <div style="background: #fef9e7; border-left: 4px solid #f39c12; padding: 10px; margin-bottom: 8px;">
+            <strong style="color: #d68910;">{{ rec.sensor }}</strong>
+            <span style="float: right; background: #f39c12; color: white; padding: 2px 8px; border-radius: 3px; font-size: 11px;">
+                {{ rec.action }}
+            </span>
+            <p style="margin: 5px 0 0 0; color: #555; font-size: 12px;">{{ rec.message }}</p>
+        </div>
+        {% endfor %}
+
+        {% else %}
+        <p style="color: #27ae60; text-align: center; font-size: 14px; margin: 15px 0;">
+            &#10004; All sensors operating within acceptable parameters. No action needed.
+        </p>
+        {% endif %}
+
+        {% if attention_sensors %}
+        <!-- Sensor Health Table -->
+        <h2 style="color: #2c3e50; font-size: 15px; border-bottom: 2px solid #ecf0f1; padding-bottom: 6px; margin-top: 20px;">
+            Sensor Health Summary
+        </h2>
+        <table style="width: 100%; border-collapse: collapse; margin-bottom: 15px; font-size: 12px;">
+            <tr style="background: #ecf0f1;">
+                <th style="padding: 7px; text-align: left;">Sensor</th>
+                <th style="padding: 7px; text-align: center;">Score</th>
+                <th style="padding: 7px; text-align: center;">Good %</th>
+                <th style="padding: 7px; text-align: center;">Bad %</th>
+                <th style="padding: 7px; text-align: center;">Status</th>
+            </tr>
+            {% for sensor in attention_sensors %}
+            <tr style="border-bottom: 1px solid #ecf0f1;">
+                <td style="padding: 7px;">{{ sensor.variable }}</td>
+                <td style="padding: 7px; text-align: center; font-weight: bold; color: {{ sensor.color_hex }};">
+                    {{ sensor.score | round }}
+                </td>
+                <td style="padding: 7px; text-align: center;">{{ "%.1f" | format(sensor.flag_0_pct) }}%</td>
+                <td style="padding: 7px; text-align: center;">{{ "%.1f" | format(sensor.flag_2_pct) }}%</td>
+                <td style="padding: 7px; text-align: center;">{{ sensor.status }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+        {% endif %}
+
+        {% if cv_issues %}
+        <!-- Cross-Variable Issues -->
+        <h2 style="color: #2c3e50; font-size: 15px; border-bottom: 2px solid #ecf0f1; padding-bottom: 6px;">
+            Cross-Variable Consistency
+        </h2>
+        <table style="width: 100%; border-collapse: collapse; margin-bottom: 15px; font-size: 12px;">
+            <tr style="background: #ecf0f1;">
+                <th style="padding: 7px; text-align: left;">Check</th>
+                <th style="padding: 7px; text-align: center;">Flagged %</th>
+            </tr>
+            {% for issue in cv_issues %}
+            <tr style="border-bottom: 1px solid #ecf0f1;">
+                <td style="padding: 7px;">{{ issue.name }}</td>
+                <td style="padding: 7px; text-align: center; color: {{ '#e74c3c' if issue.pct > 5 else '#f39c12' if issue.pct > 2 else '#27ae60' }};">
+                    {{ "%.1f" | format(issue.pct) }}%
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+        {% endif %}
+
+        <!-- Footer -->
+        <hr style="border: none; border-top: 1px solid #ecf0f1; margin: 20px 0;">
+        <p style="color: #95a5a6; font-size: 11px; text-align: center;">
+            Flux Chamber QC &mdash; Generated {{ report_date }}<br>
+            Data source: notebook {{ qc_source }}
+        </p>
+    </div>
+</div>
+
+</body>
+</html>
