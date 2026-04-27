@@ -590,9 +590,11 @@ def render_field_alert_html(
     True
     """
     if template_dir is None:
-        template_dir = (
-            Path(__file__).resolve().parent.parent / "dashboard" / "email_report" / "templates"
-        )
+        # Templates live alongside the qc/reporting.py module since v0.2.8.
+        # The previous default pointed at palmwtc.dashboard which was removed
+        # in v0.2.0 — the template was orphaned, leaving render_field_alert_html
+        # silently broken until the caller passed an explicit template_dir.
+        template_dir = Path(__file__).resolve().parent / "templates"
 
     env = Environment(loader=FileSystemLoader(str(template_dir)))
     template = env.get_template(template_name)

@@ -15,6 +15,40 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
   `palmwtc.qc`) is fully generic and ships with `variable_config.json` examples
   for soil sensors as well.
 
+## [0.2.8] — 2026-04-27
+
+Bug-fix release. `palmwtc.qc.render_field_alert_html` was silently broken
+between 0.2.0 and 0.2.7: its default `template_dir` pointed at the
+`palmwtc.dashboard` subpackage, which was deleted in 0.2.0. Calling it
+without an explicit `template_dir=` raised
+`jinja2.TemplateNotFound`. The 7:30 AM daily field-alert cron of
+downstream consumers (e.g. `flux_chamber/research`) may have been silently
+failing since the 0.2.0 cutover.
+
+### Fixed
+
+- **`palmwtc.qc.render_field_alert_html` default template path.** Moved
+  `field_alert.html` from the deleted `palmwtc/dashboard/email_report/templates/`
+  tree into the surviving `palmwtc/qc/templates/` directory. The default
+  `template_dir` now resolves to `Path(__file__).parent / "templates"`,
+  which is bundled with the wheel via the standard hatchling
+  `packages = ["src/palmwtc"]` config (HTML files are included
+  automatically alongside Python files).
+
+### Added
+
+- **Regression test** `test_render_field_alert_html_default_template_dir_resolves`
+  in `tests/unit/qc/test_reporting.py`. Calls
+  `render_field_alert_html({...minimal context...}, template_dir=None)` and
+  asserts the output starts with `<!DOCTYPE html`. Replaces the previous
+  test that **explicitly asserted the bug** (it expected
+  `pytest.raises(TemplateNotFound)`), which is why nobody noticed the
+  regression.
+
+### Changed
+
+- `CITATION.cff` version bumped to `0.2.8`.
+
 ## [0.2.7] — 2026-04-27
 
 Documentation-only release. No behaviour changes; the existing test suite
