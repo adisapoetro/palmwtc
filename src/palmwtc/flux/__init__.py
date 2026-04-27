@@ -56,8 +56,15 @@ from palmwtc.flux.scaling import (
     load_biophysical_data,
     scale_to_leaf_basis,
 )
+from palmwtc.flux.advanced_outlier import (
+    DEFAULT_ADVANCED_OUTLIER_CONFIG,
+    compute_ensemble_score,
+    compute_rolling_zscore,
+    compute_stl_residual_scores,
+)
 
 __all__ = [
+    "DEFAULT_ADVANCED_OUTLIER_CONFIG",
     "DEFAULT_CO2_QC_THRESHOLDS",
     "DEFAULT_CONFIG",
     "DEFAULT_H2O_QC_THRESHOLDS",
@@ -79,7 +86,10 @@ __all__ = [
     "calculate_lai_effective",
     "compute_closure_confidence",
     "compute_day_scores",
+    "compute_ensemble_score",
     "compute_ml_anomaly_flags",
+    "compute_rolling_zscore",
+    "compute_stl_residual_scores",
     "compute_temporal_coherence",
     "detect_bimodal_cycle",
     "estimate_leaf_area",
