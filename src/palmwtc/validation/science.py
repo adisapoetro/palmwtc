@@ -565,7 +565,7 @@ def run_science_validation(
     cycles: pd.DataFrame,
     config: dict[str, Any] | None = None,
     label: str = "default",
-    derive_daytime: bool = True,
+    derive_daytime: bool = False,
 ) -> dict[str, Any]:
     """Run all four ecophysiology validation tests on a cycles DataFrame.
 

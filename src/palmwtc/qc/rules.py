@@ -1111,7 +1111,7 @@ def process_variable_qc(
     random_seed=None,
     skip_persistence_for=None,
     skip_rate_of_change_for=None,
-    use_sensor_exclusions=False,
+    use_sensor_exclusions=True,
     exclusion_config_path=None,
 ):
     """Run all QC rule checks for one variable and return combined flags.
