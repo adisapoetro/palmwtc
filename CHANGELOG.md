@@ -8,6 +8,30 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 (no changes yet)
 
+## [0.2.7] — 2026-04-27
+
+Documentation-only release. No behaviour changes; the existing test suite
+remains green and consumer-parity tests against downstream sandbox + research
+projects pass against this release.
+
+### Added
+
+- README "Background" section now includes an example illustration of an
+  automated whole-tree chamber (the LIBZ deployment in Riau, Indonesia,
+  from which `palmwtc` was originally developed). The illustration is
+  framed as **one possible implementation, not a specification** —
+  surrounding prose enumerates the dimensions along which other
+  deployments will vary (chamber volume, tree species, sensor pole layout,
+  soil instrumentation depth/brand, datalogger choice). The image renders
+  on the PyPI project page and the GitHub repo landing page.
+  ([`docs/_static/example_chamber_libz.png`](docs/_static/example_chamber_libz.png))
+
+### Changed
+
+- `CITATION.cff` version field bumped to `0.2.7` and `date-released` to
+  `2026-04-27`. The previous 0.2.6 release missed bumping `CITATION.cff`
+  from 0.2.5 — corrected in this release.
+
 ## [0.2.6] — 2026-04-25
 
 Documentation sprint. No behaviour changes; the 463-test pretest suite

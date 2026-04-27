@@ -97,6 +97,36 @@ a programmed schedule. This is, to our knowledge, the first WTC deployment for
 oil palm — the WTC method was previously applied to temperate broadleaf
 species (Medlyn et al. 2016).
 
+### What does an automated whole-tree chamber look like?
+
+The illustration below shows **one concrete example** — the LIBZ chamber from
+which `palmwtc` was originally developed (Riau, Indonesia; whole-tree chamber
+around an individual mature oil palm; aboveground sensor pole carrying sonic
+anemometers, temperature/humidity sensors, and LI-850 air inlets at five
+heights; underground TEROS-21 + Watermark sensors at five depths).
+
+![Example whole-tree flux chamber — the LIBZ deployment in Riau, Indonesia. Other implementations may differ in dimensions, tree species, sensor layout, and instrumentation.](https://raw.githubusercontent.com/adisapoetro/palmwtc/main/docs/_static/example_chamber_libz.png)
+
+**This is one possible implementation, not a specification.** `palmwtc` is a
+generic toolkit — it does not assume any one chamber design. Other deployments
+will differ in:
+
+- **Chamber dimensions** — `palmwtc` takes the chamber volume as a
+  configuration input; chambers from a few cubic metres to large enclosures
+  all work.
+- **Tree species and growth form** — the package is not oil-palm-specific;
+  any plant that fits in a closed chamber can be processed.
+- **Sensor pole design** — the number of heights and the sensor mix (sonic
+  anemometer, T/RH, PAR, gas-analyser inlets) varies per deployment.
+- **Soil instrumentation** — depth count and sensor brand (TEROS-21,
+  Watermark, TDR, capacitance) varies per deployment.
+- **Datalogger choice** — Campbell Scientific is one common option; others
+  work as long as the data files can be loaded.
+
+`palmwtc` consumes whatever data your chamber produces and computes flux. The
+hardware, materials, and dimensions are out of scope for the package itself —
+they belong to your specific field setup.
+
 ## Contributing
 
 See [`CONTRIBUTING.md`](CONTRIBUTING.md). Bug reports and feature requests:
