@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "palmwtc"
-version = "0.2.6"
+version = "0.2.7"
 description = "Automated whole-tree chamber workflow for oil-palm ecophysiology — QC, flux calculation, science validation."
 readme = "README.md"
 requires-python = ">=3.11,<3.14"
