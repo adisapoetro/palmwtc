@@ -18,7 +18,7 @@ authors:
 license: MIT
 repository-code: "https://github.com/adisapoetro/palmwtc"
 url: "https://adisapoetro.github.io/palmwtc/"
-version: 0.2.7
+version: 0.2.8
 date-released: "2026-04-27"
 # Concept DOI — always resolves to the latest version. Version-specific
 # DOIs are listed on the Zenodo record's "Versions" panel:
