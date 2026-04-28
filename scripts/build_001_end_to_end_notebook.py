@@ -129,8 +129,7 @@ import os
 from pathlib import Path
 
 import pandas as pd
-import matplotlib
-matplotlib.use("Agg")        # headless rendering - safe in all environments
+import matplotlib.pyplot as plt
 
 import palmwtc
 from palmwtc.config import DataPaths
@@ -588,7 +587,6 @@ real biological signal:
     ),
     _code(
         """
-import matplotlib.pyplot as plt
 from palmwtc.viz import set_style
 
 set_style()
@@ -606,8 +604,7 @@ ax1.set_ylabel("flux_absolute (umol m-2 s-1)")
 ax1.set_title("Per-cycle CO2 flux time series")
 ax1.legend(loc="best", frameon=False)
 fig1.tight_layout()
-fig1.savefig("/tmp/001_flux_timeseries.png", dpi=100, bbox_inches="tight")
-print("Saved /tmp/001_flux_timeseries.png")
+fig1    # last expression -> inline display in Jupyter / embed in papermill
 """
     ),
     _code(
@@ -615,11 +612,7 @@ print("Saved /tmp/001_flux_timeseries.png")
 from palmwtc.viz import plot_flux_heatmap
 
 fig2 = plot_flux_heatmap(cycles_for_viz)
-if fig2 is not None:
-    fig2.savefig("/tmp/001_flux_heatmap.png", dpi=100, bbox_inches="tight")
-    print("Saved /tmp/001_flux_heatmap.png")
-else:
-    print("Heatmap skipped (insufficient data span)")
+fig2    # None if insufficient data span
 """
     ),
     _code(
@@ -627,11 +620,7 @@ else:
 from palmwtc.viz import plot_tropical_seasonal_diurnal
 
 fig3 = plot_tropical_seasonal_diurnal(cycles_for_viz)
-if fig3 is not None:
-    fig3.savefig("/tmp/001_seasonal_diurnal.png", dpi=100, bbox_inches="tight")
-    print("Saved /tmp/001_seasonal_diurnal.png")
-else:
-    print("Seasonal-diurnal skipped (insufficient data span)")
+fig3    # None if insufficient data span
 """
     ),
 
