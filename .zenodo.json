@@ -1,0 +1,47 @@
+{
+  "title": "palmwtc: Automated whole-tree chamber workflow for oil-palm ecophysiology",
+  "description": "palmwtc processes data from automated whole-tree chambers (WTC) sized to enclose individual oil palm trees, instrumented with LI-COR LI-850 gas analyzers. It performs multi-stage quality control, computes CO2 and H2O fluxes from concentration cycles, validates against literature ecophysiology references, and produces inputs for the XPalm digital-twin calibration pipeline. To our knowledge, this is the first whole-tree-chamber deployment for oil palm.",
+  "license": "MIT",
+  "upload_type": "software",
+  "access_right": "open",
+  "creators": [
+    {
+      "name": "Adisaputro, Didi",
+      "affiliation": ""
+    },
+    {
+      "name": "Raharjo, Doni Artanto",
+      "affiliation": ""
+    }
+  ],
+  "keywords": [
+    "ecophysiology",
+    "flux-chamber",
+    "whole-tree-chamber",
+    "oil-palm",
+    "co2-flux",
+    "h2o-flux",
+    "ecosystem-science",
+    "LI-COR",
+    "li-cor-850",
+    "digital-twin",
+    "xpalm"
+  ],
+  "related_identifiers": [
+    {
+      "identifier": "10.5281/zenodo.19680893",
+      "relation": "isVersionOf",
+      "scheme": "doi",
+      "resource_type": "software"
+    },
+    {
+      "identifier": "https://github.com/adisapoetro/palmwtc",
+      "relation": "isSupplementTo",
+      "scheme": "url",
+      "resource_type": "software"
+    }
+  ],
+  "references": [
+    "Medlyn, B. E., Zaehle, S., De Kauwe, M. G. (2016). Using models to guide field experiments: a priori predictions for the CO2 response of a nutrient- and water-limited native Eucalypt woodland. Global Change Biology, 22(8), 2834-2851. doi:10.1111/gcb.13268"
+  ]
+}
