@@ -78,7 +78,7 @@ its own version DOI (visible on the [Zenodo record](https://zenodo.org/records/1
   author  = {Adisaputro, Didi and Raharjo, Doni Artanto},
   title   = {palmwtc: Automated whole-tree chamber workflow for oil-palm ecophysiology},
   year    = {2026},
-  version = {0.4.2},
+  version = {0.4.3},
   doi     = {10.5281/zenodo.19680893},
   url     = {https://github.com/adisapoetro/palmwtc},
 }
