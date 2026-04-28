@@ -9,13 +9,16 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 ### Added
 
 - New tutorial notebook `001_End_to_End_Real_Chamber_Data.ipynb` — sibling
-  of `000_Integrated_End_to_End.ipynb`. Demonstrates the canonical
-  pipeline (chamber prep → flux cycles → calibration windows → science
-  validation → threshold-sensitivity sweep → visualisation) end-to-end
-  using **default arguments throughout**, against either real LIBZ-style
-  QC parquet (when `processed_dir/020_rule_qc_output.parquet` exists) or
-  the bundled synthetic sample (auto-fallback). Generated deterministically
-  by `scripts/build_001_end_to_end_notebook.py`.
+  of `000_Integrated_End_to_End.ipynb`. Demonstrates the **full palmwtc
+  pipeline starting from raw TOA5 `.dat` files** — sensor discovery,
+  per-sensor load + merge, optional monthly export, full per-variable
+  rule-based QC, multi-chamber flux cycles, optional ML anomaly overlay
+  (toggle), calibration window selection, science validation, threshold
+  sweep, and visualisation — using **default arguments throughout**.
+  Real-data only (set `PALMWTC_RAW_DIR`); for the synthetic-data demo
+  see `000_Integrated_End_to_End.ipynb`. Generated deterministically by
+  `scripts/build_001_end_to_end_notebook.py`. Excluded from docs CI
+  execution (ships with locally-executed outputs).
 
 ### Queued for next release
 

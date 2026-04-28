@@ -5,9 +5,10 @@ Generates ``notebooks/001_End_to_End_Real_Chamber_Data.ipynb`` deterministically
 from the cell specs below.
 
 The notebook is the real-data sibling of ``000_Integrated_End_to_End.ipynb``.
-000 walks the synthetic-only quick demo; 001 demonstrates the canonical
-pipeline (prepare -> flux cycles -> windows -> validation -> viz) on
-real LIBZ-style chamber data using palmwtc 0.3.0+ default arguments only.
+000 walks the synthetic-only quick demo; 001 demonstrates the FULL canonical
+pipeline starting from raw TOA5 ``.dat`` files (no shortcuts to the QC
+parquet) on real LIBZ-style chamber data using palmwtc 0.4.1+ default
+arguments only.
 
 Re-run with:  python scripts/build_001_end_to_end_notebook.py
 """
@@ -49,53 +50,84 @@ def _build(filename: str, cells: list[nbf.NotebookNode]) -> None:
 
 
 # ──────────────────────────────────────────────────────────────────────────────
-# Notebook 001 — End-to-end on real chamber data, default arguments throughout.
+# Notebook 001 — Real-data end-to-end, raw .dat → validation, default args.
 # ──────────────────────────────────────────────────────────────────────────────
 
 NOTEBOOK_001_CELLS = [
     # ── 0. Title + scope ──────────────────────────────────────────────────────
     _md(
         """
-# 001 - End-to-end pipeline on real chamber data
+# 001 - End-to-end pipeline on real chamber data (raw .dat -> validation)
 
-This notebook runs the complete palmwtc pipeline (chamber prep -> flux
-cycles -> calibration windows -> science validation -> visualisation) on
-a real chamber dataset using **default arguments throughout**. Each cell
-is one palmwtc API call; no kwargs are passed unless absolutely required.
+This notebook runs the **full palmwtc pipeline starting from raw TOA5
+``.dat`` files** on a real LIBZ-style chamber dataset using **default
+arguments throughout**. Every step that the per-stage tutorials
+(010-035) cover individually is exercised here in one continuous flow.
 
 It is the real-data counterpart to
 [000_Integrated_End_to_End.ipynb](000_Integrated_End_to_End.ipynb), which
-runs on the bundled synthetic sample.
+runs on the bundled synthetic sample and starts from a QC-flagged
+parquet (skipping the raw-integration step).
 
-**What this notebook is for:**
-- A canonical "this is how palmwtc is used end-to-end" reference for new
-  collaborators or anyone adapting palmwtc to their own oil-palm or
-  whole-tree-chamber deployment.
-- A demonstration that palmwtc 0.3.0+ defaults are LIBZ-production-correct:
-  no per-call argument tuning needed for the standard workflow.
+**Pipeline shown (each cell is one palmwtc API call):**
 
-**What it requires:**
-- palmwtc 0.4.1+ (the AWS `'--'` na_values fix is needed for radiation join).
-- Either a real `Integrated_QC_Data/020_rule_qc_output.parquet` produced by
-  notebook 020 (or palmwtc's `palmwtc qc run` step), **or** the bundled
-  synthetic sample (auto-fallback). The notebook detects which is available.
+```
+raw .dat per sensor
+   |  get_cloud_sensor_dirs / read_toa5_file (in load_from_multiple_dirs)
+   v
+per-sensor DataFrames (chamber_1, chamber_2, climate, soil_sensor)
+   |  outer-merge on TIMESTAMP  +  integrate_temp_humidity_c2
+   v
+unified df_raw  (~119 columns)
+   |  export_monthly (optional)        QCProcessor.process_variable
+   v                                       (full sensor set)
+df_qc  (with *_qc_flag columns)
+   |  prepare_chamber_data + calculate_flux_cycles
+   v
+cycles_all (per-cycle flux + R2 + qc_flag)
+   |  compute_ml_anomaly_flags  (USE_ML_QC toggle)
+   v
+WindowSelector.score_cycles().identify_windows()
+   |  run_science_validation  (Amax, Q10, WUE, inter-chamber agreement)
+   v
+threshold sensitivity sweep + visualisations
+```
 
-**What it deliberately does not cover** - see section 10.
+**Requires:**
+- palmwtc 0.4.1+ installed (the AWS ``--`` na_values fix is needed in
+  any radiation-aware step).
+- A real LIBZ-style raw chamber-data root, default
+  ``../research/Raw/shared_drive_palmstudio/Raw Data/Chamber`` (overridable
+  via ``PALMWTC_RAW_DIR``).
+- ~10-25 minutes wall time (the raw-load step is the slow one; expect
+  a few minutes for QC + cycles + ML + validation).
+
+If your raw data lives elsewhere, set ``PALMWTC_RAW_DIR`` to your
+``Chamber`` directory before launching JupyterLab. For the bundled
+synthetic-data demo see notebook 000.
 """
     ),
 
     # ── 1. Setup ──────────────────────────────────────────────────────────────
     _md(
         """
-## 1. Setup
+## 1. Setup + assert real data
 
-`DataPaths.resolve()` walks the layered config (kwargs -> `PALMWTC_DATA_DIR`
-env -> `palmwtc.yaml` -> bundled synthetic). Last layer always succeeds, so
-this notebook runs out-of-the-box on a fresh `pip install palmwtc`.
+`DataPaths.resolve()` walks the layered config (kwargs -> ``PALMWTC_DATA_DIR``
+env -> ``palmwtc.yaml`` -> bundled synthetic). For this notebook we rely
+on it for ``processed_dir`` (where monthly CSVs land) and ``config_dir``
+(where ``variable_config.json`` lives) but read raw ``.dat`` from
+``PALMWTC_RAW_DIR`` (defaulting to the LIBZ workspace root).
+
+The cell below aborts immediately if the raw root is not present, with a
+clear message about which env var to set.
 """
     ),
     _code(
         """
+import os
+from pathlib import Path
+
 import pandas as pd
 import matplotlib
 matplotlib.use("Agg")        # headless rendering - safe in all environments
@@ -103,68 +135,261 @@ matplotlib.use("Agg")        # headless rendering - safe in all environments
 import palmwtc
 from palmwtc.config import DataPaths
 
-print(f"palmwtc version: {palmwtc.__version__}")
+assert palmwtc.__version__ >= "0.4.1", \\
+    f"palmwtc 0.4.1+ required (AWS '--' na_values fix); got {palmwtc.__version__}"
 
 paths = DataPaths.resolve()
 print(paths.describe())
+
+# Raw .dat root: env override -> LIBZ-cloud convention
+DEFAULT_RAW_ROOT = Path(
+    "/Users/adisapoetro/Projects/flux_chamber/research/Raw/"
+    "shared_drive_palmstudio/Raw Data/Chamber"
+)
+raw_root = Path(os.environ.get("PALMWTC_RAW_DIR", str(DEFAULT_RAW_ROOT)))
+
+if not raw_root.exists() or not (raw_root / "main").exists():
+    raise RuntimeError(
+        f"No raw chamber .dat directories found at {raw_root}.\\n"
+        "This notebook requires real LIBZ-style chamber data.\\n"
+        "Set PALMWTC_RAW_DIR=/path/to/Raw/shared_drive_palmstudio/Raw Data/Chamber\\n"
+        "For the bundled synthetic-data demo see 000_Integrated_End_to_End.ipynb."
+    )
+
+print(f"\\nRaw .dat root: {raw_root}")
+print(f"palmwtc version: {palmwtc.__version__}")
 """
     ),
 
-    # ── 2. Load QC-flagged data (real or synthetic) ───────────────────────────
+    # ── 2. Discover raw .dat dirs ─────────────────────────────────────────────
     _md(
         """
-## 2. Load the QC-flagged dataset
+## 2. Discover raw `.dat` directories
 
-The pipeline starts from a quality-controlled parquet. If you have run
-notebook [020](020_QC_Rule_Based.ipynb) (or the `palmwtc qc run` CLI), the
-file lives at `processed_dir/020_rule_qc_output.parquet`. Otherwise this
-falls back to the bundled synthetic sample so every cell still runs.
-
-For raw -> QC details see [010](010_Data_Integration.ipynb) (data
-integration) and [020](020_QC_Rule_Based.ipynb) (rule-based QC).
+`get_cloud_sensor_dirs(raw_root)` walks the LIBZ shared-drive layout
+(``main/`` plus ``update_YYMMDD/`` increments) and returns one entry list
+per sensor type: chamber_1, chamber_2, climate, soil_sensor.
 """
     ),
     _code(
         """
-real_qc_path = paths.processed_dir / "020_rule_qc_output.parquet"
-synthetic_path = paths.raw_dir / "QC_Flagged_Data_synthetic.parquet"
+from palmwtc.io import get_cloud_sensor_dirs
 
-if real_qc_path.exists():
-    print(f"Using real QC parquet: {real_qc_path}")
-    df = pd.read_parquet(real_qc_path)
-    if "TIMESTAMP" in df.columns:
-        df["TIMESTAMP"] = pd.to_datetime(df["TIMESTAMP"])
-    DATA_SOURCE = "real"
-else:
-    print(f"Real parquet not found - falling back to bundled synthetic")
-    print(f"  ({synthetic_path})")
-    df = pd.read_parquet(synthetic_path)
-    DATA_SOURCE = "synthetic"
+sensor_dirs = get_cloud_sensor_dirs(raw_root)
 
-print()
-print(f"Rows: {df.shape[0]:,}")
-print(f"Columns: {df.shape[1]}")
-if "TIMESTAMP" in df.columns:
-    print(f"Time range: {df['TIMESTAMP'].min()}  ->  {df['TIMESTAMP'].max()}")
-df.head()
+for sensor, entries in sensor_dirs.items():
+    print(f"  {sensor:<14} {len(entries):>3} dirs")
 """
     ),
 
-    # ── 3. Flux cycles per chamber ────────────────────────────────────────────
+    # ── 3. Demonstrate raw TOA5 .dat API on one sensor ────────────────────────
     _md(
         """
-## 3. Flux cycles - both chambers
+## 3. Demonstrate the raw TOA5 `.dat` API on one sensor
 
-Two-chamber loop: `prepare_chamber_data` selects and cleans columns for one
-chamber suffix, `calculate_flux_cycles` finds every closed-chamber cycle,
-fits a linear regression to the CO2 ramp, and returns one row per cycle
-with flux, fit metrics (R2, NRMSE, SNR), and a per-cycle QC flag.
+`load_from_multiple_dirs(entries)` reads every `.dat` file under each
+sensor directory (using `read_toa5_file` internally) and concatenates
+them chronologically into a DataFrame. This is the building block
+notebook [010_Data_Integration](010_Data_Integration.ipynb) uses to
+build the full multi-sensor `df_raw`.
 
-**Zero kwargs.** palmwtc 0.3.0+ default values
-(`accepted_co2_qc_flags=(0,)`, `apply_wpl=False`, etc.) match the LIBZ
-production configuration. The exact defaults are documented in the
-function signature - inspect with
-`help(palmwtc.flux.prepare_chamber_data)`.
+We exercise the API on **one sensor (chamber_1)** here so the reader
+sees the raw-data path explicitly. The full multi-sensor integration
+(chamber_1 + chamber_2 + climate + soil_sensor + weather station + the
+C2 air-T / RH fallback merge etc. — about 50 cells of LIBZ-specific
+plumbing) lives in notebook 010 and produces the
+`Integrated_Monthly/Integrated_Data_*.csv` files that §4 below loads.
+"""
+    ),
+    _code(
+        """
+from palmwtc.io import load_from_multiple_dirs
+
+c1_df = load_from_multiple_dirs(sensor_dirs["chamber_1"])
+print(f"chamber_1 raw .dat -> DataFrame:")
+print(f"  {c1_df.shape[0]:,} rows  x  {c1_df.shape[1]} columns")
+print(f"  time range: {c1_df['TIMESTAMP'].min()}  ->  {c1_df['TIMESTAMP'].max()}")
+print(f"  columns: {sorted(c1_df.columns.tolist())[:10]} ...")
+"""
+    ),
+
+    # ── 4. Load the integrated monthly CSVs (the production starting point) ──
+    _md(
+        """
+## 4. Load the integrated monthly CSVs (production starting point)
+
+For the actual pipeline run we use the pre-integrated monthly CSVs that
+notebook 010 produces — `Integrated_Data_YYYY-MM.csv` files in
+`paths.processed_dir/../Integrated_Monthly/`. These contain the full
+multi-sensor merge (both chambers, climate, soil, weather station)
+already done.
+
+`load_monthly_data` concatenates all monthly files chronologically and
+applies a first-pass physical-bounds filter (drops rows with
+out-of-range pressure, temperature, RH, or soil water potential).
+"""
+    ),
+    _code(
+        """
+from palmwtc.io import load_monthly_data
+
+# Default points at the LIBZ workspace; override via PALMWTC_MONTHLY_DIR.
+DEFAULT_MONTHLY_DIR = Path(
+    "/Users/adisapoetro/Projects/flux_chamber/research/Data/Integrated_Monthly"
+)
+monthly_dir = Path(os.environ.get("PALMWTC_MONTHLY_DIR", str(DEFAULT_MONTHLY_DIR)))
+
+if not monthly_dir.exists() or not list(monthly_dir.glob("Integrated_Data_*.csv")):
+    raise RuntimeError(
+        f"No Integrated_Data_YYYY-MM.csv files found at {monthly_dir}.\\n"
+        "Run notebook 010 first to produce them, or set PALMWTC_MONTHLY_DIR\\n"
+        "to a directory that contains them."
+    )
+
+df_raw = load_monthly_data(monthly_dir).reset_index()
+print(f"df_raw: {df_raw.shape[0]:,} rows  x  {df_raw.shape[1]} columns")
+print(f"Time range: {df_raw['TIMESTAMP'].min()}  ->  {df_raw['TIMESTAMP'].max()}")
+"""
+    ),
+
+    # ── 5. (Optional) regenerate monthly CSVs from df_raw ─────────────────────
+    _md(
+        """
+## 5. (Optional) Re-export monthly CSVs from `df_raw`
+
+`export_monthly` splits a DataFrame by calendar month and writes one
+`Integrated_Data_YYYY-MM.csv` per month. This is the inverse of §4 —
+useful if you want to round-trip `df_raw` to disk. **Off by default**
+because §4 already loaded the existing CSVs; turning this on would
+rewrite them.
+"""
+    ),
+    _code(
+        """
+from palmwtc.io import export_monthly
+
+EXPORT_MONTHLY = False                         # set True to round-trip to disk
+if EXPORT_MONTHLY:
+    monthly_dir.mkdir(parents=True, exist_ok=True)
+    export_monthly(df_raw, monthly_dir)
+    print(f"Monthly CSVs (re)written under: {monthly_dir}")
+else:
+    print(f"EXPORT_MONTHLY=False -> df_raw is used in-memory only "
+          "(no disk write).")
+"""
+    ),
+
+    # ── 6. Data integrity report ──────────────────────────────────────────────
+    _md(
+        """
+## 6. Data integrity report
+
+`data_integrity_report` summarises NaN fraction and time-gap statistics
+per column. A first sanity check before QC: any column with very high
+NaN % or unexpectedly large gaps deserves a closer look in
+[011_Weather_vs_Chamber](011_Weather_vs_Chamber.ipynb) before trusting
+the downstream flux cycles.
+"""
+    ),
+    _code(
+        """
+from palmwtc.io import data_integrity_report
+
+integrity = data_integrity_report(df_raw)
+integrity.head(20)
+"""
+    ),
+
+    # ── 7. Rule-based QC across the full sensor set ───────────────────────────
+    _md(
+        """
+## 7. Rule-based QC across the full sensor set
+
+`QCProcessor` is the OOP entry point that wraps every individual rule
+(physical bounds, IQR, rate-of-change, persistence, breakpoints, drift,
+sensor exclusion). The variable-by-variable configuration lives in
+`paths.config_dir / "variable_config.json"`; one `process_variable(var)`
+call applies the full rule set for that variable and adds a
+`<var>_qc_flag` column with values 0 (good) / 1 (suspect) / 2 (bad).
+
+For the LIBZ deployment ~12 variables are configured (CO2, H2O,
+Temp_1, RH_1, VaporPressure_1, AtmosphericPressure_1, plus battery
+proxies), each per chamber. The full multi-pass QC is what notebook
+020 spends 17 minutes on.
+"""
+    ),
+    _code(
+        """
+import json
+from palmwtc.qc import QCProcessor
+
+# Load the variable-by-variable rule configuration. Look in DataPaths.config_dir
+# first; fall back to the LIBZ workspace path if not present (mirrors the §1
+# raw-root default).
+DEFAULT_CONFIG_DIR = Path("/Users/adisapoetro/Projects/flux_chamber/research/config")
+var_cfg_path = paths.config_dir / "variable_config.json"
+if not var_cfg_path.exists():
+    var_cfg_path = DEFAULT_CONFIG_DIR / "variable_config.json"
+if not var_cfg_path.exists():
+    raise FileNotFoundError(
+        f"variable_config.json not found at {var_cfg_path}. "
+        "Set PALMWTC_DATA_DIR or place a palmwtc.yaml next to this notebook "
+        "with config_dir: pointing at the directory that contains it."
+    )
+var_cfg = json.loads(var_cfg_path.read_text())
+
+# variable_config.json has bare logical names ("CO2", "H2O", "Temp") whose
+# .columns field expands to actual chamber-suffixed column names
+# (e.g. CO2 -> ["CO2_C1", "CO2_C2"]). Build the flat list of columns to QC,
+# filtering to columns actually present in df_raw and skipping *_source markers.
+qc_columns = []
+for var, sub in var_cfg.items():
+    qc_columns.extend(sub.get("columns", []))
+qc_columns = [c for c in dict.fromkeys(qc_columns)            # de-dupe, preserve order
+              if c in df_raw.columns and not c.endswith("_source")]
+
+print(f"Logical variables in config : {len(var_cfg)}  ({sorted(var_cfg)})")
+print(f"Actual columns to QC        : {len(qc_columns)}")
+print(f"  {qc_columns}")
+
+proc = QCProcessor(df=df_raw.copy(), config_dict=var_cfg)
+"""
+    ),
+    _code(
+        """
+# Apply the full rule-set, one column at a time.
+qc_results = {}
+for col in qc_columns:
+    res = proc.process_variable(col, random_seed=42)
+    qc_results[col] = res["summary"]
+
+df_qc = proc.get_processed_dataframe()
+print(f"df_qc shape after QC : {df_qc.shape[0]:,} rows x {df_qc.shape[1]} cols")
+
+# Summarise pass / suspect / bad per QC'd column.
+summary = pd.DataFrame.from_dict(qc_results, orient="index")
+keep_cols = [c for c in
+             ("flag_0_count", "flag_1_count", "flag_2_count",
+              "flag_0_percent", "flag_1_percent", "flag_2_percent")
+             if c in summary.columns]
+summary[keep_cols].sort_index()
+"""
+    ),
+
+    # ── 8. Flux cycles per chamber ────────────────────────────────────────────
+    _md(
+        """
+## 8. Flux cycles - both chambers
+
+Two-chamber loop: `prepare_chamber_data` selects and cleans columns for
+one chamber suffix using the QC flags from §7; `calculate_flux_cycles`
+finds every closed-chamber cycle, fits a linear regression to the CO2
+ramp, and returns one row per cycle with flux, fit metrics
+(R2, NRMSE, SNR), and a per-cycle QC flag.
+
+Zero kwargs — palmwtc 0.3.0+ defaults
+(`accepted_co2_qc_flags=(0,)`, `apply_wpl=False`, etc.) match LIBZ
+production. Inspect with `help(palmwtc.flux.prepare_chamber_data)`.
 """
     ),
     _code(
@@ -175,19 +400,19 @@ CHAMBER_MAP = {"C1": "Chamber 1", "C2": "Chamber 2"}
 
 cycles_per_chamber = []
 for suffix, name in CHAMBER_MAP.items():
-    if f"CO2_{suffix}" not in df.columns:
+    if f"CO2_{suffix}" not in df_qc.columns:
         print(f"  [skip] {name}: CO2_{suffix} column not present")
         continue
-    chamber_df = prepare_chamber_data(df, suffix)
+    chamber_df = prepare_chamber_data(df_qc, suffix)
     cycles = calculate_flux_cycles(chamber_df, name)
-    print(f"  [{name}] {len(cycles):>5} cycles "
-          f"| mean flux: {cycles['flux_absolute'].mean():+.2f} umol m-2 s-1")
+    print(f"  [{name}] {len(cycles):>5} cycles  "
+          f"|  mean flux: {cycles['flux_absolute'].mean():+.2f} umol m-2 s-1")
     cycles_per_chamber.append(cycles)
 
 cycles_all = pd.concat(cycles_per_chamber, ignore_index=True)
 cycles_all = cycles_all.rename(columns={"flux_date": "flux_datetime"})
 
-print(f"\\nCombined: {len(cycles_all)} cycles "
+print(f"\\nCombined: {len(cycles_all):,} cycles "
       f"across {cycles_all['Source_Chamber'].nunique()} chamber(s)")
 cycles_all[
     ["Source_Chamber", "cycle_id", "flux_datetime",
@@ -196,18 +421,66 @@ cycles_all[
 """
     ),
 
-    # ── 4. Calibration windows ────────────────────────────────────────────────
+    # ── 9. ML anomaly overlay (toggleable) ────────────────────────────────────
     _md(
         """
-## 4. Calibration windows
+## 9. ML anomaly overlay (toggleable)
 
-`WindowSelector` scores every cycle (regression quality, robustness, sensor
-QC, drift, cross-chamber agreement) and identifies consecutive spans of
-high-quality days suitable for XPalm calibration.
+`compute_ml_anomaly_flags` adds two unsupervised detectors on top of
+the rule-based QC: an Isolation Forest (low-density anomalies) and a
+Robust-Covariance / Minimum-Covariance-Determinant detector
+(Mahalanobis distance from the robust centroid). Trained on
+rule-based A/B cycles (`flux_qc <= 1`), scored on all cycles, combined
+in `AND` mode by default — flagging a cycle only when both detectors
+agree.
 
-The synthetic sample is too short to qualify any windows - that is the
-expected scientific response, not an error. Real multi-month data
-typically yields several windows.
+Set `USE_ML_QC = False` to keep the rule-based flags only and skip the
+~30-second model fit. The downstream cells use whichever flag set is
+present, so the rest of the notebook is unaffected.
+"""
+    ),
+    _code(
+        """
+from palmwtc.flux import compute_ml_anomaly_flags
+
+USE_ML_QC = True   # set False to skip ML overlay (rule-based flags only)
+
+if USE_ML_QC:
+    cycles_all = compute_ml_anomaly_flags(cycles_all)
+    n_total = len(cycles_all)
+    n_ml = int(cycles_all["ml_anomaly_flag"].sum())
+    n_rule_pass = int((cycles_all["qc_flag"] <= 1).sum())
+    print(f"ML overlay applied (AND mode):")
+    print(f"  total cycles                      : {n_total:>6,}")
+    print(f"  rule-based pass (A/B, qc<=1)      : {n_rule_pass:>6,}  "
+          f"({100*n_rule_pass/n_total:.1f}%)")
+    print(f"  ml_anomaly_flag = 1 (joint detect): {n_ml:>6,}  "
+          f"({100*n_ml/n_total:.1f}%)")
+    print()
+    print("IF score (lower = more anomalous):")
+    print(cycles_all["ml_if_score"].describe().round(4))
+    print()
+    print("MCD distance (larger = farther from cluster):")
+    print(cycles_all["ml_mcd_dist"].describe().round(3))
+else:
+    cycles_all["ml_anomaly_flag"] = 0
+    cycles_all["ml_if_score"] = float("nan")
+    cycles_all["ml_mcd_dist"] = float("nan")
+    print("USE_ML_QC=False -> ml_anomaly_flag set to 0 for all cycles "
+          "(downstream uses rule-based flags only).")
+"""
+    ),
+
+    # ── 10. Calibration windows ───────────────────────────────────────────────
+    _md(
+        """
+## 10. Calibration windows
+
+`WindowSelector` scores every cycle (regression, robustness, sensor QC,
+drift, cross-chamber agreement) and identifies consecutive spans of
+high-quality days suitable for XPalm calibration. The synthetic sample
+typically yields zero qualifying windows (only 7 days); a real
+multi-month dataset yields several.
 """
     ),
     _code(
@@ -219,17 +492,17 @@ ws.score_cycles()
 ws.identify_windows()
 ws.summary()
 
-n_high_conf = (ws.cycles_df["cycle_confidence"] >= 0.65).sum()
-print(f"\\nCycles with cycle_confidence >= 0.65: {n_high_conf}")
+n_high_conf = int((ws.cycles_df["cycle_confidence"] >= 0.65).sum())
+print(f"\\nCycles with cycle_confidence >= 0.65: {n_high_conf:,}")
 """
     ),
 
-    # ── 5. Science validation ─────────────────────────────────────────────────
+    # ── 11. Science validation ────────────────────────────────────────────────
     _md(
         """
-## 5. Science validation
+## 11. Science validation
 
-`run_science_validation` checks the cycle data against published oil-palm
+`run_science_validation` checks the cycles against published oil-palm
 ecophysiology references:
 
 | Test | Reference range |
@@ -239,10 +512,9 @@ ecophysiology references:
 | Water-use efficiency vs VPD | Medlyn et al. 2011 stomatal optimality |
 | Inter-chamber agreement | < 30% relative mean difference |
 
-Tests need `Global_Radiation`, `h2o_slope`, and `vpd_kPa` columns. On the
-synthetic sample those columns are absent and the validator correctly
-returns N/A. On real data merged with weather + H2O flux, you get
-PASS/FAIL/BORDERLINE per test.
+Tests need `Global_Radiation`, `h2o_slope`, and `vpd_kPa` columns.
+Those come from the weather-station merge + the H2O flux step. Real
+multi-month LIBZ data populates them naturally.
 """
     ),
     _code(
@@ -266,18 +538,15 @@ pd.DataFrame({
 """
     ),
 
-    # ── 6. Threshold sensitivity ──────────────────────────────────────────────
+    # ── 12. Threshold sensitivity sweep ───────────────────────────────────────
     _md(
         """
-## 6. Threshold sensitivity sweep
+## 12. Threshold sensitivity sweep
 
-How does the science-validation outcome change as you tighten/loosen the
-`cycle_confidence` cut-off? Sweep three thresholds and re-run validation
-on the surviving subset. A robust dataset shows monotonic behaviour
-(more strict -> fewer cycles -> validation results stable or improving).
-
-This is the cheapest sensitivity check; the dedicated
-[035](035_QC_Threshold_Sensitivity.ipynb) tutorial shows the full grid.
+How does the science-validation outcome change as you tighten / loosen
+the `cycle_confidence` cut-off? Sweep three thresholds and re-run
+validation on the surviving subset. The dedicated [035 tutorial]
+(035_QC_Threshold_Sensitivity.ipynb) shows the full grid.
 """
     ),
     _code(
@@ -304,13 +573,13 @@ pd.DataFrame(sweep)
 """
     ),
 
-    # ── 7. Visualisations ─────────────────────────────────────────────────────
+    # ── 13. Visualisations ────────────────────────────────────────────────────
     _md(
         """
-## 7. Visualisations
+## 13. Visualisations
 
-Three first-look plots that confirm whether the chambers captured a real
-biological signal:
+Three first-look plots that confirm whether the chambers captured a
+real biological signal:
 
 1. Per-cycle flux time series.
 2. Diurnal-by-month heatmap (day = uptake -> blue, night = release -> red).
@@ -320,7 +589,7 @@ biological signal:
     _code(
         """
 import matplotlib.pyplot as plt
-from palmwtc.viz import set_style, plot_flux_heatmap, plot_tropical_seasonal_diurnal
+from palmwtc.viz import set_style
 
 set_style()
 
@@ -343,7 +612,8 @@ print("Saved /tmp/001_flux_timeseries.png")
     ),
     _code(
         """
-# 2. Diurnal-by-month heatmap
+from palmwtc.viz import plot_flux_heatmap
+
 fig2 = plot_flux_heatmap(cycles_for_viz)
 if fig2 is not None:
     fig2.savefig("/tmp/001_flux_heatmap.png", dpi=100, bbox_inches="tight")
@@ -354,7 +624,8 @@ else:
     ),
     _code(
         """
-# 3. Tropical seasonal-diurnal pattern
+from palmwtc.viz import plot_tropical_seasonal_diurnal
+
 fig3 = plot_tropical_seasonal_diurnal(cycles_for_viz)
 if fig3 is not None:
     fig3.savefig("/tmp/001_seasonal_diurnal.png", dpi=100, bbox_inches="tight")
@@ -364,24 +635,26 @@ else:
 """
     ),
 
-    # ── 8. Where the artifacts live ───────────────────────────────────────────
+    # ── 14. Where the artefacts live ──────────────────────────────────────────
     _md(
         """
-## 8. Where the canonical artefacts went
+## 14. Where the canonical artefacts went
 
 `DataPaths.resolve()` returns an `exports_dir` that points wherever your
-project layout sends pipeline outputs. The official artefacts produced by
-`palmwtc run` (and equivalent to the variables created above) are:
+project layout sends pipeline outputs. The official artefacts produced
+by `palmwtc run` (and equivalent to the variables created above) are:
 
 | Object in this notebook | Canonical artefact path |
 |---|---|
-| `cycles_all` (after rename) | `exports_dir/digital_twin/01_chamber_cycles.csv` |
-| `ws.cycles_df` (with confidence) | `exports_dir/digital_twin/031_scored_cycles.csv` |
+| `df_raw` (after monthly export, §5) | `processed_dir/../Integrated_Monthly/Integrated_Data_YYYY-MM.csv` |
+| `df_qc` (after §7 QC pass) | `processed_dir/020_rule_qc_output.parquet` |
+| `cycles_all` after §8 + §9 ML overlay | `exports_dir/digital_twin/01_chamber_cycles.csv` |
+| `ws.cycles_df` after §10 | `exports_dir/digital_twin/031_scored_cycles.csv` |
 | Calibration windows | `exports_dir/digital_twin/032_calibration_windows.csv` |
 
-This notebook does not write to disk - it stays in-memory so each cell's
-intermediate result is visible. Use the `palmwtc run` CLI when you want
-the artefacts persisted to `exports_dir`.
+This notebook does not write to disk by default (only §5 writes monthly
+CSVs, and only when `EXPORT_MONTHLY=True`). Use the `palmwtc run` CLI
+when you want all artefacts persisted.
 """
     ),
     _code(
@@ -392,14 +665,16 @@ print(f"processed_dir        : {paths.processed_dir}")
 print(f"exports_dir          : {paths.exports_dir}")
 print(f"config_dir           : {paths.config_dir}")
 print()
-print(f"Notebook data source : {DATA_SOURCE}")
+print(f"Raw .dat root used   : {raw_root}")
+print(f"USE_ML_QC            : {USE_ML_QC}")
+print(f"EXPORT_MONTHLY       : {EXPORT_MONTHLY}")
 """
     ),
 
-    # ── 9. What this notebook does NOT cover ──────────────────────────────────
+    # ── 15. What this notebook does NOT cover ─────────────────────────────────
     _md(
         """
-## 9. What this notebook deliberately does not cover
+## 15. What this notebook deliberately does not cover
 
 The full per-stage tutorials in this directory go deeper into each step.
 Those listed below are intentionally outside the canonical end-to-end
@@ -407,10 +682,10 @@ pipeline:
 
 | Topic | Where to find it |
 |---|---|
-| Raw TOA5 -> integrated parquet | [010_Data_Integration](010_Data_Integration.ipynb) |
+| Raw .dat -> integrated parquet (deep dive) | [010_Data_Integration](010_Data_Integration.ipynb) |
 | Weather-station diagnostics | [011_Weather_vs_Chamber](011_Weather_vs_Chamber.ipynb) |
-| Rule-based QC walkthrough | [020_QC_Rule_Based](020_QC_Rule_Based.ipynb) |
-| ML-enhanced QC overlay | [022_QC_ML_Enhanced](022_QC_ML_Enhanced.ipynb) |
+| Rule-based QC walkthrough (deep dive) | [020_QC_Rule_Based](020_QC_Rule_Based.ipynb) |
+| ML-enhanced QC overlay (deep dive) | [022_QC_ML_Enhanced](022_QC_ML_Enhanced.ipynb) |
 | Field-alert HTML email | [023_Field_Alert_Report](023_Field_Alert_Report.ipynb) |
 | Cross-chamber bias diagnostics | [025](025_Cross_Chamber_Bias.ipynb) / [026](026_CO2_H2O_Segmented_Bias.ipynb) |
 | Per-stage flux QC details | [030_Flux_Cycle_Calculation](030_Flux_Cycle_Calculation.ipynb) |
@@ -420,9 +695,9 @@ pipeline:
 | Full threshold sensitivity grid | [035_QC_Threshold_Sensitivity](035_QC_Threshold_Sensitivity.ipynb) |
 
 Project-specific downstream analyses (drought response, carbon budget,
-XPalm digital-twin calibration) live outside the public package; see the
-`research/` workspace if you have access. XPalm/Julia calibration is
-explicitly out of scope for palmwtc.
+XPalm digital-twin calibration) live outside the public package; see
+the `research/` workspace if you have access. XPalm/Julia calibration
+is explicitly out of scope for palmwtc.
 """
     ),
 ]
