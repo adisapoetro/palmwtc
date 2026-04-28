@@ -11,15 +11,89 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 - Rewrite the README intro paragraph to make clear that QC operates across the
   full sensor set — gas concentrations (CO₂, H₂O), air temperature, humidity,
   vapor pressure, atmospheric pressure, and battery proxy — not just CO₂/H₂O
-  fluxes. The current wording undersells the QC scope; the QC pipeline (in
-  `palmwtc.qc`) is fully generic and ships with `variable_config.json` examples
-  for soil sensors as well.
+  fluxes. The current wording undersells the QC scope.
 - `palmwtc.flux.run_flux_pipeline()` — single function that ties together the
   orchestration currently inline in `research/notebooks/030` (per-row
-  tree-volume recompute, score_cycle, day_score, ML anomaly, is_nighttime
-  re-derivation, additional cycle filtering). Closes the residual sandbox-vs-
-  baseline gap by letting downstream consumers run the full pipeline with one
-  call.
+  tree-volume recompute, score_cycle, day_score, ML anomaly, the new advanced
+  outlier ensemble landed in 0.4.0, is_nighttime re-derivation, and the
+  ~27k-cycle filter that drops 88,602 raw cycles down to the canonical 61,161
+  baseline). Closes the residual sandbox-vs-baseline parity gap (currently
+  88.5% bit-exact) by letting downstream consumers run the full pipeline with
+  one call.
+- LOF (Local Outlier Factor) and Temporal IsolationForest detectors that feed
+  into `compute_ensemble_score`. Currently the ensemble scores only the three
+  detectors landed in 0.4.0 (`stl`, `rz`) plus whichever of `ml_if`/`ml_mcd`
+  the caller already populated via `compute_ml_anomaly_flags`; LOF and TIF
+  weights are kept in `DEFAULT_ADVANCED_OUTLIER_CONFIG["ensemble_weights"]`
+  so the ensemble auto-uses them once they ship.
+
+## [0.4.0] — 2026-04-28
+
+Adds three advanced outlier-detection algorithms that previously lived inline
+in `research/notebooks/030` to the public `palmwtc.flux` API. No breaking
+changes; existing call sites are unaffected.
+
+This is the first half of the architectural debt identified in
+`research/docs/Audit/2026-04-27_palmwtc_0.3.0_defaults_audit.md` — a portion
+of the orchestration that produces `Data/digital_twin/01_chamber_cycles.csv`
+now lives in the package. The remaining orchestration (`run_flux_pipeline()`
+that ties everything together) is queued for 0.5.0.
+
+### Added
+
+- **`palmwtc.flux.advanced_outlier`** — new module exposing three
+  cycle-level outlier-detection helpers and a configuration constant:
+
+  - `compute_stl_residual_scores(df, cfg)` — per-chamber Seasonal-Trend-LOWESS
+    decomposition of the cycle-level CO₂ slope.  Adds `stl_residual`,
+    `stl_residual_zscore` (IQR-based robust z-score), `stl_soft_flag`, and
+    `stl_hard_flag` columns.  Runs the per-chamber STL fits in parallel via
+    `joblib`.  Tropical diurnal amplitude tuned via the default
+    `stl_soft_iqr_mult=2.0` and `stl_hard_iqr_mult=3.5`.
+  - `compute_rolling_zscore(df, cfg)` — per-chamber centred rolling-window
+    z-score on the cycle-level slope.  Adds `rolling_zscore` and
+    `rolling_zscore_flag` columns.  Default window is 12 cycles
+    (≈ 3 h at 1 cycle / 15 min); configurable via `cfg["rz_window_cycles"]`.
+    Catches single-cycle hardware glitches that the STL hourly-median step
+    would otherwise absorb.
+  - `compute_ensemble_score(df, cfg)` — rank-normalises every detector
+    column present in the input (`ml_if_score`, `ml_mcd_dist`, `lof_score`,
+    `tif_score`, `stl_residual_zscore`, `rolling_zscore`) into ``[0, 1]``
+    and combines them with `cfg["ensemble_weights"]` into
+    `anomaly_ensemble_score`, then sets
+    `anomaly_ensemble_flag = score > cfg["ensemble_flag_threshold"]`.
+    Detectors whose source column is missing are silently skipped, so the
+    function works with any subset of the six detectors.
+  - `DEFAULT_ADVANCED_OUTLIER_CONFIG` — the tuning dict for STL,
+    rolling-zscore, and the ensemble.  All values match the LIBZ
+    deployment defaults from `research/notebooks/030 ADVANCED_OUTLIER_CONFIG`
+    line-for-line.
+
+  All three functions return a copy; they do not mutate the input frame.
+
+- 13 unit tests in `tests/unit/flux/test_advanced_outlier.py` covering
+  expected output columns, no-input-mutation, STL handling of short
+  chambers (insufficient data), rolling-zscore detection of an injected
+  spike, ensemble behaviour with missing detectors, ensemble behaviour
+  on an empty frame, and ensemble ranking sanity (a single anomalous row
+  must score higher than non-anomalous rows).
+
+### Changed
+
+- `statsmodels>=0.14,<1.0` added as a core dependency.  Required by
+  `compute_stl_residual_scores`; imported lazily inside `_stl_one_chamber`
+  so the rest of `palmwtc` remains importable on systems where statsmodels
+  is missing.
+
+- `palmwtc.flux.__init__` re-exports the four new symbols
+  (`DEFAULT_ADVANCED_OUTLIER_CONFIG`, `compute_stl_residual_scores`,
+  `compute_rolling_zscore`, `compute_ensemble_score`).
+
+### Test suite
+
+- 525 passed, 50 skipped, 0 failed (was 512 / 50 / 0 in 0.3.0).
+  The 13 added tests are all the new coverage; no existing test was
+  modified.
 
 ## [0.3.0] — 2026-04-28
 

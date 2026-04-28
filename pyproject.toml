@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "palmwtc"
-version = "0.3.0"
+version = "0.4.0"
 description = "Automated whole-tree chamber workflow for oil-palm ecophysiology — QC, flux calculation, science validation."
 readme = "README.md"
 requires-python = ">=3.11,<3.14"
@@ -47,6 +47,7 @@ dependencies = [
     "numpy>=1.26,<3.0",
     "pandas>=2.1,<3.0",
     "scipy>=1.11,<2.0",
+    "statsmodels>=0.14,<1.0",   # STL decomposition in palmwtc.flux.advanced_outlier
     "matplotlib>=3.8,<4.0",
     "seaborn>=0.13,<1.0",
     "plotly>=5.18,<7.0",

@@ -2220,7 +2220,7 @@ wheels = [
 
 [[package]]
 name = "palmwtc"
-version = "0.2.5"
+version = "0.3.0"
 source = { editable = "." }
 dependencies = [
     { name = "ipykernel" },
@@ -2241,6 +2241,7 @@ dependencies = [
     { name = "ruptures" },
     { name = "scipy" },
     { name = "seaborn" },
+    { name = "statsmodels" },
     { name = "tqdm" },
     { name = "typer" },
 ]
@@ -2332,6 +2333,7 @@ requires-dist = [
     { name = "seaborn", specifier = ">=0.13,<1.0" },
     { name = "sphinx-autoapi", marker = "extra == 'docs'", specifier = ">=3.1,<4.0" },
     { name = "sphinx-copybutton", marker = "extra == 'docs'", specifier = ">=0.5,<1.0" },
+    { name = "statsmodels", specifier = ">=0.14,<1.0" },
     { name = "torch", marker = "extra == 'gpu'", specifier = ">=2.2,<3.0" },
     { name = "tqdm", specifier = ">=4.66,<5.0" },
     { name = "twine", marker = "extra == 'dev'", specifier = ">=5.0,<7.0" },
