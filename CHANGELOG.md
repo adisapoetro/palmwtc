@@ -27,6 +27,43 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
   weights are kept in `DEFAULT_ADVANCED_OUTLIER_CONFIG["ensemble_weights"]`
   so the ensemble auto-uses them once they ship.
 
+## [0.4.1] — 2026-04-28
+
+Bug-fix release. Fixes a silent-data-corruption bug in
+`palmwtc.io.load_radiation_data` that surfaced when the AWS Excel
+export contained the LIBZ logger's `"--"` and `"-"` sensor-error
+markers. Without the fix, those markers were imported as Python
+strings on object-dtype columns (e.g. `"Temp - °C"`, `"Hum - %"`)
+which then broke any downstream `to_parquet` write that included them
+with `ArrowInvalid: Could not convert '--' with type str`.
+
+The bug had been masked for at least a month by the
+`research/notebooks/030` checkpoint reload (`_checkpoint_033_*.parquet`)
+short-circuiting the pipeline before it touched the radiation columns.
+It surfaced when a fresh re-run of 030 (with the checkpoints deleted)
+went through the real code path.
+
+### Fixed
+
+- **`palmwtc.io.load_radiation_data` now passes `na_values=["--", "-"]`
+  to `pd.read_excel`.** AWS sensor-error markers are now parsed as NaN
+  at load time, so all numeric AWS columns retain their numeric dtype
+  and downstream parquet writes succeed.
+
+### Added
+
+- **Regression test** `test_load_radiation_data_parses_dash_dash_as_nan`
+  in `tests/unit/io/test_loaders.py`. Builds a synthetic AWS Excel file
+  containing `"--"` and `"-"` markers in three columns
+  (`Global_Radiation`, `"Temp - °C"`, `"Hum - %"`), loads it via
+  `load_radiation_data`, asserts every column ends up numeric-dtype,
+  and round-trips the result through `to_parquet` (which is the
+  contract that broke before the fix).
+
+### Changed
+
+- `CITATION.cff` version bumped to `0.4.1`.
+
 ## [0.4.0] — 2026-04-28
 
 Adds three advanced outlier-detection algorithms that previously lived inline

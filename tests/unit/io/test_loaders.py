@@ -449,3 +449,57 @@ def test_load_radiation_data_derives_timestamp_from_date_and_time(tmp_path: Path
     assert "TIMESTAMP" in df.columns
     assert "Global_Radiation" in df.columns
     assert df["Global_Radiation"].tolist() == [50.0, 150.0]
+
+
+def test_load_radiation_data_parses_dash_dash_as_nan(tmp_path: Path) -> None:
+    """Regression for v0.4.1 — AWS exports use ``"--"`` and ``"-"`` to mark
+    sensor errors / missing readings.  Previously these flowed through as
+    Python strings on object-dtype columns (e.g. ``Temp - °C``), which
+    broke any downstream ``to_parquet`` write that included them.
+
+    The fix is to pass ``na_values=["--", "-"]`` to ``pd.read_excel`` so
+    those markers become NaN at load time and the columns stay numeric.
+    """
+    pytest.importorskip("openpyxl")
+    f = tmp_path / "rad_with_errors.xlsx"
+    # Mimic the LIBZ AWS export: a few real readings, plus the two sensor-
+    # error markers in both the Temp and Global_Radiation columns.
+    pd.DataFrame(
+        {
+            "TIMESTAMP": pd.date_range("2024-01-01", periods=4, freq="h"),
+            "Global_Radiation": [100.0, "--", 200.0, "-"],
+            "Temp - °C":        [25.0, "--", 26.5, "-"],
+            "Hum - %":          [80.0, 82.0, "--", 85.0],
+        }
+    ).to_excel(f, index=False)
+
+    df = load_radiation_data(f)
+    assert df is not None
+
+    # Global_Radiation must be numeric with NaN where the markers were.
+    assert pd.api.types.is_numeric_dtype(df["Global_Radiation"]), (
+        f"Global_Radiation should be numeric after the fix, got "
+        f"{df['Global_Radiation'].dtype}"
+    )
+    assert df["Global_Radiation"].isna().sum() == 2
+    assert df["Global_Radiation"].dropna().tolist() == [100.0, 200.0]
+
+    # Other AWS columns must also be numeric so downstream ``to_parquet``
+    # writes (which is what failed before the fix) succeed without an
+    # ArrowInvalid.  We don't assert their exact values here — just dtype.
+    assert pd.api.types.is_numeric_dtype(df["Temp - °C"]), (
+        f"'Temp - °C' should be numeric after the fix, got "
+        f"{df['Temp - °C'].dtype}"
+    )
+    assert pd.api.types.is_numeric_dtype(df["Hum - %"]), (
+        f"'Hum - %' should be numeric after the fix, got "
+        f"{df['Hum - %'].dtype}"
+    )
+
+    # Smoke check: the resulting frame must be writeable as parquet.
+    # This is the contract that broke production downstream of
+    # load_radiation_data.
+    pytest.importorskip("pyarrow")
+    parquet_path = tmp_path / "rad_round_trip.parquet"
+    df.to_parquet(parquet_path)
+    assert parquet_path.exists()
