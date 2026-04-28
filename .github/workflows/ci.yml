@@ -119,7 +119,14 @@ jobs:
           import papermill as pm
           from pathlib import Path
           import sys
+          # Notebooks that require real LIBZ data are excluded from the
+          # bundled-synthetic CI runner. They ship with locally-executed
+          # outputs already embedded.
+          SKIP = {'001_End_to_End_LIBZ.ipynb'}
           for nb in sorted(Path('notebooks').glob('*.ipynb')):
+              if nb.name in SKIP:
+                  print(f'\\n=== {nb.name} (SKIP - requires real LIBZ data) ===', flush=True)
+                  continue
               print(f'\\n=== {nb.name} ===', flush=True)
               try:
                   pm.execute_notebook(str(nb), '/tmp/' + nb.name, cwd='notebooks', timeout=300)

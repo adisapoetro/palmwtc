@@ -51,11 +51,21 @@ jobs:
         with:
           name: dist
           path: dist/
-      - name: Create GitHub Release
+      - name: Create or update GitHub Release (idempotent)
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          gh release create "${GITHUB_REF_NAME}" \
-            --title "${GITHUB_REF_NAME}" \
-            --notes "See [CHANGELOG.md](https://github.com/${{ github.repository }}/blob/main/CHANGELOG.md) for details. Zenodo DOI auto-minted via the GitHub-Zenodo integration." \
-            dist/*
+          # Idempotent: if the user (or a prior workflow run) already created
+          # the release with `gh release create v...`, skip the create step
+          # and just attach the dist artifacts. --clobber overwrites existing
+          # assets so re-running the workflow is safe.
+          if gh release view "${GITHUB_REF_NAME}" >/dev/null 2>&1; then
+            echo "Release ${GITHUB_REF_NAME} already exists - uploading dist/*"
+            gh release upload "${GITHUB_REF_NAME}" dist/* --clobber
+          else
+            echo "Creating release ${GITHUB_REF_NAME}"
+            gh release create "${GITHUB_REF_NAME}" \
+              --title "${GITHUB_REF_NAME}" \
+              --notes "See [CHANGELOG.md](https://github.com/${{ github.repository }}/blob/main/CHANGELOG.md) for details. Zenodo DOI auto-minted via the GitHub-Zenodo integration." \
+              dist/*
+          fi
