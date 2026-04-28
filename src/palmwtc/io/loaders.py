@@ -654,7 +654,12 @@ def load_radiation_data(aws_file_path: Path | str) -> pd.DataFrame | None:
         return None
 
     try:
-        df_rad = pd.read_excel(aws_file_path)
+        # AWS sensor exports use "--" and "-" to mark missing/sensor-error
+        # readings.  Parsing them as NaN keeps the resulting DataFrame's
+        # dtypes numeric so downstream ``to_parquet`` writes don't fail
+        # on object-dtype "Temp - °C" / "Hum - %" columns containing the
+        # raw "--" string (palmwtc 0.4.1 fix; see CHANGELOG).
+        df_rad = pd.read_excel(aws_file_path, na_values=["--", "-"])
 
         # Normalize timestamp field
         if "TIMESTAMP" not in df_rad.columns:
