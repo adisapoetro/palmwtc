@@ -6,6 +6,17 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+### Added
+
+- New tutorial notebook `001_End_to_End_Real_Chamber_Data.ipynb` — sibling
+  of `000_Integrated_End_to_End.ipynb`. Demonstrates the canonical
+  pipeline (chamber prep → flux cycles → calibration windows → science
+  validation → threshold-sensitivity sweep → visualisation) end-to-end
+  using **default arguments throughout**, against either real LIBZ-style
+  QC parquet (when `processed_dir/020_rule_qc_output.parquet` exists) or
+  the bundled synthetic sample (auto-fallback). Generated deterministically
+  by `scripts/build_001_end_to_end_notebook.py`.
+
 ### Queued for next release
 
 - Rewrite the README intro paragraph to make clear that QC operates across the
