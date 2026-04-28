@@ -4,13 +4,14 @@ build-backend = "hatchling.build"
 
 [project]
 name = "palmwtc"
-version = "0.4.1"
+version = "0.4.2"
 description = "Automated whole-tree chamber workflow for oil-palm ecophysiology — QC, flux calculation, science validation."
 readme = "README.md"
 requires-python = ">=3.11,<3.14"
 license = { file = "LICENSE" }
 authors = [
     { name = "Didi Adisaputro", email = "saputrozokovic@gmail.com" },
+    { name = "Doni Artanto Raharjo" },
 ]
 maintainers = [
     { name = "Didi Adisaputro", email = "saputrozokovic@gmail.com" },

@@ -15,10 +15,14 @@ authors:
     given-names: Didi
     email: saputrozokovic@gmail.com
     # orcid: "https://orcid.org/0000-0000-0000-0000"  # add when available
+  - family-names: Raharjo
+    given-names: Doni Artanto
+    # email: "name@example.org"                       # add when available
+    # orcid: "https://orcid.org/0000-0000-0000-0000"  # add when available
 license: MIT
 repository-code: "https://github.com/adisapoetro/palmwtc"
 url: "https://adisapoetro.github.io/palmwtc/"
-version: 0.4.1
+version: 0.4.2
 date-released: "2026-04-28"
 # Concept DOI — always resolves to the latest version. Version-specific
 # DOIs are listed on the Zenodo record's "Versions" panel:

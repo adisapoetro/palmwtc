@@ -6,8 +6,20 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+## [0.4.2] — 2026-04-28
+
 ### Added
 
+- Doni Artanto Raharjo joins as **co-author**. Listed in `CITATION.cff`,
+  `pyproject.toml [project] authors`, and the README BibTeX block.
+  Maintainers list and LICENSE copyright unchanged (Didi remains sole
+  maintainer + copyright holder).
+- New `.zenodo.json` at repo root with both creators, full project
+  metadata (title, description, license, keywords), and the concept-DOI
+  related identifier. Once the GitHub-Zenodo integration toggle is
+  enabled at <https://zenodo.org/account/settings/github/>, every future
+  GitHub release will auto-publish to Zenodo as a new version using this
+  metadata file.
 - New tutorial notebook `001_End_to_End_LIBZ.ipynb` — sibling of the
   renamed `000_End_to_End_Synthetic.ipynb`. Demonstrates the **full
   palmwtc pipeline starting from raw TOA5 `.dat` files** — sensor
@@ -32,6 +44,12 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
   beyond the §0 markdown title and a cross-link to 001. Generator
   also renamed: `build_integrated_tutorial.py` →
   `build_000_synthetic_notebook.py`.
+
+### Notes
+
+- The Zenodo record at <https://zenodo.org/records/19680893> currently
+  archives only v0.2.0; this release is the bridge that wires up
+  automatic publishing for everything from v0.4.2 forward.
 
 ### Queued for next release
 
