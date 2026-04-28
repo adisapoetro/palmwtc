@@ -6,6 +6,33 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+### Added
+
+- New tutorial notebook `001_End_to_End_LIBZ.ipynb` — sibling of the
+  renamed `000_End_to_End_Synthetic.ipynb`. Demonstrates the **full
+  palmwtc pipeline starting from raw TOA5 `.dat` files** — sensor
+  discovery, per-sensor load + merge, optional monthly export, full
+  per-variable rule-based QC, multi-chamber flux cycles, optional ML
+  anomaly overlay (toggle), calibration window selection, science
+  validation, threshold sweep, and visualisation — using **default
+  arguments throughout**. Real-data only; expects an existing
+  LIBZ-style chamber-data root via the `PALMWTC_LIBZ_DATA_ROOT` env
+  var. The LIBZ raw data is not bundled with palmwtc and is not
+  publicly available — the notebook is for collaborators with their
+  own equivalent dataset. For a self-contained demo, see
+  `000_End_to_End_Synthetic.ipynb`. Generated deterministically by
+  `scripts/build_001_libz_notebook.py`. Excluded from docs CI
+  execution (ships with locally-executed outputs).
+
+### Changed
+
+- Renamed `000_Integrated_End_to_End.ipynb` →
+  `000_End_to_End_Synthetic.ipynb` so the contrast with the new 001
+  LIBZ-data tutorial is loud and obvious. Notebook content unchanged
+  beyond the §0 markdown title and a cross-link to 001. Generator
+  also renamed: `build_integrated_tutorial.py` →
+  `build_000_synthetic_notebook.py`.
+
 ### Queued for next release
 
 - Rewrite the README intro paragraph to make clear that QC operates across the
