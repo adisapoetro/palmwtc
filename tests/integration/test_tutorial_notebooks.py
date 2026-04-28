@@ -18,7 +18,12 @@ from pathlib import Path
 import pytest
 
 NB_DIR = Path(__file__).resolve().parent.parent.parent / "notebooks"
-SKIP: set[str] = set()  # e.g. {"036_Manual_Cycle_QC_Labeling.ipynb"} when interactive
+# Notebooks that require real LIBZ data (PALMWTC_LIBZ_DATA_ROOT) and therefore
+# cannot run on the bundled-synthetic CI runner. They ship with locally-executed
+# outputs already embedded; CI just skips the re-execution.
+SKIP: set[str] = {
+    "001_End_to_End_LIBZ.ipynb",
+}
 TIMEOUT_SECONDS = 180
 
 
