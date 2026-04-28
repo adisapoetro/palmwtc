@@ -4,13 +4,18 @@ build-backend = "hatchling.build"
 
 [project]
 name = "palmwtc"
-version = "0.4.2"
+version = "0.4.3"
 description = "Automated whole-tree chamber workflow for oil-palm ecophysiology — QC, flux calculation, science validation."
 readme = "README.md"
 requires-python = ">=3.11,<3.14"
 license = { file = "LICENSE" }
+# Authors are name-only (no email field) so PyPI shows the full ordered list
+# in the "Author" line. If any author entry carries an email, hatchling moves
+# it to the "Author-email" field, which causes PyPI to display only the
+# remaining name-only entry on the headline "Author" line — order is then
+# misleading. Email stays on the page via the maintainers entry below.
 authors = [
-    { name = "Didi Adisaputro", email = "saputrozokovic@gmail.com" },
+    { name = "Didi Adisaputro" },
     { name = "Doni Artanto Raharjo" },
 ]
 maintainers = [

@@ -6,6 +6,29 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+## [0.4.3] — 2026-04-28
+
+Metadata-only follow-up to v0.4.2. Fixes the PyPI display so the
+"Author" line shows both authors in the intended order
+(`Didi Adisaputro, Doni Artanto Raharjo`) instead of just the second
+co-author. No code changes.
+
+### Fixed
+
+- `pyproject.toml [project] authors` — both entries are now name-only
+  (no inline `email = ...` field). Hatchling renders the wheel
+  metadata's `Author:` field by joining all *name-only* author entries
+  in order; entries that carry an email get moved to `Author-email:`,
+  which made PyPI surface only the remaining name-only author on the
+  page headline. Email is still on the PyPI page via the unchanged
+  `maintainers` entry.
+
+### Notes
+
+- v0.4.2 on PyPI keeps the misleading display permanently — PyPI does
+  not allow re-uploading the same version. Users on v0.4.2 are
+  unaffected functionally; only the page presentation differs.
+
 ## [0.4.2] — 2026-04-28
 
 ### Added
