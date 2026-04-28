@@ -1,16 +1,19 @@
 #!/usr/bin/env python
-"""Build the 001 end-to-end production-example notebook.
+"""Build the LIBZ end-to-end production-example notebook.
 
-Generates ``notebooks/001_End_to_End_Real_Chamber_Data.ipynb`` deterministically
-from the cell specs below.
+Generates ``notebooks/001_End_to_End_LIBZ.ipynb`` deterministically from the
+cell specs below.
 
-The notebook is the real-data sibling of ``000_Integrated_End_to_End.ipynb``.
-000 walks the synthetic-only quick demo; 001 demonstrates the FULL canonical
-pipeline starting from raw TOA5 ``.dat`` files (no shortcuts to the QC
-parquet) on real LIBZ-style chamber data using palmwtc 0.4.1+ default
-arguments only.
+Sibling of ``000_End_to_End_Synthetic.ipynb``. 000 walks the synthetic-only
+quick demo; 001 demonstrates the FULL canonical pipeline starting from raw
+TOA5 ``.dat`` files (no shortcuts to the QC parquet) on real LIBZ-style
+chamber data using palmwtc 0.4.1+ default arguments only.
 
-Re-run with:  python scripts/build_001_end_to_end_notebook.py
+The LIBZ raw data is **not bundled with palmwtc and not publicly available**.
+This notebook expects the user to provide their own equivalent dataset via
+the ``PALMWTC_LIBZ_DATA_ROOT`` environment variable.
+
+Re-run with:  python scripts/build_001_libz_notebook.py
 """
 
 from __future__ import annotations
@@ -57,17 +60,19 @@ NOTEBOOK_001_CELLS = [
     # ── 0. Title + scope ──────────────────────────────────────────────────────
     _md(
         """
-# 001 - End-to-end pipeline on real chamber data (raw .dat -> validation)
+# 001 - End-to-end on LIBZ data (raw .dat -> validation)
 
 This notebook runs the **full palmwtc pipeline starting from raw TOA5
-``.dat`` files** on a real LIBZ-style chamber dataset using **default
-arguments throughout**. Every step that the per-stage tutorials
-(010-035) cover individually is exercised here in one continuous flow.
+``.dat`` files** on a real LIBZ-style oil-palm whole-tree-chamber
+dataset using **default arguments throughout**. Every step that the
+per-stage tutorials (010-035) cover individually is exercised here in
+one continuous flow.
 
-It is the real-data counterpart to
-[000_Integrated_End_to_End.ipynb](000_Integrated_End_to_End.ipynb), which
-runs on the bundled synthetic sample and starts from a QC-flagged
-parquet (skipping the raw-integration step).
+> **The LIBZ raw data is not bundled with palmwtc and is not publicly
+> available.** This notebook is intended for collaborators who have
+> their own equivalent oil-palm chamber dataset on disk. For a
+> self-contained demo on the bundled synthetic sample, see
+> [000_End_to_End_Synthetic.ipynb](000_End_to_End_Synthetic.ipynb).
 
 **Pipeline shown (each cell is one palmwtc API call):**
 
@@ -94,17 +99,31 @@ threshold sensitivity sweep + visualisations
 ```
 
 **Requires:**
+
 - palmwtc 0.4.1+ installed (the AWS ``--`` na_values fix is needed in
   any radiation-aware step).
-- A real LIBZ-style raw chamber-data root, default
-  ``../research/Raw/shared_drive_palmstudio/Raw Data/Chamber`` (overridable
-  via ``PALMWTC_RAW_DIR``).
+- A LIBZ-style chamber-data root with this layout:
+
+  ```
+  $PALMWTC_LIBZ_DATA_ROOT/
+   |-- Raw/shared_drive_palmstudio/Raw Data/Chamber/   <- TOA5 .dat archive
+   |-- Data/Integrated_Monthly/                         <- post-010 monthly CSVs
+   '-- config/variable_config.json                       <- QC variable config
+  ```
+
+- The env var ``PALMWTC_LIBZ_DATA_ROOT`` exported before launching
+  JupyterLab (or papermill). Example:
+
+  ```
+  export PALMWTC_LIBZ_DATA_ROOT=/path/to/your/data
+  ```
+
+  If your subfolders do not match the layout above, three more env vars
+  override individual paths: ``PALMWTC_LIBZ_RAW_DIR``,
+  ``PALMWTC_LIBZ_MONTHLY_DIR``, ``PALMWTC_LIBZ_CONFIG_DIR``.
+
 - ~10-25 minutes wall time (the raw-load step is the slow one; expect
   a few minutes for QC + cycles + ML + validation).
-
-If your raw data lives elsewhere, set ``PALMWTC_RAW_DIR`` to your
-``Chamber`` directory before launching JupyterLab. For the bundled
-synthetic-data demo see notebook 000.
 """
     ),
 
@@ -113,14 +132,16 @@ synthetic-data demo see notebook 000.
         """
 ## 1. Setup + assert real data
 
-`DataPaths.resolve()` walks the layered config (kwargs -> ``PALMWTC_DATA_DIR``
-env -> ``palmwtc.yaml`` -> bundled synthetic). For this notebook we rely
-on it for ``processed_dir`` (where monthly CSVs land) and ``config_dir``
-(where ``variable_config.json`` lives) but read raw ``.dat`` from
-``PALMWTC_RAW_DIR`` (defaulting to the LIBZ workspace root).
+The whole notebook is driven by **one** required environment variable,
+``PALMWTC_LIBZ_DATA_ROOT``. From it we derive the raw-`.dat` root, the
+post-010 monthly CSV directory, and the QC config directory. The cell
+below aborts immediately with a clear message if the env var is missing
+or the expected subfolders are absent — it never silently falls back to
+the bundled synthetic sample.
 
-The cell below aborts immediately if the raw root is not present, with a
-clear message about which env var to set.
+If your data layout does not match the LIBZ convention, three more env
+vars (``PALMWTC_LIBZ_RAW_DIR``, ``PALMWTC_LIBZ_MONTHLY_DIR``,
+``PALMWTC_LIBZ_CONFIG_DIR``) let you override individual subpaths.
 """
     ),
     _code(
@@ -140,23 +161,49 @@ assert palmwtc.__version__ >= "0.4.1", \\
 paths = DataPaths.resolve()
 print(paths.describe())
 
-# Raw .dat root: env override -> LIBZ-cloud convention
-DEFAULT_RAW_ROOT = Path(
-    "/Users/adisapoetro/Projects/flux_chamber/research/Raw/"
-    "shared_drive_palmstudio/Raw Data/Chamber"
-)
-raw_root = Path(os.environ.get("PALMWTC_RAW_DIR", str(DEFAULT_RAW_ROOT)))
+LIBZ_DATA_ROOT = os.environ.get("PALMWTC_LIBZ_DATA_ROOT")
+if not LIBZ_DATA_ROOT:
+    raise RuntimeError(
+        "PALMWTC_LIBZ_DATA_ROOT is not set.\\n\\n"
+        "This notebook walks the full pipeline on a real LIBZ-style chamber\\n"
+        "dataset. The raw LIBZ data is NOT bundled with palmwtc and is NOT\\n"
+        "publicly available - you need an existing chamber-data root with\\n"
+        "this subfolder layout:\\n\\n"
+        "    $PALMWTC_LIBZ_DATA_ROOT/\\n"
+        "      Raw/shared_drive_palmstudio/Raw Data/Chamber/   <- TOA5 .dat archive\\n"
+        "      Data/Integrated_Monthly/                         <- post-010 monthly CSVs\\n"
+        "      config/variable_config.json                       <- QC variable config\\n\\n"
+        "If your data is laid out differently, override individual subpaths\\n"
+        "with PALMWTC_LIBZ_RAW_DIR, PALMWTC_LIBZ_MONTHLY_DIR, and\\n"
+        "PALMWTC_LIBZ_CONFIG_DIR.\\n\\n"
+        "For the bundled synthetic-data demo, see 000_End_to_End_Synthetic.ipynb."
+    )
+
+DATA_ROOT = Path(LIBZ_DATA_ROOT)
+raw_root = Path(os.environ.get(
+    "PALMWTC_LIBZ_RAW_DIR",
+    str(DATA_ROOT / "Raw" / "shared_drive_palmstudio" / "Raw Data" / "Chamber"),
+))
+monthly_dir = Path(os.environ.get(
+    "PALMWTC_LIBZ_MONTHLY_DIR",
+    str(DATA_ROOT / "Data" / "Integrated_Monthly"),
+))
+config_dir = Path(os.environ.get(
+    "PALMWTC_LIBZ_CONFIG_DIR",
+    str(DATA_ROOT / "config"),
+))
 
 if not raw_root.exists() or not (raw_root / "main").exists():
     raise RuntimeError(
-        f"No raw chamber .dat directories found at {raw_root}.\\n"
-        "This notebook requires real LIBZ-style chamber data.\\n"
-        "Set PALMWTC_RAW_DIR=/path/to/Raw/shared_drive_palmstudio/Raw Data/Chamber\\n"
-        "For the bundled synthetic-data demo see 000_Integrated_End_to_End.ipynb."
+        f"Raw .dat root not found or missing 'main/' subdir at: {raw_root}\\n"
+        "Override with PALMWTC_LIBZ_RAW_DIR if your raw archive lives elsewhere."
     )
 
-print(f"\\nRaw .dat root: {raw_root}")
-print(f"palmwtc version: {palmwtc.__version__}")
+print(f"\\nLIBZ data root  : {DATA_ROOT}")
+print(f"  raw_root      : {raw_root}")
+print(f"  monthly_dir   : {monthly_dir}")
+print(f"  config_dir    : {config_dir}")
+print(f"palmwtc version : {palmwtc.__version__}")
 """
     ),
 
@@ -232,17 +279,12 @@ out-of-range pressure, temperature, RH, or soil water potential).
         """
 from palmwtc.io import load_monthly_data
 
-# Default points at the LIBZ workspace; override via PALMWTC_MONTHLY_DIR.
-DEFAULT_MONTHLY_DIR = Path(
-    "/Users/adisapoetro/Projects/flux_chamber/research/Data/Integrated_Monthly"
-)
-monthly_dir = Path(os.environ.get("PALMWTC_MONTHLY_DIR", str(DEFAULT_MONTHLY_DIR)))
-
+# monthly_dir was set in §1 from PALMWTC_LIBZ_DATA_ROOT (or the override env var).
 if not monthly_dir.exists() or not list(monthly_dir.glob("Integrated_Data_*.csv")):
     raise RuntimeError(
         f"No Integrated_Data_YYYY-MM.csv files found at {monthly_dir}.\\n"
-        "Run notebook 010 first to produce them, or set PALMWTC_MONTHLY_DIR\\n"
-        "to a directory that contains them."
+        "Run notebook 010 first to produce them, or override\\n"
+        "PALMWTC_LIBZ_MONTHLY_DIR to a directory that contains them."
     )
 
 df_raw = load_monthly_data(monthly_dir).reset_index()
@@ -322,18 +364,12 @@ proxies), each per chamber. The full multi-pass QC is what notebook
 import json
 from palmwtc.qc import QCProcessor
 
-# Load the variable-by-variable rule configuration. Look in DataPaths.config_dir
-# first; fall back to the LIBZ workspace path if not present (mirrors the §1
-# raw-root default).
-DEFAULT_CONFIG_DIR = Path("/Users/adisapoetro/Projects/flux_chamber/research/config")
-var_cfg_path = paths.config_dir / "variable_config.json"
-if not var_cfg_path.exists():
-    var_cfg_path = DEFAULT_CONFIG_DIR / "variable_config.json"
+# config_dir was set in §1 from PALMWTC_LIBZ_DATA_ROOT (or PALMWTC_LIBZ_CONFIG_DIR).
+var_cfg_path = config_dir / "variable_config.json"
 if not var_cfg_path.exists():
     raise FileNotFoundError(
         f"variable_config.json not found at {var_cfg_path}. "
-        "Set PALMWTC_DATA_DIR or place a palmwtc.yaml next to this notebook "
-        "with config_dir: pointing at the directory that contains it."
+        "Override PALMWTC_LIBZ_CONFIG_DIR to point at the directory that contains it."
     )
 var_cfg = json.loads(var_cfg_path.read_text())
 
@@ -692,4 +728,4 @@ is explicitly out of scope for palmwtc.
 ]
 
 if __name__ == "__main__":
-    _build("001_End_to_End_Real_Chamber_Data.ipynb", NOTEBOOK_001_CELLS)
+    _build("001_End_to_End_LIBZ.ipynb", NOTEBOOK_001_CELLS)

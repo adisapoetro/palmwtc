@@ -8,8 +8,8 @@ parts:
     chapters:
       - file: tutorials/index
         sections:
-          - file: tutorials/000_Integrated_End_to_End
-          - file: tutorials/001_End_to_End_Real_Chamber_Data
+          - file: tutorials/000_End_to_End_Synthetic
+          - file: tutorials/001_End_to_End_LIBZ
           - file: tutorials/010_Data_Integration
           - file: tutorials/011_Weather_vs_Chamber
           - file: tutorials/020_QC_Rule_Based

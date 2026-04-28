@@ -11,7 +11,7 @@ execute:
     # 001 walks the full pipeline from raw .dat → validation on real LIBZ
     # data and runs ~10–25 minutes. CI runners have no real data so it would
     # fail; the local-executed copy ships with cell outputs already embedded.
-    - "tutorials/001_End_to_End_Real_Chamber_Data.ipynb"
+    - "tutorials/001_End_to_End_LIBZ.ipynb"
 
 repository:
   url: https://github.com/adisapoetro/palmwtc

@@ -1,13 +1,14 @@
 #!/usr/bin/env python
-"""Build the integrated end-to-end tutorial notebook (000_Integrated_End_to_End.ipynb).
+"""Build the synthetic-data end-to-end tutorial (000_End_to_End_Synthetic.ipynb).
 
 This notebook walks through the full palmwtc pipeline against the bundled
 synthetic sample, with markdown cells explaining the scientific meaning of
 each step (not just code mechanics).
 
-Numbered 000 to sort before the per-stage tutorials (010-035).
+Sibling of ``001_End_to_End_LIBZ.ipynb`` (which runs the same pipeline on
+real LIBZ-style chamber data and requires its own dataset on disk).
 
-Re-run with:  python scripts/build_integrated_tutorial.py
+Re-run with:  python scripts/build_000_synthetic_notebook.py
 """
 
 from __future__ import annotations
@@ -22,7 +23,7 @@ NOTEBOOKS_DIR = Path(__file__).resolve().parent.parent / "notebooks"
 DOCS_TUTORIALS_DIR = Path(__file__).resolve().parent.parent / "docs" / "tutorials"
 NOTEBOOKS_DIR.mkdir(exist_ok=True)
 
-FILENAME = "000_Integrated_End_to_End.ipynb"
+FILENAME = "000_End_to_End_Synthetic.ipynb"
 
 
 def _md(source: str) -> nbf.NotebookNode:
@@ -61,7 +62,7 @@ CELLS = [
     # Cell 1 — Title + scientific framing
     _md(
         """
-# palmwtc end-to-end pipeline tutorial
+# 000 — End-to-end on synthetic data
 
 This notebook walks through the complete palmwtc pipeline using the bundled
 synthetic sample — no field data needed. Each section shows one step of the
@@ -73,6 +74,10 @@ every 30 seconds with a LI-COR LI-850 analyser. The pipeline converts those
 raw concentration readings into calibrated net CO₂ exchange values — and then
 checks whether those values are consistent with what the plant physiology
 literature says oil palms should be doing.
+
+For the same pipeline applied to **real chamber data**, see the sibling
+notebook [001_End_to_End_LIBZ.ipynb](001_End_to_End_LIBZ.ipynb) — that one
+requires a LIBZ-style dataset on disk and is not bundled with the package.
 
 After this notebook, the per-stage tutorials (010–035) each cover one step in
 much more depth.
