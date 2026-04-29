@@ -26,7 +26,7 @@ modify the caller's frame in place.
 Design notes
 ------------
 * STL needs ``statsmodels`` (added as a core dep in palmwtc 0.4.0).  If a
-  chamber has fewer than ``3 × stl_period`` hourly bins or its residual
+  chamber has fewer than ``3 x stl_period`` hourly bins or its residual
   IQR is below 1e-9, that chamber's STL columns are returned as NaN/0
   with an explanatory message — never raise.
 * The ensemble's ``rank_norm`` helper imputes NaN inputs to the median
@@ -96,7 +96,9 @@ def _stl_one_chamber(ch_df, chamber, slope_col, cfg):
     Returns a dict carrying the chamber name, the row index it was scored
     against, and four output Series.  Designed to run in a joblib subprocess.
     """
-    from statsmodels.tsa.seasonal import STL  # local import to keep palmwtc importable without statsmodels
+    from statsmodels.tsa.seasonal import (
+        STL,  # local import to keep palmwtc importable without statsmodels
+    )
 
     dt_col = "flux_datetime" if "flux_datetime" in ch_df.columns else "flux_date"
     _dt = pd.to_datetime(ch_df[dt_col], errors="coerce")
@@ -181,8 +183,8 @@ def _stl_one_chamber(ch_df, chamber, slope_col, cfg):
     n_soft = int(result["stl_soft_flag"].sum())
     n_hard = int(result["stl_hard_flag"].sum())
     result["_msg"] = (
-        f"  STL [{chamber}]: soft flags={n_soft} (>{cfg['stl_soft_iqr_mult']}×IQR), "
-        f"hard flags={n_hard} (>{cfg['stl_hard_iqr_mult']}×IQR)"
+        f"  STL [{chamber}]: soft flags={n_soft} (>{cfg['stl_soft_iqr_mult']}xIQR), "
+        f"hard flags={n_hard} (>{cfg['stl_hard_iqr_mult']}xIQR)"
     )
     return result
 
@@ -445,7 +447,7 @@ def compute_ensemble_score(
 
 __all__ = [
     "DEFAULT_ADVANCED_OUTLIER_CONFIG",
-    "compute_stl_residual_scores",
-    "compute_rolling_zscore",
     "compute_ensemble_score",
+    "compute_rolling_zscore",
+    "compute_stl_residual_scores",
 ]
