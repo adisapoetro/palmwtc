@@ -1,0 +1,973 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>palmwtc.flux.scaling &#8212; palmwtc</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../../../../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/styles/sphinx-book-theme.css?v=3c74b3bc" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/togglebutton.css?v=9c3e77be" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/graphviz.css?v=fd3f3429" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../../../../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../../../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="../../../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../../../_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../../../_static/togglebutton.js?v=b8b12719"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'api/palmwtc/flux/scaling/index';</script>
+    <link rel="canonical" href="https://adisapoetro.github.io/palmwtc/api/palmwtc/flux/scaling/index.html" />
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../../../index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">palmwtc</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../../../index.html">
+                    palmwtc
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Getting Started</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../../../quickstart.html">Quickstart — your first flux number in 3 minutes</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../../tutorials/index.html">Tutorials</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorials/010_Data_Integration.html">010 — Core data integration (raw → unified monthly)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorials/011_Weather_vs_Chamber.html">011 — Weather station vs chamber</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorials/020_QC_Rule_Based.html">020 — Rule-based QC</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorials/022_QC_ML_Enhanced.html">022 — ML-enhanced QC (optional)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorials/023_Field_Alert_Report.html">023 — Field alert report</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorials/025_Cross_Chamber_Bias.html">025 — Cross-chamber bias comparison (diagnostic)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorials/026_CO2_H2O_Segmented_Bias.html">026 — CO2/H2O segmented bias comparison (diagnostic)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorials/030_Flux_Cycle_Calculation.html">030 — Flux cycle calculation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorials/031_Window_Selection_Reference.html">031 — High-confidence window selection (reference)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorials/032_Window_Selection_Production.html">032 — Physically grounded window selection (production)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorials/033_Science_Validation.html">033 — Science validation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorials/034_QC_and_Window_Audit.html">034 — QC + window audit (visualization)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorials/035_QC_Threshold_Sensitivity.html">035 — QC threshold sensitivity sweep</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorials/000_End_to_End_Synthetic.html">000 — End-to-end on synthetic data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorials/001_End_to_End_LIBZ.html">001 - End-to-end on LIBZ data (raw .dat -&gt; validation)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorials/010_Data_Integration.html">010 — Core data integration (raw → unified monthly)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorials/011_Weather_vs_Chamber.html">011 — Weather station vs chamber</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorials/020_QC_Rule_Based.html">020 — Rule-based QC</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorials/022_QC_ML_Enhanced.html">022 — ML-enhanced QC (optional)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorials/023_Field_Alert_Report.html">023 — Field alert report</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorials/025_Cross_Chamber_Bias.html">025 — Cross-chamber bias comparison (diagnostic)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorials/026_CO2_H2O_Segmented_Bias.html">026 — CO2/H2O segmented bias comparison (diagnostic)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorials/030_Flux_Cycle_Calculation.html">030 — Flux cycle calculation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorials/031_Window_Selection_Reference.html">031 — High-confidence window selection (reference)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorials/032_Window_Selection_Production.html">032 — Physically grounded window selection (production)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorials/033_Science_Validation.html">033 — Science validation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorials/034_QC_and_Window_Audit.html">034 — QC + window audit (visualization)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorials/035_QC_Threshold_Sensitivity.html">035 — QC threshold sensitivity sweep</a></li>
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Science Reference</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../../../science/index.html">Science Reference</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/adisapoetro/palmwtc" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/adisapoetro/palmwtc/edit/main/docs/api/palmwtc/flux/scaling/index.rst" target="_blank"
+   class="btn btn-sm btn-source-edit-button dropdown-item"
+   title="Suggest edit"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="btn__text-container">Suggest edit</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/adisapoetro/palmwtc/issues/new?title=Issue%20on%20page%20%2Fapi/palmwtc/flux/scaling/index.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../../../_sources/api/palmwtc/flux/scaling/index.rst" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.rst</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button pst-navbar-icon"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm pst-navbar-icon" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>palmwtc.flux.scaling</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#public-api">Public API</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#functions">Functions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-contents">Module Contents</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#palmwtc.flux.scaling.load_biophysical_data"><code class="docutils literal notranslate"><span class="pre">load_biophysical_data()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#palmwtc.flux.scaling.estimate_leaf_area"><code class="docutils literal notranslate"><span class="pre">estimate_leaf_area()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#palmwtc.flux.scaling.calculate_lai_effective"><code class="docutils literal notranslate"><span class="pre">calculate_lai_effective()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#palmwtc.flux.scaling.scale_to_leaf_basis"><code class="docutils literal notranslate"><span class="pre">scale_to_leaf_basis()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#palmwtc.flux.scaling.estimate_par_from_radiation"><code class="docutils literal notranslate"><span class="pre">estimate_par_from_radiation()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#palmwtc.flux.scaling.add_par_estimates"><code class="docutils literal notranslate"><span class="pre">add_par_estimates()</span></code></a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="module-palmwtc.flux.scaling">
+<span id="palmwtc-flux-scaling"></span><h1>palmwtc.flux.scaling<a class="headerlink" href="#module-palmwtc.flux.scaling" title="Link to this heading">#</a></h1>
+<p>Leaf-area index (LAI) calculation and flux scaling to leaf basis.</p>
+<p>Converts ground-area-basis fluxes (µmol m⁻² ground s⁻¹) to
+leaf-area basis (µmol m⁻² leaf s⁻¹) using the estimated LAI
+for the tree footprint inside the chamber. Also provides PAR estimation
+from shortwave radiation for light-response analyses.</p>
+<section id="public-api">
+<h2>Public API<a class="headerlink" href="#public-api" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p><a class="reference internal" href="#palmwtc.flux.scaling.load_biophysical_data" title="palmwtc.flux.scaling.load_biophysical_data"><code class="xref py py-func docutils literal notranslate"><span class="pre">load_biophysical_data()</span></code></a> — load leaf-count and canopy measurements
+from the PalmStudio biophysical spreadsheet.</p></li>
+<li><p><a class="reference internal" href="#palmwtc.flux.scaling.estimate_leaf_area" title="palmwtc.flux.scaling.estimate_leaf_area"><code class="xref py py-func docutils literal notranslate"><span class="pre">estimate_leaf_area()</span></code></a> — convert leaf count to total leaf area (m²)
+using age-appropriate area-per-leaf assumptions for chamber oil palms.</p></li>
+<li><p><a class="reference internal" href="#palmwtc.flux.scaling.calculate_lai_effective" title="palmwtc.flux.scaling.calculate_lai_effective"><code class="xref py py-func docutils literal notranslate"><span class="pre">calculate_lai_effective()</span></code></a> — match biophysical measurements to flux
+dates by temporal proximity and compute LAI = leaf_area / floor_area.</p></li>
+<li><p><a class="reference internal" href="#palmwtc.flux.scaling.scale_to_leaf_basis" title="palmwtc.flux.scaling.scale_to_leaf_basis"><code class="xref py py-func docutils literal notranslate"><span class="pre">scale_to_leaf_basis()</span></code></a> — divide ground-area fluxes by LAI to obtain
+leaf-area fluxes.</p></li>
+<li><p><a class="reference internal" href="#palmwtc.flux.scaling.estimate_par_from_radiation" title="palmwtc.flux.scaling.estimate_par_from_radiation"><code class="xref py py-func docutils literal notranslate"><span class="pre">estimate_par_from_radiation()</span></code></a> — estimate PAR (µmol m⁻² s⁻¹) from
+global shortwave radiation (W m⁻²) using the McCree (1972) factor.</p></li>
+<li><p><a class="reference internal" href="#palmwtc.flux.scaling.add_par_estimates" title="palmwtc.flux.scaling.add_par_estimates"><code class="xref py py-func docutils literal notranslate"><span class="pre">add_par_estimates()</span></code></a> — add a PAR column to a flux DataFrame.</p></li>
+</ul>
+</section>
+<section id="functions">
+<h2>Functions<a class="headerlink" href="#functions" title="Link to this heading">#</a></h2>
+<div class="pst-scrollable-table-container"><table class="autosummary longtable table autosummary">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#palmwtc.flux.scaling.load_biophysical_data" title="palmwtc.flux.scaling.load_biophysical_data"><code class="xref py py-obj docutils literal notranslate"><span class="pre">load_biophysical_data</span></code></a>(→ pandas.DataFrame)</p></td>
+<td><p>Load oil-palm biophysical parameters from the PalmStudio spreadsheet.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#palmwtc.flux.scaling.estimate_leaf_area" title="palmwtc.flux.scaling.estimate_leaf_area"><code class="xref py py-obj docutils literal notranslate"><span class="pre">estimate_leaf_area</span></code></a>(→ float | numpy.ndarray)</p></td>
+<td><p>Estimate total leaf area (m²) from leaf count.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#palmwtc.flux.scaling.calculate_lai_effective" title="palmwtc.flux.scaling.calculate_lai_effective"><code class="xref py py-obj docutils literal notranslate"><span class="pre">calculate_lai_effective</span></code></a>(→ pandas.DataFrame)</p></td>
+<td><p>Compute effective LAI for each flux cycle and attach it to the DataFrame.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#palmwtc.flux.scaling.scale_to_leaf_basis" title="palmwtc.flux.scaling.scale_to_leaf_basis"><code class="xref py py-obj docutils literal notranslate"><span class="pre">scale_to_leaf_basis</span></code></a>(→ pandas.DataFrame)</p></td>
+<td><p>Scale ground-area fluxes to leaf-area basis by dividing by LAI.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#palmwtc.flux.scaling.estimate_par_from_radiation" title="palmwtc.flux.scaling.estimate_par_from_radiation"><code class="xref py py-obj docutils literal notranslate"><span class="pre">estimate_par_from_radiation</span></code></a>(→ float | numpy.ndarray)</p></td>
+<td><p>Estimate PAR from global shortwave radiation using the McCree factor.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#palmwtc.flux.scaling.add_par_estimates" title="palmwtc.flux.scaling.add_par_estimates"><code class="xref py py-obj docutils literal notranslate"><span class="pre">add_par_estimates</span></code></a>(→ pandas.DataFrame)</p></td>
+<td><p>Add an estimated PAR column to a flux DataFrame.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="module-contents">
+<h2>Module Contents<a class="headerlink" href="#module-contents" title="Link to this heading">#</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="palmwtc.flux.scaling.load_biophysical_data">
+<span class="sig-prename descclassname"><span class="pre">palmwtc.flux.scaling.</span></span><span class="sig-name descname"><span class="pre">load_biophysical_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file_path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">pathlib.Path</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">pandas.DataFrame</span></span></span><a class="headerlink" href="#palmwtc.flux.scaling.load_biophysical_data" title="Link to this definition">#</a></dt>
+<dd><p>Load oil-palm biophysical parameters from the PalmStudio spreadsheet.</p>
+<p>Reads <code class="docutils literal notranslate"><span class="pre">Vigor_Index_PalmStudio.xlsx</span></code>, converts Indonesian column names
+to English, and maps tree codes to chamber numbers.  The resulting
+DataFrame is the primary input for <a class="reference internal" href="#palmwtc.flux.scaling.calculate_lai_effective" title="palmwtc.flux.scaling.calculate_lai_effective"><code class="xref py py-func docutils literal notranslate"><span class="pre">calculate_lai_effective()</span></code></a>.</p>
+<section id="parameters">
+<h3>Parameters<a class="headerlink" href="#parameters" title="Link to this heading">#</a></h3>
+<dl class="simple">
+<dt>file_path<span class="classifier">str or Path or None, optional</span></dt><dd><p>Path to <code class="docutils literal notranslate"><span class="pre">Vigor_Index_PalmStudio.xlsx</span></code>.  When <code class="docutils literal notranslate"><span class="pre">None</span></code> the function
+looks for the file at
+<code class="docutils literal notranslate"><span class="pre">&lt;package_root&gt;/Raw/BiophysicalParam/Vigor_Index_PalmStudio.xlsx</span></code>.
+For the bundled synthetic sample, pass the path explicitly.</p>
+</dd>
+</dl>
+</section>
+<section id="returns">
+<h3>Returns<a class="headerlink" href="#returns" title="Link to this heading">#</a></h3>
+<dl class="simple">
+<dt>pd.DataFrame</dt><dd><p>One row per measurement visit.  Columns:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">date</span></code> — measurement date (datetime64).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">chamber</span></code> — chamber number (1 or 2); rows without a recognised
+tree code are dropped.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">tree_code</span></code> — original tree-code string from the spreadsheet
+(e.g. <code class="docutils literal notranslate"><span class="pre">'2.2/EKA-1/2107'</span></code>).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">height_cm</span></code> — total tree height (cm).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">r1_cm</span></code>, <code class="docutils literal notranslate"><span class="pre">r2_cm</span></code> — canopy radii (cm).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">n_leaves</span></code> — total number of leaves counted.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">vigor_index</span></code> — estimated above-ground biomass volume (m³),
+as computed by PalmStudio from height and canopy radii.</p></li>
+</ul>
+</dd>
+</dl>
+</section>
+<section id="raises">
+<h3>Raises<a class="headerlink" href="#raises" title="Link to this heading">#</a></h3>
+<dl class="simple">
+<dt>FileNotFoundError</dt><dd><p>If <em>file_path</em> is <code class="docutils literal notranslate"><span class="pre">None</span></code> and the default path does not exist.</p>
+</dd>
+</dl>
+</section>
+<section id="examples">
+<h3>Examples<a class="headerlink" href="#examples" title="Link to this heading">#</a></h3>
+<p>Load from an explicit path (synthetic fixture shown conceptually):</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">df</span> <span class="o">=</span> <span class="n">load_biophysical_data</span><span class="p">(</span><span class="s2">&quot;tests/fixtures/Vigor_Index_PalmStudio.xlsx&quot;</span><span class="p">)</span>  
+<span class="gp">&gt;&gt;&gt; </span><span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>  
+<span class="go">[&#39;date&#39;, &#39;tree_code&#39;, &#39;n_leaves&#39;, &#39;height_cm&#39;, &#39;r1_cm&#39;, &#39;r2_cm&#39;, &#39;vigor_index&#39;, &#39;chamber&#39;]</span>
+</pre></div>
+</div>
+</section>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="palmwtc.flux.scaling.estimate_leaf_area">
+<span class="sig-prename descclassname"><span class="pre">palmwtc.flux.scaling.</span></span><span class="sig-name descname"><span class="pre">estimate_leaf_area</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n_leaves</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">numpy.ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tree_code</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">method</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'conservative'</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">numpy.ndarray</span></span></span><a class="headerlink" href="#palmwtc.flux.scaling.estimate_leaf_area" title="Link to this definition">#</a></dt>
+<dd><p>Estimate total leaf area (m²) from leaf count.</p>
+<p>Oil-palm leaf area varies with leaf rank (position on the stem) and tree
+age.  Chamber trees at the LIBZ site are younger and smaller than mature
+field palms, so a conservative area-per-leaf assumption avoids
+over-estimating LAI and over-scaling fluxes.</p>
+<section id="id1">
+<h3>Parameters<a class="headerlink" href="#id1" title="Link to this heading">#</a></h3>
+<dl>
+<dt>n_leaves<span class="classifier">float or array-like</span></dt><dd><p>Number of leaves counted on the tree.</p>
+</dd>
+<dt>tree_code<span class="classifier">str or None, optional</span></dt><dd><p>Tree-code string (e.g. <code class="docutils literal notranslate"><span class="pre">'2.2/EKA-1/2107'</span></code>).  Currently unused;
+reserved for future species-specific look-ups.</p>
+</dd>
+<dt>method<span class="classifier">{‘conservative’, ‘literature_max’, ‘fixed’}, optional</span></dt><dd><p>Area-per-leaf assumption to apply.  Default is <code class="docutils literal notranslate"><span class="pre">'conservative'</span></code>.</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">'conservative'</span></code></dt><dd><p>4 m² leaf⁻¹.  Appropriate for the younger chamber palms at LIBZ.
+Derived as a weighted average across leaf ranks:
+young leaves (rank 1–3) ≈ 2 m², productive leaves (rank 4–15)
+≈ 5 m², old leaves (rank 16+) ≈ 3 m² → weighted mean ≈ 4 m².</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">'literature_max'</span></code></dt><dd><p>12 m² leaf⁻¹.  Upper bound from literature for mature field palms.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">'fixed'</span></code></dt><dd><p>6 m² leaf⁻¹.  Middle-ground estimate.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</section>
+<section id="id2">
+<h3>Returns<a class="headerlink" href="#id2" title="Link to this heading">#</a></h3>
+<dl class="simple">
+<dt>float or ndarray</dt><dd><p>Total leaf area in m².</p>
+</dd>
+</dl>
+</section>
+<section id="id3">
+<h3>Raises<a class="headerlink" href="#id3" title="Link to this heading">#</a></h3>
+<dl class="simple">
+<dt>ValueError</dt><dd><p>If <em>method</em> is not one of the recognised strings.</p>
+</dd>
+</dl>
+</section>
+<section id="notes">
+<h3>Notes<a class="headerlink" href="#notes" title="Link to this heading">#</a></h3>
+<p>Literature values for <em>mature</em> field oil palms range from 8–15 m² per
+productive leaf (mean ≈ 12 m²).  Chamber palms at LIBZ are 3–6 m² per
+leaf.  Using <code class="docutils literal notranslate"><span class="pre">'conservative'</span></code> gives a target LAI of roughly 2–6, which
+is realistic for oil palm.</p>
+</section>
+<section id="id4">
+<h3>Examples<a class="headerlink" href="#id4" title="Link to this heading">#</a></h3>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">estimate_leaf_area</span><span class="p">(</span><span class="mi">30</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s2">&quot;conservative&quot;</span><span class="p">)</span>
+<span class="go">120.0</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">estimate_leaf_area</span><span class="p">(</span><span class="mi">30</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s2">&quot;literature_max&quot;</span><span class="p">)</span>
+<span class="go">360.0</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">counts</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">20</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">40</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">estimate_leaf_area</span><span class="p">(</span><span class="n">counts</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s2">&quot;conservative&quot;</span><span class="p">)</span>
+<span class="go">array([ 80., 120., 160.])</span>
+</pre></div>
+</div>
+</section>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="palmwtc.flux.scaling.calculate_lai_effective">
+<span class="sig-prename descclassname"><span class="pre">palmwtc.flux.scaling.</span></span><span class="sig-name descname"><span class="pre">calculate_lai_effective</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">flux_df</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">pandas.DataFrame</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">biophys_df</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">pandas.DataFrame</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">chamber_floor_area</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">pandas.DataFrame</span></span></span><a class="headerlink" href="#palmwtc.flux.scaling.calculate_lai_effective" title="Link to this definition">#</a></dt>
+<dd><p>Compute effective LAI for each flux cycle and attach it to the DataFrame.</p>
+<p>For each row in <em>flux_df</em> the function looks up the biophysical measurement
+that is closest in time (within 30 days) for the same chamber, estimates the
+total leaf area with <a class="reference internal" href="#palmwtc.flux.scaling.estimate_leaf_area" title="palmwtc.flux.scaling.estimate_leaf_area"><code class="xref py py-func docutils literal notranslate"><span class="pre">estimate_leaf_area()</span></code></a>, then divides by the chamber
+floor area to obtain LAI_effective.</p>
+<div class="math notranslate nohighlight">
+\[\text{LAI}_{\text{eff}} = \frac{\text{leaf\_area\_m2}}{\text{chamber\_floor\_area\_m2}}\]</div>
+<section id="id5">
+<h3>Parameters<a class="headerlink" href="#id5" title="Link to this heading">#</a></h3>
+<dl>
+<dt>flux_df<span class="classifier">pd.DataFrame</span></dt><dd><p>Flux cycle data.  Must contain:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">flux_date</span></code> — date of the flux cycle (datetime or date-like).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Source_Chamber</span></code> — chamber name string, either <code class="docutils literal notranslate"><span class="pre">'Chamber</span> <span class="pre">1'</span></code> or
+<code class="docutils literal notranslate"><span class="pre">'Chamber</span> <span class="pre">2'</span></code>.</p></li>
+</ul>
+</dd>
+<dt>biophys_df<span class="classifier">pd.DataFrame</span></dt><dd><p>Output of <a class="reference internal" href="#palmwtc.flux.scaling.load_biophysical_data" title="palmwtc.flux.scaling.load_biophysical_data"><code class="xref py py-func docutils literal notranslate"><span class="pre">load_biophysical_data()</span></code></a>.  Must contain <code class="docutils literal notranslate"><span class="pre">date</span></code>,
+<code class="docutils literal notranslate"><span class="pre">chamber</span></code>, and <code class="docutils literal notranslate"><span class="pre">n_leaves</span></code> columns.</p>
+</dd>
+<dt>chamber_floor_area<span class="classifier">dict or None, optional</span></dt><dd><p>Override the floor area (m²) per date and chamber:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="n">date</span><span class="p">:</span> <span class="p">{</span><span class="mi">1</span><span class="p">:</span> <span class="n">area_m2</span><span class="p">,</span> <span class="mi">2</span><span class="p">:</span> <span class="n">area_m2</span><span class="p">}}</span>
+</pre></div>
+</div>
+<p>When <code class="docutils literal notranslate"><span class="pre">None</span></code>, a date-based default is used:
+before 2025-07-01 → 4 m² (2 m × 2 m footprint);
+from 2025-07-01 onwards → 16 m² (4 m × 4 m footprint).</p>
+</dd>
+</dl>
+</section>
+<section id="id6">
+<h3>Returns<a class="headerlink" href="#id6" title="Link to this heading">#</a></h3>
+<dl>
+<dt>pd.DataFrame</dt><dd><p>Copy of <em>flux_df</em> with four additional columns:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">n_leaves</span></code> — leaf count from the nearest biophysical visit.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">leaf_area_m2</span></code> — estimated total leaf area (m²).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">chamber_floor_area_m2</span></code> — floor area used for this cycle (m²).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">lai_effective</span></code> — dimensionless LAI (m² leaf m⁻² ground).</p></li>
+</ul>
+<p>Rows for which no biophysical measurement falls within 30 days, or
+whose chamber name is not recognised, retain <code class="docutils literal notranslate"><span class="pre">NaN</span></code> in all four
+columns.</p>
+</dd>
+</dl>
+</section>
+<section id="id7">
+<h3>Notes<a class="headerlink" href="#id7" title="Link to this heading">#</a></h3>
+<p>Temporal matching uses the nearest biophysical visit, not linear
+interpolation.  The 30-day tolerance prevents using measurements from a
+different phenological stage.</p>
+</section>
+<section id="id8">
+<h3>Examples<a class="headerlink" href="#id8" title="Link to this heading">#</a></h3>
+<p>Conceptual usage — requires a valid biophysical spreadsheet:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">biophys</span> <span class="o">=</span> <span class="n">load_biophysical_data</span><span class="p">(</span><span class="s2">&quot;path/to/Vigor_Index_PalmStudio.xlsx&quot;</span><span class="p">)</span>  
+<span class="gp">&gt;&gt;&gt; </span><span class="n">result</span> <span class="o">=</span> <span class="n">calculate_lai_effective</span><span class="p">(</span><span class="n">flux_df</span><span class="p">,</span> <span class="n">biophys</span><span class="p">)</span>  
+<span class="gp">&gt;&gt;&gt; </span><span class="n">result</span><span class="p">[</span><span class="s2">&quot;lai_effective&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">between</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">8</span><span class="p">)</span><span class="o">.</span><span class="n">all</span><span class="p">()</span>  
+<span class="go">True</span>
+</pre></div>
+</div>
+</section>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="palmwtc.flux.scaling.scale_to_leaf_basis">
+<span class="sig-prename descclassname"><span class="pre">palmwtc.flux.scaling.</span></span><span class="sig-name descname"><span class="pre">scale_to_leaf_basis</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">flux_df</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">pandas.DataFrame</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lai_column</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'lai_effective'</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">pandas.DataFrame</span></span></span><a class="headerlink" href="#palmwtc.flux.scaling.scale_to_leaf_basis" title="Link to this definition">#</a></dt>
+<dd><p>Scale ground-area fluxes to leaf-area basis by dividing by LAI.</p>
+<div class="math notranslate nohighlight">
+\[F_{\text{leaf}} = \frac{F_{\text{ground}}}{\text{LAI}_{\text{eff}}}\]</div>
+<section id="id9">
+<h3>Parameters<a class="headerlink" href="#id9" title="Link to this heading">#</a></h3>
+<dl class="simple">
+<dt>flux_df<span class="classifier">pd.DataFrame</span></dt><dd><p>Flux cycle data.  Must contain:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">flux_absolute</span></code> — CO₂ flux on ground-area basis
+(µmol m⁻² ground s⁻¹).</p></li>
+<li><p>The column named by <em>lai_column</em> — LAI from
+<a class="reference internal" href="#palmwtc.flux.scaling.calculate_lai_effective" title="palmwtc.flux.scaling.calculate_lai_effective"><code class="xref py py-func docutils literal notranslate"><span class="pre">calculate_lai_effective()</span></code></a> (m² leaf m⁻² ground).</p></li>
+</ul>
+</dd>
+<dt>lai_column<span class="classifier">str, optional</span></dt><dd><p>Name of the LAI column in <em>flux_df</em>.  Default: <code class="docutils literal notranslate"><span class="pre">'lai_effective'</span></code>.</p>
+</dd>
+</dl>
+</section>
+<section id="id10">
+<h3>Returns<a class="headerlink" href="#id10" title="Link to this heading">#</a></h3>
+<dl>
+<dt>pd.DataFrame</dt><dd><p>Copy of <em>flux_df</em> with one additional column:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">flux_absolute_leaf</span></code> — CO₂ flux on leaf-area basis
+(µmol m⁻² leaf s⁻¹).</p></li>
+</ul>
+<p>Rows where LAI is <code class="docutils literal notranslate"><span class="pre">NaN</span></code> or zero retain <code class="docutils literal notranslate"><span class="pre">NaN</span></code> in
+<code class="docutils literal notranslate"><span class="pre">flux_absolute_leaf</span></code>.</p>
+</dd>
+</dl>
+</section>
+<section id="id11">
+<h3>Notes<a class="headerlink" href="#id11" title="Link to this heading">#</a></h3>
+<p>Typical ground-area fluxes for oil-palm whole-tree chambers at LIBZ:</p>
+<ul class="simple">
+<li><p>Daytime net CO₂ uptake: −5 to −15 µmol m⁻² ground s⁻¹
+(negative = uptake by convention).</p></li>
+<li><p>Nighttime respiration: +1 to +4 µmol m⁻² ground s⁻¹.</p></li>
+</ul>
+<p>After dividing by LAI ≈ 3, the leaf-area fluxes become:</p>
+<ul class="simple">
+<li><p>Daytime: −1.7 to −5 µmol m⁻² leaf s⁻¹.</p></li>
+<li><p>Nighttime: +0.3 to +1.3 µmol m⁻² leaf s⁻¹.</p></li>
+</ul>
+<p>Literature gross photosynthesis rates for oil-palm leaves are
+10–25 µmol m⁻² leaf s⁻¹; the net uptake values above are lower
+because they include daytime respiration and whole-canopy integration.</p>
+</section>
+<section id="id12">
+<h3>Examples<a class="headerlink" href="#id12" title="Link to this heading">#</a></h3>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span><span class="o">,</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
+<span class="gp">... </span>    <span class="s2">&quot;flux_absolute&quot;</span><span class="p">:</span> <span class="p">[</span><span class="o">-</span><span class="mf">12.0</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">],</span>
+<span class="gp">... </span>    <span class="s2">&quot;lai_effective&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mf">3.0</span><span class="p">,</span> <span class="mf">3.0</span><span class="p">,</span> <span class="mf">3.0</span><span class="p">],</span>
+<span class="gp">... </span><span class="p">})</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">result</span> <span class="o">=</span> <span class="n">scale_to_leaf_basis</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">result</span><span class="p">[</span><span class="s2">&quot;flux_absolute_leaf&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+<span class="go">[-4.0, 0.6666666666666666, nan]</span>
+</pre></div>
+</div>
+</section>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="palmwtc.flux.scaling.estimate_par_from_radiation">
+<span class="sig-prename descclassname"><span class="pre">palmwtc.flux.scaling.</span></span><span class="sig-name descname"><span class="pre">estimate_par_from_radiation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">radiation_w_m2</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">numpy.ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">conversion_factor</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0.45</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">numpy.ndarray</span></span></span><a class="headerlink" href="#palmwtc.flux.scaling.estimate_par_from_radiation" title="Link to this definition">#</a></dt>
+<dd><p>Estimate PAR from global shortwave radiation using the McCree factor.</p>
+<p>Applies a two-step conversion:</p>
+<ol class="arabic simple">
+<li><p>Multiply global radiation by <em>conversion_factor</em> to isolate the
+PAR waveband (400–700 nm).</p></li>
+<li><p>Convert the PAR energy flux (W m⁻²) to quantum flux
+(µmol m⁻² s⁻¹) using 4.57 µmol J⁻¹, the broadband energy-to-photon
+factor for the solar spectrum determined by McCree (1972) <a class="footnote-reference brackets" href="#id18" id="id13" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a>.</p></li>
+</ol>
+<section id="id14">
+<h3>Parameters<a class="headerlink" href="#id14" title="Link to this heading">#</a></h3>
+<dl class="simple">
+<dt>radiation_w_m2<span class="classifier">float or array-like</span></dt><dd><p>Global shortwave radiation (W m⁻²).</p>
+</dd>
+<dt>conversion_factor<span class="classifier">float, optional</span></dt><dd><p>Fraction of global radiation in the PAR waveband (400–700 nm).
+Default is <code class="docutils literal notranslate"><span class="pre">0.45</span></code>, appropriate for a cloudless tropical sky.
+Range for real conditions: 0.45–0.50.</p>
+</dd>
+</dl>
+</section>
+<section id="id15">
+<h3>Returns<a class="headerlink" href="#id15" title="Link to this heading">#</a></h3>
+<dl class="simple">
+<dt>float or ndarray</dt><dd><p>Estimated PAR in µmol m⁻² s⁻¹.</p>
+</dd>
+</dl>
+</section>
+<section id="id16">
+<h3>Notes<a class="headerlink" href="#id16" title="Link to this heading">#</a></h3>
+<p>The energy-to-quantum conversion factor of 4.57 µmol J⁻¹ is the
+broadband value for the full solar spectrum in the 400–700 nm range,
+as reported by McCree (1972) <a class="footnote-reference brackets" href="#id18" id="id17" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a>.  Using a fixed factor introduces
+a small error under heavy cloud cover (when the spectrum shifts), but
+the bias is generally &lt; 5 % for tropical sites.</p>
+<p>Typical PAR values:</p>
+<ul class="simple">
+<li><p>Full tropical sunlight: ~2 000 µmol m⁻² s⁻¹.</p></li>
+<li><p>Overcast day: ~500 µmol m⁻² s⁻¹.</p></li>
+<li><p>Dawn / dusk: ~200 µmol m⁻² s⁻¹.</p></li>
+</ul>
+</section>
+<section id="references">
+<h3>References<a class="headerlink" href="#references" title="Link to this heading">#</a></h3>
+<aside class="footnote-list brackets">
+<aside class="footnote brackets" id="id18" role="doc-footnote">
+<span class="label"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></span>
+<span class="backrefs">(<a role="doc-backlink" href="#id13">1</a>,<a role="doc-backlink" href="#id17">2</a>)</span>
+<p>McCree, K. J. (1972). Test of current definitions of
+photosynthetically active radiation against leaf
+photosynthesis data. <em>Agricultural Meteorology</em>, 10, 443-453.
+<a class="reference external" href="https://doi.org/10.1016/0002-1571(72)90045-3">https://doi.org/10.1016/0002-1571(72)90045-3</a></p>
+</aside>
+</aside>
+</section>
+<section id="id19">
+<h3>Examples<a class="headerlink" href="#id19" title="Link to this heading">#</a></h3>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="nb">round</span><span class="p">(</span><span class="n">estimate_par_from_radiation</span><span class="p">(</span><span class="mf">1000.0</span><span class="p">),</span> <span class="mi">2</span><span class="p">)</span>
+<span class="go">2056.5</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">round</span><span class="p">(</span><span class="n">estimate_par_from_radiation</span><span class="p">(</span><span class="mf">0.0</span><span class="p">),</span> <span class="mi">2</span><span class="p">)</span>
+<span class="go">0.0</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">vals</span> <span class="o">=</span> <span class="n">estimate_par_from_radiation</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">500.0</span><span class="p">,</span> <span class="mf">1000.0</span><span class="p">]))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="p">[</span><span class="nb">round</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">v</span><span class="p">),</span> <span class="mi">1</span><span class="p">)</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">vals</span><span class="p">]</span>
+<span class="go">[0.0, 1028.2, 2056.5]</span>
+</pre></div>
+</div>
+</section>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="palmwtc.flux.scaling.add_par_estimates">
+<span class="sig-prename descclassname"><span class="pre">palmwtc.flux.scaling.</span></span><span class="sig-name descname"><span class="pre">add_par_estimates</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">flux_df</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">pandas.DataFrame</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">radiation_column</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'GlobalRadiation_Avg'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">par_column</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'PAR_estimated'</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">pandas.DataFrame</span></span></span><a class="headerlink" href="#palmwtc.flux.scaling.add_par_estimates" title="Link to this definition">#</a></dt>
+<dd><p>Add an estimated PAR column to a flux DataFrame.</p>
+<p>Calls <a class="reference internal" href="#palmwtc.flux.scaling.estimate_par_from_radiation" title="palmwtc.flux.scaling.estimate_par_from_radiation"><code class="xref py py-func docutils literal notranslate"><span class="pre">estimate_par_from_radiation()</span></code></a> on <em>radiation_column</em> and
+stores the result in <em>par_column</em>.  When <em>radiation_column</em> is absent,
+<em>par_column</em> is filled with <code class="docutils literal notranslate"><span class="pre">NaN</span></code> and a warning is printed.</p>
+<section id="id20">
+<h3>Parameters<a class="headerlink" href="#id20" title="Link to this heading">#</a></h3>
+<dl class="simple">
+<dt>flux_df<span class="classifier">pd.DataFrame</span></dt><dd><p>Flux cycle data.  Should contain a column with global shortwave
+radiation in W m⁻²; see <em>radiation_column</em>.</p>
+</dd>
+<dt>radiation_column<span class="classifier">str, optional</span></dt><dd><p>Name of the global radiation column in <em>flux_df</em>.
+Default: <code class="docutils literal notranslate"><span class="pre">'GlobalRadiation_Avg'</span></code>.</p>
+</dd>
+<dt>par_column<span class="classifier">str, optional</span></dt><dd><p>Name for the new PAR column.
+Default: <code class="docutils literal notranslate"><span class="pre">'PAR_estimated'</span></code>.</p>
+</dd>
+</dl>
+</section>
+<section id="id21">
+<h3>Returns<a class="headerlink" href="#id21" title="Link to this heading">#</a></h3>
+<dl class="simple">
+<dt>pd.DataFrame</dt><dd><p>Copy of <em>flux_df</em> with one additional column <em>par_column</em>
+(µmol m⁻² s⁻¹).</p>
+</dd>
+</dl>
+</section>
+<section id="id22">
+<h3>Examples<a class="headerlink" href="#id22" title="Link to this heading">#</a></h3>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s2">&quot;GlobalRadiation_Avg&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">500.0</span><span class="p">,</span> <span class="mf">1000.0</span><span class="p">]})</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">result</span> <span class="o">=</span> <span class="n">add_par_estimates</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="p">[</span><span class="nb">round</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">v</span><span class="p">),</span> <span class="mi">1</span><span class="p">)</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">result</span><span class="p">[</span><span class="s2">&quot;PAR_estimated&quot;</span><span class="p">]]</span>
+<span class="go">[0.0, 1028.2, 2056.5]</span>
+</pre></div>
+</div>
+</section>
+</dd></dl>
+
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./api/palmwtc/flux/scaling"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item"><div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#public-api">Public API</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#functions">Functions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-contents">Module Contents</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#palmwtc.flux.scaling.load_biophysical_data"><code class="docutils literal notranslate"><span class="pre">load_biophysical_data()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#palmwtc.flux.scaling.estimate_leaf_area"><code class="docutils literal notranslate"><span class="pre">estimate_leaf_area()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#palmwtc.flux.scaling.calculate_lai_effective"><code class="docutils literal notranslate"><span class="pre">calculate_lai_effective()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#palmwtc.flux.scaling.scale_to_leaf_basis"><code class="docutils literal notranslate"><span class="pre">scale_to_leaf_basis()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#palmwtc.flux.scaling.estimate_par_from_radiation"><code class="docutils literal notranslate"><span class="pre">estimate_par_from_radiation()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#palmwtc.flux.scaling.add_par_estimates"><code class="docutils literal notranslate"><span class="pre">add_par_estimates()</span></code></a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Didi Adisaputro
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2026.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../../../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

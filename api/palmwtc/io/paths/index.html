@@ -1,0 +1,776 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>palmwtc.io.paths &#8212; palmwtc</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../../../../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/styles/sphinx-book-theme.css?v=3c74b3bc" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/togglebutton.css?v=9c3e77be" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/graphviz.css?v=fd3f3429" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../../../../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../../../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="../../../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../../../_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../../../_static/togglebutton.js?v=b8b12719"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'api/palmwtc/io/paths/index';</script>
+    <link rel="canonical" href="https://adisapoetro.github.io/palmwtc/api/palmwtc/io/paths/index.html" />
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../../../index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">palmwtc</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../../../index.html">
+                    palmwtc
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Getting Started</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../../../quickstart.html">Quickstart — your first flux number in 3 minutes</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../../tutorials/index.html">Tutorials</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorials/010_Data_Integration.html">010 — Core data integration (raw → unified monthly)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorials/011_Weather_vs_Chamber.html">011 — Weather station vs chamber</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorials/020_QC_Rule_Based.html">020 — Rule-based QC</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorials/022_QC_ML_Enhanced.html">022 — ML-enhanced QC (optional)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorials/023_Field_Alert_Report.html">023 — Field alert report</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorials/025_Cross_Chamber_Bias.html">025 — Cross-chamber bias comparison (diagnostic)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorials/026_CO2_H2O_Segmented_Bias.html">026 — CO2/H2O segmented bias comparison (diagnostic)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorials/030_Flux_Cycle_Calculation.html">030 — Flux cycle calculation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorials/031_Window_Selection_Reference.html">031 — High-confidence window selection (reference)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorials/032_Window_Selection_Production.html">032 — Physically grounded window selection (production)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorials/033_Science_Validation.html">033 — Science validation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorials/034_QC_and_Window_Audit.html">034 — QC + window audit (visualization)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorials/035_QC_Threshold_Sensitivity.html">035 — QC threshold sensitivity sweep</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorials/000_End_to_End_Synthetic.html">000 — End-to-end on synthetic data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorials/001_End_to_End_LIBZ.html">001 - End-to-end on LIBZ data (raw .dat -&gt; validation)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorials/010_Data_Integration.html">010 — Core data integration (raw → unified monthly)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorials/011_Weather_vs_Chamber.html">011 — Weather station vs chamber</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorials/020_QC_Rule_Based.html">020 — Rule-based QC</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorials/022_QC_ML_Enhanced.html">022 — ML-enhanced QC (optional)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorials/023_Field_Alert_Report.html">023 — Field alert report</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorials/025_Cross_Chamber_Bias.html">025 — Cross-chamber bias comparison (diagnostic)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorials/026_CO2_H2O_Segmented_Bias.html">026 — CO2/H2O segmented bias comparison (diagnostic)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorials/030_Flux_Cycle_Calculation.html">030 — Flux cycle calculation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorials/031_Window_Selection_Reference.html">031 — High-confidence window selection (reference)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorials/032_Window_Selection_Production.html">032 — Physically grounded window selection (production)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorials/033_Science_Validation.html">033 — Science validation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorials/034_QC_and_Window_Audit.html">034 — QC + window audit (visualization)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorials/035_QC_Threshold_Sensitivity.html">035 — QC threshold sensitivity sweep</a></li>
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Science Reference</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../../../science/index.html">Science Reference</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/adisapoetro/palmwtc" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/adisapoetro/palmwtc/edit/main/docs/api/palmwtc/io/paths/index.rst" target="_blank"
+   class="btn btn-sm btn-source-edit-button dropdown-item"
+   title="Suggest edit"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="btn__text-container">Suggest edit</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/adisapoetro/palmwtc/issues/new?title=Issue%20on%20page%20%2Fapi/palmwtc/io/paths/index.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../../../_sources/api/palmwtc/io/paths/index.rst" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.rst</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button pst-navbar-icon"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm pst-navbar-icon" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>palmwtc.io.paths</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#functions">Functions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-contents">Module Contents</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#palmwtc.io.paths.find_latest_qc_file"><code class="docutils literal notranslate"><span class="pre">find_latest_qc_file()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#palmwtc.io.paths.get_usecols"><code class="docutils literal notranslate"><span class="pre">get_usecols()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#palmwtc.io.paths.data_integrity_report"><code class="docutils literal notranslate"><span class="pre">data_integrity_report()</span></code></a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="module-palmwtc.io.paths">
+<span id="palmwtc-io-paths"></span><h1>palmwtc.io.paths<a class="headerlink" href="#module-palmwtc.io.paths" title="Link to this heading">#</a></h1>
+<p>Data-path helpers and QC-file resolution for palmwtc input files.</p>
+<p>This module provides utilities for locating QC output files produced by
+the palmwtc pipeline and for inspecting the column structure of those
+files before loading them into memory.</p>
+<p>The three public functions cover the most common file-access patterns:</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#palmwtc.io.paths.find_latest_qc_file" title="palmwtc.io.paths.find_latest_qc_file"><code class="xref py py-func docutils literal notranslate"><span class="pre">find_latest_qc_file()</span></code></a> — locate the correct QC output parquet or
+CSV for a given pipeline stage.</p></li>
+<li><p><a class="reference internal" href="#palmwtc.io.paths.get_usecols" title="palmwtc.io.paths.get_usecols"><code class="xref py py-func docutils literal notranslate"><span class="pre">get_usecols()</span></code></a> — determine which columns are worth loading from a
+QC file, avoiding unnecessary memory allocation.</p></li>
+<li><p><a class="reference internal" href="#palmwtc.io.paths.data_integrity_report" title="palmwtc.io.paths.data_integrity_report"><code class="xref py py-func docutils literal notranslate"><span class="pre">data_integrity_report()</span></code></a> — generate a one-row summary DataFrame
+describing the temporal coverage, duplicate rate, gap rate, missing
+value rates, and WPL-input validity of a loaded QC dataset.</p></li>
+</ul>
+<section id="functions">
+<h2>Functions<a class="headerlink" href="#functions" title="Link to this heading">#</a></h2>
+<div class="pst-scrollable-table-container"><table class="autosummary longtable table autosummary">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#palmwtc.io.paths.find_latest_qc_file" title="palmwtc.io.paths.find_latest_qc_file"><code class="xref py py-obj docutils literal notranslate"><span class="pre">find_latest_qc_file</span></code></a>(→ pathlib.Path | None)</p></td>
+<td><p>Find a QC output file in <em>qc_dir</em> by upstream pipeline stage.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#palmwtc.io.paths.get_usecols" title="palmwtc.io.paths.get_usecols"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_usecols</span></code></a>(→ list[str])</p></td>
+<td><p>Return the columns worth loading from a QC output file.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#palmwtc.io.paths.data_integrity_report" title="palmwtc.io.paths.data_integrity_report"><code class="xref py py-obj docutils literal notranslate"><span class="pre">data_integrity_report</span></code></a>() → pandas.DataFrame)</p></td>
+<td><p>Generate a one-row DataFrame summarising data integrity metrics.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="module-contents">
+<h2>Module Contents<a class="headerlink" href="#module-contents" title="Link to this heading">#</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="palmwtc.io.paths.find_latest_qc_file">
+<span class="sig-prename descclassname"><span class="pre">palmwtc.io.paths.</span></span><span class="sig-name descname"><span class="pre">find_latest_qc_file</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">qc_dir</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">pathlib.Path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pattern</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'QC_Flagged_Data_*.csv'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">source</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'020'</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">pathlib.Path</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></span><a class="headerlink" href="#palmwtc.io.paths.find_latest_qc_file" title="Link to this definition">#</a></dt>
+<dd><p>Find a QC output file in <em>qc_dir</em> by upstream pipeline stage.</p>
+<p>Searches for the canonical output file for a given pipeline stage.
+When the named file does not exist, falls back through a hierarchy
+of legacy filenames before returning <code class="docutils literal notranslate"><span class="pre">None</span></code>.</p>
+<section id="lookup-order">
+<h3>Lookup order<a class="headerlink" href="#lookup-order" title="Link to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p>Named stage file (e.g. <code class="docutils literal notranslate"><span class="pre">020_rule_qc_output.parquet</span></code>).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">QC_Flagged_Data_latest.parquet</span></code> (legacy fixed name).</p></li>
+<li><p>Newest <code class="docutils literal notranslate"><span class="pre">QC_Flagged_Data_*.parquet</span></code> (legacy timestamped).</p></li>
+<li><p>Newest file matching <em>pattern</em> (CSV glob, newest-first).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">None</span></code> if nothing matches.</p></li>
+</ol>
+</section>
+<section id="parameters">
+<h3>Parameters<a class="headerlink" href="#parameters" title="Link to this heading">#</a></h3>
+<dl>
+<dt>qc_dir<span class="classifier">str or pathlib.Path</span></dt><dd><p>Directory to search for QC output files.</p>
+</dd>
+<dt>pattern<span class="classifier">str, optional</span></dt><dd><p>Glob pattern used for the final CSV fallback.
+Default: <code class="docutils literal notranslate"><span class="pre">&quot;QC_Flagged_Data_*.csv&quot;</span></code>.</p>
+</dd>
+<dt>source<span class="classifier">{“020”, “022”, “025”, “026”}, optional</span></dt><dd><p>Which pipeline stage’s output to look for:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">&quot;020&quot;</span></code> → <code class="docutils literal notranslate"><span class="pre">020_rule_qc_output.parquet</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&quot;022&quot;</span></code> → <code class="docutils literal notranslate"><span class="pre">022_ml_qc_output.parquet</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&quot;025&quot;</span></code> → <code class="docutils literal notranslate"><span class="pre">025_cross_chamber_corrected.parquet</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&quot;026&quot;</span></code> → <code class="docutils literal notranslate"><span class="pre">026_segmented_bias_corrected.parquet</span></code></p></li>
+</ul>
+<p>Default: <code class="docutils literal notranslate"><span class="pre">&quot;020&quot;</span></code>.</p>
+</dd>
+</dl>
+</section>
+<section id="returns">
+<h3>Returns<a class="headerlink" href="#returns" title="Link to this heading">#</a></h3>
+<dl class="simple">
+<dt>pathlib.Path or None</dt><dd><p>Absolute path to the best-matching file, or <code class="docutils literal notranslate"><span class="pre">None</span></code> if no
+file was found.</p>
+</dd>
+</dl>
+</section>
+<section id="examples">
+<h3>Examples<a class="headerlink" href="#examples" title="Link to this heading">#</a></h3>
+<p>Create a directory with a stage-020 output and resolve it:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span><span class="w"> </span><span class="nn">tempfile</span><span class="o">,</span><span class="w"> </span><span class="nn">pathlib</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">with</span> <span class="n">tempfile</span><span class="o">.</span><span class="n">TemporaryDirectory</span><span class="p">()</span> <span class="k">as</span> <span class="n">d</span><span class="p">:</span>
+<span class="gp">... </span>    <span class="n">p</span> <span class="o">=</span> <span class="n">pathlib</span><span class="o">.</span><span class="n">Path</span><span class="p">(</span><span class="n">d</span><span class="p">)</span>
+<span class="gp">... </span>    <span class="n">_</span> <span class="o">=</span> <span class="p">(</span><span class="n">p</span> <span class="o">/</span> <span class="s2">&quot;020_rule_qc_output.parquet&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">touch</span><span class="p">()</span>
+<span class="gp">... </span>    <span class="n">result</span> <span class="o">=</span> <span class="n">find_latest_qc_file</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">source</span><span class="o">=</span><span class="s2">&quot;020&quot;</span><span class="p">)</span>
+<span class="gp">... </span>    <span class="n">result</span><span class="o">.</span><span class="n">name</span>
+<span class="go">&#39;020_rule_qc_output.parquet&#39;</span>
+</pre></div>
+</div>
+<p>When the named file is absent the function returns <code class="docutils literal notranslate"><span class="pre">None</span></code>:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span><span class="w"> </span><span class="nn">tempfile</span><span class="o">,</span><span class="w"> </span><span class="nn">pathlib</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">with</span> <span class="n">tempfile</span><span class="o">.</span><span class="n">TemporaryDirectory</span><span class="p">()</span> <span class="k">as</span> <span class="n">d</span><span class="p">:</span>
+<span class="gp">... </span>    <span class="n">find_latest_qc_file</span><span class="p">(</span><span class="n">pathlib</span><span class="o">.</span><span class="n">Path</span><span class="p">(</span><span class="n">d</span><span class="p">),</span> <span class="n">source</span><span class="o">=</span><span class="s2">&quot;020&quot;</span><span class="p">)</span> <span class="ow">is</span> <span class="kc">None</span>
+<span class="go">True</span>
+</pre></div>
+</div>
+</section>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="palmwtc.io.paths.get_usecols">
+<span class="sig-prename descclassname"><span class="pre">palmwtc.io.paths.</span></span><span class="sig-name descname"><span class="pre">get_usecols</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">pathlib.Path</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#palmwtc.io.paths.get_usecols" title="Link to this definition">#</a></dt>
+<dd><p>Return the columns worth loading from a QC output file.</p>
+<p>Reads only the schema or header of the file (not the data rows) and
+returns the subset of columns that are needed for flux calculations
+and WPL corrections. Irrelevant columns are excluded to limit memory
+use when calling <code class="xref py py-func docutils literal notranslate"><span class="pre">pandas.read_parquet()</span></code> or
+<code class="xref py py-func docutils literal notranslate"><span class="pre">pandas.read_csv()</span></code>.</p>
+<p>The <em>required</em> set is:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">TIMESTAMP</span><span class="p">,</span> <span class="n">CO2_C1</span><span class="p">,</span> <span class="n">CO2_C2</span><span class="p">,</span> <span class="n">Temp_1_C1</span><span class="p">,</span> <span class="n">Temp_1_C2</span><span class="p">,</span>
+<span class="n">CO2_C1_qc_flag</span><span class="p">,</span> <span class="n">CO2_C2_qc_flag</span><span class="p">,</span>
+<span class="n">H2O_C1</span><span class="p">,</span> <span class="n">H2O_C2</span><span class="p">,</span> <span class="n">H2O_C1_qc_flag</span><span class="p">,</span> <span class="n">H2O_C2_qc_flag</span><span class="p">,</span>
+<span class="n">H2O_C1_corrected</span><span class="p">,</span> <span class="n">H2O_C2_corrected</span>
+</pre></div>
+</div>
+<p>The <em>optional</em> set (included when present) is:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">RH_1_C1</span><span class="p">,</span> <span class="n">RH_1_C2</span>
+</pre></div>
+</div>
+<section id="id1">
+<h3>Parameters<a class="headerlink" href="#id1" title="Link to this heading">#</a></h3>
+<dl class="simple">
+<dt>path<span class="classifier">str or pathlib.Path</span></dt><dd><p>Path to a QC output file. Suffix determines the read strategy:
+<code class="docutils literal notranslate"><span class="pre">&quot;.parquet&quot;</span></code> reads only the Parquet footer (fast, no data
+rows); any other extension reads the first row of a CSV header.</p>
+</dd>
+</dl>
+</section>
+<section id="id2">
+<h3>Returns<a class="headerlink" href="#id2" title="Link to this heading">#</a></h3>
+<dl class="simple">
+<dt>list of str</dt><dd><p>Column names present in the file that belong to the required or
+optional sets, in the order they appear in the file schema.</p>
+</dd>
+</dl>
+</section>
+<section id="id3">
+<h3>Examples<a class="headerlink" href="#id3" title="Link to this heading">#</a></h3>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span><span class="w"> </span><span class="nn">tempfile</span><span class="o">,</span><span class="w"> </span><span class="nn">pathlib</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">with</span> <span class="n">tempfile</span><span class="o">.</span><span class="n">TemporaryDirectory</span><span class="p">()</span> <span class="k">as</span> <span class="n">d</span><span class="p">:</span>
+<span class="gp">... </span>    <span class="n">f</span> <span class="o">=</span> <span class="n">pathlib</span><span class="o">.</span><span class="n">Path</span><span class="p">(</span><span class="n">d</span><span class="p">)</span> <span class="o">/</span> <span class="s2">&quot;qc.csv&quot;</span>
+<span class="gp">... </span>    <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;TIMESTAMP&quot;</span><span class="p">,</span> <span class="s2">&quot;CO2_C1&quot;</span><span class="p">,</span> <span class="s2">&quot;junk&quot;</span><span class="p">])</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="gp">... </span>    <span class="n">cols</span> <span class="o">=</span> <span class="n">get_usecols</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+<span class="gp">... </span>    <span class="s2">&quot;TIMESTAMP&quot;</span> <span class="ow">in</span> <span class="n">cols</span> <span class="ow">and</span> <span class="s2">&quot;CO2_C1&quot;</span> <span class="ow">in</span> <span class="n">cols</span> <span class="ow">and</span> <span class="s2">&quot;junk&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">cols</span>
+<span class="go">True</span>
+</pre></div>
+</div>
+</section>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="palmwtc.io.paths.data_integrity_report">
+<span class="sig-prename descclassname"><span class="pre">palmwtc.io.paths.</span></span><span class="sig-name descname"><span class="pre">data_integrity_report</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">pandas.DataFrame</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cycle_gap_sec</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">300</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">h2o_valid_range</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">(0.0,</span> <span class="pre">60.0)</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">pandas.DataFrame</span></span></span><a class="headerlink" href="#palmwtc.io.paths.data_integrity_report" title="Link to this definition">#</a></dt>
+<dd><p>Generate a one-row DataFrame summarising data integrity metrics.</p>
+<p>Computes coverage, timing regularity, duplicate rate, gap rate,
+per-column missing-value rates, and the fraction of rows that
+provide valid WPL (Webb-Pearman-Leuning) inputs.</p>
+<section id="id4">
+<h3>Parameters<a class="headerlink" href="#id4" title="Link to this heading">#</a></h3>
+<dl class="simple">
+<dt>data<span class="classifier">pandas.DataFrame</span></dt><dd><p>QC output table.  Must contain a <code class="docutils literal notranslate"><span class="pre">&quot;TIMESTAMP&quot;</span></code> column of
+<code class="xref py py-class docutils literal notranslate"><span class="pre">pandas.Timestamp</span></code> (or datetime-like) values.</p>
+</dd>
+<dt>cycle_gap_sec<span class="classifier">float, optional</span></dt><dd><p>Threshold in seconds above which a consecutive-timestamp gap is
+classified as a data gap.  Default: <code class="docutils literal notranslate"><span class="pre">300</span></code> (5 minutes).</p>
+</dd>
+<dt>h2o_valid_range<span class="classifier">tuple of (float, float), optional</span></dt><dd><p><code class="docutils literal notranslate"><span class="pre">(low,</span> <span class="pre">high)</span></code> bounds (inclusive) for H₂O concentration in
+mmol mol⁻¹.  Rows outside this range are counted as invalid WPL
+inputs.  Default: <code class="docutils literal notranslate"><span class="pre">(0.0,</span> <span class="pre">60.0)</span></code>.</p>
+</dd>
+</dl>
+</section>
+<section id="id5">
+<h3>Returns<a class="headerlink" href="#id5" title="Link to this heading">#</a></h3>
+<dl>
+<dt>pandas.DataFrame</dt><dd><p>Single-row DataFrame with the following columns:</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">rows</span></code></dt><dd><p>Total number of rows in <em>data</em>.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">start</span></code></dt><dd><p>Earliest <code class="docutils literal notranslate"><span class="pre">TIMESTAMP</span></code> value.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">end</span></code></dt><dd><p>Latest <code class="docutils literal notranslate"><span class="pre">TIMESTAMP</span></code> value.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">median_dt_sec</span></code></dt><dd><p>Median inter-row interval in seconds.  <code class="docutils literal notranslate"><span class="pre">NaN</span></code> if fewer
+than two rows.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">pct_duplicates</span></code></dt><dd><p>Percentage of rows with a duplicated <code class="docutils literal notranslate"><span class="pre">TIMESTAMP</span></code>.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">gaps_over_cycle_pct</span></code></dt><dd><p>Percentage of consecutive intervals exceeding
+<em>cycle_gap_sec</em>.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">missing_&lt;col&gt;</span></code></dt><dd><p>Percentage of <code class="docutils literal notranslate"><span class="pre">NaN</span></code> values for each tracked column
+(<code class="docutils literal notranslate"><span class="pre">CO2_C1</span></code>, <code class="docutils literal notranslate"><span class="pre">CO2_C2</span></code>, <code class="docutils literal notranslate"><span class="pre">Temp_1_C1</span></code>, <code class="docutils literal notranslate"><span class="pre">Temp_1_C2</span></code>,
+<code class="docutils literal notranslate"><span class="pre">H2O_C1</span></code>, <code class="docutils literal notranslate"><span class="pre">H2O_C2</span></code>, <code class="docutils literal notranslate"><span class="pre">H2O_C1_corrected</span></code>,
+<code class="docutils literal notranslate"><span class="pre">H2O_C2_corrected</span></code>).  <code class="docutils literal notranslate"><span class="pre">NaN</span></code> when the column is absent.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">wpl_input_valid_pct_C1</span></code></dt><dd><p>Percentage of rows where H₂O for chamber 1 is finite and
+within <em>h2o_valid_range</em> and <code class="docutils literal notranslate"><span class="pre">1000</span> <span class="pre">-</span> <span class="pre">H2O</span> <span class="pre">&gt;</span> <span class="pre">0</span></code>.
+Prefers <code class="docutils literal notranslate"><span class="pre">H2O_C1_corrected</span></code> over <code class="docutils literal notranslate"><span class="pre">H2O_C1</span></code>.
+<code class="docutils literal notranslate"><span class="pre">NaN</span></code> when neither column is present.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">wpl_input_valid_pct_C2</span></code></dt><dd><p>Same as above for chamber 2.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</section>
+<section id="id6">
+<h3>Examples<a class="headerlink" href="#id6" title="Link to this heading">#</a></h3>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span><span class="o">,</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ts</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">date_range</span><span class="p">(</span><span class="s2">&quot;2024-01-01&quot;</span><span class="p">,</span> <span class="n">periods</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">freq</span><span class="o">=</span><span class="s2">&quot;30s&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
+<span class="gp">... </span>    <span class="s2">&quot;TIMESTAMP&quot;</span><span class="p">:</span> <span class="n">ts</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="s2">&quot;CO2_C1&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mf">410.0</span><span class="p">,</span> <span class="mf">411.0</span><span class="p">,</span> <span class="mf">412.0</span><span class="p">,</span> <span class="mf">413.0</span><span class="p">],</span>
+<span class="gp">... </span>    <span class="s2">&quot;H2O_C1&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mf">15.0</span><span class="p">,</span> <span class="mf">16.0</span><span class="p">,</span> <span class="mf">17.0</span><span class="p">,</span> <span class="mf">18.0</span><span class="p">],</span>
+<span class="gp">... </span><span class="p">})</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">report</span> <span class="o">=</span> <span class="n">data_integrity_report</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">int</span><span class="p">(</span><span class="n">report</span><span class="p">[</span><span class="s2">&quot;rows&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="go">4</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">float</span><span class="p">(</span><span class="n">report</span><span class="p">[</span><span class="s2">&quot;median_dt_sec&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="go">30.0</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">float</span><span class="p">(</span><span class="n">report</span><span class="p">[</span><span class="s2">&quot;pct_duplicates&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="go">0.0</span>
+</pre></div>
+</div>
+</section>
+</dd></dl>
+
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./api/palmwtc/io/paths"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item"><div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#functions">Functions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-contents">Module Contents</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#palmwtc.io.paths.find_latest_qc_file"><code class="docutils literal notranslate"><span class="pre">find_latest_qc_file()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#palmwtc.io.paths.get_usecols"><code class="docutils literal notranslate"><span class="pre">get_usecols()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#palmwtc.io.paths.data_integrity_report"><code class="docutils literal notranslate"><span class="pre">data_integrity_report()</span></code></a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Didi Adisaputro
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2026.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../../../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

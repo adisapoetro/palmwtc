@@ -1,0 +1,2057 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>palmwtc.viz &#8212; palmwtc</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/styles/sphinx-book-theme.css?v=3c74b3bc" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/togglebutton.css?v=9c3e77be" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/graphviz.css?v=fd3f3429" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../../../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="../../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../../_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../../_static/togglebutton.js?v=b8b12719"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'api/palmwtc/viz/index';</script>
+    <link rel="canonical" href="https://adisapoetro.github.io/palmwtc/api/palmwtc/viz/index.html" />
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../../index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">palmwtc</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../../index.html">
+                    palmwtc
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Getting Started</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../../quickstart.html">Quickstart — your first flux number in 3 minutes</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../tutorials/index.html">Tutorials</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../tutorials/010_Data_Integration.html">010 — Core data integration (raw → unified monthly)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../tutorials/011_Weather_vs_Chamber.html">011 — Weather station vs chamber</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../tutorials/020_QC_Rule_Based.html">020 — Rule-based QC</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../tutorials/022_QC_ML_Enhanced.html">022 — ML-enhanced QC (optional)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../tutorials/023_Field_Alert_Report.html">023 — Field alert report</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../tutorials/025_Cross_Chamber_Bias.html">025 — Cross-chamber bias comparison (diagnostic)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../tutorials/026_CO2_H2O_Segmented_Bias.html">026 — CO2/H2O segmented bias comparison (diagnostic)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../tutorials/030_Flux_Cycle_Calculation.html">030 — Flux cycle calculation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../tutorials/031_Window_Selection_Reference.html">031 — High-confidence window selection (reference)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../tutorials/032_Window_Selection_Production.html">032 — Physically grounded window selection (production)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../tutorials/033_Science_Validation.html">033 — Science validation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../tutorials/034_QC_and_Window_Audit.html">034 — QC + window audit (visualization)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../tutorials/035_QC_Threshold_Sensitivity.html">035 — QC threshold sensitivity sweep</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../tutorials/000_End_to_End_Synthetic.html">000 — End-to-end on synthetic data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../tutorials/001_End_to_End_LIBZ.html">001 - End-to-end on LIBZ data (raw .dat -&gt; validation)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../tutorials/010_Data_Integration.html">010 — Core data integration (raw → unified monthly)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../tutorials/011_Weather_vs_Chamber.html">011 — Weather station vs chamber</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../tutorials/020_QC_Rule_Based.html">020 — Rule-based QC</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../tutorials/022_QC_ML_Enhanced.html">022 — ML-enhanced QC (optional)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../tutorials/023_Field_Alert_Report.html">023 — Field alert report</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../tutorials/025_Cross_Chamber_Bias.html">025 — Cross-chamber bias comparison (diagnostic)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../tutorials/026_CO2_H2O_Segmented_Bias.html">026 — CO2/H2O segmented bias comparison (diagnostic)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../tutorials/030_Flux_Cycle_Calculation.html">030 — Flux cycle calculation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../tutorials/031_Window_Selection_Reference.html">031 — High-confidence window selection (reference)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../tutorials/032_Window_Selection_Production.html">032 — Physically grounded window selection (production)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../tutorials/033_Science_Validation.html">033 — Science validation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../tutorials/034_QC_and_Window_Audit.html">034 — QC + window audit (visualization)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../tutorials/035_QC_Threshold_Sensitivity.html">035 — QC threshold sensitivity sweep</a></li>
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Science Reference</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../../science/index.html">Science Reference</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/adisapoetro/palmwtc" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/adisapoetro/palmwtc/edit/main/docs/api/palmwtc/viz/index.rst" target="_blank"
+   class="btn btn-sm btn-source-edit-button dropdown-item"
+   title="Suggest edit"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="btn__text-container">Suggest edit</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/adisapoetro/palmwtc/issues/new?title=Issue%20on%20page%20%2Fapi/palmwtc/viz/index.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../../_sources/api/palmwtc/viz/index.rst" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.rst</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button pst-navbar-icon"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm pst-navbar-icon" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>palmwtc.viz</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#submodules">Submodules</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#functions">Functions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#package-contents">Package Contents</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#palmwtc.viz.plot_chamber_resizing_validation"><code class="docutils literal notranslate"><span class="pre">plot_chamber_resizing_validation()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#palmwtc.viz.plot_cycle_by_id"><code class="docutils literal notranslate"><span class="pre">plot_cycle_by_id()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#palmwtc.viz.plot_cycle_diagnostics"><code class="docutils literal notranslate"><span class="pre">plot_cycle_diagnostics()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#palmwtc.viz.plot_specific_cycle"><code class="docutils literal notranslate"><span class="pre">plot_specific_cycle()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#palmwtc.viz.show_sample_cycles"><code class="docutils literal notranslate"><span class="pre">show_sample_cycles()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#palmwtc.viz.interactive_flux_dashboard"><code class="docutils literal notranslate"><span class="pre">interactive_flux_dashboard()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#palmwtc.viz.filter_plot"><code class="docutils literal notranslate"><span class="pre">filter_plot()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#palmwtc.viz.plot_breakpoints_analysis"><code class="docutils literal notranslate"><span class="pre">plot_breakpoints_analysis()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#palmwtc.viz.plot_drift_and_hq_timeseries"><code class="docutils literal notranslate"><span class="pre">plot_drift_and_hq_timeseries()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#palmwtc.viz.plot_qc_comparison"><code class="docutils literal notranslate"><span class="pre">plot_qc_comparison()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#palmwtc.viz.plot_qc_summary_heatmap"><code class="docutils literal notranslate"><span class="pre">plot_qc_summary_heatmap()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#palmwtc.viz.plot_soil_var"><code class="docutils literal notranslate"><span class="pre">plot_soil_var()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#palmwtc.viz.visualize_breakpoints"><code class="docutils literal notranslate"><span class="pre">visualize_breakpoints()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#palmwtc.viz.visualize_missing_data"><code class="docutils literal notranslate"><span class="pre">visualize_missing_data()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#palmwtc.viz.visualize_qc_flags"><code class="docutils literal notranslate"><span class="pre">visualize_qc_flags()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#palmwtc.viz.set_style"><code class="docutils literal notranslate"><span class="pre">set_style()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#palmwtc.viz.plot_concentration_slope_vs_tree_age"><code class="docutils literal notranslate"><span class="pre">plot_concentration_slope_vs_tree_age()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#palmwtc.viz.plot_flux_heatmap"><code class="docutils literal notranslate"><span class="pre">plot_flux_heatmap()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#palmwtc.viz.plot_flux_vs_tree_age"><code class="docutils literal notranslate"><span class="pre">plot_flux_vs_tree_age()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#palmwtc.viz.plot_tropical_seasonal_diurnal"><code class="docutils literal notranslate"><span class="pre">plot_tropical_seasonal_diurnal()</span></code></a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="module-palmwtc.viz">
+<span id="palmwtc-viz"></span><h1>palmwtc.viz<a class="headerlink" href="#module-palmwtc.viz" title="Link to this heading">#</a></h1>
+<p>Visualization helpers — static (matplotlib) and interactive (plotly).</p>
+<p>Five families:</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="style/index.html#module-palmwtc.viz.style" title="palmwtc.viz.style"><code class="xref py py-mod docutils literal notranslate"><span class="pre">style</span></code></a> — rcParams defaults for consistent look.</p></li>
+<li><p><a class="reference internal" href="timeseries/index.html#module-palmwtc.viz.timeseries" title="palmwtc.viz.timeseries"><code class="xref py py-mod docutils literal notranslate"><span class="pre">timeseries</span></code></a> — seasonal / diurnal / tree-age patterns, flux heatmaps.</p></li>
+<li><p><a class="reference internal" href="diagnostics/index.html#module-palmwtc.viz.diagnostics" title="palmwtc.viz.diagnostics"><code class="xref py py-mod docutils literal notranslate"><span class="pre">diagnostics</span></code></a> — per-cycle inspection plots.</p></li>
+<li><p><a class="reference internal" href="qc_plots/index.html#module-palmwtc.viz.qc_plots" title="palmwtc.viz.qc_plots"><code class="xref py py-mod docutils literal notranslate"><span class="pre">qc_plots</span></code></a> — QC flag visualisations.</p></li>
+<li><p><a class="reference internal" href="interactive/index.html#module-palmwtc.viz.interactive" title="palmwtc.viz.interactive"><code class="xref py py-mod docutils literal notranslate"><span class="pre">interactive</span></code></a> — Plotly-based interactive dashboards (use inside Jupyter only).</p></li>
+</ul>
+<p>All static helpers (<code class="docutils literal notranslate"><span class="pre">style</span></code>, <code class="docutils literal notranslate"><span class="pre">diagnostics</span></code>, <code class="docutils literal notranslate"><span class="pre">timeseries</span></code>, <code class="docutils literal notranslate"><span class="pre">qc_plots</span></code>) work
+on a core install.  Interactive helpers require <code class="docutils literal notranslate"><span class="pre">palmwtc[interactive]</span></code> for
+ipywidgets / anywidget; bare imports succeed without the extra, but calling
+the dashboard raises an informative error at runtime.</p>
+<section id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Link to this heading">#</a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="diagnostics/index.html">palmwtc.viz.diagnostics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="interactive/index.html">palmwtc.viz.interactive</a></li>
+<li class="toctree-l1"><a class="reference internal" href="qc_plots/index.html">palmwtc.viz.qc_plots</a></li>
+<li class="toctree-l1"><a class="reference internal" href="style/index.html">palmwtc.viz.style</a></li>
+<li class="toctree-l1"><a class="reference internal" href="timeseries/index.html">palmwtc.viz.timeseries</a></li>
+</ul>
+</div>
+</section>
+<section id="functions">
+<h2>Functions<a class="headerlink" href="#functions" title="Link to this heading">#</a></h2>
+<div class="pst-scrollable-table-container"><table class="autosummary longtable table autosummary">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#palmwtc.viz.plot_chamber_resizing_validation" title="palmwtc.viz.plot_chamber_resizing_validation"><code class="xref py py-obj docutils literal notranslate"><span class="pre">plot_chamber_resizing_validation</span></code></a>(...)</p></td>
+<td><p>Plot the flux signal in a ±60-day window around the chamber resizing date.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#palmwtc.viz.plot_cycle_by_id" title="palmwtc.viz.plot_cycle_by_id"><code class="xref py py-obj docutils literal notranslate"><span class="pre">plot_cycle_by_id</span></code></a>(→ None)</p></td>
+<td><p>Plot diagnostics for a cycle identified by chamber name and cycle ID.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#palmwtc.viz.plot_cycle_diagnostics" title="palmwtc.viz.plot_cycle_diagnostics"><code class="xref py py-obj docutils literal notranslate"><span class="pre">plot_cycle_diagnostics</span></code></a>(→ None)</p></td>
+<td><p>Plot a single flux cycle with its fit line, residuals, and QC metadata.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#palmwtc.viz.plot_specific_cycle" title="palmwtc.viz.plot_specific_cycle"><code class="xref py py-obj docutils literal notranslate"><span class="pre">plot_specific_cycle</span></code></a>(→ None)</p></td>
+<td><p>Plot diagnostics for a cycle identified by chamber name and datetime string.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#palmwtc.viz.show_sample_cycles" title="palmwtc.viz.show_sample_cycles"><code class="xref py py-obj docutils literal notranslate"><span class="pre">show_sample_cycles</span></code></a>(→ None)</p></td>
+<td><p>Plot a random sample of cycles from a given QC tier.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#palmwtc.viz.interactive_flux_dashboard" title="palmwtc.viz.interactive_flux_dashboard"><code class="xref py py-obj docutils literal notranslate"><span class="pre">interactive_flux_dashboard</span></code></a>(→ None)</p></td>
+<td><p>Multi-chamber flux dashboard with QC filters and zoom-to-reveal detail.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#palmwtc.viz.filter_plot" title="palmwtc.viz.filter_plot"><code class="xref py py-obj docutils literal notranslate"><span class="pre">filter_plot</span></code></a>(→ None)</p></td>
+<td><p>Draw a two-chamber overlay for one variable onto an existing axis.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#palmwtc.viz.plot_breakpoints_analysis" title="palmwtc.viz.plot_breakpoints_analysis"><code class="xref py py-obj docutils literal notranslate"><span class="pre">plot_breakpoints_analysis</span></code></a>(, max_table_rows, ...)</p></td>
+<td><p>Two-figure breakpoint analysis: annotated timeseries + breakpoint table.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#palmwtc.viz.plot_drift_and_hq_timeseries" title="palmwtc.viz.plot_drift_and_hq_timeseries"><code class="xref py py-obj docutils literal notranslate"><span class="pre">plot_drift_and_hq_timeseries</span></code></a>(→ None)</p></td>
+<td><p>Two-panel figure: drift score (top) and Flag-0 timeseries (bottom).</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#palmwtc.viz.plot_qc_comparison" title="palmwtc.viz.plot_qc_comparison"><code class="xref py py-obj docutils literal notranslate"><span class="pre">plot_qc_comparison</span></code></a>(→ matplotlib.figure.Figure)</p></td>
+<td><p>2x2 panel comparison of QC flag percentages across multiple variables.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#palmwtc.viz.plot_qc_summary_heatmap" title="palmwtc.viz.plot_qc_summary_heatmap"><code class="xref py py-obj docutils literal notranslate"><span class="pre">plot_qc_summary_heatmap</span></code></a>() → matplotlib.figure.Figure)</p></td>
+<td><p>Heatmap of QC pass/suspect/fail percentages for all variables.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#palmwtc.viz.plot_soil_var" title="palmwtc.viz.plot_soil_var"><code class="xref py py-obj docutils literal notranslate"><span class="pre">plot_soil_var</span></code></a>(→ bool)</p></td>
+<td><p>Draw multi-depth soil sensor profiles onto an existing axis.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#palmwtc.viz.visualize_breakpoints" title="palmwtc.viz.visualize_breakpoints"><code class="xref py py-obj docutils literal notranslate"><span class="pre">visualize_breakpoints</span></code></a>(→ None)</p></td>
+<td><p>Three-panel overview of breakpoints with kept/ignored distinction.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#palmwtc.viz.visualize_missing_data" title="palmwtc.viz.visualize_missing_data"><code class="xref py py-obj docutils literal notranslate"><span class="pre">visualize_missing_data</span></code></a>() → matplotlib.figure.Figure | None)</p></td>
+<td><p>Two-panel figure showing data availability and gap distribution.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#palmwtc.viz.visualize_qc_flags" title="palmwtc.viz.visualize_qc_flags"><code class="xref py py-obj docutils literal notranslate"><span class="pre">visualize_qc_flags</span></code></a>() → matplotlib.figure.Figure | None)</p></td>
+<td><p>Multi-panel scatter plot of QC flags with per-method breakdown.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#palmwtc.viz.set_style" title="palmwtc.viz.set_style"><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_style</span></code></a>(→ None)</p></td>
+<td><p>Apply the standard palmwtc matplotlib/seaborn theme.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#palmwtc.viz.plot_concentration_slope_vs_tree_age" title="palmwtc.viz.plot_concentration_slope_vs_tree_age"><code class="xref py py-obj docutils literal notranslate"><span class="pre">plot_concentration_slope_vs_tree_age</span></code></a>(...)</p></td>
+<td><p>Plot raw concentration slope vs tree age, faceted by chamber.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#palmwtc.viz.plot_flux_heatmap" title="palmwtc.viz.plot_flux_heatmap"><code class="xref py py-obj docutils literal notranslate"><span class="pre">plot_flux_heatmap</span></code></a>(→ matplotlib.pyplot.Figure | None)</p></td>
+<td><p>Heatmap of mean flux by hour-of-day and month-year.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#palmwtc.viz.plot_flux_vs_tree_age" title="palmwtc.viz.plot_flux_vs_tree_age"><code class="xref py py-obj docutils literal notranslate"><span class="pre">plot_flux_vs_tree_age</span></code></a>(→ matplotlib.pyplot.Figure | None)</p></td>
+<td><p>Plot flux against tree age in years, with a rolling-mean trend.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#palmwtc.viz.plot_tropical_seasonal_diurnal" title="palmwtc.viz.plot_tropical_seasonal_diurnal"><code class="xref py py-obj docutils literal notranslate"><span class="pre">plot_tropical_seasonal_diurnal</span></code></a>(...)</p></td>
+<td><p>Overlay diurnal flux pattern per tropical season on a single axis.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="package-contents">
+<h2>Package Contents<a class="headerlink" href="#package-contents" title="Link to this heading">#</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="palmwtc.viz.plot_chamber_resizing_validation">
+<span class="sig-prename descclassname"><span class="pre">palmwtc.viz.</span></span><span class="sig-name descname"><span class="pre">plot_chamber_resizing_validation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">flux_df</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">pandas.DataFrame</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">resize_date</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'2025-07-01'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">variable</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'flux_absolute'</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">matplotlib.pyplot.Figure</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></span><a class="headerlink" href="#palmwtc.viz.plot_chamber_resizing_validation" title="Link to this definition">#</a></dt>
+<dd><p>Plot the flux signal in a ±60-day window around the chamber resizing date.</p>
+<p>Creates one subplot per chamber (stacked vertically) showing the chosen
+flux variable as a scatter plot, a 50-point centred rolling-mean trend
+line, and a vertical dashed line marking the resize date.  Use this to
+check for artefacts (step changes, drift) introduced by the physical
+chamber adjustment.</p>
+<section id="parameters">
+<h3>Parameters<a class="headerlink" href="#parameters" title="Link to this heading">#</a></h3>
+<dl>
+<dt>flux_df<span class="classifier">pandas.DataFrame</span></dt><dd><p>Flux results table.  Must contain columns:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">flux_date</span></code> (datetime64) — timestamp of each flux cycle.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Source_Chamber</span></code> (str) — chamber identifier
+(e.g. <code class="docutils literal notranslate"><span class="pre">&quot;Chamber</span> <span class="pre">1&quot;</span></code>).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&lt;variable&gt;</span></code> (float) — the flux column to plot.</p></li>
+</ul>
+</dd>
+<dt>resize_date<span class="classifier">str, default <code class="docutils literal notranslate"><span class="pre">&quot;2025-07-01&quot;</span></code></span></dt><dd><p>ISO-format date string for the chamber resizing event.  Passed to
+<code class="xref py py-func docutils literal notranslate"><span class="pre">pandas.to_datetime()</span></code>.</p>
+</dd>
+<dt>variable<span class="classifier">str, default <code class="docutils literal notranslate"><span class="pre">&quot;flux_absolute&quot;</span></code></span></dt><dd><p>Name of the column in <em>flux_df</em> to plot on the y-axis.</p>
+</dd>
+</dl>
+</section>
+<section id="returns">
+<h3>Returns<a class="headerlink" href="#returns" title="Link to this heading">#</a></h3>
+<dl class="simple">
+<dt>matplotlib.figure.Figure or None</dt><dd><p>The figure object, or <code class="docutils literal notranslate"><span class="pre">None</span></code> if <em>flux_df</em> is empty or no data
+falls within the ±60-day window.</p>
+</dd>
+</dl>
+</section>
+<section id="notes">
+<h3>Notes<a class="headerlink" href="#notes" title="Link to this heading">#</a></h3>
+<p>The rolling trend uses a window of 50 cycles centred on each point.
+This smooths noise without over-fitting at the edges of the window.</p>
+</section>
+<section id="examples">
+<h3>Examples<a class="headerlink" href="#examples" title="Link to this heading">#</a></h3>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">palmwtc.viz.diagnostics</span><span class="w"> </span><span class="kn">import</span> <span class="n">plot_chamber_resizing_validation</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">fig</span> <span class="o">=</span> <span class="n">plot_chamber_resizing_validation</span><span class="p">(</span><span class="n">flux_df</span><span class="p">,</span> <span class="n">resize_date</span><span class="o">=</span><span class="s2">&quot;2025-07-01&quot;</span><span class="p">)</span>  
+</pre></div>
+</div>
+</section>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="palmwtc.viz.plot_cycle_by_id">
+<span class="sig-prename descclassname"><span class="pre">palmwtc.viz.</span></span><span class="sig-name descname"><span class="pre">plot_cycle_by_id</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">pandas.DataFrame</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">raw_lookup</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">chamber</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cycle_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">apply_wpl</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#palmwtc.viz.plot_cycle_by_id" title="Link to this definition">#</a></dt>
+<dd><p>Plot diagnostics for a cycle identified by chamber name and cycle ID.</p>
+<p>Finds the row in <em>data</em> matching <em>chamber</em> and <em>cycle_id</em>, then
+delegates to <a class="reference internal" href="#palmwtc.viz.plot_cycle_diagnostics" title="palmwtc.viz.plot_cycle_diagnostics"><code class="xref py py-func docutils literal notranslate"><span class="pre">plot_cycle_diagnostics()</span></code></a>.</p>
+<section id="id1">
+<h3>Parameters<a class="headerlink" href="#id1" title="Link to this heading">#</a></h3>
+<dl class="simple">
+<dt>data<span class="classifier">pandas.DataFrame</span></dt><dd><p>Flux results table.  Must contain <code class="docutils literal notranslate"><span class="pre">Source_Chamber</span></code> (str) and
+<code class="docutils literal notranslate"><span class="pre">cycle_id</span></code> (int or float) columns.</p>
+</dd>
+<dt>raw_lookup<span class="classifier">dict[str, pandas.DataFrame]</span></dt><dd><p>Mapping from chamber name to raw time-series DataFrame.</p>
+</dd>
+<dt>chamber<span class="classifier">str</span></dt><dd><p>Chamber name (e.g. <code class="docutils literal notranslate"><span class="pre">&quot;Chamber</span> <span class="pre">1&quot;</span></code>).</p>
+</dd>
+<dt>cycle_id<span class="classifier">int or float</span></dt><dd><p>Numeric cycle identifier.  Compared with
+<code class="xref py py-func docutils literal notranslate"><span class="pre">numpy.isclose()</span></code> to handle floating-point IDs.</p>
+</dd>
+<dt>apply_wpl<span class="classifier">bool, default False</span></dt><dd><p>Forwarded to <a class="reference internal" href="#palmwtc.viz.plot_cycle_diagnostics" title="palmwtc.viz.plot_cycle_diagnostics"><code class="xref py py-func docutils literal notranslate"><span class="pre">plot_cycle_diagnostics()</span></code></a>.</p>
+</dd>
+</dl>
+</section>
+<section id="id2">
+<h3>Returns<a class="headerlink" href="#id2" title="Link to this heading">#</a></h3>
+<dl class="simple">
+<dt>None</dt><dd><p>Calls <a class="reference internal" href="#palmwtc.viz.plot_cycle_diagnostics" title="palmwtc.viz.plot_cycle_diagnostics"><code class="xref py py-func docutils literal notranslate"><span class="pre">plot_cycle_diagnostics()</span></code></a> and returns nothing.  Prints
+an informative message if the cycle or raw data cannot be found.</p>
+</dd>
+</dl>
+</section>
+<section id="id3">
+<h3>Examples<a class="headerlink" href="#id3" title="Link to this heading">#</a></h3>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">palmwtc.viz.diagnostics</span><span class="w"> </span><span class="kn">import</span> <span class="n">plot_cycle_by_id</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">plot_cycle_by_id</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">raw_lookup</span><span class="p">,</span> <span class="s2">&quot;Chamber 1&quot;</span><span class="p">,</span> <span class="n">cycle_id</span><span class="o">=</span><span class="mi">1042</span><span class="p">)</span>  
+</pre></div>
+</div>
+</section>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="palmwtc.viz.plot_cycle_diagnostics">
+<span class="sig-prename descclassname"><span class="pre">palmwtc.viz.</span></span><span class="sig-name descname"><span class="pre">plot_cycle_diagnostics</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">raw_df</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">pandas.DataFrame</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">flux_row</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">pandas.Series</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">apply_wpl</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#palmwtc.viz.plot_cycle_diagnostics" title="Link to this definition">#</a></dt>
+<dd><p>Plot a single flux cycle with its fit line, residuals, and QC metadata.</p>
+<p>Produces a 1x2 figure:</p>
+<ul class="simple">
+<li><p><strong>Left panel</strong> — CO₂ concentration vs. time.  Shows the raw wet CO₂
+signal (gray, if available), the dry (or WPL-corrected) CO₂ used for
+fitting (blue), the fitting window subset (orange), and the regression
+fit line (red dashed).</p></li>
+<li><p><strong>Right panel</strong> — Residuals of the fit within the fitting window.</p></li>
+</ul>
+<p>After displaying the figure, prints the QC reason string and, when
+<em>apply_wpl</em> is <code class="docutils literal notranslate"><span class="pre">True</span></code> and <code class="docutils literal notranslate"><span class="pre">wpl_delta_ppm</span></code> is present in <em>raw_df</em>,
+also prints the median WPL delta and 95th-percentile relative change.</p>
+<section id="id4">
+<h3>Parameters<a class="headerlink" href="#id4" title="Link to this heading">#</a></h3>
+<dl class="simple">
+<dt>raw_df<span class="classifier">pandas.DataFrame</span></dt><dd><p>Raw chamber time-series.  Must contain columns:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">TIMESTAMP</span></code> (datetime64) — measurement time.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">CO2</span></code> (float) — dry (or WPL-corrected) CO₂ concentration (ppm).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">CO2_raw</span></code> (float, optional) — uncorrected wet CO₂ concentration
+(ppm).  Plotted in gray if present.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">wpl_delta_ppm</span></code> (float, optional) — WPL correction magnitude.
+Printed if <em>apply_wpl</em> is <code class="docutils literal notranslate"><span class="pre">True</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">wpl_rel_change</span></code> (float, optional) — relative WPL change.
+Printed if <em>apply_wpl</em> is <code class="docutils literal notranslate"><span class="pre">True</span></code>.</p></li>
+</ul>
+</dd>
+<dt>flux_row<span class="classifier">pandas.Series</span></dt><dd><p>Single row from a flux results DataFrame.  Must contain:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">flux_date</span></code> (datetime64) — cycle start time.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">cycle_duration_sec</span></code> (float) — cycle length in seconds.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">window_start_sec</span></code> (float) — fit window start offset (s).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">window_end_sec</span></code> (float) — fit window end offset (s).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">flux_slope</span></code> (float) — regression slope (ppm s⁻¹).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">flux_intercept</span></code> (float) — regression intercept (ppm).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">flux_qc_label</span></code> (str) — QC tier label.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">cycle_id</span></code> (int or float) — unique cycle identifier.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Source_Chamber</span></code> (str) — chamber name.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">qc_reason</span></code> (str, optional) — human-readable QC reason.</p></li>
+</ul>
+</dd>
+<dt>apply_wpl<span class="classifier">bool, default False</span></dt><dd><p>If <code class="docutils literal notranslate"><span class="pre">True</span></code>, label the CO₂ trace as WPL-corrected and print WPL
+summary statistics after the plot.</p>
+</dd>
+</dl>
+</section>
+<section id="id5">
+<h3>Returns<a class="headerlink" href="#id5" title="Link to this heading">#</a></h3>
+<dl class="simple">
+<dt>None</dt><dd><p>Displays the figure inline (calls <code class="xref py py-func docutils literal notranslate"><span class="pre">matplotlib.pyplot.show()</span></code>)
+and prints QC metadata to stdout.  Does not return the figure object.</p>
+</dd>
+</dl>
+</section>
+<section id="id6">
+<h3>Notes<a class="headerlink" href="#id6" title="Link to this heading">#</a></h3>
+<p>The function returns early (prints a message, no figure) if no raw data
+falls within the cycle window, or if the fitting window subset is empty.</p>
+</section>
+<section id="id7">
+<h3>Examples<a class="headerlink" href="#id7" title="Link to this heading">#</a></h3>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">palmwtc.viz.diagnostics</span><span class="w"> </span><span class="kn">import</span> <span class="n">plot_cycle_diagnostics</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">plot_cycle_diagnostics</span><span class="p">(</span><span class="n">raw_df</span><span class="p">,</span> <span class="n">flux_row</span><span class="p">)</span>  
+</pre></div>
+</div>
+</section>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="palmwtc.viz.plot_specific_cycle">
+<span class="sig-prename descclassname"><span class="pre">palmwtc.viz.</span></span><span class="sig-name descname"><span class="pre">plot_specific_cycle</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">pandas.DataFrame</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">raw_lookup</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">chamber</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">date_str</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">apply_wpl</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#palmwtc.viz.plot_specific_cycle" title="Link to this definition">#</a></dt>
+<dd><p>Plot diagnostics for a cycle identified by chamber name and datetime string.</p>
+<p>Finds the cycle in <em>data</em> whose <code class="docutils literal notranslate"><span class="pre">flux_date</span></code> is closest to <em>date_str</em>
+(within 2 seconds), then delegates to <a class="reference internal" href="#palmwtc.viz.plot_cycle_diagnostics" title="palmwtc.viz.plot_cycle_diagnostics"><code class="xref py py-func docutils literal notranslate"><span class="pre">plot_cycle_diagnostics()</span></code></a>.</p>
+<section id="id8">
+<h3>Parameters<a class="headerlink" href="#id8" title="Link to this heading">#</a></h3>
+<dl class="simple">
+<dt>data<span class="classifier">pandas.DataFrame</span></dt><dd><p>Flux results table.  Must contain <code class="docutils literal notranslate"><span class="pre">Source_Chamber</span></code> (str) and
+<code class="docutils literal notranslate"><span class="pre">flux_date</span></code> (datetime64) columns.</p>
+</dd>
+<dt>raw_lookup<span class="classifier">dict[str, pandas.DataFrame]</span></dt><dd><p>Mapping from chamber name to the corresponding raw time-series
+DataFrame.  Same structure as the <em>raw_df</em> argument of
+<a class="reference internal" href="#palmwtc.viz.plot_cycle_diagnostics" title="palmwtc.viz.plot_cycle_diagnostics"><code class="xref py py-func docutils literal notranslate"><span class="pre">plot_cycle_diagnostics()</span></code></a>.</p>
+</dd>
+<dt>chamber<span class="classifier">str</span></dt><dd><p>Chamber name to filter on (e.g. <code class="docutils literal notranslate"><span class="pre">&quot;Chamber</span> <span class="pre">1&quot;</span></code>).</p>
+</dd>
+<dt>date_str<span class="classifier">str</span></dt><dd><p>Target datetime in <code class="docutils literal notranslate"><span class="pre">&quot;DD/MM/YY</span> <span class="pre">HH:MM:SS&quot;</span></code> format (day-first).</p>
+</dd>
+<dt>apply_wpl<span class="classifier">bool, default False</span></dt><dd><p>Forwarded to <a class="reference internal" href="#palmwtc.viz.plot_cycle_diagnostics" title="palmwtc.viz.plot_cycle_diagnostics"><code class="xref py py-func docutils literal notranslate"><span class="pre">plot_cycle_diagnostics()</span></code></a>.</p>
+</dd>
+</dl>
+</section>
+<section id="id9">
+<h3>Returns<a class="headerlink" href="#id9" title="Link to this heading">#</a></h3>
+<dl class="simple">
+<dt>None</dt><dd><p>Calls <a class="reference internal" href="#palmwtc.viz.plot_cycle_diagnostics" title="palmwtc.viz.plot_cycle_diagnostics"><code class="xref py py-func docutils literal notranslate"><span class="pre">plot_cycle_diagnostics()</span></code></a> and returns nothing.  Prints
+an informative message if the cycle or raw data cannot be found.</p>
+</dd>
+</dl>
+</section>
+<section id="id10">
+<h3>Notes<a class="headerlink" href="#id10" title="Link to this heading">#</a></h3>
+<p>The 2-second tolerance on <code class="docutils literal notranslate"><span class="pre">flux_date</span></code> matching covers the rounding
+that may occur when timestamps are stored at 1 Hz resolution.</p>
+</section>
+<section id="id11">
+<h3>Examples<a class="headerlink" href="#id11" title="Link to this heading">#</a></h3>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">palmwtc.viz.diagnostics</span><span class="w"> </span><span class="kn">import</span> <span class="n">plot_specific_cycle</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">plot_specific_cycle</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">raw_lookup</span><span class="p">,</span> <span class="s2">&quot;Chamber 1&quot;</span><span class="p">,</span> <span class="s2">&quot;01/07/25 08:30:00&quot;</span><span class="p">)</span>  
+</pre></div>
+</div>
+</section>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="palmwtc.viz.show_sample_cycles">
+<span class="sig-prename descclassname"><span class="pre">palmwtc.viz.</span></span><span class="sig-name descname"><span class="pre">show_sample_cycles</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">pandas.DataFrame</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">raw_lookup</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tier</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seed</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">42</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">label</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">apply_wpl</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#palmwtc.viz.show_sample_cycles" title="Link to this definition">#</a></dt>
+<dd><p>Plot a random sample of cycles from a given QC tier.</p>
+<p>Randomly draws up to <em>n</em> cycles from the rows where <code class="docutils literal notranslate"><span class="pre">flux_qc</span> <span class="pre">==</span> <span class="pre">tier</span></code>
+and calls <a class="reference internal" href="#palmwtc.viz.plot_cycle_diagnostics" title="palmwtc.viz.plot_cycle_diagnostics"><code class="xref py py-func docutils literal notranslate"><span class="pre">plot_cycle_diagnostics()</span></code></a> for each one.</p>
+<section id="id12">
+<h3>Parameters<a class="headerlink" href="#id12" title="Link to this heading">#</a></h3>
+<dl class="simple">
+<dt>data<span class="classifier">pandas.DataFrame</span></dt><dd><p>Flux results table.  Must contain <code class="docutils literal notranslate"><span class="pre">flux_qc</span></code> (int or str) and
+<code class="docutils literal notranslate"><span class="pre">Source_Chamber</span></code> (str) columns, plus all columns required by
+<a class="reference internal" href="#palmwtc.viz.plot_cycle_diagnostics" title="palmwtc.viz.plot_cycle_diagnostics"><code class="xref py py-func docutils literal notranslate"><span class="pre">plot_cycle_diagnostics()</span></code></a>.</p>
+</dd>
+<dt>raw_lookup<span class="classifier">dict[str, pandas.DataFrame]</span></dt><dd><p>Mapping from chamber name to raw time-series DataFrame.</p>
+</dd>
+<dt>tier<span class="classifier">int or str</span></dt><dd><p>QC tier value to filter on (e.g. <code class="docutils literal notranslate"><span class="pre">1</span></code>, <code class="docutils literal notranslate"><span class="pre">2</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;HQ&quot;</span></code>).</p>
+</dd>
+<dt>n<span class="classifier">int, default 5</span></dt><dd><p>Maximum number of cycles to plot.  If fewer than <em>n</em> cycles exist
+in the tier, all available cycles are shown.</p>
+</dd>
+<dt>seed<span class="classifier">int, default 42</span></dt><dd><p>Random seed passed to <code class="xref py py-meth docutils literal notranslate"><span class="pre">pandas.DataFrame.sample()</span></code> for
+reproducible sampling.</p>
+</dd>
+<dt>label<span class="classifier">str or None, default None</span></dt><dd><p>Display label for the printed header.  Defaults to
+<code class="docutils literal notranslate"><span class="pre">&quot;QC</span> <span class="pre">tier</span> <span class="pre">&lt;tier&gt;&quot;</span></code> when <code class="docutils literal notranslate"><span class="pre">None</span></code>.</p>
+</dd>
+<dt>apply_wpl<span class="classifier">bool, default False</span></dt><dd><p>Forwarded to <a class="reference internal" href="#palmwtc.viz.plot_cycle_diagnostics" title="palmwtc.viz.plot_cycle_diagnostics"><code class="xref py py-func docutils literal notranslate"><span class="pre">plot_cycle_diagnostics()</span></code></a> for each cycle.</p>
+</dd>
+</dl>
+</section>
+<section id="id13">
+<h3>Returns<a class="headerlink" href="#id13" title="Link to this heading">#</a></h3>
+<dl class="simple">
+<dt>None</dt><dd><p>Calls <a class="reference internal" href="#palmwtc.viz.plot_cycle_diagnostics" title="palmwtc.viz.plot_cycle_diagnostics"><code class="xref py py-func docutils literal notranslate"><span class="pre">plot_cycle_diagnostics()</span></code></a> for each sampled cycle.
+Prints a header line and skips chambers with no raw data loaded.</p>
+</dd>
+</dl>
+</section>
+<section id="id14">
+<h3>Examples<a class="headerlink" href="#id14" title="Link to this heading">#</a></h3>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">palmwtc.viz.diagnostics</span><span class="w"> </span><span class="kn">import</span> <span class="n">show_sample_cycles</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">show_sample_cycles</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">raw_lookup</span><span class="p">,</span> <span class="n">tier</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">seed</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>  
+</pre></div>
+</div>
+</section>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="palmwtc.viz.interactive_flux_dashboard">
+<span class="sig-prename descclassname"><span class="pre">palmwtc.viz.</span></span><span class="sig-name descname"><span class="pre">interactive_flux_dashboard</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">flux_df</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">pandas.DataFrame</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">chamber_raw</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">pandas.DataFrame</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">stride</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">15</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">renderer</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'plotly_mimetype'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">replace_previous</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">debug</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">enable_detail</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">detail_max_points_overview</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">80000</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">detail_max_points_zoom</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">400000</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">detail_debounce_s</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0.25</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#palmwtc.viz.interactive_flux_dashboard" title="Link to this definition">#</a></dt>
+<dd><p>Multi-chamber flux dashboard with QC filters and zoom-to-reveal detail.</p>
+<p>Renders an ipywidgets-based dashboard in Jupyter with two sections:</p>
+<ol class="arabic simple">
+<li><p><strong>Overview panel</strong> — all chambers stacked, measured CO2 (thinned by
+<em>stride</em>) above and flux scatter below, coloured per chamber.</p></li>
+<li><p><strong>Detail panel</strong> (when <em>enable_detail</em> is <code class="docutils literal notranslate"><span class="pre">True</span></code>) — one chamber at
+a time, starting from the full overview density; as you zoom in,
+more raw points are loaded from the full dataset up to
+<em>detail_max_points_zoom</em>.</p></li>
+</ol>
+<p>Widget controls:</p>
+<ul class="simple">
+<li><p><em>Measured CO2 QC</em> dropdown — filter the raw CO2 scatter by flag
+(All / Flag 0 only / Flags 0+1).</p></li>
+<li><p><em>Flux Data QC</em> dropdown — filter the flux scatter by <code class="docutils literal notranslate"><span class="pre">qc_flag</span></code>.</p></li>
+<li><p><em>Detail Chamber</em> dropdown — select which chamber to show in the
+detail panel.</p></li>
+<li><p><em>Show detail</em> checkbox — toggle the detail panel on/off.</p></li>
+</ul>
+<section id="id15">
+<h3>Parameters<a class="headerlink" href="#id15" title="Link to this heading">#</a></h3>
+<dl>
+<dt>flux_df<span class="classifier">pd.DataFrame</span></dt><dd><p>Cycle-level flux results. Must contain:</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">Source_Chamber</span></code><span class="classifier">str</span></dt><dd><p>Chamber identifier (e.g. <code class="docutils literal notranslate"><span class="pre">&quot;Chamber</span> <span class="pre">1&quot;</span></code>). Matched against
+keys in <em>chamber_raw</em>.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">flux_date</span></code><span class="classifier">datetime-like</span></dt><dd><p>Cycle timestamp. Plotted on the x-axis of flux sub-panels.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">flux_absolute</span></code><span class="classifier">float</span></dt><dd><p>Flux value shown in the overview and detail flux sub-panels.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">qc_flag</span></code><span class="classifier">int</span></dt><dd><p>Quality flag used by the flux filter dropdown.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">cycle_id</span></code><span class="classifier">int or str, optional</span></dt><dd><p>Shown in the hover tooltip. A placeholder column is used if
+absent.</p>
+</dd>
+</dl>
+</dd>
+<dt>chamber_raw<span class="classifier">dict[str, pd.DataFrame]</span></dt><dd><p>Mapping from chamber name to raw logger data. Each value must
+contain:</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">TIMESTAMP</span></code><span class="classifier">datetime-like</span></dt><dd><p>Logger timestamp. Converted to datetime in place on first call.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">CO2</span></code><span class="classifier">float</span></dt><dd><p>Raw CO2 concentration (ppm). Plotted in the measured CO2
+sub-panels.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">Flag</span></code><span class="classifier">int, optional</span></dt><dd><p>Used by the <em>Measured CO2 QC</em> filter dropdown.</p>
+</dd>
+</dl>
+</dd>
+<dt>stride<span class="classifier">int</span></dt><dd><p>Downsample step applied to raw CO2 data in the overview.
+Every <em>stride</em>-th row is kept. Default <code class="docutils literal notranslate"><span class="pre">15</span></code>.</p>
+</dd>
+<dt>renderer<span class="classifier">str</span></dt><dd><p>Plotly renderer string passed to <code class="docutils literal notranslate"><span class="pre">pio.renderers.default</span></code> and
+<code class="docutils literal notranslate"><span class="pre">fig.show()</span></code>. Default <code class="docutils literal notranslate"><span class="pre">&quot;plotly_mimetype&quot;</span></code> (standard Jupyter).</p>
+</dd>
+<dt>replace_previous<span class="classifier">bool</span></dt><dd><p>If <code class="docutils literal notranslate"><span class="pre">True</span></code>, close any widgets from a previous call in the same
+kernel and clear output before rendering. Default <code class="docutils literal notranslate"><span class="pre">True</span></code>.</p>
+</dd>
+<dt>debug<span class="classifier">bool</span></dt><dd><p>Print diagnostic lines (renderer name, chamber list) to stdout.
+Default <code class="docutils literal notranslate"><span class="pre">True</span></code>.</p>
+</dd>
+<dt>enable_detail<span class="classifier">bool</span></dt><dd><p>Whether to build and show the detail panel with its extra widgets.
+Set to <code class="docutils literal notranslate"><span class="pre">False</span></code> to show only the overview. Default <code class="docutils literal notranslate"><span class="pre">True</span></code>.</p>
+</dd>
+<dt>detail_max_points_overview<span class="classifier">int</span></dt><dd><p>Maximum raw CO2 points shown in the detail panel at full zoom-out.
+Default <code class="docutils literal notranslate"><span class="pre">80_000</span></code>.</p>
+</dd>
+<dt>detail_max_points_zoom<span class="classifier">int</span></dt><dd><p>Maximum raw CO2 points loaded into the detail panel when zoomed in.
+Default <code class="docutils literal notranslate"><span class="pre">400_000</span></code>.</p>
+</dd>
+<dt>detail_debounce_s<span class="classifier">float</span></dt><dd><p>Minimum seconds between successive zoom-triggered data refreshes
+in the detail panel. Prevents excessive updates while panning.
+Default <code class="docutils literal notranslate"><span class="pre">0.25</span></code>.</p>
+</dd>
+</dl>
+</section>
+<section id="id16">
+<h3>Returns<a class="headerlink" href="#id16" title="Link to this heading">#</a></h3>
+<dl class="simple">
+<dt>None</dt><dd><p>Renders directly into the Jupyter output cell via
+<code class="docutils literal notranslate"><span class="pre">IPython.display.display</span></code>. No figure object is returned.</p>
+</dd>
+</dl>
+</section>
+<section id="id17">
+<h3>Notes<a class="headerlink" href="#id17" title="Link to this heading">#</a></h3>
+<p><strong>Requires Jupyter notebook or lab</strong> and the <code class="docutils literal notranslate"><span class="pre">palmwtc[interactive]</span></code>
+extra (<code class="docutils literal notranslate"><span class="pre">ipywidgets</span></code> + <code class="docutils literal notranslate"><span class="pre">IPython</span></code>).  Both packages are imported
+inside the function body so the module stays importable in a
+core-only install, but calling this function without them will raise
+<code class="docutils literal notranslate"><span class="pre">ImportError</span></code>.</p>
+<p>Outside Jupyter the <code class="docutils literal notranslate"><span class="pre">display()</span></code> call silently produces no output.
+Use the <code class="docutils literal notranslate"><span class="pre">plot_*_interactive</span></code> helpers above for environments that
+support plain <code class="docutils literal notranslate"><span class="pre">fig.show()</span></code>.</p>
+<p>The detail panel uses a <code class="docutils literal notranslate"><span class="pre">go.FigureWidget</span></code> so that Python callbacks
+(<code class="docutils literal notranslate"><span class="pre">fig.observe</span></code>) can update trace data reactively when the user
+zooms. The overview uses a static <code class="docutils literal notranslate"><span class="pre">go.Figure</span></code> re-rendered on each
+filter change.</p>
+</section>
+<section id="id18">
+<h3>Examples<a class="headerlink" href="#id18" title="Link to this heading">#</a></h3>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">palmwtc.viz.interactive</span><span class="w"> </span><span class="kn">import</span> <span class="n">interactive_flux_dashboard</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">interactive_flux_dashboard</span><span class="p">(</span>  
+<span class="gp">... </span>    <span class="n">flux_df</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">chamber_raw</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;Chamber 1&quot;</span><span class="p">:</span> <span class="n">raw1_df</span><span class="p">,</span> <span class="s2">&quot;Chamber 2&quot;</span><span class="p">:</span> <span class="n">raw2_df</span><span class="p">},</span>
+<span class="gp">... </span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="see-also">
+<h3>See Also<a class="headerlink" href="#see-also" title="Link to this heading">#</a></h3>
+<dl class="simple">
+<dt>plot_flux_timeseries_tiers_interactive<span class="classifier">Simpler static tiered</span></dt><dd><p>timeseries figure (no widgets, returns a Figure).</p>
+</dd>
+<dt>palmwtc.viz.diagnostics.plot_cycle_diagnostics<span class="classifier">Static matplotlib</span></dt><dd><p>diagnostic panels for individual cycles.</p>
+</dd>
+</dl>
+</section>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="palmwtc.viz.filter_plot">
+<span class="sig-prename descclassname"><span class="pre">palmwtc.viz.</span></span><span class="sig-name descname"><span class="pre">filter_plot</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ax</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">matplotlib.axes.Axes</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">df_</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">pandas.DataFrame</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">col_c1</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">col_c2</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">var_key</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">var_config</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">use_physical_limits</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ylim_padding_frac</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0.06</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#palmwtc.viz.filter_plot" title="Link to this definition">#</a></dt>
+<dd><p>Draw a two-chamber overlay for one variable onto an existing axis.</p>
+<p>Plots the Chamber 1 series (blue) and Chamber 2 series (red) for the
+variable <code class="docutils literal notranslate"><span class="pre">var_key</span></code>.  When <code class="docutils literal notranslate"><span class="pre">use_physical_limits=True</span></code>, points outside
+the hard bounds are removed before plotting, and hard/soft threshold
+lines are drawn as dashed/dotted horizontal lines.</p>
+<p>The y-axis is locked to the range of the <em>plotted</em> data plus
+<code class="docutils literal notranslate"><span class="pre">ylim_padding_frac</span></code> padding on each side, so threshold lines never
+expand the visible range beyond the data.</p>
+<section id="id19">
+<h3>Parameters<a class="headerlink" href="#id19" title="Link to this heading">#</a></h3>
+<dl>
+<dt>ax<span class="classifier">matplotlib.axes.Axes</span></dt><dd><p>Axes to draw on.  The function modifies <code class="docutils literal notranslate"><span class="pre">ax</span></code> in place and
+returns <code class="docutils literal notranslate"><span class="pre">None</span></code>.</p>
+</dd>
+<dt><a href="#id83"><span class="problematic" id="id84">df_</span></a><span class="classifier">pd.DataFrame</span></dt><dd><p>DataFrame with a <code class="docutils literal notranslate"><span class="pre">TIMESTAMP</span></code> column and the sensor columns.
+Must contain:</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">TIMESTAMP</span></code><span class="classifier">pd.Timestamp</span></dt><dd><p>Datetime column used for the x-axis.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">{col_c1}</span></code><span class="classifier">numeric, optional</span></dt><dd><p>Chamber 1 values.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">{col_c2}</span></code><span class="classifier">numeric, optional</span></dt><dd><p>Chamber 2 values.</p>
+</dd>
+</dl>
+</dd>
+<dt>col_c1<span class="classifier">str</span></dt><dd><p>Column name for Chamber 1 data in <code class="docutils literal notranslate"><span class="pre">df_</span></code>.</p>
+</dd>
+<dt>col_c2<span class="classifier">str</span></dt><dd><p>Column name for Chamber 2 data in <code class="docutils literal notranslate"><span class="pre">df_</span></code>.</p>
+</dd>
+<dt>var_key<span class="classifier">str</span></dt><dd><p>Key used to look up the variable’s configuration inside
+<code class="docutils literal notranslate"><span class="pre">var_config</span></code>.</p>
+</dd>
+<dt>var_config<span class="classifier">dict</span></dt><dd><p>Mapping <code class="docutils literal notranslate"><span class="pre">{var_key:</span> <span class="pre">config_dict}</span></code>.  The <code class="docutils literal notranslate"><span class="pre">config_dict</span></code> may
+contain:</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">&quot;hard&quot;</span></code><span class="classifier">tuple of (float, float)</span></dt><dd><p>(min, max) hard bounds.  Points outside are removed when
+<code class="docutils literal notranslate"><span class="pre">use_physical_limits=True</span></code>.  Drawn as red dashed lines.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">&quot;soft&quot;</span></code><span class="classifier">tuple of (float, float)</span></dt><dd><p>(min, max) soft bounds.  Drawn as orange dotted lines.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">&quot;label&quot;</span></code><span class="classifier">str</span></dt><dd><p>Y-axis label.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">&quot;title&quot;</span></code><span class="classifier">str</span></dt><dd><p>Axis title.</p>
+</dd>
+</dl>
+</dd>
+<dt>use_physical_limits<span class="classifier">bool, optional</span></dt><dd><p>If <code class="docutils literal notranslate"><span class="pre">True</span></code>, remove values outside hard bounds before plotting and
+draw threshold lines.  Default: <code class="docutils literal notranslate"><span class="pre">True</span></code>.</p>
+</dd>
+<dt>ylim_padding_frac<span class="classifier">float, optional</span></dt><dd><p>Fraction of data range added as padding above and below the
+y-axis limits.  Default: 0.06.</p>
+</dd>
+</dl>
+</section>
+<section id="id20">
+<h3>Returns<a class="headerlink" href="#id20" title="Link to this heading">#</a></h3>
+<dl class="simple">
+<dt>None</dt><dd><p>The axis is modified in place.</p>
+</dd>
+</dl>
+</section>
+<section id="id21">
+<h3>Notes<a class="headerlink" href="#id21" title="Link to this heading">#</a></h3>
+<p>If <code class="docutils literal notranslate"><span class="pre">var_key</span></code> is not found in <code class="docutils literal notranslate"><span class="pre">var_config</span></code>, the function sets a
+plain title and grid, then returns without plotting.</p>
+<p>If neither chamber column contains any valid (non-NaN, in-bounds) data,
+the function likewise returns after setting the title.</p>
+</section>
+<section id="id22">
+<h3>Examples<a class="headerlink" href="#id22" title="Link to this heading">#</a></h3>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">palmwtc.viz.qc_plots</span><span class="w"> </span><span class="kn">import</span> <span class="n">filter_plot</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">filter_plot</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">df</span><span class="p">,</span> <span class="s2">&quot;C1_CO2&quot;</span><span class="p">,</span> <span class="s2">&quot;C2_CO2&quot;</span><span class="p">,</span> <span class="s2">&quot;CO2&quot;</span><span class="p">,</span> <span class="n">var_config</span><span class="p">)</span>  
+</pre></div>
+</div>
+</section>
+<section id="id23">
+<h3>See Also<a class="headerlink" href="#id23" title="Link to this heading">#</a></h3>
+<p>plot_soil_var : Similar helper for multi-depth soil variables.</p>
+</section>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="palmwtc.viz.plot_breakpoints_analysis">
+<span class="sig-prename descclassname"><span class="pre">palmwtc.viz.</span></span><span class="sig-name descname"><span class="pre">plot_breakpoints_analysis</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">pandas.DataFrame</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">var_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">breakpoint_result</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">qc_flag_col</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">figsize</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">(16,</span> <span class="pre">10)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_table_rows</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">15</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">min_confidence</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">show_all_breakpoints</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">matplotlib.figure.Figure</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">matplotlib.figure.Figure</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">None</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">None</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#palmwtc.viz.plot_breakpoints_analysis" title="Link to this definition">#</a></dt>
+<dd><p>Two-figure breakpoint analysis: annotated timeseries + breakpoint table.</p>
+<p><strong>Figure 1 – Analysis plot</strong> (2x2 grid):</p>
+<ul class="simple">
+<li><p><strong>Panel 1 (top, full width)</strong>: Flag-0 sensor timeseries (green)
+with vertical dashed lines at each breakpoint, coloured by index
+using the <code class="docutils literal notranslate"><span class="pre">Set1</span></code> colormap.  A diamond marker is placed on the
+series at each breakpoint timestamp.  Horizontal red lines show the
+segment mean for each interval between breakpoints.  Downsampled to
+50 000 points for performance when the dataset is larger.</p></li>
+<li><p><strong>Panel 2 (bottom-left)</strong>: Bar chart of segment means with +/-1 SD
+error bars.</p></li>
+<li><p><strong>Panel 3 (bottom-right)</strong>: Bar chart of breakpoint confidence
+scores (0-1).  An orange dashed line at 0.5 marks a rough
+“moderate confidence” threshold.</p></li>
+</ul>
+<p><strong>Figure 2 – Table plot</strong>: plain matplotlib table listing breakpoint
+number, timestamp (<code class="docutils literal notranslate"><span class="pre">YYYY-MM-DD</span> <span class="pre">HH:MM</span></code>), and confidence with a
+“Robust / Moderate / Weak” label (&gt;= 0.7 / &gt;= 0.4 / &lt; 0.4).  Up to
+<code class="docutils literal notranslate"><span class="pre">max_table_rows</span></code> rows; additional rows replaced with <code class="docutils literal notranslate"><span class="pre">&quot;...&quot;</span></code> if
+the list is truncated.  The table always shows all raw breakpoints
+(ignoring <code class="docutils literal notranslate"><span class="pre">min_confidence</span></code>).</p>
+<section id="id24">
+<h3>Parameters<a class="headerlink" href="#id24" title="Link to this heading">#</a></h3>
+<dl>
+<dt>df<span class="classifier">pd.DataFrame</span></dt><dd><p>QC-flagged DataFrame indexed by datetime.  Must contain:</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">{var_name}</span></code><span class="classifier">numeric</span></dt><dd><p>Sensor values.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">{qc_flag_col}</span></code><span class="classifier">int in {0, 1, 2}, optional</span></dt><dd><p>QC flag column.  Only Flag-0 rows are plotted.  If absent,
+all non-NaN values are used.</p>
+</dd>
+</dl>
+</dd>
+<dt>var_name<span class="classifier">str</span></dt><dd><p>Name of the sensor variable column.</p>
+</dd>
+<dt>breakpoint_result<span class="classifier">dict or None</span></dt><dd><p>Breakpoint detection output from
+<a class="reference internal" href="../qc/breakpoints/index.html#palmwtc.qc.breakpoints.detect_breakpoints_ruptures" title="palmwtc.qc.breakpoints.detect_breakpoints_ruptures"><code class="xref py py-func docutils literal notranslate"><span class="pre">palmwtc.qc.breakpoints.detect_breakpoints_ruptures()</span></code></a>.
+Expected keys:</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">&quot;breakpoints&quot;</span></code><span class="classifier">list of pd.Timestamp</span></dt><dd><p>Detected breakpoint timestamps.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">&quot;confidence_scores&quot;</span></code><span class="classifier">list of float</span></dt><dd><p>Confidence score (0-1) per breakpoint.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">&quot;segment_info&quot;</span></code><span class="classifier">list of dict</span></dt><dd><p>Each dict has keys <code class="docutils literal notranslate"><span class="pre">&quot;mean&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;std&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;start&quot;</span></code>,
+<code class="docutils literal notranslate"><span class="pre">&quot;end&quot;</span></code>.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">&quot;n_breakpoints&quot;</span></code><span class="classifier">int</span></dt><dd><p>Total breakpoint count (used when <code class="docutils literal notranslate"><span class="pre">show_all_breakpoints</span></code>
+is <code class="docutils literal notranslate"><span class="pre">True</span></code>).</p>
+</dd>
+</dl>
+<p>Pass <code class="docutils literal notranslate"><span class="pre">None</span></code> to get <code class="docutils literal notranslate"><span class="pre">(None,</span> <span class="pre">None)</span></code> back.</p>
+</dd>
+<dt>qc_flag_col<span class="classifier">str, optional</span></dt><dd><p>QC flag column name.  Default: <code class="docutils literal notranslate"><span class="pre">f&quot;{var_name}_qc_flag&quot;</span></code>.</p>
+</dd>
+<dt>figsize<span class="classifier">tuple of (float, float), optional</span></dt><dd><p>Size of Figure 1 (the analysis plot).  Default: <code class="docutils literal notranslate"><span class="pre">(16,</span> <span class="pre">10)</span></code>.</p>
+</dd>
+<dt>max_table_rows<span class="classifier">int, optional</span></dt><dd><p>Maximum rows in the table figure.  Default: 15.</p>
+</dd>
+<dt>min_confidence<span class="classifier">float, optional</span></dt><dd><p>Minimum confidence score for breakpoints shown in Figure 1.
+Ignored when <code class="docutils literal notranslate"><span class="pre">show_all_breakpoints=True</span></code>.  Default: 0.0
+(show all).</p>
+</dd>
+<dt>show_all_breakpoints<span class="classifier">bool, optional</span></dt><dd><p>If <code class="docutils literal notranslate"><span class="pre">True</span></code>, ignore <code class="docutils literal notranslate"><span class="pre">min_confidence</span></code> and plot every breakpoint
+in Figure 1.  Default: <code class="docutils literal notranslate"><span class="pre">False</span></code>.</p>
+</dd>
+</dl>
+</section>
+<section id="id25">
+<h3>Returns<a class="headerlink" href="#id25" title="Link to this heading">#</a></h3>
+<dl class="simple">
+<dt>tuple of (matplotlib.figure.Figure, matplotlib.figure.Figure)</dt><dd><p><code class="docutils literal notranslate"><span class="pre">(fig_analysis,</span> <span class="pre">fig_table)</span></code> – the two figures.</p>
+</dd>
+<dt>tuple of (None, None)</dt><dd><p>Returned when <code class="docutils literal notranslate"><span class="pre">breakpoint_result</span></code> is <code class="docutils literal notranslate"><span class="pre">None</span></code> or no data are
+available for the variable.</p>
+</dd>
+</dl>
+</section>
+<section id="id26">
+<h3>Notes<a class="headerlink" href="#id26" title="Link to this heading">#</a></h3>
+<p>Confidence score thresholds used in the table label:</p>
+<ul class="simple">
+<li><p>&gt;= 0.7 = “Robust”</p></li>
+<li><p>&gt;= 0.4 = “Moderate”</p></li>
+<li><p>&lt; 0.4  = “Weak”</p></li>
+</ul>
+<p>Breakpoint detection uses the <code class="docutils literal notranslate"><span class="pre">ruptures</span></code> library (L2 cost, PELT
+algorithm).  See <a class="reference internal" href="../qc/breakpoints/index.html#palmwtc.qc.breakpoints.detect_breakpoints_ruptures" title="palmwtc.qc.breakpoints.detect_breakpoints_ruptures"><code class="xref py py-func docutils literal notranslate"><span class="pre">palmwtc.qc.breakpoints.detect_breakpoints_ruptures()</span></code></a>
+for details.</p>
+</section>
+<section id="id27">
+<h3>Examples<a class="headerlink" href="#id27" title="Link to this heading">#</a></h3>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">palmwtc.viz.qc_plots</span><span class="w"> </span><span class="kn">import</span> <span class="n">plot_breakpoints_analysis</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">fig1</span><span class="p">,</span> <span class="n">fig2</span> <span class="o">=</span> <span class="n">plot_breakpoints_analysis</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="s2">&quot;CO2_Avg&quot;</span><span class="p">,</span> <span class="n">bp_result</span><span class="p">)</span>  
+</pre></div>
+</div>
+</section>
+<section id="id28">
+<h3>See Also<a class="headerlink" href="#id28" title="Link to this heading">#</a></h3>
+<dl class="simple">
+<dt>visualize_breakpoints<span class="classifier">Three-panel overview with kept/ignored</span></dt><dd><p>distinction, intended for interactive inspection.</p>
+</dd>
+<dt>palmwtc.qc.breakpoints.detect_breakpoints_ruptures<span class="classifier">Produces the</span></dt><dd><p><code class="docutils literal notranslate"><span class="pre">breakpoint_result</span></code> dict.</p>
+</dd>
+</dl>
+</section>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="palmwtc.viz.plot_drift_and_hq_timeseries">
+<span class="sig-prename descclassname"><span class="pre">palmwtc.viz.</span></span><span class="sig-name descname"><span class="pre">plot_drift_and_hq_timeseries</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">pandas.DataFrame</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">var_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">drift_result</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">pandas.DataFrame</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">qc_flag_col</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#palmwtc.viz.plot_drift_and_hq_timeseries" title="Link to this definition">#</a></dt>
+<dd><p>Two-panel figure: drift score (top) and Flag-0 timeseries (bottom).</p>
+<p>Both panels share the same x-axis (time).  Calls
+<code class="xref py py-func docutils literal notranslate"><span class="pre">matplotlib.pyplot.show()</span></code> before returning.</p>
+<ul class="simple">
+<li><p><strong>Top panel</strong>: drift score line (purple) from <code class="docutils literal notranslate"><span class="pre">drift_result</span></code>.
+A horizontal line at y=0 is drawn for reference.</p></li>
+<li><p><strong>Bottom panel</strong>: Flag-0 sensor values (green) from <code class="docutils literal notranslate"><span class="pre">df</span></code>.</p></li>
+</ul>
+<p>If either panel has no data, a text annotation (“No Drift Data” /
+“No High Quality Data Found”) is shown instead.</p>
+<section id="id29">
+<h3>Parameters<a class="headerlink" href="#id29" title="Link to this heading">#</a></h3>
+<dl>
+<dt>df<span class="classifier">pd.DataFrame</span></dt><dd><p>QC-flagged DataFrame indexed by datetime.  Must contain:</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">{var_name}</span></code><span class="classifier">numeric</span></dt><dd><p>Sensor values.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">{qc_flag_col}</span></code><span class="classifier">int in {0, 1, 2}, optional</span></dt><dd><p>QC flag column.  If absent, all non-NaN data are used for
+the bottom panel.</p>
+</dd>
+</dl>
+</dd>
+<dt>var_name<span class="classifier">str</span></dt><dd><p>Name of the sensor variable column.</p>
+</dd>
+<dt>drift_result<span class="classifier">dict or pd.DataFrame or None</span></dt><dd><p>Drift detection output from
+<a class="reference internal" href="../qc/drift/index.html#palmwtc.qc.drift.detect_drift_windstats" title="palmwtc.qc.drift.detect_drift_windstats"><code class="xref py py-func docutils literal notranslate"><span class="pre">palmwtc.qc.drift.detect_drift_windstats()</span></code></a>.  Accepted
+forms:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">dict</span></code> with a <code class="docutils literal notranslate"><span class="pre">&quot;scores&quot;</span></code> key whose value is a DataFrame,
+a Series with a <code class="docutils literal notranslate"><span class="pre">.to_pd()</span></code> method, or a plain DataFrame.</p></li>
+<li><p>A <code class="docutils literal notranslate"><span class="pre">pd.DataFrame</span></code> used directly as the drift score table.</p></li>
+</ul>
+<p>The expected column in the resolved DataFrame is
+<code class="docutils literal notranslate"><span class="pre">f&quot;{var_name}_drift_score&quot;</span></code>.  Pass <code class="docutils literal notranslate"><span class="pre">None</span></code> to skip drift panel.</p>
+</dd>
+<dt>qc_flag_col<span class="classifier">str, optional</span></dt><dd><p>QC flag column name.  Default: <code class="docutils literal notranslate"><span class="pre">f&quot;{var_name}_qc_flag&quot;</span></code>.</p>
+</dd>
+</dl>
+</section>
+<section id="id30">
+<h3>Returns<a class="headerlink" href="#id30" title="Link to this heading">#</a></h3>
+<dl class="simple">
+<dt>None</dt><dd><p>The figure is displayed via <code class="xref py py-func docutils literal notranslate"><span class="pre">matplotlib.pyplot.show()</span></code>.</p>
+</dd>
+</dl>
+</section>
+<section id="id31">
+<h3>Notes<a class="headerlink" href="#id31" title="Link to this heading">#</a></h3>
+<p>Flag value 0 = Good (the only data shown in the bottom panel).</p>
+<p>Drift scores are produced by the windowed-statistics drift detector
+in <a class="reference internal" href="../qc/drift/index.html#module-palmwtc.qc.drift" title="palmwtc.qc.drift"><code class="xref py py-mod docutils literal notranslate"><span class="pre">palmwtc.qc.drift</span></code></a>.  A score near 0 indicates stable sensor
+baseline; large deviations suggest drift.</p>
+</section>
+<section id="id32">
+<h3>Examples<a class="headerlink" href="#id32" title="Link to this heading">#</a></h3>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">palmwtc.viz.qc_plots</span><span class="w"> </span><span class="kn">import</span> <span class="n">plot_drift_and_hq_timeseries</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">plot_drift_and_hq_timeseries</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="s2">&quot;CO2_Avg&quot;</span><span class="p">,</span> <span class="n">drift_res</span><span class="p">)</span>  
+</pre></div>
+</div>
+</section>
+<section id="id33">
+<h3>See Also<a class="headerlink" href="#id33" title="Link to this heading">#</a></h3>
+<p>plot_baseline_drift : Daily-minimum view for long-term baseline drift.
+plot_high_quality_timeseries : Flag-0 only, no drift panel.</p>
+</section>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="palmwtc.viz.plot_qc_comparison">
+<span class="sig-prename descclassname"><span class="pre">palmwtc.viz.</span></span><span class="sig-name descname"><span class="pre">plot_qc_comparison</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">pandas.DataFrame</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">var_names</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">qc_results</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">figsize</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">matplotlib.figure.Figure</span></span></span><a class="headerlink" href="#palmwtc.viz.plot_qc_comparison" title="Link to this definition">#</a></dt>
+<dd><p>2x2 panel comparison of QC flag percentages across multiple variables.</p>
+<p>Creates a 2x2 figure with horizontal bar charts:</p>
+<ul class="simple">
+<li><p><strong>Panel 1 (top-left)</strong>: Flag 0 (Good) percentage per variable.
+A vertical red dashed line marks 50 %.</p></li>
+<li><p><strong>Panel 2 (top-right)</strong>: Flag 1 (Suspect) percentage per variable.</p></li>
+<li><p><strong>Panel 3 (bottom-left)</strong>: Flag 2 (Bad) percentage per variable.
+A vertical orange dashed line marks 10 % as a reference threshold.</p></li>
+<li><p><strong>Panel 4 (bottom-right)</strong>: Stacked horizontal bar chart showing
+Good + Suspect + Bad as proportions of 100 % for each variable.</p></li>
+</ul>
+<p>Variables appear in reversed order on the y-axis so the first variable
+in <code class="docutils literal notranslate"><span class="pre">var_names</span></code> is at the top of each panel.</p>
+<section id="id34">
+<h3>Parameters<a class="headerlink" href="#id34" title="Link to this heading">#</a></h3>
+<dl class="simple">
+<dt>df<span class="classifier">pd.DataFrame</span></dt><dd><p>QC-flagged DataFrame.  Not directly read inside this function;
+passed for API consistency with other QC plot functions.</p>
+</dd>
+<dt>var_names<span class="classifier">list of str</span></dt><dd><p>Variable names to include.  Only variables that exist in
+<code class="docutils literal notranslate"><span class="pre">qc_results</span></code> are shown.</p>
+</dd>
+<dt>qc_results<span class="classifier">dict</span></dt><dd><p>Mapping <code class="docutils literal notranslate"><span class="pre">{var_name:</span> <span class="pre">result_dict}</span></code>.  Each <code class="docutils literal notranslate"><span class="pre">result_dict</span></code> must
+contain either:</p>
+<ul class="simple">
+<li><p>A nested <code class="docutils literal notranslate"><span class="pre">&quot;summary&quot;</span></code> dict with keys <code class="docutils literal notranslate"><span class="pre">&quot;flag_0_percent&quot;</span></code>,
+<code class="docutils literal notranslate"><span class="pre">&quot;flag_1_percent&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;flag_2_percent&quot;</span></code>  (V1 structure), or</p></li>
+<li><p>Those same keys at the top level (V2 flat structure).</p></li>
+</ul>
+</dd>
+<dt>figsize<span class="classifier">tuple of (float, float), optional</span></dt><dd><p>Figure width and height in inches.  Default: <code class="docutils literal notranslate"><span class="pre">(18,</span> <span class="pre">height)</span></code>
+where height scales with the number of variables
+(minimum 12 inches).</p>
+</dd>
+</dl>
+</section>
+<section id="id35">
+<h3>Returns<a class="headerlink" href="#id35" title="Link to this heading">#</a></h3>
+<dl class="simple">
+<dt>matplotlib.figure.Figure</dt><dd><p>The 2x2 figure.</p>
+</dd>
+</dl>
+</section>
+<section id="id36">
+<h3>Notes<a class="headerlink" href="#id36" title="Link to this heading">#</a></h3>
+<p>All four panels share the same y-axis variable list.  The x-axis is
+fixed to 0-105 % in all panels so the eye can compare across panels
+without re-scaling.</p>
+</section>
+<section id="id37">
+<h3>Examples<a class="headerlink" href="#id37" title="Link to this heading">#</a></h3>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">palmwtc.viz.qc_plots</span><span class="w"> </span><span class="kn">import</span> <span class="n">plot_qc_comparison</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">fig</span> <span class="o">=</span> <span class="n">plot_qc_comparison</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="p">[</span><span class="s2">&quot;CO2_Avg&quot;</span><span class="p">,</span> <span class="s2">&quot;H2O_Avg&quot;</span><span class="p">],</span> <span class="n">qc_results</span><span class="p">)</span>  
+</pre></div>
+</div>
+</section>
+<section id="id38">
+<h3>See Also<a class="headerlink" href="#id38" title="Link to this heading">#</a></h3>
+<p>visualize_qc_flags : Single-variable multi-method breakdown.
+plot_qc_summary_heatmap : Heatmap view of the same percentages.</p>
+</section>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="palmwtc.viz.plot_qc_summary_heatmap">
+<span class="sig-prename descclassname"><span class="pre">palmwtc.viz.</span></span><span class="sig-name descname"><span class="pre">plot_qc_summary_heatmap</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">qc_results</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">figsize</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">(14,</span> <span class="pre">10)</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">matplotlib.figure.Figure</span></span></span><a class="headerlink" href="#palmwtc.viz.plot_qc_summary_heatmap" title="Link to this definition">#</a></dt>
+<dd><p>Heatmap of QC pass/suspect/fail percentages for all variables.</p>
+<p>Rows = variables (in the order of <code class="docutils literal notranslate"><span class="pre">qc_results</span></code> keys).
+Columns = Flag 0 (Good), Flag 1 (Suspect), Flag 2 (Bad).
+Cell colour uses the <code class="docutils literal notranslate"><span class="pre">RdYlGn</span></code> colormap (green = high percentage,
+red = low percentage), anchored at 0-100 %.
+Each cell is annotated with the numeric value <code class="docutils literal notranslate"><span class="pre">&quot;XX.X%&quot;</span></code>.
+A colourbar on the right shows the percentage scale.</p>
+<section id="id39">
+<h3>Parameters<a class="headerlink" href="#id39" title="Link to this heading">#</a></h3>
+<dl>
+<dt>qc_results<span class="classifier">dict</span></dt><dd><p>Mapping <code class="docutils literal notranslate"><span class="pre">{var_name:</span> <span class="pre">result_dict}</span></code>.  Each <code class="docutils literal notranslate"><span class="pre">result_dict</span></code> must
+contain either a nested <code class="docutils literal notranslate"><span class="pre">&quot;summary&quot;</span></code> sub-dict or the summary keys
+at the top level.  Required keys inside the summary:</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">&quot;flag_0_percent&quot;</span></code><span class="classifier">float</span></dt><dd><p>Percentage of timestamps with Flag 0 (Good).</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">&quot;flag_1_percent&quot;</span></code><span class="classifier">float</span></dt><dd><p>Percentage of timestamps with Flag 1 (Suspect).</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">&quot;flag_2_percent&quot;</span></code><span class="classifier">float</span></dt><dd><p>Percentage of timestamps with Flag 2 (Bad).</p>
+</dd>
+</dl>
+</dd>
+<dt>figsize<span class="classifier">tuple of (float, float), optional</span></dt><dd><p>Figure width and height in inches.</p>
+</dd>
+</dl>
+</section>
+<section id="id40">
+<h3>Returns<a class="headerlink" href="#id40" title="Link to this heading">#</a></h3>
+<dl class="simple">
+<dt>matplotlib.figure.Figure</dt><dd><p>The heatmap figure.</p>
+</dd>
+</dl>
+</section>
+<section id="id41">
+<h3>Notes<a class="headerlink" href="#id41" title="Link to this heading">#</a></h3>
+<p>The three percentage columns for a given variable should sum to
+approximately 100 %.  Small deviations are possible due to rounding.</p>
+</section>
+<section id="id42">
+<h3>Examples<a class="headerlink" href="#id42" title="Link to this heading">#</a></h3>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">palmwtc.viz.qc_plots</span><span class="w"> </span><span class="kn">import</span> <span class="n">plot_qc_summary_heatmap</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">fig</span> <span class="o">=</span> <span class="n">plot_qc_summary_heatmap</span><span class="p">(</span><span class="n">qc_results</span><span class="p">)</span>  
+</pre></div>
+</div>
+</section>
+<section id="id43">
+<h3>See Also<a class="headerlink" href="#id43" title="Link to this heading">#</a></h3>
+<p>plot_qc_comparison : Same percentages as horizontal bar charts.
+visualize_qc_flags : Per-variable, per-method scatter breakdown.</p>
+</section>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="palmwtc.viz.plot_soil_var">
+<span class="sig-prename descclassname"><span class="pre">palmwtc.viz.</span></span><span class="sig-name descname"><span class="pre">plot_soil_var</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ax</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">matplotlib.axes.Axes</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">var_key</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">title_prefix</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plot_df</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">pandas.DataFrame</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">var_config</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">use_physical_limits</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ylim_padding_frac</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0.06</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#palmwtc.viz.plot_soil_var" title="Link to this definition">#</a></dt>
+<dd><p>Draw multi-depth soil sensor profiles onto an existing axis.</p>
+<p>Looks up the column pattern from <code class="docutils literal notranslate"><span class="pre">var_config[var_key][&quot;pattern&quot;]</span></code>
+and plots each depth as a separate line:</p>
+<ul class="simple">
+<li><p>15 cm  (blue)</p></li>
+<li><p>48 cm  (orange)</p></li>
+<li><p>80 cm  (green)</p></li>
+<li><p>200 cm (red)</p></li>
+<li><p>350 cm (purple)</p></li>
+</ul>
+<p>Expected column name format: <code class="docutils literal notranslate"><span class="pre">{pattern}_{depth}_Avg_Soil</span></code>
+(e.g. <code class="docutils literal notranslate"><span class="pre">SWC_15_Avg_Soil</span></code>).  Missing depths are silently skipped.</p>
+<p>Hard/soft threshold lines are drawn when <code class="docutils literal notranslate"><span class="pre">use_physical_limits=True</span></code>.
+The y-axis is locked to the range of plotted data plus padding.</p>
+<section id="id44">
+<h3>Parameters<a class="headerlink" href="#id44" title="Link to this heading">#</a></h3>
+<dl>
+<dt>ax<span class="classifier">matplotlib.axes.Axes</span></dt><dd><p>Axes to draw on.  Modified in place; returns a status boolean.</p>
+</dd>
+<dt>var_key<span class="classifier">str</span></dt><dd><p>Key used to look up the variable’s configuration in <code class="docutils literal notranslate"><span class="pre">var_config</span></code>.</p>
+</dd>
+<dt>title_prefix<span class="classifier">str</span></dt><dd><p>String prepended to the axis title (e.g. the site name or
+measurement period).</p>
+</dd>
+<dt>plot_df<span class="classifier">pd.DataFrame</span></dt><dd><p>Data to plot.  Must contain:</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">TIMESTAMP</span></code><span class="classifier">pd.Timestamp</span></dt><dd><p>Datetime column used for the x-axis.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">{pattern}_{depth}_Avg_Soil</span></code><span class="classifier">numeric</span></dt><dd><p>One column per depth that should be shown.</p>
+</dd>
+</dl>
+</dd>
+<dt>var_config<span class="classifier">dict</span></dt><dd><p>Mapping <code class="docutils literal notranslate"><span class="pre">{var_key:</span> <span class="pre">config_dict}</span></code>.  The <code class="docutils literal notranslate"><span class="pre">config_dict</span></code> may
+contain:</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">&quot;pattern&quot;</span></code><span class="classifier">str</span></dt><dd><p>Column-name prefix (e.g. <code class="docutils literal notranslate"><span class="pre">&quot;SWC&quot;</span></code>).</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">&quot;hard&quot;</span></code><span class="classifier">tuple of (float, float)</span></dt><dd><p>Hard bounds; points outside are removed when
+<code class="docutils literal notranslate"><span class="pre">use_physical_limits=True</span></code>.  Drawn as red dashed lines.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">&quot;soft&quot;</span></code><span class="classifier">tuple of (float, float)</span></dt><dd><p>Soft bounds drawn as orange dotted lines.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">&quot;label&quot;</span></code><span class="classifier">str</span></dt><dd><p>Y-axis label.</p>
+</dd>
+</dl>
+</dd>
+<dt>use_physical_limits<span class="classifier">bool, optional</span></dt><dd><p>If <code class="docutils literal notranslate"><span class="pre">True</span></code>, filter values outside hard bounds and draw threshold
+lines.  Default: <code class="docutils literal notranslate"><span class="pre">True</span></code>.</p>
+</dd>
+<dt>ylim_padding_frac<span class="classifier">float, optional</span></dt><dd><p>Fraction of data range added as padding.  Default: 0.06.</p>
+</dd>
+</dl>
+</section>
+<section id="id45">
+<h3>Returns<a class="headerlink" href="#id45" title="Link to this heading">#</a></h3>
+<dl class="simple">
+<dt>bool</dt><dd><p><code class="docutils literal notranslate"><span class="pre">True</span></code> if at least one depth was plotted; <code class="docutils literal notranslate"><span class="pre">False</span></code> if no data
+were available or <code class="docutils literal notranslate"><span class="pre">var_key</span></code> was not found in <code class="docutils literal notranslate"><span class="pre">var_config</span></code>.</p>
+</dd>
+</dl>
+</section>
+<section id="id46">
+<h3>Notes<a class="headerlink" href="#id46" title="Link to this heading">#</a></h3>
+<p>The legend uses up to 5 entries (one per depth) plus threshold lines,
+arranged in a single row with <code class="docutils literal notranslate"><span class="pre">ncol=5</span></code> to keep the axis compact.</p>
+</section>
+<section id="id47">
+<h3>Examples<a class="headerlink" href="#id47" title="Link to this heading">#</a></h3>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">palmwtc.viz.qc_plots</span><span class="w"> </span><span class="kn">import</span> <span class="n">plot_soil_var</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">has_data</span> <span class="o">=</span> <span class="n">plot_soil_var</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="s2">&quot;SWC&quot;</span><span class="p">,</span> <span class="s2">&quot;Soil Water Content&quot;</span><span class="p">,</span> <span class="n">df</span><span class="p">,</span> <span class="n">var_config</span><span class="p">)</span>  
+</pre></div>
+</div>
+</section>
+<section id="id48">
+<h3>See Also<a class="headerlink" href="#id48" title="Link to this heading">#</a></h3>
+<p>filter_plot : Two-chamber overlay for non-soil variables.</p>
+</section>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="palmwtc.viz.visualize_breakpoints">
+<span class="sig-prename descclassname"><span class="pre">palmwtc.viz.</span></span><span class="sig-name descname"><span class="pre">visualize_breakpoints</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">pandas.DataFrame</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">var_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bp_result</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filtered_bps</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">title_suffix</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">''</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#palmwtc.viz.visualize_breakpoints" title="Link to this definition">#</a></dt>
+<dd><p>Three-panel overview of breakpoints with kept/ignored distinction.</p>
+<p>Plots a 3x1 figure (shared x-axis, monthly tick marks) and prints a
+summary table to stdout.  Calls <code class="xref py py-func docutils literal notranslate"><span class="pre">matplotlib.pyplot.show()</span></code> before
+returning.</p>
+<ul class="simple">
+<li><p><strong>Panel 1 (top)</strong>: hourly-resampled sensor timeseries (blue line)
+with vertical lines at each breakpoint.  Breakpoints in
+<code class="docutils literal notranslate"><span class="pre">filtered_bps</span></code> are drawn solid green (kept); all others are drawn
+dashed red (ignored).</p></li>
+<li><p><strong>Panel 2 (middle)</strong>: segment means as horizontal coloured lines,
+one colour per segment (<code class="docutils literal notranslate"><span class="pre">Set3</span></code> colormap).  Mean values are
+annotated above each line.</p></li>
+<li><p><strong>Panel 3 (bottom)</strong>: bar chart of confidence scores, one orange
+bar per breakpoint.</p></li>
+</ul>
+<p>After showing the plot, a text table is printed to stdout with columns:
+<code class="docutils literal notranslate"><span class="pre">#</span></code>, <code class="docutils literal notranslate"><span class="pre">Date</span></code>, <code class="docutils literal notranslate"><span class="pre">Confidence</span></code>, <code class="docutils literal notranslate"><span class="pre">Prev</span> <span class="pre">Mean</span></code>, <code class="docutils literal notranslate"><span class="pre">New</span> <span class="pre">Mean</span></code>,
+<code class="docutils literal notranslate"><span class="pre">Shift</span></code>.  Shows up to 20 breakpoints.</p>
+<section id="id49">
+<h3>Parameters<a class="headerlink" href="#id49" title="Link to this heading">#</a></h3>
+<dl>
+<dt>df<span class="classifier">pd.DataFrame</span></dt><dd><p>DataFrame indexed by datetime.  Must contain:</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">{var_name}</span></code><span class="classifier">numeric</span></dt><dd><p>Raw sensor values.  Resampled to 1-hour mean for plotting.</p>
+</dd>
+</dl>
+</dd>
+<dt>var_name<span class="classifier">str</span></dt><dd><p>Name of the sensor variable column.</p>
+</dd>
+<dt>bp_result<span class="classifier">dict</span></dt><dd><p>Breakpoint detection output from
+<a class="reference internal" href="../qc/breakpoints/index.html#palmwtc.qc.breakpoints.detect_breakpoints_ruptures" title="palmwtc.qc.breakpoints.detect_breakpoints_ruptures"><code class="xref py py-func docutils literal notranslate"><span class="pre">palmwtc.qc.breakpoints.detect_breakpoints_ruptures()</span></code></a>.
+Expected keys:</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">&quot;n_breakpoints&quot;</span></code><span class="classifier">int</span></dt><dd><p>Total number of detected breakpoints.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">&quot;breakpoints&quot;</span></code><span class="classifier">list of pd.Timestamp</span></dt><dd><p>Breakpoint timestamps.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">&quot;segment_info&quot;</span></code><span class="classifier">list of dict</span></dt><dd><p>Each dict has keys <code class="docutils literal notranslate"><span class="pre">&quot;mean&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;std&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;start&quot;</span></code>,
+<code class="docutils literal notranslate"><span class="pre">&quot;end&quot;</span></code>.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">&quot;confidence_scores&quot;</span></code><span class="classifier">list of float</span></dt><dd><p>Confidence score per breakpoint.</p>
+</dd>
+</dl>
+</dd>
+<dt>filtered_bps<span class="classifier">list of pd.Timestamp, optional</span></dt><dd><p>Subset of breakpoints to mark as “kept” (green solid lines).
+Breakpoints not in this list are drawn red dashed.  If <code class="docutils literal notranslate"><span class="pre">None</span></code>,
+all breakpoints are drawn red dashed.</p>
+</dd>
+<dt>title_suffix<span class="classifier">str, optional</span></dt><dd><p>Extra text appended to Panel 1’s title (e.g. a date range or
+site label).</p>
+</dd>
+</dl>
+</section>
+<section id="id50">
+<h3>Returns<a class="headerlink" href="#id50" title="Link to this heading">#</a></h3>
+<dl class="simple">
+<dt>None</dt><dd><p>The figure is displayed via <code class="xref py py-func docutils literal notranslate"><span class="pre">matplotlib.pyplot.show()</span></code> and
+a summary table is printed to stdout.</p>
+</dd>
+</dl>
+</section>
+<section id="id51">
+<h3>Notes<a class="headerlink" href="#id51" title="Link to this heading">#</a></h3>
+<p>The data is resampled to 1-hour means before plotting so that very
+high-frequency streams (e.g. 4-second LI-850 data) render in a
+reasonable time without explicit downsampling.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">{var_name}</span> <span class="pre">(ppm)</span></code> label is used literally on the y-axis of
+Panel 1, so it is most appropriate for CO2 and H2O concentration
+variables.</p>
+</section>
+<section id="id52">
+<h3>Examples<a class="headerlink" href="#id52" title="Link to this heading">#</a></h3>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">palmwtc.viz.qc_plots</span><span class="w"> </span><span class="kn">import</span> <span class="n">visualize_breakpoints</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">visualize_breakpoints</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="s2">&quot;CO2_Avg&quot;</span><span class="p">,</span> <span class="n">bp_result</span><span class="p">,</span> <span class="n">filtered_bps</span><span class="o">=</span><span class="n">kept</span><span class="p">)</span>  
+</pre></div>
+</div>
+</section>
+<section id="id53">
+<h3>See Also<a class="headerlink" href="#id53" title="Link to this heading">#</a></h3>
+<dl class="simple">
+<dt>plot_breakpoints_analysis<span class="classifier">Two-figure version with a table figure and</span></dt><dd><p>confidence-filtered plotting.</p>
+</dd>
+<dt>palmwtc.qc.breakpoints.detect_breakpoints_ruptures<span class="classifier">Produces the</span></dt><dd><p><code class="docutils literal notranslate"><span class="pre">bp_result</span></code> dict.</p>
+</dd>
+</dl>
+</section>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="palmwtc.viz.visualize_missing_data">
+<span class="sig-prename descclassname"><span class="pre">palmwtc.viz.</span></span><span class="sig-name descname"><span class="pre">visualize_missing_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">pandas.DataFrame</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">var_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">frequency_seconds</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">config</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">figsize</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">(15,</span> <span class="pre">8)</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">matplotlib.figure.Figure</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></span><a class="headerlink" href="#palmwtc.viz.visualize_missing_data" title="Link to this definition">#</a></dt>
+<dd><p>Two-panel figure showing data availability and gap distribution.</p>
+<p>Identifies timestamps where the interval between consecutive valid
+readings exceeds <code class="docutils literal notranslate"><span class="pre">2.5</span> <span class="pre">*</span> <span class="pre">frequency_seconds</span></code> (a “gap”) and plots:</p>
+<ul class="simple">
+<li><p><strong>Top panel</strong> (3:1 height ratio): raw sensor timeseries (blue line)
+with the title showing the sampling frequency, data coverage, and
+missing-data percentage.  Downsampled to 50 000 points when the
+series is longer.</p></li>
+<li><p><strong>Bottom panel</strong>: bar chart of gap duration in hours vs time, one
+bar per detected gap.  Uses log scale on the y-axis when any gap
+exceeds 1 hour.</p></li>
+</ul>
+<section id="id54">
+<h3>Parameters<a class="headerlink" href="#id54" title="Link to this heading">#</a></h3>
+<dl>
+<dt>df<span class="classifier">pd.DataFrame</span></dt><dd><p>DataFrame with a datetime index.  Must contain:</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">{var_name}</span></code><span class="classifier">numeric</span></dt><dd><p>Sensor values.  NaN rows are treated as missing.</p>
+</dd>
+</dl>
+</dd>
+<dt>var_name<span class="classifier">str</span></dt><dd><p>Name of the sensor variable column.</p>
+</dd>
+<dt>frequency_seconds<span class="classifier">float, optional</span></dt><dd><p>Expected sampling interval in seconds (e.g. 4.0 for a 4 s LI-850
+stream).  If <code class="docutils literal notranslate"><span class="pre">None</span></code>, the function looks up
+<code class="docutils literal notranslate"><span class="pre">config[key][&quot;measurement_frequency&quot;]</span></code>; if still not found,
+defaults to 4.0 seconds with a warning printed to stdout.</p>
+</dd>
+<dt>config<span class="classifier">dict, optional</span></dt><dd><p>Variable configuration dict (same structure as <code class="docutils literal notranslate"><span class="pre">var_config</span></code>
+used elsewhere).  Searched for <code class="docutils literal notranslate"><span class="pre">var_name</span></code> by direct key match,
+<code class="docutils literal notranslate"><span class="pre">&quot;columns&quot;</span></code> list membership, or <code class="docutils literal notranslate"><span class="pre">&quot;pattern&quot;</span></code> prefix.</p>
+</dd>
+<dt>figsize<span class="classifier">tuple of (float, float), optional</span></dt><dd><p>Figure width and height in inches.</p>
+</dd>
+</dl>
+</section>
+<section id="id55">
+<h3>Returns<a class="headerlink" href="#id55" title="Link to this heading">#</a></h3>
+<dl class="simple">
+<dt>matplotlib.figure.Figure or None</dt><dd><p>The figure, or <code class="docutils literal notranslate"><span class="pre">None</span></code> if <code class="docutils literal notranslate"><span class="pre">var_name</span></code> is not in <code class="docutils literal notranslate"><span class="pre">df</span></code> or no
+valid data points exist.</p>
+</dd>
+</dl>
+</section>
+<section id="id56">
+<h3>Notes<a class="headerlink" href="#id56" title="Link to this heading">#</a></h3>
+<p>Gap detection threshold: a gap is counted when the time between two
+consecutive non-NaN records exceeds <code class="docutils literal notranslate"><span class="pre">2.5</span> <span class="pre">*</span> <span class="pre">frequency_seconds</span></code>.
+This allows for small timing jitter without false positives.</p>
+<p>The missing-data percentage shown in the title is estimated as:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">missing_pct</span> <span class="o">=</span> <span class="p">(</span><span class="n">expected_points</span> <span class="o">-</span> <span class="n">actual_points</span><span class="p">)</span> <span class="o">/</span> <span class="n">expected_points</span> <span class="o">*</span> <span class="mi">100</span>
+</pre></div>
+</div>
+<p>where <code class="docutils literal notranslate"><span class="pre">expected_points</span> <span class="pre">=</span> <span class="pre">total_duration_sec</span> <span class="pre">/</span> <span class="pre">frequency_seconds</span></code>.</p>
+</section>
+<section id="id57">
+<h3>Examples<a class="headerlink" href="#id57" title="Link to this heading">#</a></h3>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">palmwtc.viz.qc_plots</span><span class="w"> </span><span class="kn">import</span> <span class="n">visualize_missing_data</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">fig</span> <span class="o">=</span> <span class="n">visualize_missing_data</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="s2">&quot;CO2_Avg&quot;</span><span class="p">,</span> <span class="n">frequency_seconds</span><span class="o">=</span><span class="mf">4.0</span><span class="p">)</span>  
+</pre></div>
+</div>
+</section>
+<section id="id58">
+<h3>See Also<a class="headerlink" href="#id58" title="Link to this heading">#</a></h3>
+<dl class="simple">
+<dt>visualize_qc_flags<span class="classifier">Per-rule flag scatter, useful after gaps are</span></dt><dd><p>already filled or excluded.</p>
+</dd>
+</dl>
+</section>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="palmwtc.viz.visualize_qc_flags">
+<span class="sig-prename descclassname"><span class="pre">palmwtc.viz.</span></span><span class="sig-name descname"><span class="pre">visualize_qc_flags</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">pandas.DataFrame</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">var_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">qc_results</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">config</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">figsize</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">(15,</span> <span class="pre">20)</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">matplotlib.figure.Figure</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></span><a class="headerlink" href="#palmwtc.viz.visualize_qc_flags" title="Link to this definition">#</a></dt>
+<dd><p>Multi-panel scatter plot of QC flags with per-method breakdown.</p>
+<p>Produces a figure whose row count adapts to how many QC methods fired:</p>
+<ul class="simple">
+<li><p><strong>Row 1</strong> (combined): scatter plot of <code class="docutils literal notranslate"><span class="pre">var_name</span></code> coloured by the
+combined <code class="docutils literal notranslate"><span class="pre">{var_name}_qc_flag</span></code> column.  Green = Flag 0, orange =
+Flag 1, red x = Flag 2.  Hard/soft bound lines added when <code class="docutils literal notranslate"><span class="pre">config</span></code>
+is supplied.</p></li>
+<li><p><strong>Rows 2..N</strong> (one per active method): the raw timeseries in grey
+with flagged points coloured orange (Suspect) or red-x (Bad).
+Active methods checked: Physical Bounds, Persistence, Rate of Change,
+IQR Outliers.</p></li>
+<li><p><strong>Last row</strong> (summary): left panel = bar chart of flag counts (Good /
+Suspect / Bad); right panel = horizontal bar chart of flag counts by
+method (Bounds / IQR / RoC / Persist).</p></li>
+</ul>
+<section id="id59">
+<h3>Parameters<a class="headerlink" href="#id59" title="Link to this heading">#</a></h3>
+<dl>
+<dt>df<span class="classifier">pd.DataFrame</span></dt><dd><p>QC-flagged DataFrame.  Must contain:</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">{var_name}</span></code><span class="classifier">numeric</span></dt><dd><p>Raw sensor values.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">{var_name}_qc_flag</span></code><span class="classifier">int in {0, 1, 2}</span></dt><dd><p>Combined QC flag column.  May be absent if
+<code class="docutils literal notranslate"><span class="pre">qc_results[&quot;final_flags&quot;]</span></code> is provided instead.</p>
+</dd>
+</dl>
+</dd>
+<dt>var_name<span class="classifier">str</span></dt><dd><p>Name of the sensor variable column to plot.</p>
+</dd>
+<dt>qc_results<span class="classifier">dict</span></dt><dd><p>Per-variable QC result dict from
+<a class="reference internal" href="../qc/index.html#palmwtc.qc.process_variable_qc" title="palmwtc.qc.process_variable_qc"><code class="xref py py-func docutils literal notranslate"><span class="pre">palmwtc.qc.process_variable_qc()</span></code></a>.  Expected keys:</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">&quot;final_flags&quot;</span></code><span class="classifier">pd.Series</span></dt><dd><p>Combined flag series (used as fallback if the flag column is
+absent from <code class="docutils literal notranslate"><span class="pre">df</span></code>).</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">&quot;bounds_flags&quot;</span></code><span class="classifier">pd.Series or None</span></dt><dd><p>Flags from the Physical Bounds rule.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">&quot;persistence_flags&quot;</span></code><span class="classifier">pd.Series or None</span></dt><dd><p>Flags from the Persistence rule.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">&quot;roc_flags&quot;</span></code><span class="classifier">pd.Series or None</span></dt><dd><p>Flags from the Rate-of-Change rule.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">&quot;iqr_flags&quot;</span></code><span class="classifier">pd.Series or None</span></dt><dd><p>Flags from the IQR Outlier rule.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">&quot;summary&quot;</span></code><span class="classifier">dict</span></dt><dd><p>Keys <code class="docutils literal notranslate"><span class="pre">&quot;flag_0_count&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;flag_1_count&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;flag_2_count&quot;</span></code>.</p>
+</dd>
+</dl>
+</dd>
+<dt>config<span class="classifier">dict, optional</span></dt><dd><p>Variable configuration used for axis labels and threshold lines.
+Expected keys (all optional):</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">&quot;label&quot;</span></code><span class="classifier">str</span></dt><dd><p>Y-axis label.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">&quot;soft&quot;</span></code><span class="classifier">tuple of (float, float)</span></dt><dd><p>(min, max) soft bounds drawn as orange dashed lines.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">&quot;hard&quot;</span></code><span class="classifier">tuple of (float, float)</span></dt><dd><p>(min, max) hard bounds drawn as red dashed lines.</p>
+</dd>
+</dl>
+</dd>
+<dt>figsize<span class="classifier">tuple of (float, float), optional</span></dt><dd><p>Figure width and height in inches.  Height is overridden upward
+when many method panels are present (4 rows per extra method).</p>
+</dd>
+</dl>
+</section>
+<section id="id60">
+<h3>Returns<a class="headerlink" href="#id60" title="Link to this heading">#</a></h3>
+<dl class="simple">
+<dt>matplotlib.figure.Figure or None</dt><dd><p>The figure, or <code class="docutils literal notranslate"><span class="pre">None</span></code> if <code class="docutils literal notranslate"><span class="pre">var_name</span></code> is not found in <code class="docutils literal notranslate"><span class="pre">df</span></code>.</p>
+</dd>
+</dl>
+</section>
+<section id="id61">
+<h3>Notes<a class="headerlink" href="#id61" title="Link to this heading">#</a></h3>
+<p>Flag values:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">0</span></code> = Good (green scatter, small points).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">1</span></code> = Suspect (orange scatter, medium points).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">2</span></code> = Bad (red x scatter, slightly larger points).</p></li>
+</ul>
+<p>The summary row reads counts from <code class="docutils literal notranslate"><span class="pre">qc_results[&quot;summary&quot;]</span></code>, which
+reflects the full (unfiltered) dataset.</p>
+</section>
+<section id="id62">
+<h3>Examples<a class="headerlink" href="#id62" title="Link to this heading">#</a></h3>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">palmwtc.viz.qc_plots</span><span class="w"> </span><span class="kn">import</span> <span class="n">visualize_qc_flags</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">fig</span> <span class="o">=</span> <span class="n">visualize_qc_flags</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="s2">&quot;CO2_Avg&quot;</span><span class="p">,</span> <span class="n">qc_results</span><span class="p">[</span><span class="s2">&quot;CO2_Avg&quot;</span><span class="p">])</span>  
+</pre></div>
+</div>
+</section>
+<section id="id63">
+<h3>See Also<a class="headerlink" href="#id63" title="Link to this heading">#</a></h3>
+<dl>
+<dt>palmwtc.qc.process_variable_qc<span class="classifier">Produces the <code class="docutils literal notranslate"><span class="pre">qc_results</span></code> dict</span></dt><dd><p>consumed here.</p>
+</dd>
+</dl>
+<p>plot_qc_comparison : Compare flag percentages across many variables.
+plot_qc_summary_heatmap : Heatmap view across all variables.</p>
+</section>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="palmwtc.viz.set_style">
+<span class="sig-prename descclassname"><span class="pre">palmwtc.viz.</span></span><span class="sig-name descname"><span class="pre">set_style</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#palmwtc.viz.set_style" title="Link to this definition">#</a></dt>
+<dd><p>Apply the standard palmwtc matplotlib/seaborn theme.</p>
+<p>Sets the seaborn <code class="docutils literal notranslate"><span class="pre">&quot;whitegrid&quot;</span></code> theme and fixes the default figure size
+to <code class="docutils literal notranslate"><span class="pre">(12,</span> <span class="pre">6)</span></code> inches.  Call this once at the top of a notebook or script
+before producing any plots.</p>
+<section id="id64">
+<h3>Returns<a class="headerlink" href="#id64" title="Link to this heading">#</a></h3>
+<dl class="simple">
+<dt>None</dt><dd><p>This function returns nothing.  It modifies global matplotlib
+rcParams and the seaborn theme as a side effect.</p>
+</dd>
+</dl>
+</section>
+<section id="id65">
+<h3>Notes<a class="headerlink" href="#id65" title="Link to this heading">#</a></h3>
+<p>This function is <strong>side-effecting</strong>: it changes <code class="docutils literal notranslate"><span class="pre">matplotlib.rcParams</span></code>
+and the active seaborn theme for the entire Python session.  Any plots
+created after calling this function will use the new settings.  To undo,
+call <code class="docutils literal notranslate"><span class="pre">matplotlib.rcdefaults()</span></code> or <code class="docutils literal notranslate"><span class="pre">seaborn.reset_defaults()</span></code>.</p>
+<p>The function is idempotent — calling it multiple times has the same
+result as calling it once.</p>
+</section>
+<section id="id66">
+<h3>Examples<a class="headerlink" href="#id66" title="Link to this heading">#</a></h3>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">palmwtc.viz.style</span><span class="w"> </span><span class="kn">import</span> <span class="n">set_style</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">set_style</span><span class="p">()</span>  
+</pre></div>
+</div>
+</section>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="palmwtc.viz.plot_concentration_slope_vs_tree_age">
+<span class="sig-prename descclassname"><span class="pre">palmwtc.viz.</span></span><span class="sig-name descname"><span class="pre">plot_concentration_slope_vs_tree_age</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">flux_df</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">pandas.DataFrame</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">variable</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'flux_slope'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">birth_date_str</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'2022-07-12'</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">matplotlib.pyplot.Figure</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></span><a class="headerlink" href="#palmwtc.viz.plot_concentration_slope_vs_tree_age" title="Link to this definition">#</a></dt>
+<dd><p>Plot raw concentration slope vs tree age, faceted by chamber.</p>
+<p>Plots ppm/s slope (before chamber volume/area correction) against
+tree age in years. Produces one subplot per chamber with a scatter
+layer and a black rolling-mean trend line. This is a sanity check
+for <a class="reference internal" href="#palmwtc.viz.plot_flux_vs_tree_age" title="palmwtc.viz.plot_flux_vs_tree_age"><code class="xref py py-func docutils literal notranslate"><span class="pre">plot_flux_vs_tree_age()</span></code></a>: if the corrected-flux trend
+matches the raw-slope trend, the chamber-size correction is not
+introducing artefacts.</p>
+<section id="id67">
+<h3>Parameters<a class="headerlink" href="#id67" title="Link to this heading">#</a></h3>
+<dl>
+<dt>flux_df<span class="classifier">pd.DataFrame</span></dt><dd><p>Cycle-level flux data. Must contain:</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">flux_date</span></code><span class="classifier">datetime-like</span></dt><dd><p>Timestamp of each cycle; used to compute tree age.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">Source_Chamber</span></code><span class="classifier">str</span></dt><dd><p>Chamber identifier; one subplot per unique value.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">&lt;variable&gt;</span></code><span class="classifier">float</span></dt><dd><p>Raw concentration slope in ppm/s (no chamber-size
+correction applied).</p>
+</dd>
+</dl>
+</dd>
+<dt>variable<span class="classifier">str, optional</span></dt><dd><p>Column in <code class="docutils literal notranslate"><span class="pre">flux_df</span></code> to plot on the y-axis.
+Default is <code class="docutils literal notranslate"><span class="pre">&quot;flux_slope&quot;</span></code>.</p>
+</dd>
+<dt>birth_date_str<span class="classifier">str, optional</span></dt><dd><p>ISO-format planting date (<code class="docutils literal notranslate"><span class="pre">&quot;YYYY-MM-DD&quot;</span></code>) for tree-age
+calculation. Default is <code class="docutils literal notranslate"><span class="pre">&quot;2022-07-12&quot;</span></code>.</p>
+</dd>
+</dl>
+</section>
+<section id="id68">
+<h3>Returns<a class="headerlink" href="#id68" title="Link to this heading">#</a></h3>
+<dl class="simple">
+<dt>matplotlib.figure.Figure or None</dt><dd><p>The figure with one subplot per chamber, or <code class="docutils literal notranslate"><span class="pre">None</span></code> if
+<code class="docutils literal notranslate"><span class="pre">flux_df</span></code> is empty.</p>
+</dd>
+</dl>
+</section>
+<section id="id69">
+<h3>Notes<a class="headerlink" href="#id69" title="Link to this heading">#</a></h3>
+<p>Tree age is computed the same way as in
+<a class="reference internal" href="#palmwtc.viz.plot_flux_vs_tree_age" title="palmwtc.viz.plot_flux_vs_tree_age"><code class="xref py py-func docutils literal notranslate"><span class="pre">plot_flux_vs_tree_age()</span></code></a> (seconds / 31,557,600). The rolling
+mean uses <code class="docutils literal notranslate"><span class="pre">window=200,</span> <span class="pre">center=True</span></code>.</p>
+</section>
+<section id="id70">
+<h3>Examples<a class="headerlink" href="#id70" title="Link to this heading">#</a></h3>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">palmwtc.viz.timeseries</span><span class="w"> </span><span class="kn">import</span> <span class="n">plot_concentration_slope_vs_tree_age</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">fig</span> <span class="o">=</span> <span class="n">plot_concentration_slope_vs_tree_age</span><span class="p">(</span><span class="n">cycles_df</span><span class="p">)</span>  
+</pre></div>
+</div>
+</section>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="palmwtc.viz.plot_flux_heatmap">
+<span class="sig-prename descclassname"><span class="pre">palmwtc.viz.</span></span><span class="sig-name descname"><span class="pre">plot_flux_heatmap</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">flux_df</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">pandas.DataFrame</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">variable</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'flux_absolute'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">title</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'Flux</span> <span class="pre">Heatmap</span> <span class="pre">(Hour</span> <span class="pre">vs</span> <span class="pre">Month)'</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">matplotlib.pyplot.Figure</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></span><a class="headerlink" href="#palmwtc.viz.plot_flux_heatmap" title="Link to this definition">#</a></dt>
+<dd><p>Heatmap of mean flux by hour-of-day and month-year.</p>
+<p>Produces three vertically stacked subplots:</p>
+<ol class="arabic simple">
+<li><p>Overall (all chambers combined).</p></li>
+<li><p>Chamber 1 only.</p></li>
+<li><p>Chamber 2 only.</p></li>
+</ol>
+<p>Each subplot has hour of day (0-23) on the y-axis and month-year
+periods on the x-axis. Cell colour encodes mean flux, centred at
+zero (<code class="docutils literal notranslate"><span class="pre">RdBu_r</span></code> palette: red = positive efflux, blue = uptake).</p>
+<section id="id71">
+<h3>Parameters<a class="headerlink" href="#id71" title="Link to this heading">#</a></h3>
+<dl>
+<dt>flux_df<span class="classifier">pd.DataFrame</span></dt><dd><p>Cycle-level flux data. Must contain:</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">flux_date</span></code><span class="classifier">datetime-like</span></dt><dd><p>Timestamp; hour and month-year are extracted from this column.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">Source_Chamber</span></code><span class="classifier">str</span></dt><dd><p>Chamber identifier. Subplots 2 and 3 filter on
+<code class="docutils literal notranslate"><span class="pre">&quot;Chamber</span> <span class="pre">1&quot;</span></code> and <code class="docutils literal notranslate"><span class="pre">&quot;Chamber</span> <span class="pre">2&quot;</span></code> exactly.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">&lt;variable&gt;</span></code><span class="classifier">float</span></dt><dd><p>Flux column used for heatmap cell values.</p>
+</dd>
+</dl>
+</dd>
+<dt>variable<span class="classifier">str, optional</span></dt><dd><p>Column in <code class="docutils literal notranslate"><span class="pre">flux_df</span></code> to aggregate. Default is
+<code class="docutils literal notranslate"><span class="pre">&quot;flux_absolute&quot;</span></code>.</p>
+</dd>
+<dt>title<span class="classifier">str, optional</span></dt><dd><p>Base title; each subplot appends its own suffix
+(e.g. <code class="docutils literal notranslate"><span class="pre">&quot;-</span> <span class="pre">Chamber</span> <span class="pre">1&quot;</span></code>). Default is
+<code class="docutils literal notranslate"><span class="pre">&quot;Flux</span> <span class="pre">Heatmap</span> <span class="pre">(Hour</span> <span class="pre">vs</span> <span class="pre">Month)&quot;</span></code>.</p>
+</dd>
+</dl>
+</section>
+<section id="id72">
+<h3>Returns<a class="headerlink" href="#id72" title="Link to this heading">#</a></h3>
+<dl class="simple">
+<dt>matplotlib.figure.Figure or None</dt><dd><p>The figure with three heatmap subplots, or <code class="docutils literal notranslate"><span class="pre">None</span></code> if
+<code class="docutils literal notranslate"><span class="pre">flux_df</span></code> is empty.</p>
+</dd>
+</dl>
+</section>
+<section id="id73">
+<h3>Notes<a class="headerlink" href="#id73" title="Link to this heading">#</a></h3>
+<p>Subplots where the filtered data is empty show a <code class="docutils literal notranslate"><span class="pre">&quot;No</span> <span class="pre">Data&quot;</span></code>
+label instead of a heatmap. Month-year periods on the x-axis
+are sorted chronologically by pandas <code class="docutils literal notranslate"><span class="pre">Period</span></code> ordering.</p>
+</section>
+<section id="id74">
+<h3>Examples<a class="headerlink" href="#id74" title="Link to this heading">#</a></h3>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">palmwtc.viz.timeseries</span><span class="w"> </span><span class="kn">import</span> <span class="n">plot_flux_heatmap</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">fig</span> <span class="o">=</span> <span class="n">plot_flux_heatmap</span><span class="p">(</span><span class="n">cycles_df</span><span class="p">)</span>  
+</pre></div>
+</div>
+</section>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="palmwtc.viz.plot_flux_vs_tree_age">
+<span class="sig-prename descclassname"><span class="pre">palmwtc.viz.</span></span><span class="sig-name descname"><span class="pre">plot_flux_vs_tree_age</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">flux_df</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">pandas.DataFrame</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">variable</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'flux_absolute'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">birth_date_str</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'2022-07-12'</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">matplotlib.pyplot.Figure</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></span><a class="headerlink" href="#palmwtc.viz.plot_flux_vs_tree_age" title="Link to this definition">#</a></dt>
+<dd><p>Plot flux against tree age in years, with a rolling-mean trend.</p>
+<p>Produces one subplot per chamber (stacked vertically, shared x-axis).
+Each subplot shows raw flux values as a semi-transparent scatter and
+a black rolling-mean line (window = 200 observations) as the trend.</p>
+<section id="id75">
+<h3>Parameters<a class="headerlink" href="#id75" title="Link to this heading">#</a></h3>
+<dl>
+<dt>flux_df<span class="classifier">pd.DataFrame</span></dt><dd><p>Cycle-level flux data. Must contain:</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">flux_date</span></code><span class="classifier">datetime-like</span></dt><dd><p>Timestamp of each measurement cycle; used to compute tree
+age relative to <code class="docutils literal notranslate"><span class="pre">birth_date_str</span></code>.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">Source_Chamber</span></code><span class="classifier">str</span></dt><dd><p>Chamber identifier; one subplot is created per unique value.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">&lt;variable&gt;</span></code><span class="classifier">float</span></dt><dd><p>Flux column plotted on the y-axis.</p>
+</dd>
+</dl>
+</dd>
+<dt>variable<span class="classifier">str, optional</span></dt><dd><p>Column in <code class="docutils literal notranslate"><span class="pre">flux_df</span></code> to plot. Default is <code class="docutils literal notranslate"><span class="pre">&quot;flux_absolute&quot;</span></code>.</p>
+</dd>
+<dt>birth_date_str<span class="classifier">str, optional</span></dt><dd><p>ISO-format planting date (<code class="docutils literal notranslate"><span class="pre">&quot;YYYY-MM-DD&quot;</span></code>) used as the zero
+point for tree age. Default is <code class="docutils literal notranslate"><span class="pre">&quot;2022-07-12&quot;</span></code>.</p>
+</dd>
+</dl>
+</section>
+<section id="id76">
+<h3>Returns<a class="headerlink" href="#id76" title="Link to this heading">#</a></h3>
+<dl class="simple">
+<dt>matplotlib.figure.Figure or None</dt><dd><p>The figure with one subplot per chamber, or <code class="docutils literal notranslate"><span class="pre">None</span></code> if
+<code class="docutils literal notranslate"><span class="pre">flux_df</span></code> is empty.</p>
+</dd>
+</dl>
+</section>
+<section id="id77">
+<h3>Notes<a class="headerlink" href="#id77" title="Link to this heading">#</a></h3>
+<p>Tree age in years is computed as:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">flux_date</span> <span class="o">-</span> <span class="n">birth_date</span><span class="p">)</span><span class="o">.</span><span class="n">total_seconds</span><span class="p">()</span> <span class="o">/</span> <span class="p">(</span><span class="mi">3600</span> <span class="o">*</span> <span class="mi">24</span> <span class="o">*</span> <span class="mf">365.25</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>so fractional years are preserved. The rolling mean uses
+<code class="docutils literal notranslate"><span class="pre">window=200,</span> <span class="pre">center=True</span></code> and will produce NaN near the edges of
+the series; those NaN values are silently dropped by matplotlib.</p>
+</section>
+<section id="id78">
+<h3>Examples<a class="headerlink" href="#id78" title="Link to this heading">#</a></h3>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">palmwtc.viz.timeseries</span><span class="w"> </span><span class="kn">import</span> <span class="n">plot_flux_vs_tree_age</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">fig</span> <span class="o">=</span> <span class="n">plot_flux_vs_tree_age</span><span class="p">(</span><span class="n">cycles_df</span><span class="p">,</span> <span class="n">birth_date_str</span><span class="o">=</span><span class="s2">&quot;2022-07-12&quot;</span><span class="p">)</span>  
+</pre></div>
+</div>
+</section>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="palmwtc.viz.plot_tropical_seasonal_diurnal">
+<span class="sig-prename descclassname"><span class="pre">palmwtc.viz.</span></span><span class="sig-name descname"><span class="pre">plot_tropical_seasonal_diurnal</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">flux_df</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">pandas.DataFrame</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">variable</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'flux_absolute'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">estimator</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'mean'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">title_suffix</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">''</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">matplotlib.pyplot.Figure</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></span><a class="headerlink" href="#palmwtc.viz.plot_tropical_seasonal_diurnal" title="Link to this definition">#</a></dt>
+<dd><p>Overlay diurnal flux pattern per tropical season on a single axis.</p>
+<p>Draws one line per season (Wet and Dry) and per chamber. The x-axis
+is hour of day (0-23), the y-axis is the flux value aggregated
+across all dates in that season-hour combination.</p>
+<p>Season assignment follows the standard SE-Asia rule:</p>
+<ul class="simple">
+<li><p><strong>Dry Season</strong>: May to September (months 5-9).</p></li>
+<li><p><strong>Wet Season</strong>: October to April (months 10-4).</p></li>
+</ul>
+<p>Useful for spotting shifts in CO2 uptake phase (morning vs afternoon
+activity) between seasons.</p>
+<section id="id79">
+<h3>Parameters<a class="headerlink" href="#id79" title="Link to this heading">#</a></h3>
+<dl>
+<dt>flux_df<span class="classifier">pd.DataFrame</span></dt><dd><p>Cycle-level flux data. Must contain:</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">flux_date</span></code><span class="classifier">datetime-like</span></dt><dd><p>Timestamp of each measurement cycle; month and hour are
+extracted from this column.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">Source_Chamber</span></code><span class="classifier">str</span></dt><dd><p>Chamber identifier used to differentiate line styles.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">&lt;variable&gt;</span></code><span class="classifier">float</span></dt><dd><p>Flux column plotted on the y-axis.</p>
+</dd>
+</dl>
+</dd>
+<dt>variable<span class="classifier">str, optional</span></dt><dd><p>Column in <code class="docutils literal notranslate"><span class="pre">flux_df</span></code> to use as the y-axis value.
+Default is <code class="docutils literal notranslate"><span class="pre">&quot;flux_absolute&quot;</span></code>.</p>
+</dd>
+<dt>estimator<span class="classifier">str, optional</span></dt><dd><p>Aggregation function passed to <code class="docutils literal notranslate"><span class="pre">seaborn.lineplot</span></code>
+(e.g. <code class="docutils literal notranslate"><span class="pre">&quot;mean&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;median&quot;</span></code>). Default is <code class="docutils literal notranslate"><span class="pre">&quot;mean&quot;</span></code>.</p>
+</dd>
+<dt>title_suffix<span class="classifier">str, optional</span></dt><dd><p>Extra text appended to the figure title, useful for adding
+a date range or site label. Default is <code class="docutils literal notranslate"><span class="pre">&quot;&quot;</span></code>.</p>
+</dd>
+</dl>
+</section>
+<section id="id80">
+<h3>Returns<a class="headerlink" href="#id80" title="Link to this heading">#</a></h3>
+<dl class="simple">
+<dt>matplotlib.figure.Figure or None</dt><dd><p>The figure containing the diurnal plot, or <code class="docutils literal notranslate"><span class="pre">None</span></code> if
+<code class="docutils literal notranslate"><span class="pre">flux_df</span></code> is empty.</p>
+</dd>
+</dl>
+</section>
+<section id="id81">
+<h3>Notes<a class="headerlink" href="#id81" title="Link to this heading">#</a></h3>
+<p>Shaded bands around each line represent one standard deviation
+(<code class="docutils literal notranslate"><span class="pre">errorbar=&quot;sd&quot;</span></code>). Lines are coloured orange (Dry) and blue (Wet);
+line style differentiates chambers.</p>
+</section>
+<section id="id82">
+<h3>Examples<a class="headerlink" href="#id82" title="Link to this heading">#</a></h3>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">palmwtc.viz.timeseries</span><span class="w"> </span><span class="kn">import</span> <span class="n">plot_tropical_seasonal_diurnal</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">fig</span> <span class="o">=</span> <span class="n">plot_tropical_seasonal_diurnal</span><span class="p">(</span><span class="n">cycles_df</span><span class="p">)</span>  
+</pre></div>
+</div>
+</section>
+</dd></dl>
+
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./api/palmwtc/viz"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item"><div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#submodules">Submodules</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#functions">Functions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#package-contents">Package Contents</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#palmwtc.viz.plot_chamber_resizing_validation"><code class="docutils literal notranslate"><span class="pre">plot_chamber_resizing_validation()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#palmwtc.viz.plot_cycle_by_id"><code class="docutils literal notranslate"><span class="pre">plot_cycle_by_id()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#palmwtc.viz.plot_cycle_diagnostics"><code class="docutils literal notranslate"><span class="pre">plot_cycle_diagnostics()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#palmwtc.viz.plot_specific_cycle"><code class="docutils literal notranslate"><span class="pre">plot_specific_cycle()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#palmwtc.viz.show_sample_cycles"><code class="docutils literal notranslate"><span class="pre">show_sample_cycles()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#palmwtc.viz.interactive_flux_dashboard"><code class="docutils literal notranslate"><span class="pre">interactive_flux_dashboard()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#palmwtc.viz.filter_plot"><code class="docutils literal notranslate"><span class="pre">filter_plot()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#palmwtc.viz.plot_breakpoints_analysis"><code class="docutils literal notranslate"><span class="pre">plot_breakpoints_analysis()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#palmwtc.viz.plot_drift_and_hq_timeseries"><code class="docutils literal notranslate"><span class="pre">plot_drift_and_hq_timeseries()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#palmwtc.viz.plot_qc_comparison"><code class="docutils literal notranslate"><span class="pre">plot_qc_comparison()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#palmwtc.viz.plot_qc_summary_heatmap"><code class="docutils literal notranslate"><span class="pre">plot_qc_summary_heatmap()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#palmwtc.viz.plot_soil_var"><code class="docutils literal notranslate"><span class="pre">plot_soil_var()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#palmwtc.viz.visualize_breakpoints"><code class="docutils literal notranslate"><span class="pre">visualize_breakpoints()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#palmwtc.viz.visualize_missing_data"><code class="docutils literal notranslate"><span class="pre">visualize_missing_data()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#palmwtc.viz.visualize_qc_flags"><code class="docutils literal notranslate"><span class="pre">visualize_qc_flags()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#palmwtc.viz.set_style"><code class="docutils literal notranslate"><span class="pre">set_style()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#palmwtc.viz.plot_concentration_slope_vs_tree_age"><code class="docutils literal notranslate"><span class="pre">plot_concentration_slope_vs_tree_age()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#palmwtc.viz.plot_flux_heatmap"><code class="docutils literal notranslate"><span class="pre">plot_flux_heatmap()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#palmwtc.viz.plot_flux_vs_tree_age"><code class="docutils literal notranslate"><span class="pre">plot_flux_vs_tree_age()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#palmwtc.viz.plot_tropical_seasonal_diurnal"><code class="docutils literal notranslate"><span class="pre">plot_tropical_seasonal_diurnal()</span></code></a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Didi Adisaputro
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2026.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

@@ -1,0 +1,970 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>palmwtc.qc.reporting &#8212; palmwtc</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../../../../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/styles/sphinx-book-theme.css?v=3c74b3bc" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/togglebutton.css?v=9c3e77be" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/graphviz.css?v=fd3f3429" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../../../../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../../../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="../../../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../../../_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../../../_static/togglebutton.js?v=b8b12719"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'api/palmwtc/qc/reporting/index';</script>
+    <link rel="canonical" href="https://adisapoetro.github.io/palmwtc/api/palmwtc/qc/reporting/index.html" />
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../../../index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">palmwtc</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../../../index.html">
+                    palmwtc
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Getting Started</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../../../quickstart.html">Quickstart — your first flux number in 3 minutes</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../../tutorials/index.html">Tutorials</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorials/010_Data_Integration.html">010 — Core data integration (raw → unified monthly)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorials/011_Weather_vs_Chamber.html">011 — Weather station vs chamber</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorials/020_QC_Rule_Based.html">020 — Rule-based QC</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorials/022_QC_ML_Enhanced.html">022 — ML-enhanced QC (optional)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorials/023_Field_Alert_Report.html">023 — Field alert report</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorials/025_Cross_Chamber_Bias.html">025 — Cross-chamber bias comparison (diagnostic)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorials/026_CO2_H2O_Segmented_Bias.html">026 — CO2/H2O segmented bias comparison (diagnostic)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorials/030_Flux_Cycle_Calculation.html">030 — Flux cycle calculation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorials/031_Window_Selection_Reference.html">031 — High-confidence window selection (reference)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorials/032_Window_Selection_Production.html">032 — Physically grounded window selection (production)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorials/033_Science_Validation.html">033 — Science validation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorials/034_QC_and_Window_Audit.html">034 — QC + window audit (visualization)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorials/035_QC_Threshold_Sensitivity.html">035 — QC threshold sensitivity sweep</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorials/000_End_to_End_Synthetic.html">000 — End-to-end on synthetic data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorials/001_End_to_End_LIBZ.html">001 - End-to-end on LIBZ data (raw .dat -&gt; validation)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorials/010_Data_Integration.html">010 — Core data integration (raw → unified monthly)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorials/011_Weather_vs_Chamber.html">011 — Weather station vs chamber</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorials/020_QC_Rule_Based.html">020 — Rule-based QC</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorials/022_QC_ML_Enhanced.html">022 — ML-enhanced QC (optional)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorials/023_Field_Alert_Report.html">023 — Field alert report</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorials/025_Cross_Chamber_Bias.html">025 — Cross-chamber bias comparison (diagnostic)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorials/026_CO2_H2O_Segmented_Bias.html">026 — CO2/H2O segmented bias comparison (diagnostic)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorials/030_Flux_Cycle_Calculation.html">030 — Flux cycle calculation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorials/031_Window_Selection_Reference.html">031 — High-confidence window selection (reference)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorials/032_Window_Selection_Production.html">032 — Physically grounded window selection (production)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorials/033_Science_Validation.html">033 — Science validation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorials/034_QC_and_Window_Audit.html">034 — QC + window audit (visualization)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorials/035_QC_Threshold_Sensitivity.html">035 — QC threshold sensitivity sweep</a></li>
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Science Reference</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../../../science/index.html">Science Reference</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/adisapoetro/palmwtc" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/adisapoetro/palmwtc/edit/main/docs/api/palmwtc/qc/reporting/index.rst" target="_blank"
+   class="btn btn-sm btn-source-edit-button dropdown-item"
+   title="Suggest edit"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="btn__text-container">Suggest edit</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/adisapoetro/palmwtc/issues/new?title=Issue%20on%20page%20%2Fapi/palmwtc/qc/reporting/index.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../../../_sources/api/palmwtc/qc/reporting/index.rst" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.rst</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button pst-navbar-icon"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm pst-navbar-icon" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>palmwtc.qc.reporting</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#attributes">Attributes</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#functions">Functions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-contents">Module Contents</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#palmwtc.qc.reporting.generate_qc_summary_from_results"><code class="docutils literal notranslate"><span class="pre">generate_qc_summary_from_results()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#palmwtc.qc.reporting.export_qc_data"><code class="docutils literal notranslate"><span class="pre">export_qc_data()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#palmwtc.qc.reporting._COLOR_HEX"><code class="docutils literal notranslate"><span class="pre">_COLOR_HEX</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#palmwtc.qc.reporting._prettify_chemical"><code class="docutils literal notranslate"><span class="pre">_prettify_chemical()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#palmwtc.qc.reporting.build_field_alert_context"><code class="docutils literal notranslate"><span class="pre">build_field_alert_context()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#palmwtc.qc.reporting.render_field_alert_html"><code class="docutils literal notranslate"><span class="pre">render_field_alert_html()</span></code></a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="module-palmwtc.qc.reporting">
+<span id="palmwtc-qc-reporting"></span><h1>palmwtc.qc.reporting<a class="headerlink" href="#module-palmwtc.qc.reporting" title="Link to this heading">#</a></h1>
+<p>QC summary export and daily field-alert HTML report for chamber sensors.</p>
+<p>This module provides two groups of helpers:</p>
+<p><strong>Export helpers</strong> turn the per-variable QC result dicts produced by
+<a class="reference internal" href="../rules/index.html#palmwtc.qc.rules.process_variable_qc" title="palmwtc.qc.rules.process_variable_qc"><code class="xref py py-func docutils literal notranslate"><span class="pre">process_variable_qc()</span></code></a> into shareable artefacts:</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#palmwtc.qc.reporting.generate_qc_summary_from_results" title="palmwtc.qc.reporting.generate_qc_summary_from_results"><code class="xref py py-func docutils literal notranslate"><span class="pre">generate_qc_summary_from_results()</span></code></a> — flatten the result dicts into a
+single <code class="docutils literal notranslate"><span class="pre">pandas.DataFrame</span></code> sorted by data-quality percentage.</p></li>
+<li><p><a class="reference internal" href="#palmwtc.qc.reporting.export_qc_data" title="palmwtc.qc.reporting.export_qc_data"><code class="xref py py-func docutils literal notranslate"><span class="pre">export_qc_data()</span></code></a> — write the QC-flagged dataframe to a Parquet file
+(zstd compression) with an optional timestamped CSV backup.</p></li>
+</ul>
+<p><strong>Field-alert report helpers</strong> build and render an HTML email report that is
+sent automatically every morning by the daily cron job (notebook 023):</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#palmwtc.qc.reporting.build_field_alert_context" title="palmwtc.qc.reporting.build_field_alert_context"><code class="xref py py-func docutils literal notranslate"><span class="pre">build_field_alert_context()</span></code></a> — compute per-sensor health scores,
+generate maintenance recommendations, and assemble a Jinja2 template
+context dict from a QC-flagged dataframe.</p></li>
+<li><p><a class="reference internal" href="#palmwtc.qc.reporting.render_field_alert_html" title="palmwtc.qc.reporting.render_field_alert_html"><code class="xref py py-func docutils literal notranslate"><span class="pre">render_field_alert_html()</span></code></a> — render a Jinja2 template using the
+context dict produced by <a class="reference internal" href="#palmwtc.qc.reporting.build_field_alert_context" title="palmwtc.qc.reporting.build_field_alert_context"><code class="xref py py-func docutils literal notranslate"><span class="pre">build_field_alert_context()</span></code></a>.</p></li>
+</ul>
+<p>All functions are re-exported from <a class="reference internal" href="../index.html#module-palmwtc.qc" title="palmwtc.qc"><code class="xref py py-mod docutils literal notranslate"><span class="pre">palmwtc.qc</span></code></a> so callers can write
+<code class="docutils literal notranslate"><span class="pre">from</span> <span class="pre">palmwtc.qc</span> <span class="pre">import</span> <span class="pre">render_field_alert_html</span></code> without knowing the
+sub-module layout.</p>
+<section id="attributes">
+<h2>Attributes<a class="headerlink" href="#attributes" title="Link to this heading">#</a></h2>
+<div class="pst-scrollable-table-container"><table class="autosummary longtable table autosummary">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#palmwtc.qc.reporting._COLOR_HEX" title="palmwtc.qc.reporting._COLOR_HEX"><code class="xref py py-obj docutils literal notranslate"><span class="pre">_COLOR_HEX</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="functions">
+<h2>Functions<a class="headerlink" href="#functions" title="Link to this heading">#</a></h2>
+<div class="pst-scrollable-table-container"><table class="autosummary longtable table autosummary">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#palmwtc.qc.reporting.generate_qc_summary_from_results" title="palmwtc.qc.reporting.generate_qc_summary_from_results"><code class="xref py py-obj docutils literal notranslate"><span class="pre">generate_qc_summary_from_results</span></code></a>(→ pandas.DataFrame)</p></td>
+<td><p>Flatten per-variable QC result dicts into a sorted summary DataFrame.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#palmwtc.qc.reporting.export_qc_data" title="palmwtc.qc.reporting.export_qc_data"><code class="xref py py-obj docutils literal notranslate"><span class="pre">export_qc_data</span></code></a>(→ pathlib.Path)</p></td>
+<td><p>Write a QC-flagged dataframe to Parquet and optionally a CSV backup.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#palmwtc.qc.reporting._prettify_chemical" title="palmwtc.qc.reporting._prettify_chemical"><code class="xref py py-obj docutils literal notranslate"><span class="pre">_prettify_chemical</span></code></a>(→ str)</p></td>
+<td><p>Convert known chemical formulas to HTML with proper subscripts.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#palmwtc.qc.reporting.build_field_alert_context" title="palmwtc.qc.reporting.build_field_alert_context"><code class="xref py py-obj docutils literal notranslate"><span class="pre">build_field_alert_context</span></code></a>(→ dict)</p></td>
+<td><p>Build the Jinja2 template context for the daily field-alert HTML report.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#palmwtc.qc.reporting.render_field_alert_html" title="palmwtc.qc.reporting.render_field_alert_html"><code class="xref py py-obj docutils literal notranslate"><span class="pre">render_field_alert_html</span></code></a>(→ str)</p></td>
+<td><p>Render the field-alert Jinja2 template to an HTML string.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="module-contents">
+<h2>Module Contents<a class="headerlink" href="#module-contents" title="Link to this heading">#</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="palmwtc.qc.reporting.generate_qc_summary_from_results">
+<span class="sig-prename descclassname"><span class="pre">palmwtc.qc.reporting.</span></span><span class="sig-name descname"><span class="pre">generate_qc_summary_from_results</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">qc_results</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">pandas.DataFrame</span></span></span><a class="headerlink" href="#palmwtc.qc.reporting.generate_qc_summary_from_results" title="Link to this definition">#</a></dt>
+<dd><p>Flatten per-variable QC result dicts into a sorted summary DataFrame.</p>
+<p>Iterates over the output of
+<a class="reference internal" href="../rules/index.html#palmwtc.qc.rules.process_variable_qc" title="palmwtc.qc.rules.process_variable_qc"><code class="xref py py-func docutils literal notranslate"><span class="pre">process_variable_qc()</span></code></a> (one entry per variable)
+and assembles a single table with flag counts, flag percentages, and
+optional breakdown columns. The table is sorted descending by
+<code class="docutils literal notranslate"><span class="pre">Flag_0_Pct</span></code> so the healthiest variables appear first.</p>
+<section id="parameters">
+<h3>Parameters<a class="headerlink" href="#parameters" title="Link to this heading">#</a></h3>
+<dl>
+<dt>qc_results<span class="classifier">dict</span></dt><dd><p>Mapping of variable name (str) to the result dict returned by
+<a class="reference internal" href="../rules/index.html#palmwtc.qc.rules.process_variable_qc" title="palmwtc.qc.rules.process_variable_qc"><code class="xref py py-func docutils literal notranslate"><span class="pre">process_variable_qc()</span></code></a>. Each result dict
+must contain either a <code class="docutils literal notranslate"><span class="pre">&quot;summary&quot;</span></code> sub-dict or the summary keys
+directly (the <em>V2 optimization</em> short-circuit path).  The summary
+sub-dict must have the keys:</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">&quot;total_points&quot;</span></code><span class="classifier">int</span></dt><dd><p>Total number of records.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">&quot;flag_0_count&quot;</span></code><span class="classifier">int</span></dt><dd><p>Number of records with flag 0 (good).</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">&quot;flag_0_percent&quot;</span></code><span class="classifier">float</span></dt><dd><p>Fraction of records with flag 0, as a percentage (0-100).</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">&quot;flag_1_count&quot;</span></code><span class="classifier">int</span></dt><dd><p>Number of records with flag 1 (suspect).</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">&quot;flag_1_percent&quot;</span></code><span class="classifier">float</span></dt><dd><p>Fraction of records with flag 1, as a percentage (0-100).</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">&quot;flag_2_count&quot;</span></code><span class="classifier">int</span></dt><dd><p>Number of records with flag 2 (bad).</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">&quot;flag_2_percent&quot;</span></code><span class="classifier">float</span></dt><dd><p>Fraction of records with flag 2, as a percentage (0-100).</p>
+</dd>
+</dl>
+<p>Optional top-level keys that add extra columns when present:</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">&quot;bounds_flags&quot;</span></code><span class="classifier">pd.Series</span></dt><dd><p>Raw physical-bounds flags; adds <code class="docutils literal notranslate"><span class="pre">&quot;Bounds_Failures&quot;</span></code> column.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">&quot;iqr_flags&quot;</span></code><span class="classifier">pd.Series</span></dt><dd><p>Raw IQR outlier flags; adds <code class="docutils literal notranslate"><span class="pre">&quot;IQR_Outliers&quot;</span></code> column.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</section>
+<section id="returns">
+<h3>Returns<a class="headerlink" href="#returns" title="Link to this heading">#</a></h3>
+<dl>
+<dt>pd.DataFrame</dt><dd><p>One row per variable, sorted descending by <code class="docutils literal notranslate"><span class="pre">Flag_0_Pct</span></code>.
+Always-present columns:</p>
+<p><code class="docutils literal notranslate"><span class="pre">&quot;Variable&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;Total_Records&quot;</span></code>,
+<code class="docutils literal notranslate"><span class="pre">&quot;Flag_0_Good&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;Flag_0_Pct&quot;</span></code>,
+<code class="docutils literal notranslate"><span class="pre">&quot;Flag_1_Suspect&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;Flag_1_Pct&quot;</span></code>,
+<code class="docutils literal notranslate"><span class="pre">&quot;Flag_2_Bad&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;Flag_2_Pct&quot;</span></code>.</p>
+<p>Optional columns (only present when the corresponding raw flags
+exist in the input):
+<code class="docutils literal notranslate"><span class="pre">&quot;Bounds_Failures&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;IQR_Outliers&quot;</span></code>.</p>
+</dd>
+</dl>
+</section>
+<section id="examples">
+<h3>Examples<a class="headerlink" href="#examples" title="Link to this heading">#</a></h3>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">palmwtc.qc.reporting</span><span class="w"> </span><span class="kn">import</span> <span class="n">generate_qc_summary_from_results</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">results</span> <span class="o">=</span> <span class="p">{</span>
+<span class="gp">... </span>    <span class="s2">&quot;CO2_LI850&quot;</span><span class="p">:</span> <span class="p">{</span>
+<span class="gp">... </span>        <span class="s2">&quot;summary&quot;</span><span class="p">:</span> <span class="p">{</span>
+<span class="gp">... </span>            <span class="s2">&quot;total_points&quot;</span><span class="p">:</span> <span class="mi">100</span><span class="p">,</span>
+<span class="gp">... </span>            <span class="s2">&quot;flag_0_count&quot;</span><span class="p">:</span> <span class="mi">90</span><span class="p">,</span> <span class="s2">&quot;flag_0_percent&quot;</span><span class="p">:</span> <span class="mf">90.0</span><span class="p">,</span>
+<span class="gp">... </span>            <span class="s2">&quot;flag_1_count&quot;</span><span class="p">:</span> <span class="mi">7</span><span class="p">,</span>  <span class="s2">&quot;flag_1_percent&quot;</span><span class="p">:</span> <span class="mf">7.0</span><span class="p">,</span>
+<span class="gp">... </span>            <span class="s2">&quot;flag_2_count&quot;</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span>  <span class="s2">&quot;flag_2_percent&quot;</span><span class="p">:</span> <span class="mf">3.0</span><span class="p">,</span>
+<span class="gp">... </span>        <span class="p">}</span>
+<span class="gp">... </span>    <span class="p">},</span>
+<span class="gp">... </span>    <span class="s2">&quot;H2O_LI850&quot;</span><span class="p">:</span> <span class="p">{</span>
+<span class="gp">... </span>        <span class="s2">&quot;summary&quot;</span><span class="p">:</span> <span class="p">{</span>
+<span class="gp">... </span>            <span class="s2">&quot;total_points&quot;</span><span class="p">:</span> <span class="mi">100</span><span class="p">,</span>
+<span class="gp">... </span>            <span class="s2">&quot;flag_0_count&quot;</span><span class="p">:</span> <span class="mi">95</span><span class="p">,</span> <span class="s2">&quot;flag_0_percent&quot;</span><span class="p">:</span> <span class="mf">95.0</span><span class="p">,</span>
+<span class="gp">... </span>            <span class="s2">&quot;flag_1_count&quot;</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span>  <span class="s2">&quot;flag_1_percent&quot;</span><span class="p">:</span> <span class="mf">4.0</span><span class="p">,</span>
+<span class="gp">... </span>            <span class="s2">&quot;flag_2_count&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>  <span class="s2">&quot;flag_2_percent&quot;</span><span class="p">:</span> <span class="mf">1.0</span><span class="p">,</span>
+<span class="gp">... </span>        <span class="p">}</span>
+<span class="gp">... </span>    <span class="p">},</span>
+<span class="gp">... </span><span class="p">}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">df</span> <span class="o">=</span> <span class="n">generate_qc_summary_from_results</span><span class="p">(</span><span class="n">results</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">list</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;Variable&quot;</span><span class="p">])</span>  <span class="c1"># sorted best first</span>
+<span class="go">[&#39;H2O_LI850&#39;, &#39;CO2_LI850&#39;]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">df</span><span class="o">.</span><span class="n">shape</span>
+<span class="go">(2, 8)</span>
+</pre></div>
+</div>
+</section>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="palmwtc.qc.reporting.export_qc_data">
+<span class="sig-prename descclassname"><span class="pre">palmwtc.qc.reporting.</span></span><span class="sig-name descname"><span class="pre">export_qc_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">pandas.DataFrame</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output_dir</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'../Data/QC_Reports'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">keep_csv_backup</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">pathlib.Path</span></span></span><a class="headerlink" href="#palmwtc.qc.reporting.export_qc_data" title="Link to this definition">#</a></dt>
+<dd><p>Write a QC-flagged dataframe to Parquet and optionally a CSV backup.</p>
+<p>The primary output file is always <code class="docutils literal notranslate"><span class="pre">QC_Flagged_Data_latest.parquet</span></code>
+(zstd compression, overwrites on every call). If no Parquet engine is
+installed a CSV fallback is written instead and a warning is issued.
+When <em>keep_csv_backup</em> is <code class="docutils literal notranslate"><span class="pre">True</span></code> a timestamped CSV copy is also written
+alongside the primary output.</p>
+<p>If the dataframe index is named <code class="docutils literal notranslate"><span class="pre">&quot;TIMESTAMP&quot;</span></code> it is reset to become a
+regular column in the output file (Parquet does not preserve named
+indexes well across tools).</p>
+<section id="id1">
+<h3>Parameters<a class="headerlink" href="#id1" title="Link to this heading">#</a></h3>
+<dl>
+<dt>df<span class="classifier">pd.DataFrame</span></dt><dd><p>QC-flagged dataframe to export.  Must contain the flag columns
+produced by <a class="reference internal" href="../processor/index.html#palmwtc.qc.processor.QCProcessor" title="palmwtc.qc.processor.QCProcessor"><code class="xref py py-class docutils literal notranslate"><span class="pre">QCProcessor</span></code></a> or
+<a class="reference internal" href="../rules/index.html#palmwtc.qc.rules.process_variable_qc" title="palmwtc.qc.rules.process_variable_qc"><code class="xref py py-func docutils literal notranslate"><span class="pre">process_variable_qc()</span></code></a>.</p>
+</dd>
+<dt>output_dir<span class="classifier">str, default <code class="docutils literal notranslate"><span class="pre">&quot;../Data/QC_Reports&quot;</span></code></span></dt><dd><p>Directory where output files are written. Created if it does not
+exist.</p>
+</dd>
+<dt>keep_csv_backup<span class="classifier">bool, default False</span></dt><dd><p>If <code class="docutils literal notranslate"><span class="pre">True</span></code>, write an additional timestamped CSV file named
+<code class="docutils literal notranslate"><span class="pre">QC_Flagged_Data_YYYYMMDD_HHMMSS.csv</span></code> next to the primary output.</p>
+</dd>
+</dl>
+</section>
+<section id="id2">
+<h3>Returns<a class="headerlink" href="#id2" title="Link to this heading">#</a></h3>
+<dl class="simple">
+<dt>pathlib.Path</dt><dd><p>Absolute path to the primary file that was written (the Parquet
+file, or the CSV fallback if Parquet is unavailable).</p>
+</dd>
+</dl>
+</section>
+<section id="warns">
+<h3>Warns<a class="headerlink" href="#warns" title="Link to this heading">#</a></h3>
+<dl class="simple">
+<dt>UserWarning</dt><dd><p>Emitted when no Parquet engine is installed and the CSV fallback
+is used.</p>
+</dd>
+</dl>
+</section>
+<section id="id3">
+<h3>Examples<a class="headerlink" href="#id3" title="Link to this heading">#</a></h3>
+<p>Write a tiny flagged dataframe to a temporary directory:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span><span class="w"> </span><span class="nn">tempfile</span><span class="o">,</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">palmwtc.qc.reporting</span><span class="w"> </span><span class="kn">import</span> <span class="n">export_qc_data</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s2">&quot;CO2_LI850&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mf">400.0</span><span class="p">,</span> <span class="mf">401.0</span><span class="p">],</span> <span class="s2">&quot;CO2_LI850_qc_flag&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]})</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">with</span> <span class="n">tempfile</span><span class="o">.</span><span class="n">TemporaryDirectory</span><span class="p">()</span> <span class="k">as</span> <span class="n">tmp</span><span class="p">:</span>
+<span class="gp">... </span>    <span class="n">p</span> <span class="o">=</span> <span class="n">export_qc_data</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">output_dir</span><span class="o">=</span><span class="n">tmp</span><span class="p">)</span>
+<span class="gp">... </span>    <span class="n">p</span><span class="o">.</span><span class="n">name</span>  
+<span class="go">&#39;QC_Flagged_Data_latest.parquet&#39;</span>
+</pre></div>
+</div>
+</section>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="palmwtc.qc.reporting._COLOR_HEX">
+<span class="sig-prename descclassname"><span class="pre">palmwtc.qc.reporting.</span></span><span class="sig-name descname"><span class="pre">_COLOR_HEX</span></span><a class="headerlink" href="#palmwtc.qc.reporting._COLOR_HEX" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="palmwtc.qc.reporting._prettify_chemical">
+<span class="sig-prename descclassname"><span class="pre">palmwtc.qc.reporting.</span></span><span class="sig-name descname"><span class="pre">_prettify_chemical</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">text</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#palmwtc.qc.reporting._prettify_chemical" title="Link to this definition">#</a></dt>
+<dd><p>Convert known chemical formulas to HTML with proper subscripts.</p>
+<p>CO2 → CO&lt;sub&gt;2&lt;/sub&gt;, H2O → H&lt;sub&gt;2&lt;/sub&gt;O, CH4 → CH&lt;sub&gt;4&lt;/sub&gt;, N2O → N&lt;sub&gt;2&lt;/sub&gt;O.
+Only targets known formulas to avoid mangling sensor IDs like C1, C2.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="palmwtc.qc.reporting.build_field_alert_context">
+<span class="sig-prename descclassname"><span class="pre">palmwtc.qc.reporting.</span></span><span class="sig-name descname"><span class="pre">build_field_alert_context</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">pandas.DataFrame</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">config</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">priority_variables</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">dict</span></span></span><a class="headerlink" href="#palmwtc.qc.reporting.build_field_alert_context" title="Link to this definition">#</a></dt>
+<dd><p>Build the Jinja2 template context for the daily field-alert HTML report.</p>
+<p>Computes per-sensor health scores, assembles maintenance recommendations,
+detects cross-variable consistency issues, and packages everything into a
+flat dict that can be passed directly to <a class="reference internal" href="#palmwtc.qc.reporting.render_field_alert_html" title="palmwtc.qc.reporting.render_field_alert_html"><code class="xref py py-func docutils literal notranslate"><span class="pre">render_field_alert_html()</span></code></a>.</p>
+<section id="id4">
+<h3>Parameters<a class="headerlink" href="#id4" title="Link to this heading">#</a></h3>
+<dl>
+<dt>df<span class="classifier">pd.DataFrame</span></dt><dd><p>QC-flagged dataframe, <strong>already filtered to the desired lookback
+window</strong> (e.g. the last 7 days). The function reads flag columns
+whose names match <code class="docutils literal notranslate"><span class="pre">{var}_rule_flag</span></code> or <code class="docutils literal notranslate"><span class="pre">{var}_qc_flag</span></code>, and
+optionally reads <code class="docutils literal notranslate"><span class="pre">cv_*</span></code> cross-variable consistency columns. The
+timestamp may be in the index or in a column named <code class="docutils literal notranslate"><span class="pre">&quot;TIMESTAMP&quot;</span></code>.</p>
+</dd>
+<dt>config<span class="classifier">dict</span></dt><dd><p>Run configuration with at least the following keys:</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">&quot;healthy_threshold&quot;</span></code><span class="classifier">float</span></dt><dd><p>Minimum health score (0-100) to label a sensor <em>Healthy</em>.
+Default used when absent: 80.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">&quot;warning_threshold&quot;</span></code><span class="classifier">float</span></dt><dd><p>Minimum health score (0-100) to label a sensor <em>Warning</em>
+(below this is <em>Critical</em>). Default: 50.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">&quot;lookback_days&quot;</span></code><span class="classifier">int</span></dt><dd><p>Number of days the dataframe covers (used for display only).
+Default: 7.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">&quot;qc_source&quot;</span></code><span class="classifier">str</span></dt><dd><p>Notebook number or identifier that produced the QC flags
+(e.g. <code class="docutils literal notranslate"><span class="pre">&quot;020&quot;</span></code>). Default: <code class="docutils literal notranslate"><span class="pre">&quot;020&quot;</span></code>.</p>
+</dd>
+</dl>
+</dd>
+<dt>priority_variables<span class="classifier">list of str or None, optional</span></dt><dd><p>Explicit list of variable column names to include in the report.
+If <code class="docutils literal notranslate"><span class="pre">None</span></code> (the default), all variables are auto-detected from
+columns whose names end with <code class="docutils literal notranslate"><span class="pre">_rule_flag</span></code> or <code class="docutils literal notranslate"><span class="pre">_qc_flag</span></code>.</p>
+</dd>
+</dl>
+</section>
+<section id="id5">
+<h3>Returns<a class="headerlink" href="#id5" title="Link to this heading">#</a></h3>
+<dl>
+<dt>dict</dt><dd><p>Context dict ready to pass to <a class="reference internal" href="#palmwtc.qc.reporting.render_field_alert_html" title="palmwtc.qc.reporting.render_field_alert_html"><code class="xref py py-func docutils literal notranslate"><span class="pre">render_field_alert_html()</span></code></a>.
+Keys include:</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">&quot;report_date&quot;</span></code><span class="classifier">str</span></dt><dd><p>ISO datetime string of when the context was built.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">&quot;lookback_days&quot;</span></code><span class="classifier">int</span></dt><dd><p>Value from <em>config</em> (or the default 7).</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">&quot;window_start&quot;</span></code><span class="classifier">str</span></dt><dd><p>Earliest timestamp in the dataframe window (<code class="docutils literal notranslate"><span class="pre">&quot;YYYY-MM-DD</span> <span class="pre">HH:MM&quot;</span></code>).</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">&quot;window_end&quot;</span></code><span class="classifier">str</span></dt><dd><p>Latest timestamp in the dataframe window.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">&quot;system_status&quot;</span></code><span class="classifier">str</span></dt><dd><p>One of <code class="docutils literal notranslate"><span class="pre">&quot;HEALTHY&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;WARNING&quot;</span></code>, or <code class="docutils literal notranslate"><span class="pre">&quot;CRITICAL&quot;</span></code>.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">&quot;status_color&quot;</span></code><span class="classifier">str</span></dt><dd><p>CSS hex colour corresponding to <em>system_status</em>.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">&quot;avg_score&quot;</span></code><span class="classifier">str</span></dt><dd><p>Average health score across all sensors, formatted as an integer
+string (e.g. <code class="docutils literal notranslate"><span class="pre">&quot;87&quot;</span></code>).</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">&quot;total_sensors&quot;</span></code><span class="classifier">int</span></dt><dd><p>Number of sensor variables included in the report.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">&quot;healthy_count&quot;</span></code><span class="classifier">int</span></dt><dd><p>Number of sensors whose status is <code class="docutils literal notranslate"><span class="pre">&quot;Healthy&quot;</span></code>.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">&quot;attention_sensors&quot;</span></code><span class="classifier">list of dict</span></dt><dd><p>Sensors below <em>healthy_threshold</em>, sorted worst-first. Each dict
+has keys <code class="docutils literal notranslate"><span class="pre">&quot;variable&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;score&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;status&quot;</span></code>,
+<code class="docutils literal notranslate"><span class="pre">&quot;color_hex&quot;</span></code>.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">&quot;critical_recs&quot;</span></code><span class="classifier">list of dict</span></dt><dd><p>Maintenance recommendations with severity <code class="docutils literal notranslate"><span class="pre">&quot;critical&quot;</span></code>. Each
+dict has keys <code class="docutils literal notranslate"><span class="pre">&quot;sensor&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;message&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;severity&quot;</span></code>.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">&quot;warning_recs&quot;</span></code><span class="classifier">list of dict</span></dt><dd><p>Maintenance recommendations with severity <code class="docutils literal notranslate"><span class="pre">&quot;warning&quot;</span></code>.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">&quot;cv_issues&quot;</span></code><span class="classifier">list of dict</span></dt><dd><p>Cross-variable consistency issues where the flagged fraction is
+greater than zero. Each dict has keys <code class="docutils literal notranslate"><span class="pre">&quot;name&quot;</span></code> and <code class="docutils literal notranslate"><span class="pre">&quot;pct&quot;</span></code>.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">&quot;health_rows&quot;</span></code><span class="classifier">list of dict</span></dt><dd><p>All sensors (healthy and unhealthy), sorted worst-first.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">&quot;recommendations&quot;</span></code><span class="classifier">list of dict</span></dt><dd><p>All recommendations (critical + warning combined).</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">&quot;qc_source&quot;</span></code><span class="classifier">str</span></dt><dd><p>Pass-through of <code class="docutils literal notranslate"><span class="pre">config[&quot;qc_source&quot;]</span></code>.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</section>
+<section id="notes">
+<h3>Notes<a class="headerlink" href="#notes" title="Link to this heading">#</a></h3>
+<p>Health scores are computed by
+<code class="docutils literal notranslate"><span class="pre">palmwtc.dashboard.core.health_scoring.compute_sensor_health_score</span></code>.
+Recommendations are generated by
+<code class="docutils literal notranslate"><span class="pre">palmwtc.dashboard.core.recommendations.generate_recommendations</span></code>.
+Both are loaded lazily; if <code class="docutils literal notranslate"><span class="pre">palmwtc.dashboard</span></code> is not installed, the
+function falls back to the <code class="docutils literal notranslate"><span class="pre">dashboard</span></code> package found relative to the
+package root.</p>
+<p>Chemical formula strings in variable names, sensor labels, and
+recommendation messages are prettified to HTML subscripts before the
+context is returned (e.g. <code class="docutils literal notranslate"><span class="pre">&quot;CO2&quot;</span></code> becomes <code class="docutils literal notranslate"><span class="pre">&quot;CO&lt;sub&gt;2&lt;/sub&gt;&quot;</span></code>).</p>
+</section>
+<section id="id6">
+<h3>Examples<a class="headerlink" href="#id6" title="Link to this heading">#</a></h3>
+<p>Requires <code class="docutils literal notranslate"><span class="pre">palmwtc.dashboard.core</span></code> (or the <code class="docutils literal notranslate"><span class="pre">dashboard</span></code> fallback) to
+be importable; skip in environments without it:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">context</span> <span class="o">=</span> <span class="n">build_field_alert_context</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="n">config</span><span class="o">=</span><span class="p">{})</span>  
+<span class="gp">&gt;&gt;&gt; </span><span class="n">context</span><span class="p">[</span><span class="s2">&quot;system_status&quot;</span><span class="p">]</span> <span class="ow">in</span> <span class="p">{</span><span class="s2">&quot;HEALTHY&quot;</span><span class="p">,</span> <span class="s2">&quot;WARNING&quot;</span><span class="p">,</span> <span class="s2">&quot;CRITICAL&quot;</span><span class="p">}</span>  
+<span class="go">True</span>
+</pre></div>
+</div>
+</section>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="palmwtc.qc.reporting.render_field_alert_html">
+<span class="sig-prename descclassname"><span class="pre">palmwtc.qc.reporting.</span></span><span class="sig-name descname"><span class="pre">render_field_alert_html</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">context</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">template_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'field_alert.html'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">template_dir</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">pathlib.Path</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#palmwtc.qc.reporting.render_field_alert_html" title="Link to this definition">#</a></dt>
+<dd><p>Render the field-alert Jinja2 template to an HTML string.</p>
+<p>Loads the Jinja2 template from <em>template_dir</em> and renders it with the
+context dict produced by <a class="reference internal" href="#palmwtc.qc.reporting.build_field_alert_context" title="palmwtc.qc.reporting.build_field_alert_context"><code class="xref py py-func docutils literal notranslate"><span class="pre">build_field_alert_context()</span></code></a>.  The
+resulting HTML string can be written to a file, displayed in a notebook
+with <code class="docutils literal notranslate"><span class="pre">IPython.display.HTML</span></code>, or sent as the body of a field-alert
+email.</p>
+<section id="id7">
+<h3>Parameters<a class="headerlink" href="#id7" title="Link to this heading">#</a></h3>
+<dl>
+<dt>context<span class="classifier">dict</span></dt><dd><p>Context dict from <a class="reference internal" href="#palmwtc.qc.reporting.build_field_alert_context" title="palmwtc.qc.reporting.build_field_alert_context"><code class="xref py py-func docutils literal notranslate"><span class="pre">build_field_alert_context()</span></code></a>.
+Required keys:</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">&quot;report_date&quot;</span></code><span class="classifier">str</span></dt><dd><p>ISO datetime string shown in the report header.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">&quot;lookback_days&quot;</span></code><span class="classifier">int</span></dt><dd><p>Number of days covered by the report window.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">&quot;window_start&quot;</span></code><span class="classifier">str</span></dt><dd><p>Start of the data window (<code class="docutils literal notranslate"><span class="pre">&quot;YYYY-MM-DD</span> <span class="pre">HH:MM&quot;</span></code>).</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">&quot;window_end&quot;</span></code><span class="classifier">str</span></dt><dd><p>End of the data window (<code class="docutils literal notranslate"><span class="pre">&quot;YYYY-MM-DD</span> <span class="pre">HH:MM&quot;</span></code>).</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">&quot;system_status&quot;</span></code><span class="classifier">str</span></dt><dd><p>One of <code class="docutils literal notranslate"><span class="pre">&quot;HEALTHY&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;WARNING&quot;</span></code>, or <code class="docutils literal notranslate"><span class="pre">&quot;CRITICAL&quot;</span></code>.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">&quot;status_color&quot;</span></code><span class="classifier">str</span></dt><dd><p>CSS hex colour (e.g. <code class="docutils literal notranslate"><span class="pre">&quot;#2ecc71&quot;</span></code>).</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">&quot;avg_score&quot;</span></code><span class="classifier">str</span></dt><dd><p>Average health score as an integer string (e.g. <code class="docutils literal notranslate"><span class="pre">&quot;87&quot;</span></code>).</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">&quot;total_sensors&quot;</span></code><span class="classifier">int</span></dt><dd><p>Total number of sensors in the report.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">&quot;healthy_count&quot;</span></code><span class="classifier">int</span></dt><dd><p>Number of sensors with status <code class="docutils literal notranslate"><span class="pre">&quot;Healthy&quot;</span></code>.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">&quot;attention_sensors&quot;</span></code><span class="classifier">list of dict</span></dt><dd><p>Sensors below the healthy threshold; each dict has
+<code class="docutils literal notranslate"><span class="pre">&quot;variable&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;score&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;status&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;color_hex&quot;</span></code>.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">&quot;critical_recs&quot;</span></code><span class="classifier">list of dict</span></dt><dd><p>Critical maintenance recommendations; each dict has
+<code class="docutils literal notranslate"><span class="pre">&quot;sensor&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;message&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;severity&quot;</span></code>.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">&quot;warning_recs&quot;</span></code><span class="classifier">list of dict</span></dt><dd><p>Warning-level maintenance recommendations.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">&quot;cv_issues&quot;</span></code><span class="classifier">list of dict</span></dt><dd><p>Cross-variable consistency issues with <code class="docutils literal notranslate"><span class="pre">&quot;name&quot;</span></code> and <code class="docutils literal notranslate"><span class="pre">&quot;pct&quot;</span></code>.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">&quot;health_rows&quot;</span></code><span class="classifier">list of dict</span></dt><dd><p>All sensor rows (used for the full table in the template).</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">&quot;recommendations&quot;</span></code><span class="classifier">list of dict</span></dt><dd><p>All recommendations (critical + warning combined).</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">&quot;qc_source&quot;</span></code><span class="classifier">str</span></dt><dd><p>Notebook identifier for the QC source (e.g. <code class="docutils literal notranslate"><span class="pre">&quot;020&quot;</span></code>).</p>
+</dd>
+</dl>
+</dd>
+<dt>template_name<span class="classifier">str, default <code class="docutils literal notranslate"><span class="pre">&quot;field_alert.html&quot;</span></code></span></dt><dd><p>Filename of the Jinja2 template inside <em>template_dir</em>.</p>
+</dd>
+<dt>template_dir<span class="classifier">pathlib.Path or None, optional</span></dt><dd><p>Directory that contains the Jinja2 template.  When <code class="docutils literal notranslate"><span class="pre">None</span></code> (the
+default) the function looks for the template at
+<code class="docutils literal notranslate"><span class="pre">&lt;package_root&gt;/dashboard/email_report/templates/</span></code>.</p>
+</dd>
+</dl>
+</section>
+<section id="id8">
+<h3>Returns<a class="headerlink" href="#id8" title="Link to this heading">#</a></h3>
+<dl class="simple">
+<dt>str</dt><dd><p>Rendered HTML string.</p>
+</dd>
+</dl>
+</section>
+<section id="raises">
+<h3>Raises<a class="headerlink" href="#raises" title="Link to this heading">#</a></h3>
+<dl class="simple">
+<dt>jinja2.TemplateNotFound</dt><dd><p>If <em>template_name</em> does not exist inside <em>template_dir</em>.</p>
+</dd>
+</dl>
+</section>
+<section id="id9">
+<h3>Examples<a class="headerlink" href="#id9" title="Link to this heading">#</a></h3>
+<p>Requires the <code class="docutils literal notranslate"><span class="pre">field_alert.html</span></code> Jinja2 template on disk at the
+default template location; skip in environments without it:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">html</span> <span class="o">=</span> <span class="n">render_field_alert_html</span><span class="p">({})</span>  
+<span class="gp">&gt;&gt;&gt; </span><span class="n">html</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;&lt;!DOCTYPE html&quot;</span><span class="p">)</span> <span class="ow">or</span> <span class="s2">&quot;&lt;html&quot;</span> <span class="ow">in</span> <span class="n">html</span>  
+<span class="go">True</span>
+</pre></div>
+</div>
+</section>
+</dd></dl>
+
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./api/palmwtc/qc/reporting"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item"><div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#attributes">Attributes</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#functions">Functions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-contents">Module Contents</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#palmwtc.qc.reporting.generate_qc_summary_from_results"><code class="docutils literal notranslate"><span class="pre">generate_qc_summary_from_results()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#palmwtc.qc.reporting.export_qc_data"><code class="docutils literal notranslate"><span class="pre">export_qc_data()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#palmwtc.qc.reporting._COLOR_HEX"><code class="docutils literal notranslate"><span class="pre">_COLOR_HEX</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#palmwtc.qc.reporting._prettify_chemical"><code class="docutils literal notranslate"><span class="pre">_prettify_chemical()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#palmwtc.qc.reporting.build_field_alert_context"><code class="docutils literal notranslate"><span class="pre">build_field_alert_context()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#palmwtc.qc.reporting.render_field_alert_html"><code class="docutils literal notranslate"><span class="pre">render_field_alert_html()</span></code></a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Didi Adisaputro
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2026.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../../../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

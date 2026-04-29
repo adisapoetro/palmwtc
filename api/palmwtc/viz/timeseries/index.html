@@ -1,0 +1,1168 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>palmwtc.viz.timeseries &#8212; palmwtc</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../../../../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/styles/sphinx-book-theme.css?v=3c74b3bc" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/togglebutton.css?v=9c3e77be" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/graphviz.css?v=fd3f3429" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../../../../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../../../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="../../../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../../../_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../../../_static/togglebutton.js?v=b8b12719"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'api/palmwtc/viz/timeseries/index';</script>
+    <link rel="canonical" href="https://adisapoetro.github.io/palmwtc/api/palmwtc/viz/timeseries/index.html" />
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../../../index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">palmwtc</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../../../index.html">
+                    palmwtc
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Getting Started</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../../../quickstart.html">Quickstart — your first flux number in 3 minutes</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../../tutorials/index.html">Tutorials</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorials/010_Data_Integration.html">010 — Core data integration (raw → unified monthly)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorials/011_Weather_vs_Chamber.html">011 — Weather station vs chamber</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorials/020_QC_Rule_Based.html">020 — Rule-based QC</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorials/022_QC_ML_Enhanced.html">022 — ML-enhanced QC (optional)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorials/023_Field_Alert_Report.html">023 — Field alert report</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorials/025_Cross_Chamber_Bias.html">025 — Cross-chamber bias comparison (diagnostic)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorials/026_CO2_H2O_Segmented_Bias.html">026 — CO2/H2O segmented bias comparison (diagnostic)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorials/030_Flux_Cycle_Calculation.html">030 — Flux cycle calculation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorials/031_Window_Selection_Reference.html">031 — High-confidence window selection (reference)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorials/032_Window_Selection_Production.html">032 — Physically grounded window selection (production)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorials/033_Science_Validation.html">033 — Science validation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorials/034_QC_and_Window_Audit.html">034 — QC + window audit (visualization)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorials/035_QC_Threshold_Sensitivity.html">035 — QC threshold sensitivity sweep</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorials/000_End_to_End_Synthetic.html">000 — End-to-end on synthetic data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorials/001_End_to_End_LIBZ.html">001 - End-to-end on LIBZ data (raw .dat -&gt; validation)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorials/010_Data_Integration.html">010 — Core data integration (raw → unified monthly)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorials/011_Weather_vs_Chamber.html">011 — Weather station vs chamber</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorials/020_QC_Rule_Based.html">020 — Rule-based QC</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorials/022_QC_ML_Enhanced.html">022 — ML-enhanced QC (optional)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorials/023_Field_Alert_Report.html">023 — Field alert report</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorials/025_Cross_Chamber_Bias.html">025 — Cross-chamber bias comparison (diagnostic)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorials/026_CO2_H2O_Segmented_Bias.html">026 — CO2/H2O segmented bias comparison (diagnostic)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorials/030_Flux_Cycle_Calculation.html">030 — Flux cycle calculation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorials/031_Window_Selection_Reference.html">031 — High-confidence window selection (reference)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorials/032_Window_Selection_Production.html">032 — Physically grounded window selection (production)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorials/033_Science_Validation.html">033 — Science validation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorials/034_QC_and_Window_Audit.html">034 — QC + window audit (visualization)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorials/035_QC_Threshold_Sensitivity.html">035 — QC threshold sensitivity sweep</a></li>
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Science Reference</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../../../science/index.html">Science Reference</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/adisapoetro/palmwtc" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/adisapoetro/palmwtc/edit/main/docs/api/palmwtc/viz/timeseries/index.rst" target="_blank"
+   class="btn btn-sm btn-source-edit-button dropdown-item"
+   title="Suggest edit"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="btn__text-container">Suggest edit</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/adisapoetro/palmwtc/issues/new?title=Issue%20on%20page%20%2Fapi/palmwtc/viz/timeseries/index.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../../../_sources/api/palmwtc/viz/timeseries/index.rst" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.rst</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button pst-navbar-icon"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm pst-navbar-icon" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>palmwtc.viz.timeseries</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#functions">Functions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-contents">Module Contents</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#palmwtc.viz.timeseries.plot_flux_timeseries_tiers"><code class="docutils literal notranslate"><span class="pre">plot_flux_timeseries_tiers()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#palmwtc.viz.timeseries.plot_tropical_seasonal_diurnal"><code class="docutils literal notranslate"><span class="pre">plot_tropical_seasonal_diurnal()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#palmwtc.viz.timeseries.plot_flux_heatmap"><code class="docutils literal notranslate"><span class="pre">plot_flux_heatmap()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#palmwtc.viz.timeseries.plot_flux_vs_tree_age"><code class="docutils literal notranslate"><span class="pre">plot_flux_vs_tree_age()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#palmwtc.viz.timeseries.plot_cumulative_flux_with_gaps"><code class="docutils literal notranslate"><span class="pre">plot_cumulative_flux_with_gaps()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#palmwtc.viz.timeseries.plot_cumulative_flux_by_date"><code class="docutils literal notranslate"><span class="pre">plot_cumulative_flux_by_date()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#palmwtc.viz.timeseries.plot_concentration_slope_vs_tree_age"><code class="docutils literal notranslate"><span class="pre">plot_concentration_slope_vs_tree_age()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#palmwtc.viz.timeseries.plot_flux_boxplot_vs_tree_age"><code class="docutils literal notranslate"><span class="pre">plot_flux_boxplot_vs_tree_age()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#palmwtc.viz.timeseries.plot_concentration_slope_boxplot_vs_tree_age"><code class="docutils literal notranslate"><span class="pre">plot_concentration_slope_boxplot_vs_tree_age()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#palmwtc.viz.timeseries.plot_flux_monthly_boxplot"><code class="docutils literal notranslate"><span class="pre">plot_flux_monthly_boxplot()</span></code></a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="module-palmwtc.viz.timeseries">
+<span id="palmwtc-viz-timeseries"></span><h1>palmwtc.viz.timeseries<a class="headerlink" href="#module-palmwtc.viz.timeseries" title="Link to this heading">#</a></h1>
+<p>Time-series and seasonal-pattern plots for chamber flux data.</p>
+<p>Plots for visualising how CO2 and H2O fluxes vary with time of day, day
+of year, and tree age:</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#palmwtc.viz.timeseries.plot_flux_timeseries_tiers" title="palmwtc.viz.timeseries.plot_flux_timeseries_tiers"><code class="xref py py-func docutils literal notranslate"><span class="pre">plot_flux_timeseries_tiers()</span></code></a> – scatter timeseries faceted by QC
+tier and chamber, useful for a quick data-quality overview.</p></li>
+<li><p><a class="reference internal" href="#palmwtc.viz.timeseries.plot_tropical_seasonal_diurnal" title="palmwtc.viz.timeseries.plot_tropical_seasonal_diurnal"><code class="xref py py-func docutils literal notranslate"><span class="pre">plot_tropical_seasonal_diurnal()</span></code></a> – overlay diurnal pattern per
+tropical season (Wet vs Dry) on a single axis.</p></li>
+<li><p><a class="reference internal" href="#palmwtc.viz.timeseries.plot_flux_heatmap" title="palmwtc.viz.timeseries.plot_flux_heatmap"><code class="xref py py-func docutils literal notranslate"><span class="pre">plot_flux_heatmap()</span></code></a> – hour-of-day x month heatmap (3 subplots:
+overall, Chamber 1, Chamber 2).</p></li>
+<li><p><a class="reference internal" href="#palmwtc.viz.timeseries.plot_flux_vs_tree_age" title="palmwtc.viz.timeseries.plot_flux_vs_tree_age"><code class="xref py py-func docutils literal notranslate"><span class="pre">plot_flux_vs_tree_age()</span></code></a> – flux trend across palm-age cohorts,
+with rolling mean, faceted by chamber.</p></li>
+<li><p><a class="reference internal" href="#palmwtc.viz.timeseries.plot_cumulative_flux_with_gaps" title="palmwtc.viz.timeseries.plot_cumulative_flux_with_gaps"><code class="xref py py-func docutils literal notranslate"><span class="pre">plot_cumulative_flux_with_gaps()</span></code></a> – cumulative gap-filled flux
+plotted against months after planting (MAP).</p></li>
+<li><p><a class="reference internal" href="#palmwtc.viz.timeseries.plot_cumulative_flux_by_date" title="palmwtc.viz.timeseries.plot_cumulative_flux_by_date"><code class="xref py py-func docutils literal notranslate"><span class="pre">plot_cumulative_flux_by_date()</span></code></a> – cumulative gap-filled flux
+plotted against actual calendar date.</p></li>
+<li><p><a class="reference internal" href="#palmwtc.viz.timeseries.plot_concentration_slope_vs_tree_age" title="palmwtc.viz.timeseries.plot_concentration_slope_vs_tree_age"><code class="xref py py-func docutils literal notranslate"><span class="pre">plot_concentration_slope_vs_tree_age()</span></code></a> – raw concentration slope
+(ppm/s, no chamber-size correction) vs tree age.</p></li>
+<li><p><a class="reference internal" href="#palmwtc.viz.timeseries.plot_flux_boxplot_vs_tree_age" title="palmwtc.viz.timeseries.plot_flux_boxplot_vs_tree_age"><code class="xref py py-func docutils literal notranslate"><span class="pre">plot_flux_boxplot_vs_tree_age()</span></code></a> – monthly-binned flux boxplots
+vs tree age.</p></li>
+<li><p><a class="reference internal" href="#palmwtc.viz.timeseries.plot_concentration_slope_boxplot_vs_tree_age" title="palmwtc.viz.timeseries.plot_concentration_slope_boxplot_vs_tree_age"><code class="xref py py-func docutils literal notranslate"><span class="pre">plot_concentration_slope_boxplot_vs_tree_age()</span></code></a> – monthly-binned
+concentration-slope boxplots vs tree age.</p></li>
+<li><p><a class="reference internal" href="#palmwtc.viz.timeseries.plot_flux_monthly_boxplot" title="palmwtc.viz.timeseries.plot_flux_monthly_boxplot"><code class="xref py py-func docutils literal notranslate"><span class="pre">plot_flux_monthly_boxplot()</span></code></a> – month-year boxplots faceted by
+chamber.</p></li>
+</ul>
+<p>All functions return a <code class="xref py py-class docutils literal notranslate"><span class="pre">matplotlib.figure.Figure</span></code> (or <code class="docutils literal notranslate"><span class="pre">None</span></code>
+when the input DataFrame is empty).</p>
+<section id="functions">
+<h2>Functions<a class="headerlink" href="#functions" title="Link to this heading">#</a></h2>
+<div class="pst-scrollable-table-container"><table class="autosummary longtable table autosummary">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#palmwtc.viz.timeseries.plot_flux_timeseries_tiers" title="palmwtc.viz.timeseries.plot_flux_timeseries_tiers"><code class="xref py py-obj docutils literal notranslate"><span class="pre">plot_flux_timeseries_tiers</span></code></a>(...)</p></td>
+<td><p>Plot flux timeseries split into three QC-quality tiers.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#palmwtc.viz.timeseries.plot_tropical_seasonal_diurnal" title="palmwtc.viz.timeseries.plot_tropical_seasonal_diurnal"><code class="xref py py-obj docutils literal notranslate"><span class="pre">plot_tropical_seasonal_diurnal</span></code></a>(...)</p></td>
+<td><p>Overlay diurnal flux pattern per tropical season on a single axis.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#palmwtc.viz.timeseries.plot_flux_heatmap" title="palmwtc.viz.timeseries.plot_flux_heatmap"><code class="xref py py-obj docutils literal notranslate"><span class="pre">plot_flux_heatmap</span></code></a>(→ matplotlib.pyplot.Figure | None)</p></td>
+<td><p>Heatmap of mean flux by hour-of-day and month-year.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#palmwtc.viz.timeseries.plot_flux_vs_tree_age" title="palmwtc.viz.timeseries.plot_flux_vs_tree_age"><code class="xref py py-obj docutils literal notranslate"><span class="pre">plot_flux_vs_tree_age</span></code></a>(→ matplotlib.pyplot.Figure | None)</p></td>
+<td><p>Plot flux against tree age in years, with a rolling-mean trend.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#palmwtc.viz.timeseries.plot_cumulative_flux_with_gaps" title="palmwtc.viz.timeseries.plot_cumulative_flux_with_gaps"><code class="xref py py-obj docutils literal notranslate"><span class="pre">plot_cumulative_flux_with_gaps</span></code></a>(→ matplotlib.pyplot.Figure)</p></td>
+<td><p>Plot cumulative gap-filled flux vs months after planting (MAP).</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#palmwtc.viz.timeseries.plot_cumulative_flux_by_date" title="palmwtc.viz.timeseries.plot_cumulative_flux_by_date"><code class="xref py py-obj docutils literal notranslate"><span class="pre">plot_cumulative_flux_by_date</span></code></a>(→ matplotlib.pyplot.Figure)</p></td>
+<td><p>Plot cumulative gap-filled flux against actual calendar date.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#palmwtc.viz.timeseries.plot_concentration_slope_vs_tree_age" title="palmwtc.viz.timeseries.plot_concentration_slope_vs_tree_age"><code class="xref py py-obj docutils literal notranslate"><span class="pre">plot_concentration_slope_vs_tree_age</span></code></a>(...)</p></td>
+<td><p>Plot raw concentration slope vs tree age, faceted by chamber.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#palmwtc.viz.timeseries.plot_flux_boxplot_vs_tree_age" title="palmwtc.viz.timeseries.plot_flux_boxplot_vs_tree_age"><code class="xref py py-obj docutils literal notranslate"><span class="pre">plot_flux_boxplot_vs_tree_age</span></code></a>(...)</p></td>
+<td><p>Boxplots of flux binned by tree age, one subplot per chamber.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#palmwtc.viz.timeseries.plot_concentration_slope_boxplot_vs_tree_age" title="palmwtc.viz.timeseries.plot_concentration_slope_boxplot_vs_tree_age"><code class="xref py py-obj docutils literal notranslate"><span class="pre">plot_concentration_slope_boxplot_vs_tree_age</span></code></a>(...)</p></td>
+<td><p>Boxplots of concentration slope binned by tree age, per chamber.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#palmwtc.viz.timeseries.plot_flux_monthly_boxplot" title="palmwtc.viz.timeseries.plot_flux_monthly_boxplot"><code class="xref py py-obj docutils literal notranslate"><span class="pre">plot_flux_monthly_boxplot</span></code></a>(...)</p></td>
+<td><p>Month-year boxplot of flux distribution, faceted by chamber.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="module-contents">
+<h2>Module Contents<a class="headerlink" href="#module-contents" title="Link to this heading">#</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="palmwtc.viz.timeseries.plot_flux_timeseries_tiers">
+<span class="sig-prename descclassname"><span class="pre">palmwtc.viz.timeseries.</span></span><span class="sig-name descname"><span class="pre">plot_flux_timeseries_tiers</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">flux_df</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">pandas.DataFrame</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">variable</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'flux_absolute'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">title</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'CO2</span> <span class="pre">Flux</span> <span class="pre">Timeseries</span> <span class="pre">by</span> <span class="pre">QC</span> <span class="pre">Tier'</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">matplotlib.pyplot.Figure</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></span><a class="headerlink" href="#palmwtc.viz.timeseries.plot_flux_timeseries_tiers" title="Link to this definition">#</a></dt>
+<dd><p>Plot flux timeseries split into three QC-quality tiers.</p>
+<p>Produces a grid of scatter plots: rows are QC tiers (Tier 1 = all
+data, Tier 2 = flags 0+1, Tier 3 = flag 0 only), columns are
+chambers. Points in Tiers 1 and 2 are coloured by <code class="docutils literal notranslate"><span class="pre">qc_flag</span></code>
+(viridis palette); Tier-3 points are green.</p>
+<section id="parameters">
+<h3>Parameters<a class="headerlink" href="#parameters" title="Link to this heading">#</a></h3>
+<dl>
+<dt>flux_df<span class="classifier">pd.DataFrame</span></dt><dd><p>Cycle-level flux data. Must contain:</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">Source_Chamber</span></code><span class="classifier">str</span></dt><dd><p>Chamber identifier (e.g. <code class="docutils literal notranslate"><span class="pre">&quot;Chamber</span> <span class="pre">1&quot;</span></code>).</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">flux_date</span></code><span class="classifier">datetime-like</span></dt><dd><p>Timestamp of each measurement cycle.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">qc_flag</span></code><span class="classifier">int</span></dt><dd><p>QC flag (0 = high quality, 1 = medium, 2 = low).</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">&lt;variable&gt;</span></code><span class="classifier">float</span></dt><dd><p>Flux column to plot on the y-axis.</p>
+</dd>
+</dl>
+</dd>
+<dt>variable<span class="classifier">str, optional</span></dt><dd><p>Column in <code class="docutils literal notranslate"><span class="pre">flux_df</span></code> to use as the y-axis value.
+Default is <code class="docutils literal notranslate"><span class="pre">&quot;flux_absolute&quot;</span></code>.</p>
+</dd>
+<dt>title<span class="classifier">str, optional</span></dt><dd><p>Overall figure title. Default is
+<code class="docutils literal notranslate"><span class="pre">&quot;CO2</span> <span class="pre">Flux</span> <span class="pre">Timeseries</span> <span class="pre">by</span> <span class="pre">QC</span> <span class="pre">Tier&quot;</span></code>.</p>
+</dd>
+</dl>
+</section>
+<section id="returns">
+<h3>Returns<a class="headerlink" href="#returns" title="Link to this heading">#</a></h3>
+<dl class="simple">
+<dt>matplotlib.figure.Figure or None</dt><dd><p>The figure containing the 3-row x N-chamber grid, or <code class="docutils literal notranslate"><span class="pre">None</span></code>
+if <code class="docutils literal notranslate"><span class="pre">flux_df</span></code> is empty.</p>
+</dd>
+</dl>
+</section>
+<section id="notes">
+<h3>Notes<a class="headerlink" href="#notes" title="Link to this heading">#</a></h3>
+<p>Y-axis limits are unified per row so comparisons between chambers
+within the same tier are on the same scale. Each row’s limits are
+derived from all chambers in that row, with 5 % padding.</p>
+</section>
+<section id="examples">
+<h3>Examples<a class="headerlink" href="#examples" title="Link to this heading">#</a></h3>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">palmwtc.viz.timeseries</span><span class="w"> </span><span class="kn">import</span> <span class="n">plot_flux_timeseries_tiers</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">fig</span> <span class="o">=</span> <span class="n">plot_flux_timeseries_tiers</span><span class="p">(</span><span class="n">cycles_df</span><span class="p">)</span>  
+</pre></div>
+</div>
+</section>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="palmwtc.viz.timeseries.plot_tropical_seasonal_diurnal">
+<span class="sig-prename descclassname"><span class="pre">palmwtc.viz.timeseries.</span></span><span class="sig-name descname"><span class="pre">plot_tropical_seasonal_diurnal</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">flux_df</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">pandas.DataFrame</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">variable</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'flux_absolute'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">estimator</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'mean'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">title_suffix</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">''</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">matplotlib.pyplot.Figure</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></span><a class="headerlink" href="#palmwtc.viz.timeseries.plot_tropical_seasonal_diurnal" title="Link to this definition">#</a></dt>
+<dd><p>Overlay diurnal flux pattern per tropical season on a single axis.</p>
+<p>Draws one line per season (Wet and Dry) and per chamber. The x-axis
+is hour of day (0-23), the y-axis is the flux value aggregated
+across all dates in that season-hour combination.</p>
+<p>Season assignment follows the standard SE-Asia rule:</p>
+<ul class="simple">
+<li><p><strong>Dry Season</strong>: May to September (months 5-9).</p></li>
+<li><p><strong>Wet Season</strong>: October to April (months 10-4).</p></li>
+</ul>
+<p>Useful for spotting shifts in CO2 uptake phase (morning vs afternoon
+activity) between seasons.</p>
+<section id="id1">
+<h3>Parameters<a class="headerlink" href="#id1" title="Link to this heading">#</a></h3>
+<dl>
+<dt>flux_df<span class="classifier">pd.DataFrame</span></dt><dd><p>Cycle-level flux data. Must contain:</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">flux_date</span></code><span class="classifier">datetime-like</span></dt><dd><p>Timestamp of each measurement cycle; month and hour are
+extracted from this column.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">Source_Chamber</span></code><span class="classifier">str</span></dt><dd><p>Chamber identifier used to differentiate line styles.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">&lt;variable&gt;</span></code><span class="classifier">float</span></dt><dd><p>Flux column plotted on the y-axis.</p>
+</dd>
+</dl>
+</dd>
+<dt>variable<span class="classifier">str, optional</span></dt><dd><p>Column in <code class="docutils literal notranslate"><span class="pre">flux_df</span></code> to use as the y-axis value.
+Default is <code class="docutils literal notranslate"><span class="pre">&quot;flux_absolute&quot;</span></code>.</p>
+</dd>
+<dt>estimator<span class="classifier">str, optional</span></dt><dd><p>Aggregation function passed to <code class="docutils literal notranslate"><span class="pre">seaborn.lineplot</span></code>
+(e.g. <code class="docutils literal notranslate"><span class="pre">&quot;mean&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;median&quot;</span></code>). Default is <code class="docutils literal notranslate"><span class="pre">&quot;mean&quot;</span></code>.</p>
+</dd>
+<dt>title_suffix<span class="classifier">str, optional</span></dt><dd><p>Extra text appended to the figure title, useful for adding
+a date range or site label. Default is <code class="docutils literal notranslate"><span class="pre">&quot;&quot;</span></code>.</p>
+</dd>
+</dl>
+</section>
+<section id="id2">
+<h3>Returns<a class="headerlink" href="#id2" title="Link to this heading">#</a></h3>
+<dl class="simple">
+<dt>matplotlib.figure.Figure or None</dt><dd><p>The figure containing the diurnal plot, or <code class="docutils literal notranslate"><span class="pre">None</span></code> if
+<code class="docutils literal notranslate"><span class="pre">flux_df</span></code> is empty.</p>
+</dd>
+</dl>
+</section>
+<section id="id3">
+<h3>Notes<a class="headerlink" href="#id3" title="Link to this heading">#</a></h3>
+<p>Shaded bands around each line represent one standard deviation
+(<code class="docutils literal notranslate"><span class="pre">errorbar=&quot;sd&quot;</span></code>). Lines are coloured orange (Dry) and blue (Wet);
+line style differentiates chambers.</p>
+</section>
+<section id="id4">
+<h3>Examples<a class="headerlink" href="#id4" title="Link to this heading">#</a></h3>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">palmwtc.viz.timeseries</span><span class="w"> </span><span class="kn">import</span> <span class="n">plot_tropical_seasonal_diurnal</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">fig</span> <span class="o">=</span> <span class="n">plot_tropical_seasonal_diurnal</span><span class="p">(</span><span class="n">cycles_df</span><span class="p">)</span>  
+</pre></div>
+</div>
+</section>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="palmwtc.viz.timeseries.plot_flux_heatmap">
+<span class="sig-prename descclassname"><span class="pre">palmwtc.viz.timeseries.</span></span><span class="sig-name descname"><span class="pre">plot_flux_heatmap</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">flux_df</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">pandas.DataFrame</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">variable</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'flux_absolute'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">title</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'Flux</span> <span class="pre">Heatmap</span> <span class="pre">(Hour</span> <span class="pre">vs</span> <span class="pre">Month)'</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">matplotlib.pyplot.Figure</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></span><a class="headerlink" href="#palmwtc.viz.timeseries.plot_flux_heatmap" title="Link to this definition">#</a></dt>
+<dd><p>Heatmap of mean flux by hour-of-day and month-year.</p>
+<p>Produces three vertically stacked subplots:</p>
+<ol class="arabic simple">
+<li><p>Overall (all chambers combined).</p></li>
+<li><p>Chamber 1 only.</p></li>
+<li><p>Chamber 2 only.</p></li>
+</ol>
+<p>Each subplot has hour of day (0-23) on the y-axis and month-year
+periods on the x-axis. Cell colour encodes mean flux, centred at
+zero (<code class="docutils literal notranslate"><span class="pre">RdBu_r</span></code> palette: red = positive efflux, blue = uptake).</p>
+<section id="id5">
+<h3>Parameters<a class="headerlink" href="#id5" title="Link to this heading">#</a></h3>
+<dl>
+<dt>flux_df<span class="classifier">pd.DataFrame</span></dt><dd><p>Cycle-level flux data. Must contain:</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">flux_date</span></code><span class="classifier">datetime-like</span></dt><dd><p>Timestamp; hour and month-year are extracted from this column.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">Source_Chamber</span></code><span class="classifier">str</span></dt><dd><p>Chamber identifier. Subplots 2 and 3 filter on
+<code class="docutils literal notranslate"><span class="pre">&quot;Chamber</span> <span class="pre">1&quot;</span></code> and <code class="docutils literal notranslate"><span class="pre">&quot;Chamber</span> <span class="pre">2&quot;</span></code> exactly.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">&lt;variable&gt;</span></code><span class="classifier">float</span></dt><dd><p>Flux column used for heatmap cell values.</p>
+</dd>
+</dl>
+</dd>
+<dt>variable<span class="classifier">str, optional</span></dt><dd><p>Column in <code class="docutils literal notranslate"><span class="pre">flux_df</span></code> to aggregate. Default is
+<code class="docutils literal notranslate"><span class="pre">&quot;flux_absolute&quot;</span></code>.</p>
+</dd>
+<dt>title<span class="classifier">str, optional</span></dt><dd><p>Base title; each subplot appends its own suffix
+(e.g. <code class="docutils literal notranslate"><span class="pre">&quot;-</span> <span class="pre">Chamber</span> <span class="pre">1&quot;</span></code>). Default is
+<code class="docutils literal notranslate"><span class="pre">&quot;Flux</span> <span class="pre">Heatmap</span> <span class="pre">(Hour</span> <span class="pre">vs</span> <span class="pre">Month)&quot;</span></code>.</p>
+</dd>
+</dl>
+</section>
+<section id="id6">
+<h3>Returns<a class="headerlink" href="#id6" title="Link to this heading">#</a></h3>
+<dl class="simple">
+<dt>matplotlib.figure.Figure or None</dt><dd><p>The figure with three heatmap subplots, or <code class="docutils literal notranslate"><span class="pre">None</span></code> if
+<code class="docutils literal notranslate"><span class="pre">flux_df</span></code> is empty.</p>
+</dd>
+</dl>
+</section>
+<section id="id7">
+<h3>Notes<a class="headerlink" href="#id7" title="Link to this heading">#</a></h3>
+<p>Subplots where the filtered data is empty show a <code class="docutils literal notranslate"><span class="pre">&quot;No</span> <span class="pre">Data&quot;</span></code>
+label instead of a heatmap. Month-year periods on the x-axis
+are sorted chronologically by pandas <code class="docutils literal notranslate"><span class="pre">Period</span></code> ordering.</p>
+</section>
+<section id="id8">
+<h3>Examples<a class="headerlink" href="#id8" title="Link to this heading">#</a></h3>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">palmwtc.viz.timeseries</span><span class="w"> </span><span class="kn">import</span> <span class="n">plot_flux_heatmap</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">fig</span> <span class="o">=</span> <span class="n">plot_flux_heatmap</span><span class="p">(</span><span class="n">cycles_df</span><span class="p">)</span>  
+</pre></div>
+</div>
+</section>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="palmwtc.viz.timeseries.plot_flux_vs_tree_age">
+<span class="sig-prename descclassname"><span class="pre">palmwtc.viz.timeseries.</span></span><span class="sig-name descname"><span class="pre">plot_flux_vs_tree_age</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">flux_df</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">pandas.DataFrame</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">variable</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'flux_absolute'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">birth_date_str</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'2022-07-12'</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">matplotlib.pyplot.Figure</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></span><a class="headerlink" href="#palmwtc.viz.timeseries.plot_flux_vs_tree_age" title="Link to this definition">#</a></dt>
+<dd><p>Plot flux against tree age in years, with a rolling-mean trend.</p>
+<p>Produces one subplot per chamber (stacked vertically, shared x-axis).
+Each subplot shows raw flux values as a semi-transparent scatter and
+a black rolling-mean line (window = 200 observations) as the trend.</p>
+<section id="id9">
+<h3>Parameters<a class="headerlink" href="#id9" title="Link to this heading">#</a></h3>
+<dl>
+<dt>flux_df<span class="classifier">pd.DataFrame</span></dt><dd><p>Cycle-level flux data. Must contain:</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">flux_date</span></code><span class="classifier">datetime-like</span></dt><dd><p>Timestamp of each measurement cycle; used to compute tree
+age relative to <code class="docutils literal notranslate"><span class="pre">birth_date_str</span></code>.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">Source_Chamber</span></code><span class="classifier">str</span></dt><dd><p>Chamber identifier; one subplot is created per unique value.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">&lt;variable&gt;</span></code><span class="classifier">float</span></dt><dd><p>Flux column plotted on the y-axis.</p>
+</dd>
+</dl>
+</dd>
+<dt>variable<span class="classifier">str, optional</span></dt><dd><p>Column in <code class="docutils literal notranslate"><span class="pre">flux_df</span></code> to plot. Default is <code class="docutils literal notranslate"><span class="pre">&quot;flux_absolute&quot;</span></code>.</p>
+</dd>
+<dt>birth_date_str<span class="classifier">str, optional</span></dt><dd><p>ISO-format planting date (<code class="docutils literal notranslate"><span class="pre">&quot;YYYY-MM-DD&quot;</span></code>) used as the zero
+point for tree age. Default is <code class="docutils literal notranslate"><span class="pre">&quot;2022-07-12&quot;</span></code>.</p>
+</dd>
+</dl>
+</section>
+<section id="id10">
+<h3>Returns<a class="headerlink" href="#id10" title="Link to this heading">#</a></h3>
+<dl class="simple">
+<dt>matplotlib.figure.Figure or None</dt><dd><p>The figure with one subplot per chamber, or <code class="docutils literal notranslate"><span class="pre">None</span></code> if
+<code class="docutils literal notranslate"><span class="pre">flux_df</span></code> is empty.</p>
+</dd>
+</dl>
+</section>
+<section id="id11">
+<h3>Notes<a class="headerlink" href="#id11" title="Link to this heading">#</a></h3>
+<p>Tree age in years is computed as:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">flux_date</span> <span class="o">-</span> <span class="n">birth_date</span><span class="p">)</span><span class="o">.</span><span class="n">total_seconds</span><span class="p">()</span> <span class="o">/</span> <span class="p">(</span><span class="mi">3600</span> <span class="o">*</span> <span class="mi">24</span> <span class="o">*</span> <span class="mf">365.25</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>so fractional years are preserved. The rolling mean uses
+<code class="docutils literal notranslate"><span class="pre">window=200,</span> <span class="pre">center=True</span></code> and will produce NaN near the edges of
+the series; those NaN values are silently dropped by matplotlib.</p>
+</section>
+<section id="id12">
+<h3>Examples<a class="headerlink" href="#id12" title="Link to this heading">#</a></h3>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">palmwtc.viz.timeseries</span><span class="w"> </span><span class="kn">import</span> <span class="n">plot_flux_vs_tree_age</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">fig</span> <span class="o">=</span> <span class="n">plot_flux_vs_tree_age</span><span class="p">(</span><span class="n">cycles_df</span><span class="p">,</span> <span class="n">birth_date_str</span><span class="o">=</span><span class="s2">&quot;2022-07-12&quot;</span><span class="p">)</span>  
+</pre></div>
+</div>
+</section>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="palmwtc.viz.timeseries.plot_cumulative_flux_with_gaps">
+<span class="sig-prename descclassname"><span class="pre">palmwtc.viz.timeseries.</span></span><span class="sig-name descname"><span class="pre">plot_cumulative_flux_with_gaps</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">flux_df</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">pandas.DataFrame</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gap_filled_df</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">pandas.DataFrame</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">birth_date_str</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'2024-02-01'</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">matplotlib.pyplot.Figure</span></span></span><a class="headerlink" href="#palmwtc.viz.timeseries.plot_cumulative_flux_with_gaps" title="Link to this definition">#</a></dt>
+<dd><p>Plot cumulative gap-filled flux vs months after planting (MAP).</p>
+<p>Draws one line per chamber from the gap-filled hourly data.
+The x-axis is months after planting (MAP), computed as:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">index</span> <span class="o">-</span> <span class="n">birth_date</span><span class="p">)</span><span class="o">.</span><span class="n">days</span> <span class="o">/</span> <span class="mf">30.44</span>
+</pre></div>
+</div>
+<p>The y-axis is the running cumulative sum of <code class="docutils literal notranslate"><span class="pre">flux_filled</span></code>.</p>
+<section id="id13">
+<h3>Parameters<a class="headerlink" href="#id13" title="Link to this heading">#</a></h3>
+<dl>
+<dt>flux_df<span class="classifier">pd.DataFrame</span></dt><dd><p>Cycle-level flux data. Not used directly in the current
+implementation; kept for API symmetry with related functions.</p>
+</dd>
+<dt>gap_filled_df<span class="classifier">pd.DataFrame or None, optional</span></dt><dd><p>Hourly gap-filled data with a datetime index. Must contain:</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">Source_Chamber</span></code><span class="classifier">str</span></dt><dd><p>Chamber identifier; one line per unique value.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">flux_filled</span></code><span class="classifier">float</span></dt><dd><p>Gap-filled flux values to accumulate.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">index</span></code><span class="classifier">datetime-like</span></dt><dd><p>Row index used to compute elapsed time since planting.</p>
+</dd>
+</dl>
+</dd>
+<dt>birth_date_str<span class="classifier">str, optional</span></dt><dd><p>ISO-format planting date (<code class="docutils literal notranslate"><span class="pre">&quot;YYYY-MM-DD&quot;</span></code>) used as the MAP
+zero point. Default is <code class="docutils literal notranslate"><span class="pre">&quot;2024-02-01&quot;</span></code>.</p>
+</dd>
+</dl>
+</section>
+<section id="id14">
+<h3>Returns<a class="headerlink" href="#id14" title="Link to this heading">#</a></h3>
+<dl class="simple">
+<dt>matplotlib.figure.Figure</dt><dd><p>The figure with the cumulative flux curves. Returns an empty
+figure if <code class="docutils literal notranslate"><span class="pre">gap_filled_df</span></code> is <code class="docutils literal notranslate"><span class="pre">None</span></code>.</p>
+</dd>
+</dl>
+</section>
+<section id="id15">
+<h3>Notes<a class="headerlink" href="#id15" title="Link to this heading">#</a></h3>
+<p>MAP is an approximate unit: one month is assumed to be 30.44 days.
+The y-axis is labelled “Cumulative Flux (Arbitrary Units / Sum)”
+because the cumulative sum of a flux <em>rate</em> is not a standard
+physical quantity without explicit time-step integration.</p>
+</section>
+<section id="id16">
+<h3>Examples<a class="headerlink" href="#id16" title="Link to this heading">#</a></h3>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">palmwtc.viz.timeseries</span><span class="w"> </span><span class="kn">import</span> <span class="n">plot_cumulative_flux_with_gaps</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">fig</span> <span class="o">=</span> <span class="n">plot_cumulative_flux_with_gaps</span><span class="p">(</span><span class="n">cycles_df</span><span class="p">,</span> <span class="n">gap_filled_df</span><span class="o">=</span><span class="n">hourly_df</span><span class="p">)</span>  
+</pre></div>
+</div>
+</section>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="palmwtc.viz.timeseries.plot_cumulative_flux_by_date">
+<span class="sig-prename descclassname"><span class="pre">palmwtc.viz.timeseries.</span></span><span class="sig-name descname"><span class="pre">plot_cumulative_flux_by_date</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">gap_filled_df</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">pandas.DataFrame</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">matplotlib.pyplot.Figure</span></span></span><a class="headerlink" href="#palmwtc.viz.timeseries.plot_cumulative_flux_by_date" title="Link to this definition">#</a></dt>
+<dd><p>Plot cumulative gap-filled flux against actual calendar date.</p>
+<p>Draws one line per chamber. The x-axis is the datetime index of
+<code class="docutils literal notranslate"><span class="pre">gap_filled_df</span></code>; the y-axis is the running cumulative sum of
+<code class="docutils literal notranslate"><span class="pre">flux_filled</span></code>. Useful for comparing absolute accumulation across
+chambers on a shared calendar timeline.</p>
+<section id="id17">
+<h3>Parameters<a class="headerlink" href="#id17" title="Link to this heading">#</a></h3>
+<dl>
+<dt>gap_filled_df<span class="classifier">pd.DataFrame or None</span></dt><dd><p>Hourly gap-filled data with a datetime index. Must contain:</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">Source_Chamber</span></code><span class="classifier">str</span></dt><dd><p>Chamber identifier; one line per unique value.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">flux_filled</span></code><span class="classifier">float</span></dt><dd><p>Gap-filled flux values to accumulate.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">index</span></code><span class="classifier">datetime-like</span></dt><dd><p>Row index used as the x-axis.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</section>
+<section id="id18">
+<h3>Returns<a class="headerlink" href="#id18" title="Link to this heading">#</a></h3>
+<dl class="simple">
+<dt>matplotlib.figure.Figure</dt><dd><p>The figure with the cumulative flux curves. Returns an empty
+figure if <code class="docutils literal notranslate"><span class="pre">gap_filled_df</span></code> is <code class="docutils literal notranslate"><span class="pre">None</span></code>.</p>
+</dd>
+</dl>
+</section>
+<section id="id19">
+<h3>Notes<a class="headerlink" href="#id19" title="Link to this heading">#</a></h3>
+<p>The x-axis is formatted with monthly ticks and
+<code class="docutils literal notranslate"><span class="pre">&quot;%Y-%m-%d&quot;</span></code> date labels, rotated 45 degrees for readability.</p>
+</section>
+<section id="id20">
+<h3>Examples<a class="headerlink" href="#id20" title="Link to this heading">#</a></h3>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">palmwtc.viz.timeseries</span><span class="w"> </span><span class="kn">import</span> <span class="n">plot_cumulative_flux_by_date</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">fig</span> <span class="o">=</span> <span class="n">plot_cumulative_flux_by_date</span><span class="p">(</span><span class="n">hourly_df</span><span class="p">)</span>  
+</pre></div>
+</div>
+</section>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="palmwtc.viz.timeseries.plot_concentration_slope_vs_tree_age">
+<span class="sig-prename descclassname"><span class="pre">palmwtc.viz.timeseries.</span></span><span class="sig-name descname"><span class="pre">plot_concentration_slope_vs_tree_age</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">flux_df</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">pandas.DataFrame</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">variable</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'flux_slope'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">birth_date_str</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'2022-07-12'</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">matplotlib.pyplot.Figure</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></span><a class="headerlink" href="#palmwtc.viz.timeseries.plot_concentration_slope_vs_tree_age" title="Link to this definition">#</a></dt>
+<dd><p>Plot raw concentration slope vs tree age, faceted by chamber.</p>
+<p>Plots ppm/s slope (before chamber volume/area correction) against
+tree age in years. Produces one subplot per chamber with a scatter
+layer and a black rolling-mean trend line. This is a sanity check
+for <a class="reference internal" href="#palmwtc.viz.timeseries.plot_flux_vs_tree_age" title="palmwtc.viz.timeseries.plot_flux_vs_tree_age"><code class="xref py py-func docutils literal notranslate"><span class="pre">plot_flux_vs_tree_age()</span></code></a>: if the corrected-flux trend
+matches the raw-slope trend, the chamber-size correction is not
+introducing artefacts.</p>
+<section id="id21">
+<h3>Parameters<a class="headerlink" href="#id21" title="Link to this heading">#</a></h3>
+<dl>
+<dt>flux_df<span class="classifier">pd.DataFrame</span></dt><dd><p>Cycle-level flux data. Must contain:</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">flux_date</span></code><span class="classifier">datetime-like</span></dt><dd><p>Timestamp of each cycle; used to compute tree age.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">Source_Chamber</span></code><span class="classifier">str</span></dt><dd><p>Chamber identifier; one subplot per unique value.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">&lt;variable&gt;</span></code><span class="classifier">float</span></dt><dd><p>Raw concentration slope in ppm/s (no chamber-size
+correction applied).</p>
+</dd>
+</dl>
+</dd>
+<dt>variable<span class="classifier">str, optional</span></dt><dd><p>Column in <code class="docutils literal notranslate"><span class="pre">flux_df</span></code> to plot on the y-axis.
+Default is <code class="docutils literal notranslate"><span class="pre">&quot;flux_slope&quot;</span></code>.</p>
+</dd>
+<dt>birth_date_str<span class="classifier">str, optional</span></dt><dd><p>ISO-format planting date (<code class="docutils literal notranslate"><span class="pre">&quot;YYYY-MM-DD&quot;</span></code>) for tree-age
+calculation. Default is <code class="docutils literal notranslate"><span class="pre">&quot;2022-07-12&quot;</span></code>.</p>
+</dd>
+</dl>
+</section>
+<section id="id22">
+<h3>Returns<a class="headerlink" href="#id22" title="Link to this heading">#</a></h3>
+<dl class="simple">
+<dt>matplotlib.figure.Figure or None</dt><dd><p>The figure with one subplot per chamber, or <code class="docutils literal notranslate"><span class="pre">None</span></code> if
+<code class="docutils literal notranslate"><span class="pre">flux_df</span></code> is empty.</p>
+</dd>
+</dl>
+</section>
+<section id="id23">
+<h3>Notes<a class="headerlink" href="#id23" title="Link to this heading">#</a></h3>
+<p>Tree age is computed the same way as in
+<a class="reference internal" href="#palmwtc.viz.timeseries.plot_flux_vs_tree_age" title="palmwtc.viz.timeseries.plot_flux_vs_tree_age"><code class="xref py py-func docutils literal notranslate"><span class="pre">plot_flux_vs_tree_age()</span></code></a> (seconds / 31,557,600). The rolling
+mean uses <code class="docutils literal notranslate"><span class="pre">window=200,</span> <span class="pre">center=True</span></code>.</p>
+</section>
+<section id="id24">
+<h3>Examples<a class="headerlink" href="#id24" title="Link to this heading">#</a></h3>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">palmwtc.viz.timeseries</span><span class="w"> </span><span class="kn">import</span> <span class="n">plot_concentration_slope_vs_tree_age</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">fig</span> <span class="o">=</span> <span class="n">plot_concentration_slope_vs_tree_age</span><span class="p">(</span><span class="n">cycles_df</span><span class="p">)</span>  
+</pre></div>
+</div>
+</section>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="palmwtc.viz.timeseries.plot_flux_boxplot_vs_tree_age">
+<span class="sig-prename descclassname"><span class="pre">palmwtc.viz.timeseries.</span></span><span class="sig-name descname"><span class="pre">plot_flux_boxplot_vs_tree_age</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">flux_df</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">pandas.DataFrame</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">variable</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'flux_absolute'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">birth_date_str</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'2022-07-12'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bin_size_days</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">30</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">matplotlib.pyplot.Figure</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></span><a class="headerlink" href="#palmwtc.viz.timeseries.plot_flux_boxplot_vs_tree_age" title="Link to this definition">#</a></dt>
+<dd><p>Boxplots of flux binned by tree age, one subplot per chamber.</p>
+<p>Groups measurement cycles into equal-width bins of
+<code class="docutils literal notranslate"><span class="pre">bin_size_days</span></code> days and draws a boxplot per bin. The x-axis
+label shows approximate tree age in years for each bin. Outliers
+are hidden (<code class="docutils literal notranslate"><span class="pre">showfliers=False</span></code>).</p>
+<section id="id25">
+<h3>Parameters<a class="headerlink" href="#id25" title="Link to this heading">#</a></h3>
+<dl>
+<dt>flux_df<span class="classifier">pd.DataFrame</span></dt><dd><p>Cycle-level flux data. Must contain:</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">flux_date</span></code><span class="classifier">datetime-like</span></dt><dd><p>Timestamp used to compute age relative to <code class="docutils literal notranslate"><span class="pre">birth_date_str</span></code>.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">Source_Chamber</span></code><span class="classifier">str</span></dt><dd><p>Chamber identifier; one subplot per unique value.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">&lt;variable&gt;</span></code><span class="classifier">float</span></dt><dd><p>Flux column used for the boxplot values.</p>
+</dd>
+</dl>
+</dd>
+<dt>variable<span class="classifier">str, optional</span></dt><dd><p>Column in <code class="docutils literal notranslate"><span class="pre">flux_df</span></code> to plot. Default is <code class="docutils literal notranslate"><span class="pre">&quot;flux_absolute&quot;</span></code>.</p>
+</dd>
+<dt>birth_date_str<span class="classifier">str, optional</span></dt><dd><p>ISO-format planting date (<code class="docutils literal notranslate"><span class="pre">&quot;YYYY-MM-DD&quot;</span></code>) for tree-age
+calculation. Default is <code class="docutils literal notranslate"><span class="pre">&quot;2022-07-12&quot;</span></code>.</p>
+</dd>
+<dt>bin_size_days<span class="classifier">int, optional</span></dt><dd><p>Width of each age bin in days. Default is <code class="docutils literal notranslate"><span class="pre">30</span></code> (roughly
+one month).</p>
+</dd>
+</dl>
+</section>
+<section id="id26">
+<h3>Returns<a class="headerlink" href="#id26" title="Link to this heading">#</a></h3>
+<dl class="simple">
+<dt>matplotlib.figure.Figure or None</dt><dd><p>The figure with one subplot per chamber, or <code class="docutils literal notranslate"><span class="pre">None</span></code> if
+<code class="docutils literal notranslate"><span class="pre">flux_df</span></code> is empty.</p>
+</dd>
+</dl>
+</section>
+<section id="id27">
+<h3>Notes<a class="headerlink" href="#id27" title="Link to this heading">#</a></h3>
+<p>When there are more than 20 unique bins on the x-axis, every other
+tick label is hidden to prevent overplotting. Subplots share the
+x-axis so bin positions are aligned across chambers.</p>
+</section>
+<section id="id28">
+<h3>Examples<a class="headerlink" href="#id28" title="Link to this heading">#</a></h3>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">palmwtc.viz.timeseries</span><span class="w"> </span><span class="kn">import</span> <span class="n">plot_flux_boxplot_vs_tree_age</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">fig</span> <span class="o">=</span> <span class="n">plot_flux_boxplot_vs_tree_age</span><span class="p">(</span><span class="n">cycles_df</span><span class="p">,</span> <span class="n">bin_size_days</span><span class="o">=</span><span class="mi">30</span><span class="p">)</span>  
+</pre></div>
+</div>
+</section>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="palmwtc.viz.timeseries.plot_concentration_slope_boxplot_vs_tree_age">
+<span class="sig-prename descclassname"><span class="pre">palmwtc.viz.timeseries.</span></span><span class="sig-name descname"><span class="pre">plot_concentration_slope_boxplot_vs_tree_age</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">flux_df</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">pandas.DataFrame</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">variable</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'flux_slope'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">birth_date_str</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'2022-07-12'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bin_size_days</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">30</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">matplotlib.pyplot.Figure</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></span><a class="headerlink" href="#palmwtc.viz.timeseries.plot_concentration_slope_boxplot_vs_tree_age" title="Link to this definition">#</a></dt>
+<dd><p>Boxplots of concentration slope binned by tree age, per chamber.</p>
+<p>Companion to <a class="reference internal" href="#palmwtc.viz.timeseries.plot_flux_boxplot_vs_tree_age" title="palmwtc.viz.timeseries.plot_flux_boxplot_vs_tree_age"><code class="xref py py-func docutils literal notranslate"><span class="pre">plot_flux_boxplot_vs_tree_age()</span></code></a> but for the raw
+concentration slope (ppm/s, no chamber-size correction). Useful for
+checking whether trends in the corrected flux are driven by real
+biological change or by chamber resizing events.</p>
+<section id="id29">
+<h3>Parameters<a class="headerlink" href="#id29" title="Link to this heading">#</a></h3>
+<dl>
+<dt>flux_df<span class="classifier">pd.DataFrame</span></dt><dd><p>Cycle-level flux data. Must contain:</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">flux_date</span></code><span class="classifier">datetime-like</span></dt><dd><p>Timestamp used to compute age relative to <code class="docutils literal notranslate"><span class="pre">birth_date_str</span></code>.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">Source_Chamber</span></code><span class="classifier">str</span></dt><dd><p>Chamber identifier; one subplot per unique value.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">&lt;variable&gt;</span></code><span class="classifier">float</span></dt><dd><p>Raw concentration slope in ppm/s.</p>
+</dd>
+</dl>
+</dd>
+<dt>variable<span class="classifier">str, optional</span></dt><dd><p>Column in <code class="docutils literal notranslate"><span class="pre">flux_df</span></code> to plot. Default is <code class="docutils literal notranslate"><span class="pre">&quot;flux_slope&quot;</span></code>.</p>
+</dd>
+<dt>birth_date_str<span class="classifier">str, optional</span></dt><dd><p>ISO-format planting date (<code class="docutils literal notranslate"><span class="pre">&quot;YYYY-MM-DD&quot;</span></code>) for tree-age
+calculation. Default is <code class="docutils literal notranslate"><span class="pre">&quot;2022-07-12&quot;</span></code>.</p>
+</dd>
+<dt>bin_size_days<span class="classifier">int, optional</span></dt><dd><p>Width of each age bin in days. Default is <code class="docutils literal notranslate"><span class="pre">30</span></code>.</p>
+</dd>
+</dl>
+</section>
+<section id="id30">
+<h3>Returns<a class="headerlink" href="#id30" title="Link to this heading">#</a></h3>
+<dl class="simple">
+<dt>matplotlib.figure.Figure or None</dt><dd><p>The figure with one subplot per chamber, or <code class="docutils literal notranslate"><span class="pre">None</span></code> if
+<code class="docutils literal notranslate"><span class="pre">flux_df</span></code> is empty.</p>
+</dd>
+</dl>
+</section>
+<section id="id31">
+<h3>Notes<a class="headerlink" href="#id31" title="Link to this heading">#</a></h3>
+<p>Outliers are hidden (<code class="docutils literal notranslate"><span class="pre">showfliers=False</span></code>). When there are more than
+20 unique bins, every other x-tick label is hidden. Subplots share
+the x-axis.</p>
+</section>
+<section id="id32">
+<h3>Examples<a class="headerlink" href="#id32" title="Link to this heading">#</a></h3>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">palmwtc.viz.timeseries</span><span class="w"> </span><span class="kn">import</span> <span class="n">plot_concentration_slope_boxplot_vs_tree_age</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">fig</span> <span class="o">=</span> <span class="n">plot_concentration_slope_boxplot_vs_tree_age</span><span class="p">(</span><span class="n">cycles_df</span><span class="p">)</span>  
+</pre></div>
+</div>
+</section>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="palmwtc.viz.timeseries.plot_flux_monthly_boxplot">
+<span class="sig-prename descclassname"><span class="pre">palmwtc.viz.timeseries.</span></span><span class="sig-name descname"><span class="pre">plot_flux_monthly_boxplot</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">flux_df</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">pandas.DataFrame</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">variable</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'flux_absolute'</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">matplotlib.pyplot.Figure</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></span><a class="headerlink" href="#palmwtc.viz.timeseries.plot_flux_monthly_boxplot" title="Link to this definition">#</a></dt>
+<dd><p>Month-year boxplot of flux distribution, faceted by chamber.</p>
+<p>Draws one subplot per chamber (stacked vertically, shared x and
+y axes). Each box represents the distribution of flux values within
+one calendar month. Month-year labels on the x-axis are sorted
+chronologically. Outliers are hidden (<code class="docutils literal notranslate"><span class="pre">showfliers=False</span></code>).</p>
+<section id="id33">
+<h3>Parameters<a class="headerlink" href="#id33" title="Link to this heading">#</a></h3>
+<dl>
+<dt>flux_df<span class="classifier">pd.DataFrame</span></dt><dd><p>Cycle-level flux data. Must contain:</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">flux_date</span></code><span class="classifier">datetime-like</span></dt><dd><p>Timestamp; month-year is derived from this column.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">Source_Chamber</span></code><span class="classifier">str</span></dt><dd><p>Chamber identifier; one subplot per unique value.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">&lt;variable&gt;</span></code><span class="classifier">float</span></dt><dd><p>Flux column used for the boxplot values.</p>
+</dd>
+</dl>
+</dd>
+<dt>variable<span class="classifier">str, optional</span></dt><dd><p>Column in <code class="docutils literal notranslate"><span class="pre">flux_df</span></code> to plot. Default is <code class="docutils literal notranslate"><span class="pre">&quot;flux_absolute&quot;</span></code>.</p>
+</dd>
+</dl>
+</section>
+<section id="id34">
+<h3>Returns<a class="headerlink" href="#id34" title="Link to this heading">#</a></h3>
+<dl class="simple">
+<dt>matplotlib.figure.Figure or None</dt><dd><p>The figure with one subplot per chamber, or <code class="docutils literal notranslate"><span class="pre">None</span></code> if
+<code class="docutils literal notranslate"><span class="pre">flux_df</span></code> is empty.</p>
+</dd>
+</dl>
+</section>
+<section id="id35">
+<h3>Notes<a class="headerlink" href="#id35" title="Link to this heading">#</a></h3>
+<p>The <code class="docutils literal notranslate"><span class="pre">order</span></code> parameter is passed to <code class="docutils literal notranslate"><span class="pre">seaborn.boxplot</span></code> to ensure
+all subplots share the same x-axis ordering even if one chamber is
+missing data for some months. X-tick labels are rotated 45 degrees.</p>
+</section>
+<section id="id36">
+<h3>Examples<a class="headerlink" href="#id36" title="Link to this heading">#</a></h3>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">palmwtc.viz.timeseries</span><span class="w"> </span><span class="kn">import</span> <span class="n">plot_flux_monthly_boxplot</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">fig</span> <span class="o">=</span> <span class="n">plot_flux_monthly_boxplot</span><span class="p">(</span><span class="n">cycles_df</span><span class="p">)</span>  
+</pre></div>
+</div>
+</section>
+</dd></dl>
+
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./api/palmwtc/viz/timeseries"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item"><div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#functions">Functions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-contents">Module Contents</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#palmwtc.viz.timeseries.plot_flux_timeseries_tiers"><code class="docutils literal notranslate"><span class="pre">plot_flux_timeseries_tiers()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#palmwtc.viz.timeseries.plot_tropical_seasonal_diurnal"><code class="docutils literal notranslate"><span class="pre">plot_tropical_seasonal_diurnal()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#palmwtc.viz.timeseries.plot_flux_heatmap"><code class="docutils literal notranslate"><span class="pre">plot_flux_heatmap()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#palmwtc.viz.timeseries.plot_flux_vs_tree_age"><code class="docutils literal notranslate"><span class="pre">plot_flux_vs_tree_age()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#palmwtc.viz.timeseries.plot_cumulative_flux_with_gaps"><code class="docutils literal notranslate"><span class="pre">plot_cumulative_flux_with_gaps()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#palmwtc.viz.timeseries.plot_cumulative_flux_by_date"><code class="docutils literal notranslate"><span class="pre">plot_cumulative_flux_by_date()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#palmwtc.viz.timeseries.plot_concentration_slope_vs_tree_age"><code class="docutils literal notranslate"><span class="pre">plot_concentration_slope_vs_tree_age()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#palmwtc.viz.timeseries.plot_flux_boxplot_vs_tree_age"><code class="docutils literal notranslate"><span class="pre">plot_flux_boxplot_vs_tree_age()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#palmwtc.viz.timeseries.plot_concentration_slope_boxplot_vs_tree_age"><code class="docutils literal notranslate"><span class="pre">plot_concentration_slope_boxplot_vs_tree_age()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#palmwtc.viz.timeseries.plot_flux_monthly_boxplot"><code class="docutils literal notranslate"><span class="pre">plot_flux_monthly_boxplot()</span></code></a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Didi Adisaputro
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2026.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../../../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

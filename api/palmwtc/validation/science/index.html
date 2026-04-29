@@ -1,0 +1,914 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>palmwtc.validation.science &#8212; palmwtc</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../../../../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/styles/sphinx-book-theme.css?v=3c74b3bc" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/togglebutton.css?v=9c3e77be" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/graphviz.css?v=fd3f3429" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../../../../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../../../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="../../../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../../../_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../../../_static/togglebutton.js?v=b8b12719"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'api/palmwtc/validation/science/index';</script>
+    <link rel="canonical" href="https://adisapoetro.github.io/palmwtc/api/palmwtc/validation/science/index.html" />
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../../../index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">palmwtc</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../../../index.html">
+                    palmwtc
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Getting Started</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../../../quickstart.html">Quickstart — your first flux number in 3 minutes</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../../tutorials/index.html">Tutorials</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorials/010_Data_Integration.html">010 — Core data integration (raw → unified monthly)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorials/011_Weather_vs_Chamber.html">011 — Weather station vs chamber</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorials/020_QC_Rule_Based.html">020 — Rule-based QC</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorials/022_QC_ML_Enhanced.html">022 — ML-enhanced QC (optional)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorials/023_Field_Alert_Report.html">023 — Field alert report</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorials/025_Cross_Chamber_Bias.html">025 — Cross-chamber bias comparison (diagnostic)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorials/026_CO2_H2O_Segmented_Bias.html">026 — CO2/H2O segmented bias comparison (diagnostic)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorials/030_Flux_Cycle_Calculation.html">030 — Flux cycle calculation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorials/031_Window_Selection_Reference.html">031 — High-confidence window selection (reference)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorials/032_Window_Selection_Production.html">032 — Physically grounded window selection (production)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorials/033_Science_Validation.html">033 — Science validation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorials/034_QC_and_Window_Audit.html">034 — QC + window audit (visualization)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorials/035_QC_Threshold_Sensitivity.html">035 — QC threshold sensitivity sweep</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorials/000_End_to_End_Synthetic.html">000 — End-to-end on synthetic data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorials/001_End_to_End_LIBZ.html">001 - End-to-end on LIBZ data (raw .dat -&gt; validation)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorials/010_Data_Integration.html">010 — Core data integration (raw → unified monthly)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorials/011_Weather_vs_Chamber.html">011 — Weather station vs chamber</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorials/020_QC_Rule_Based.html">020 — Rule-based QC</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorials/022_QC_ML_Enhanced.html">022 — ML-enhanced QC (optional)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorials/023_Field_Alert_Report.html">023 — Field alert report</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorials/025_Cross_Chamber_Bias.html">025 — Cross-chamber bias comparison (diagnostic)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorials/026_CO2_H2O_Segmented_Bias.html">026 — CO2/H2O segmented bias comparison (diagnostic)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorials/030_Flux_Cycle_Calculation.html">030 — Flux cycle calculation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorials/031_Window_Selection_Reference.html">031 — High-confidence window selection (reference)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorials/032_Window_Selection_Production.html">032 — Physically grounded window selection (production)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorials/033_Science_Validation.html">033 — Science validation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorials/034_QC_and_Window_Audit.html">034 — QC + window audit (visualization)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorials/035_QC_Threshold_Sensitivity.html">035 — QC threshold sensitivity sweep</a></li>
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Science Reference</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../../../science/index.html">Science Reference</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/adisapoetro/palmwtc" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/adisapoetro/palmwtc/edit/main/docs/api/palmwtc/validation/science/index.rst" target="_blank"
+   class="btn btn-sm btn-source-edit-button dropdown-item"
+   title="Suggest edit"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="btn__text-container">Suggest edit</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/adisapoetro/palmwtc/issues/new?title=Issue%20on%20page%20%2Fapi/palmwtc/validation/science/index.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../../../_sources/api/palmwtc/validation/science/index.rst" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.rst</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button pst-navbar-icon"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm pst-navbar-icon" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>palmwtc.validation.science</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#attributes">Attributes</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#functions">Functions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-contents">Module Contents</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#palmwtc.validation.science.DEFAULT_CONFIG"><code class="docutils literal notranslate"><span class="pre">DEFAULT_CONFIG</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#palmwtc.validation.science._light_response"><code class="docutils literal notranslate"><span class="pre">_light_response()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#palmwtc.validation.science._status_inrange"><code class="docutils literal notranslate"><span class="pre">_status_inrange()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#palmwtc.validation.science._status_atleast"><code class="docutils literal notranslate"><span class="pre">_status_atleast()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#palmwtc.validation.science.derive_is_daytime"><code class="docutils literal notranslate"><span class="pre">derive_is_daytime()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#palmwtc.validation.science.test_light_response"><code class="docutils literal notranslate"><span class="pre">test_light_response()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#palmwtc.validation.science.test_q10"><code class="docutils literal notranslate"><span class="pre">test_q10()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#palmwtc.validation.science.test_wue"><code class="docutils literal notranslate"><span class="pre">test_wue()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#palmwtc.validation.science.test_inter_chamber"><code class="docutils literal notranslate"><span class="pre">test_inter_chamber()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#palmwtc.validation.science.run_science_validation"><code class="docutils literal notranslate"><span class="pre">run_science_validation()</span></code></a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="module-palmwtc.validation.science">
+<span id="palmwtc-validation-science"></span><h1>palmwtc.validation.science<a class="headerlink" href="#module-palmwtc.validation.science" title="Link to this heading">#</a></h1>
+<p>Science validation: compare flux results against literature ecophysiology bounds.</p>
+<p>Runs four canonical ecophysiology sanity checks against per-cycle flux output
+from oil-palm automated whole-tree chambers (LIBZ field site, Riau, Indonesia):</p>
+<ol class="arabic simple">
+<li><p><strong>Light response</strong> — fits a rectangular-hyperbola (Michaelis-Menten) model per
+chamber to daytime cycles; checks Amax and quantum yield (alpha) against
+whole-canopy bounds for tropical perennial crops (Lamade &amp; Bouillet 2005 <a class="footnote-reference brackets" href="#id3" id="id1" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a>).</p></li>
+<li><p><strong>Temperature response (Q10)</strong> — fits van’t Hoff exponential on nighttime
+respiration vs air temperature; checks Q10 within 1.5–3.0.</p></li>
+<li><p><strong>Water use efficiency (WUE)</strong> — checks median WUE against the Medlyn g₁-based
+range and tests for a negative WUE–VPD correlation (Medlyn et al. 2011 <a class="footnote-reference brackets" href="#id4" id="id2" role="doc-noteref"><span class="fn-bracket">[</span>2<span class="fn-bracket">]</span></a>).</p></li>
+<li><p><strong>Inter-chamber agreement</strong> — Pearson r &gt; 0.70 between the two chambers’
+daytime hourly means.</p></li>
+</ol>
+<p>Each test returns <code class="docutils literal notranslate"><span class="pre">&quot;PASS&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;BORDERLINE&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;FAIL&quot;</span></code>, or <code class="docutils literal notranslate"><span class="pre">&quot;N/A&quot;</span></code>
+(when data are insufficient or the test condition is not identifiable).</p>
+<p>Main entry point: <a class="reference internal" href="#palmwtc.validation.science.run_science_validation" title="palmwtc.validation.science.run_science_validation"><code class="xref py py-func docutils literal notranslate"><span class="pre">run_science_validation()</span></code></a>.
+Helper for daytime classification: <a class="reference internal" href="#palmwtc.validation.science.derive_is_daytime" title="palmwtc.validation.science.derive_is_daytime"><code class="xref py py-func docutils literal notranslate"><span class="pre">derive_is_daytime()</span></code></a>.
+Configurable thresholds: <a class="reference internal" href="#palmwtc.validation.science.DEFAULT_CONFIG" title="palmwtc.validation.science.DEFAULT_CONFIG"><code class="xref py py-data docutils literal notranslate"><span class="pre">DEFAULT_CONFIG</span></code></a>.</p>
+<section id="references">
+<h2>References<a class="headerlink" href="#references" title="Link to this heading">#</a></h2>
+<aside class="footnote-list brackets">
+<aside class="footnote brackets" id="id3" role="doc-footnote">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id1">1</a><span class="fn-bracket">]</span></span>
+<p>Lamade, E. &amp; Bouillet, J.-P. (2005). Carbon storage and global change:
+the case of oil palm. <em>Oléagineux, Corps gras, Lipides</em>, 12(2), 154–160.</p>
+</aside>
+<aside class="footnote brackets" id="id4" role="doc-footnote">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id2">2</a><span class="fn-bracket">]</span></span>
+<p>Medlyn, B. E., et al. (2011). Reconciling the optimal and empirical
+approaches to modelling stomatal conductance. <em>Global Change Biology</em>,
+17(6), 2134–2144. <a class="reference external" href="https://doi.org/10.1111/j.1365-2486.2010.02375.x">https://doi.org/10.1111/j.1365-2486.2010.02375.x</a></p>
+</aside>
+</aside>
+</section>
+<section id="attributes">
+<h2>Attributes<a class="headerlink" href="#attributes" title="Link to this heading">#</a></h2>
+<div class="pst-scrollable-table-container"><table class="autosummary longtable table autosummary">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#palmwtc.validation.science.DEFAULT_CONFIG" title="palmwtc.validation.science.DEFAULT_CONFIG"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DEFAULT_CONFIG</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="functions">
+<h2>Functions<a class="headerlink" href="#functions" title="Link to this heading">#</a></h2>
+<div class="pst-scrollable-table-container"><table class="autosummary longtable table autosummary">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#palmwtc.validation.science._light_response" title="palmwtc.validation.science._light_response"><code class="xref py py-obj docutils literal notranslate"><span class="pre">_light_response</span></code></a>(→ numpy.ndarray)</p></td>
+<td><p>Rectangular hyperbola (Michaelis-Menten) light response.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#palmwtc.validation.science._status_inrange" title="palmwtc.validation.science._status_inrange"><code class="xref py py-obj docutils literal notranslate"><span class="pre">_status_inrange</span></code></a>(→ str)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#palmwtc.validation.science._status_atleast" title="palmwtc.validation.science._status_atleast"><code class="xref py py-obj docutils literal notranslate"><span class="pre">_status_atleast</span></code></a>(→ str)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#palmwtc.validation.science.derive_is_daytime" title="palmwtc.validation.science.derive_is_daytime"><code class="xref py py-obj docutils literal notranslate"><span class="pre">derive_is_daytime</span></code></a>(→ pandas.Series)</p></td>
+<td><p>Derive a Boolean daytime mask from radiation or, as a fallback, hour-of-day.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#palmwtc.validation.science.test_light_response" title="palmwtc.validation.science.test_light_response"><code class="xref py py-obj docutils literal notranslate"><span class="pre">test_light_response</span></code></a>(→ dict[str, dict])</p></td>
+<td><p>Fit a rectangular-hyperbola light response per chamber.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#palmwtc.validation.science.test_q10" title="palmwtc.validation.science.test_q10"><code class="xref py py-obj docutils literal notranslate"><span class="pre">test_q10</span></code></a>(→ dict[str, dict])</p></td>
+<td><p>Van't Hoff Q10 fit on nighttime respiration vs temperature per chamber.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#palmwtc.validation.science.test_wue" title="palmwtc.validation.science.test_wue"><code class="xref py py-obj docutils literal notranslate"><span class="pre">test_wue</span></code></a>(→ dict[str, Any])</p></td>
+<td><p>Compute median WUE and WUE–VPD correlation across daytime uptake cycles.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#palmwtc.validation.science.test_inter_chamber" title="palmwtc.validation.science.test_inter_chamber"><code class="xref py py-obj docutils literal notranslate"><span class="pre">test_inter_chamber</span></code></a>(→ dict[str, Any])</p></td>
+<td><p>Compute daytime and nighttime Pearson r between the two chamber CO₂ fluxes.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#palmwtc.validation.science.run_science_validation" title="palmwtc.validation.science.run_science_validation"><code class="xref py py-obj docutils literal notranslate"><span class="pre">run_science_validation</span></code></a>(→ dict[str, Any])</p></td>
+<td><p>Run all four ecophysiology validation tests on a cycles DataFrame.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="module-contents">
+<h2>Module Contents<a class="headerlink" href="#module-contents" title="Link to this heading">#</a></h2>
+<dl class="py data">
+<dt class="sig sig-object py" id="palmwtc.validation.science.DEFAULT_CONFIG">
+<span class="sig-prename descclassname"><span class="pre">palmwtc.validation.science.</span></span><span class="sig-name descname"><span class="pre">DEFAULT_CONFIG</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#palmwtc.validation.science.DEFAULT_CONFIG" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="palmwtc.validation.science._light_response">
+<span class="sig-prename descclassname"><span class="pre">palmwtc.validation.science.</span></span><span class="sig-name descname"><span class="pre">_light_response</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">par</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">numpy.ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">alpha</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Amax</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Rd</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">numpy.ndarray</span></span></span><a class="headerlink" href="#palmwtc.validation.science._light_response" title="Link to this definition">#</a></dt>
+<dd><p>Rectangular hyperbola (Michaelis-Menten) light response.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="palmwtc.validation.science._status_inrange">
+<span class="sig-prename descclassname"><span class="pre">palmwtc.validation.science.</span></span><span class="sig-name descname"><span class="pre">_status_inrange</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">val</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lo</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hi</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#palmwtc.validation.science._status_inrange" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="palmwtc.validation.science._status_atleast">
+<span class="sig-prename descclassname"><span class="pre">palmwtc.validation.science.</span></span><span class="sig-name descname"><span class="pre">_status_atleast</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">val</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">threshold</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">flip</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#palmwtc.validation.science._status_atleast" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="palmwtc.validation.science.derive_is_daytime">
+<span class="sig-prename descclassname"><span class="pre">palmwtc.validation.science.</span></span><span class="sig-name descname"><span class="pre">derive_is_daytime</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cycles</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">pandas.DataFrame</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">config</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">radiation_threshold</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">10.0</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">pandas.Series</span></span></span><a class="headerlink" href="#palmwtc.validation.science.derive_is_daytime" title="Link to this definition">#</a></dt>
+<dd><p>Derive a Boolean daytime mask from radiation or, as a fallback, hour-of-day.</p>
+<p><strong>Primary criterion</strong> — if <code class="docutils literal notranslate"><span class="pre">Global_Radiation</span></code> (or the column named in
+<code class="docutils literal notranslate"><span class="pre">config[&quot;radiation_col&quot;]</span></code>) is present and has at least one non-NaN value,
+a cycle is classified as daytime when its radiation ≥ <code class="docutils literal notranslate"><span class="pre">radiation_threshold</span></code>
+W m⁻².</p>
+<p><strong>Fallback criterion</strong> — for rows where radiation is NaN, or when the
+radiation column is entirely absent, the mask falls back to hour-of-day:
+daytime = <code class="docutils literal notranslate"><span class="pre">[config[&quot;daytime_hours&quot;][0],</span> <span class="pre">config[&quot;daytime_hours&quot;][1])</span></code>,
+i.e. <code class="docutils literal notranslate"><span class="pre">[6,</span> <span class="pre">18)</span></code> by default.</p>
+<section id="parameters">
+<h3>Parameters<a class="headerlink" href="#parameters" title="Link to this heading">#</a></h3>
+<dl class="simple">
+<dt>cycles<span class="classifier">pd.DataFrame</span></dt><dd><p>Cycle-level DataFrame.  Must contain the column named in
+<code class="docutils literal notranslate"><span class="pre">config[&quot;datetime_col&quot;]</span></code> (default <code class="docutils literal notranslate"><span class="pre">&quot;flux_datetime&quot;</span></code>).
+The radiation column (default <code class="docutils literal notranslate"><span class="pre">&quot;Global_Radiation&quot;</span></code>) is optional.</p>
+</dd>
+<dt>config<span class="classifier">dict, optional</span></dt><dd><p>Override keys from <a class="reference internal" href="#palmwtc.validation.science.DEFAULT_CONFIG" title="palmwtc.validation.science.DEFAULT_CONFIG"><code class="xref py py-data docutils literal notranslate"><span class="pre">DEFAULT_CONFIG</span></code></a>.  Relevant keys:
+<code class="docutils literal notranslate"><span class="pre">radiation_col</span></code>, <code class="docutils literal notranslate"><span class="pre">datetime_col</span></code>, <code class="docutils literal notranslate"><span class="pre">daytime_hours</span></code>.</p>
+</dd>
+<dt>radiation_threshold<span class="classifier">float, default 10.0</span></dt><dd><p>Minimum shortwave radiation (W m⁻²) to classify a cycle as daytime.</p>
+</dd>
+</dl>
+</section>
+<section id="returns">
+<h3>Returns<a class="headerlink" href="#returns" title="Link to this heading">#</a></h3>
+<dl class="simple">
+<dt>pd.Series of bool</dt><dd><p>Same index as <code class="docutils literal notranslate"><span class="pre">cycles</span></code>.  <code class="docutils literal notranslate"><span class="pre">True</span></code> = daytime.</p>
+</dd>
+</dl>
+</section>
+<section id="examples">
+<h3>Examples<a class="headerlink" href="#examples" title="Link to this heading">#</a></h3>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">palmwtc.validation</span><span class="w"> </span><span class="kn">import</span> <span class="n">derive_is_daytime</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">cycles</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
+<span class="gp">... </span>    <span class="s2">&quot;flux_datetime&quot;</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">([</span><span class="s2">&quot;2024-01-01 08:00&quot;</span><span class="p">,</span> <span class="s2">&quot;2024-01-01 22:00&quot;</span><span class="p">]),</span>
+<span class="gp">... </span>    <span class="s2">&quot;Global_Radiation&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mf">150.0</span><span class="p">,</span> <span class="nb">float</span><span class="p">(</span><span class="s2">&quot;nan&quot;</span><span class="p">)],</span>
+<span class="gp">... </span><span class="p">})</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">derive_is_daytime</span><span class="p">(</span><span class="n">cycles</span><span class="p">)</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+<span class="go">[True, False]</span>
+</pre></div>
+</div>
+</section>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="palmwtc.validation.science.test_light_response">
+<span class="sig-prename descclassname"><span class="pre">palmwtc.validation.science.</span></span><span class="sig-name descname"><span class="pre">test_light_response</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cycles</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">pandas.DataFrame</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">config</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">dict</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#palmwtc.validation.science.test_light_response" title="Link to this definition">#</a></dt>
+<dd><p>Fit a rectangular-hyperbola light response per chamber.</p>
+<dl class="simple">
+<dt>Fixes applied 2026-04-15:</dt><dd><ul class="simple">
+<li><p>Sign convention: flux_absolute is negative for uptake (see
+src/flux_analysis.py:56, <cite>flux = flux_slope * rho_air * h_eff</cite>).
+The model _light_response() expects positive assimilation A, so we fit
+on <code class="docutils literal notranslate"><span class="pre">assim</span> <span class="pre">=</span> <span class="pre">-flux</span></code>. With this, a well-functioning oil palm chamber
+shows positive Amax during the day and positive Rd for nighttime
+respiration.</p></li>
+<li><p>Whole-canopy scale: bounds widened (see DEFAULT_CONFIG comment).</p></li>
+<li><p>Cause-C gate: if PAR-proxy IQR is too narrow or daytime-n too small,
+return <code class="docutils literal notranslate"><span class="pre">status=&quot;N/A</span> <span class="pre">(insufficient</span> <span class="pre">PAR</span> <span class="pre">range)&quot;</span></code> — scientifically
+honest instead of a degenerate FAIL.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="palmwtc.validation.science.test_q10">
+<span class="sig-prename descclassname"><span class="pre">palmwtc.validation.science.</span></span><span class="sig-name descname"><span class="pre">test_q10</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cycles</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">pandas.DataFrame</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">config</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">dict</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#palmwtc.validation.science.test_q10" title="Link to this definition">#</a></dt>
+<dd><p>Van’t Hoff Q10 fit on nighttime respiration vs temperature per chamber.</p>
+<p>Returns <code class="docutils literal notranslate"><span class="pre">status=&quot;N/A&quot;</span></code> when the chamber’s nighttime temperature range is
+too narrow to support a defensible fit. Audit 2026-04-15 found nighttime
+T IQR ~1.7 C at LIBZ — far below the 5-10 C typically required for Q10
+identifiability — so reporting any Q10 value here would be
+indistinguishable from fitting noise. Tightened R2 gate as well: a fit
+with r2 &lt; Q10_r2_min now returns FAIL (not BORDERLINE) on the r2 axis.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="palmwtc.validation.science.test_wue">
+<span class="sig-prename descclassname"><span class="pre">palmwtc.validation.science.</span></span><span class="sig-name descname"><span class="pre">test_wue</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cycles</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">pandas.DataFrame</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">config</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#palmwtc.validation.science.test_wue" title="Link to this definition">#</a></dt>
+<dd><p>Compute median WUE and WUE–VPD correlation across daytime uptake cycles.</p>
+<p>Water use efficiency (WUE) is calculated as the ratio of CO₂ slope to H₂O
+slope for daytime cycles where the chamber shows net CO₂ uptake.  The
+median WUE is compared against <code class="docutils literal notranslate"><span class="pre">config[&quot;WUE_range&quot;]</span></code> and the Pearson
+correlation between WUE and VPD must be more negative than
+<code class="docutils literal notranslate"><span class="pre">config[&quot;WUE_VPD_r_max&quot;]</span></code> (consistent with Medlyn stomatal optimality).</p>
+<section id="id5">
+<h3>Parameters<a class="headerlink" href="#id5" title="Link to this heading">#</a></h3>
+<dl class="simple">
+<dt>cycles<span class="classifier">pd.DataFrame</span></dt><dd><p>Cycle-level DataFrame with a pre-computed <code class="docutils literal notranslate"><span class="pre">_is_daytime</span></code> column.
+Required columns: <code class="docutils literal notranslate"><span class="pre">flux_absolute</span></code>, <code class="docutils literal notranslate"><span class="pre">h2o_slope</span></code>, <code class="docutils literal notranslate"><span class="pre">co2_slope</span></code>,
+and optionally <code class="docutils literal notranslate"><span class="pre">vpd_kPa</span></code>.</p>
+</dd>
+<dt>config<span class="classifier">dict</span></dt><dd><p>Configuration dict; see <a class="reference internal" href="#palmwtc.validation.science.DEFAULT_CONFIG" title="palmwtc.validation.science.DEFAULT_CONFIG"><code class="xref py py-data docutils literal notranslate"><span class="pre">DEFAULT_CONFIG</span></code></a> for keys used here:
+<code class="docutils literal notranslate"><span class="pre">co2_flux_col</span></code>, <code class="docutils literal notranslate"><span class="pre">h2o_flux_col</span></code>, <code class="docutils literal notranslate"><span class="pre">co2_slope_col</span></code>, <code class="docutils literal notranslate"><span class="pre">vpd_col</span></code>,
+<code class="docutils literal notranslate"><span class="pre">WUE_range</span></code>, <code class="docutils literal notranslate"><span class="pre">WUE_VPD_r_max</span></code>.</p>
+</dd>
+</dl>
+</section>
+<section id="id6">
+<h3>Returns<a class="headerlink" href="#id6" title="Link to this heading">#</a></h3>
+<dl class="simple">
+<dt>dict</dt><dd><p>Keys: <code class="docutils literal notranslate"><span class="pre">&quot;n&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;median&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;p25&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;p75&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;wue_status&quot;</span></code>,
+optionally <code class="docutils literal notranslate"><span class="pre">&quot;vpd_r&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;vpd_p&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;vpd_status&quot;</span></code>, and <code class="docutils literal notranslate"><span class="pre">&quot;status&quot;</span></code>.
+Returns <code class="docutils literal notranslate"><span class="pre">{&quot;n&quot;:</span> <span class="pre">...,</span> <span class="pre">&quot;status&quot;:</span> <span class="pre">&quot;N/A&quot;,</span> <span class="pre">&quot;reason&quot;:</span> <span class="pre">...}</span></code> when there are
+fewer than 20 qualifying cycles.</p>
+</dd>
+</dl>
+</section>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="palmwtc.validation.science.test_inter_chamber">
+<span class="sig-prename descclassname"><span class="pre">palmwtc.validation.science.</span></span><span class="sig-name descname"><span class="pre">test_inter_chamber</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cycles</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">pandas.DataFrame</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">config</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#palmwtc.validation.science.test_inter_chamber" title="Link to this definition">#</a></dt>
+<dd><p>Compute daytime and nighttime Pearson r between the two chamber CO₂ fluxes.</p>
+<p>Pivots the flux data by <code class="docutils literal notranslate"><span class="pre">(date,</span> <span class="pre">hour)</span></code> so the two chambers share a common
+time axis, then computes Pearson r for daytime and nighttime hour subsets.
+The test passes when the daytime r ≥ <code class="docutils literal notranslate"><span class="pre">config[&quot;chamber_r_min&quot;]</span></code>.</p>
+<section id="id7">
+<h3>Parameters<a class="headerlink" href="#id7" title="Link to this heading">#</a></h3>
+<dl class="simple">
+<dt>cycles<span class="classifier">pd.DataFrame</span></dt><dd><p>Cycle-level DataFrame.  Required columns: the chamber column
+(<code class="docutils literal notranslate"><span class="pre">config[&quot;chamber_col&quot;]</span></code>), datetime column, and flux column.
+Must contain data from at least two distinct chambers.</p>
+</dd>
+<dt>config<span class="classifier">dict</span></dt><dd><p>Configuration dict; see <a class="reference internal" href="#palmwtc.validation.science.DEFAULT_CONFIG" title="palmwtc.validation.science.DEFAULT_CONFIG"><code class="xref py py-data docutils literal notranslate"><span class="pre">DEFAULT_CONFIG</span></code></a> for keys used here:
+<code class="docutils literal notranslate"><span class="pre">co2_flux_col</span></code>, <code class="docutils literal notranslate"><span class="pre">chamber_col</span></code>, <code class="docutils literal notranslate"><span class="pre">datetime_col</span></code>,
+<code class="docutils literal notranslate"><span class="pre">daytime_hours</span></code>, <code class="docutils literal notranslate"><span class="pre">chamber_r_min</span></code>.</p>
+</dd>
+</dl>
+</section>
+<section id="id8">
+<h3>Returns<a class="headerlink" href="#id8" title="Link to this heading">#</a></h3>
+<dl class="simple">
+<dt>dict</dt><dd><p>Keys: <code class="docutils literal notranslate"><span class="pre">&quot;n_day_pairs&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;n_night_pairs&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;r_daytime&quot;</span></code>,
+<code class="docutils literal notranslate"><span class="pre">&quot;p_daytime&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;r_nighttime&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;status&quot;</span></code>.
+Returns <code class="docutils literal notranslate"><span class="pre">{&quot;status&quot;:</span> <span class="pre">&quot;N/A&quot;,</span> <span class="pre">&quot;reason&quot;:</span> <span class="pre">...}</span></code> when fewer than 2
+chambers are present or fewer than 20 matched time-pairs exist.</p>
+</dd>
+</dl>
+</section>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="palmwtc.validation.science.run_science_validation">
+<span class="sig-prename descclassname"><span class="pre">palmwtc.validation.science.</span></span><span class="sig-name descname"><span class="pre">run_science_validation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cycles</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">pandas.DataFrame</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">config</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">label</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'default'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">derive_daytime</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#palmwtc.validation.science.run_science_validation" title="Link to this definition">#</a></dt>
+<dd><p>Run all four ecophysiology validation tests on a cycles DataFrame.</p>
+<p>Executes the light-response, Q10, WUE, and inter-chamber tests in sequence
+and returns a structured scorecard.  Each test returns <code class="docutils literal notranslate"><span class="pre">&quot;PASS&quot;</span></code>,
+<code class="docutils literal notranslate"><span class="pre">&quot;BORDERLINE&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;FAIL&quot;</span></code>, or <code class="docutils literal notranslate"><span class="pre">&quot;N/A&quot;</span></code> per chamber (or globally for
+WUE and inter-chamber tests).</p>
+<section id="id9">
+<h3>Parameters<a class="headerlink" href="#id9" title="Link to this heading">#</a></h3>
+<dl>
+<dt>cycles<span class="classifier">pd.DataFrame</span></dt><dd><p>Cycle-level data, already filtered to the desired QC subset.
+Required columns (names configurable via <code class="docutils literal notranslate"><span class="pre">config</span></code>):</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">flux_datetime</span></code>    — cycle start datetime.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Source_Chamber</span></code>   — chamber identifier (e.g. <code class="docutils literal notranslate"><span class="pre">&quot;Chamber</span> <span class="pre">1&quot;</span></code>).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">flux_absolute</span></code>    — CO₂ flux (µmol m⁻² s⁻², negative = uptake).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">h2o_slope</span></code>        — H₂O slope (mmol m⁻² s⁻¹).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">co2_slope</span></code>        — raw CO₂ slope (µmol m⁻² s⁻¹).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Global_Radiation</span></code> — shortwave radiation (W m⁻²); used for daytime
+classification and PAR proxy.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">mean_temp</span></code>        — air temperature (°C) for Q10 fit.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">vpd_kPa</span></code>          — vapour pressure deficit (kPa) for WUE–VPD test.</p></li>
+</ul>
+</dd>
+<dt>config<span class="classifier">dict, optional</span></dt><dd><p>Key-value overrides merged on top of <a class="reference internal" href="#palmwtc.validation.science.DEFAULT_CONFIG" title="palmwtc.validation.science.DEFAULT_CONFIG"><code class="xref py py-data docutils literal notranslate"><span class="pre">DEFAULT_CONFIG</span></code></a>.
+Pass only keys you want to change.</p>
+</dd>
+<dt>label<span class="classifier">str, default <code class="docutils literal notranslate"><span class="pre">&quot;default&quot;</span></code></span></dt><dd><p>Free-form label stored in the result dict for later identification
+(e.g. <code class="docutils literal notranslate"><span class="pre">&quot;cycle_conf=0.65,</span> <span class="pre">day_score=0.60&quot;</span></code>).</p>
+</dd>
+<dt>derive_daytime<span class="classifier">bool, default True</span></dt><dd><p>When <code class="docutils literal notranslate"><span class="pre">True</span></code>, derive <code class="docutils literal notranslate"><span class="pre">_is_daytime</span></code> from <code class="docutils literal notranslate"><span class="pre">Global_Radiation</span></code>
+(falling back to hour-of-day) via <a class="reference internal" href="#palmwtc.validation.science.derive_is_daytime" title="palmwtc.validation.science.derive_is_daytime"><code class="xref py py-func docutils literal notranslate"><span class="pre">derive_is_daytime()</span></code></a>.
+Set to <code class="docutils literal notranslate"><span class="pre">False</span></code> if the column is already present in <code class="docutils literal notranslate"><span class="pre">cycles</span></code>.</p>
+</dd>
+</dl>
+</section>
+<section id="id10">
+<h3>Returns<a class="headerlink" href="#id10" title="Link to this heading">#</a></h3>
+<dl class="simple">
+<dt>dict</dt><dd><p>Top-level keys:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">&quot;label&quot;</span></code> : str — the <code class="docutils literal notranslate"><span class="pre">label</span></code> argument.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&quot;n_cycles&quot;</span></code> : int — total cycles in the input DataFrame.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&quot;n_daytime&quot;</span></code> : int — number of daytime cycles.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&quot;n_nighttime&quot;</span></code> : int — number of nighttime cycles.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&quot;light_response&quot;</span></code> : dict — per-chamber light-response results
+(keys <code class="docutils literal notranslate"><span class="pre">&quot;Amax&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;alpha&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;Rd&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;r2&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;status&quot;</span></code>).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&quot;q10&quot;</span></code> : dict — per-chamber Q10 results
+(keys <code class="docutils literal notranslate"><span class="pre">&quot;Q10&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;r2&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;t_iqr&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;status&quot;</span></code>).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&quot;wue&quot;</span></code> : dict — WUE results
+(keys <code class="docutils literal notranslate"><span class="pre">&quot;median&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;vpd_r&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;status&quot;</span></code>).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&quot;inter_chamber&quot;</span></code> : dict — inter-chamber agreement
+(keys <code class="docutils literal notranslate"><span class="pre">&quot;r_daytime&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;r_nighttime&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;status&quot;</span></code>).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&quot;scorecard&quot;</span></code> : dict with keys:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">&quot;n_pass&quot;</span></code> : int — tests with status <code class="docutils literal notranslate"><span class="pre">&quot;PASS&quot;</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&quot;n_borderline&quot;</span></code> : int — tests with status <code class="docutils literal notranslate"><span class="pre">&quot;BORDERLINE&quot;</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&quot;n_fail&quot;</span></code> : int — tests with status <code class="docutils literal notranslate"><span class="pre">&quot;FAIL&quot;</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&quot;n_na&quot;</span></code> : int — tests with status <code class="docutils literal notranslate"><span class="pre">&quot;N/A&quot;</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&quot;rows&quot;</span></code> : list of dicts, one per test row, each with
+<code class="docutils literal notranslate"><span class="pre">&quot;section&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;test&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;expected&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;observed&quot;</span></code>,
+<code class="docutils literal notranslate"><span class="pre">&quot;status&quot;</span></code>.</p></li>
+</ul>
+</li>
+</ul>
+</dd>
+</dl>
+</section>
+<section id="id11">
+<h3>Examples<a class="headerlink" href="#id11" title="Link to this heading">#</a></h3>
+<p>Build a minimal fixture and run the validator.  With only a few rows
+most tests return <code class="docutils literal notranslate"><span class="pre">&quot;N/A&quot;</span></code> due to insufficient data — that is the
+correct scientific response:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span><span class="o">,</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">palmwtc.validation</span><span class="w"> </span><span class="kn">import</span> <span class="n">run_science_validation</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">cycles</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
+<span class="gp">... </span>    <span class="s2">&quot;flux_datetime&quot;</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">date_range</span><span class="p">(</span><span class="s2">&quot;2024-01-01 07:00&quot;</span><span class="p">,</span> <span class="n">periods</span><span class="o">=</span><span class="mi">6</span><span class="p">,</span> <span class="n">freq</span><span class="o">=</span><span class="s2">&quot;2h&quot;</span><span class="p">),</span>
+<span class="gp">... </span>    <span class="s2">&quot;Source_Chamber&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;Chamber 1&quot;</span><span class="p">]</span> <span class="o">*</span> <span class="mi">6</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="s2">&quot;flux_absolute&quot;</span><span class="p">:</span> <span class="p">[</span><span class="o">-</span><span class="mf">5.0</span><span class="p">,</span> <span class="o">-</span><span class="mf">8.0</span><span class="p">,</span> <span class="o">-</span><span class="mf">10.0</span><span class="p">,</span> <span class="o">-</span><span class="mf">7.0</span><span class="p">,</span> <span class="o">-</span><span class="mf">4.0</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">],</span>
+<span class="gp">... </span>    <span class="s2">&quot;h2o_slope&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.6</span><span class="p">,</span> <span class="mf">0.7</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.4</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">],</span>
+<span class="gp">... </span>    <span class="s2">&quot;co2_slope&quot;</span><span class="p">:</span> <span class="p">[</span><span class="o">-</span><span class="mf">5.0</span><span class="p">,</span> <span class="o">-</span><span class="mf">8.0</span><span class="p">,</span> <span class="o">-</span><span class="mf">10.0</span><span class="p">,</span> <span class="o">-</span><span class="mf">7.0</span><span class="p">,</span> <span class="o">-</span><span class="mf">4.0</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">],</span>
+<span class="gp">... </span>    <span class="s2">&quot;Global_Radiation&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mf">200.0</span><span class="p">,</span> <span class="mf">500.0</span><span class="p">,</span> <span class="mf">800.0</span><span class="p">,</span> <span class="mf">600.0</span><span class="p">,</span> <span class="mf">100.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">],</span>
+<span class="gp">... </span>    <span class="s2">&quot;mean_temp&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mf">28.0</span><span class="p">,</span> <span class="mf">30.0</span><span class="p">,</span> <span class="mf">32.0</span><span class="p">,</span> <span class="mf">31.0</span><span class="p">,</span> <span class="mf">29.0</span><span class="p">,</span> <span class="mf">25.0</span><span class="p">],</span>
+<span class="gp">... </span>    <span class="s2">&quot;vpd_kPa&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mf">1.2</span><span class="p">,</span> <span class="mf">1.8</span><span class="p">,</span> <span class="mf">2.1</span><span class="p">,</span> <span class="mf">1.9</span><span class="p">,</span> <span class="mf">1.4</span><span class="p">,</span> <span class="mf">0.8</span><span class="p">],</span>
+<span class="gp">... </span><span class="p">})</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">result</span> <span class="o">=</span> <span class="n">run_science_validation</span><span class="p">(</span><span class="n">cycles</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;fixture&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">result</span><span class="p">[</span><span class="s2">&quot;label&quot;</span><span class="p">]</span>
+<span class="go">&#39;fixture&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">result</span><span class="p">[</span><span class="s2">&quot;n_cycles&quot;</span><span class="p">]</span>
+<span class="go">6</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">result</span><span class="p">[</span><span class="s2">&quot;scorecard&quot;</span><span class="p">][</span><span class="s2">&quot;n_na&quot;</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="mi">0</span>
+<span class="go">True</span>
+</pre></div>
+</div>
+</section>
+</dd></dl>
+
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./api/palmwtc/validation/science"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item"><div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#attributes">Attributes</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#functions">Functions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-contents">Module Contents</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#palmwtc.validation.science.DEFAULT_CONFIG"><code class="docutils literal notranslate"><span class="pre">DEFAULT_CONFIG</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#palmwtc.validation.science._light_response"><code class="docutils literal notranslate"><span class="pre">_light_response()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#palmwtc.validation.science._status_inrange"><code class="docutils literal notranslate"><span class="pre">_status_inrange()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#palmwtc.validation.science._status_atleast"><code class="docutils literal notranslate"><span class="pre">_status_atleast()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#palmwtc.validation.science.derive_is_daytime"><code class="docutils literal notranslate"><span class="pre">derive_is_daytime()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#palmwtc.validation.science.test_light_response"><code class="docutils literal notranslate"><span class="pre">test_light_response()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#palmwtc.validation.science.test_q10"><code class="docutils literal notranslate"><span class="pre">test_q10()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#palmwtc.validation.science.test_wue"><code class="docutils literal notranslate"><span class="pre">test_wue()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#palmwtc.validation.science.test_inter_chamber"><code class="docutils literal notranslate"><span class="pre">test_inter_chamber()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#palmwtc.validation.science.run_science_validation"><code class="docutils literal notranslate"><span class="pre">run_science_validation()</span></code></a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Didi Adisaputro
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2026.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../../../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

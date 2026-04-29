@@ -1,0 +1,855 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Quickstart — your first flux number in 3 minutes &#8212; palmwtc</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=3c74b3bc" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=9c3e77be" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/graphviz.css?v=fd3f3429" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=b8b12719"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'quickstart';</script>
+    <link rel="canonical" href="https://adisapoetro.github.io/palmwtc/quickstart.html" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Tutorials" href="tutorials/index.html" />
+    <link rel="prev" title="palmwtc" href="index.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">palmwtc</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="index.html">
+                    palmwtc
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Getting Started</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Quickstart — your first flux number in 3 minutes</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="tutorials/index.html">Tutorials</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="tutorials/010_Data_Integration.html">010 — Core data integration (raw → unified monthly)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorials/011_Weather_vs_Chamber.html">011 — Weather station vs chamber</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorials/020_QC_Rule_Based.html">020 — Rule-based QC</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorials/022_QC_ML_Enhanced.html">022 — ML-enhanced QC (optional)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorials/023_Field_Alert_Report.html">023 — Field alert report</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorials/025_Cross_Chamber_Bias.html">025 — Cross-chamber bias comparison (diagnostic)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorials/026_CO2_H2O_Segmented_Bias.html">026 — CO2/H2O segmented bias comparison (diagnostic)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorials/030_Flux_Cycle_Calculation.html">030 — Flux cycle calculation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorials/031_Window_Selection_Reference.html">031 — High-confidence window selection (reference)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorials/032_Window_Selection_Production.html">032 — Physically grounded window selection (production)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorials/033_Science_Validation.html">033 — Science validation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorials/034_QC_and_Window_Audit.html">034 — QC + window audit (visualization)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorials/035_QC_Threshold_Sensitivity.html">035 — QC threshold sensitivity sweep</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorials/000_End_to_End_Synthetic.html">000 — End-to-end on synthetic data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorials/001_End_to_End_LIBZ.html">001 - End-to-end on LIBZ data (raw .dat -&gt; validation)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorials/010_Data_Integration.html">010 — Core data integration (raw → unified monthly)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorials/011_Weather_vs_Chamber.html">011 — Weather station vs chamber</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorials/020_QC_Rule_Based.html">020 — Rule-based QC</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorials/022_QC_ML_Enhanced.html">022 — ML-enhanced QC (optional)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorials/023_Field_Alert_Report.html">023 — Field alert report</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorials/025_Cross_Chamber_Bias.html">025 — Cross-chamber bias comparison (diagnostic)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorials/026_CO2_H2O_Segmented_Bias.html">026 — CO2/H2O segmented bias comparison (diagnostic)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorials/030_Flux_Cycle_Calculation.html">030 — Flux cycle calculation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorials/031_Window_Selection_Reference.html">031 — High-confidence window selection (reference)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorials/032_Window_Selection_Production.html">032 — Physically grounded window selection (production)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorials/033_Science_Validation.html">033 — Science validation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorials/034_QC_and_Window_Audit.html">034 — QC + window audit (visualization)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorials/035_QC_Threshold_Sensitivity.html">035 — QC threshold sensitivity sweep</a></li>
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Science Reference</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="science/index.html">Science Reference</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/adisapoetro/palmwtc" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/adisapoetro/palmwtc/edit/main/docs/quickstart.md" target="_blank"
+   class="btn btn-sm btn-source-edit-button dropdown-item"
+   title="Suggest edit"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="btn__text-container">Suggest edit</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/adisapoetro/palmwtc/issues/new?title=Issue%20on%20page%20%2Fquickstart.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/quickstart.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button pst-navbar-icon"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm pst-navbar-icon" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Quickstart — your first flux number in 3 minutes</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#install">1. Install</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#load-the-bundled-synthetic-sample">2. Load the bundled synthetic sample</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#quality-control-the-co2-signal">3. Quality-control the CO₂ signal</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#compute-co2-fluxes">4. Compute CO₂ fluxes</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#select-calibration-windows">5. Select calibration windows</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#validate-against-ecophysiology-literature">6. Validate against ecophysiology literature</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#plot-the-flux-heatmap">7. Plot the flux heatmap</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#next-steps">Next steps</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="quickstart-your-first-flux-number-in-3-minutes">
+<h1>Quickstart — your first flux number in 3 minutes<a class="headerlink" href="#quickstart-your-first-flux-number-in-3-minutes" title="Link to this heading">#</a></h1>
+<p>palmwtc is a Python library for automated whole-tree chamber measurements
+on individual oil palm trees. Each chamber encloses one tree and measures
+CO₂ and H₂O concentrations every 30 seconds using a LI-COR LI-850 analyser.
+This guide takes you from installation to a validated CO₂ flux number using
+the bundled synthetic sample — no field data required.</p>
+<hr class="docutils" />
+<section id="install">
+<h2>1. Install<a class="headerlink" href="#install" title="Link to this heading">#</a></h2>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span><span class="s1">&#39;palmwtc[ml,interactive]&#39;</span>
+</pre></div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">ml</span></code> extra adds scikit-learn (for ML-assisted QC outlier detection).
+The <code class="docutils literal notranslate"><span class="pre">interactive</span></code> extra adds Plotly (for the interactive dashboard).
+If you have an NVIDIA or Apple Silicon GPU, add <code class="docutils literal notranslate"><span class="pre">[gpu]</span></code> as well — it
+accelerates the Isolation Forest step in large datasets.</p>
+<p>Requires Python 3.11–3.13.</p>
+</section>
+<hr class="docutils" />
+<section id="load-the-bundled-synthetic-sample">
+<h2>2. Load the bundled synthetic sample<a class="headerlink" href="#load-the-bundled-synthetic-sample" title="Link to this heading">#</a></h2>
+<p>palmwtc ships with a one-week synthetic dataset (30-second cadence, 2 chambers)
+so every step below works immediately after install — no config file needed.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">palmwtc.config</span><span class="w"> </span><span class="kn">import</span> <span class="n">DataPaths</span>
+
+<span class="n">paths</span> <span class="o">=</span> <span class="n">DataPaths</span><span class="o">.</span><span class="n">resolve</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">paths</span><span class="o">.</span><span class="n">describe</span><span class="p">())</span>
+</pre></div>
+</div>
+<p>Expected output:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">DataPaths</span> <span class="p">(</span><span class="n">source</span><span class="o">=</span><span class="n">sample</span> <span class="p">(</span><span class="n">bundled</span> <span class="n">synthetic</span><span class="p">),</span> <span class="n">site</span><span class="o">=</span><span class="n">libz</span><span class="p">):</span>
+  <span class="n">raw_dir</span>       <span class="o">=</span> <span class="o">.../</span><span class="n">palmwtc</span><span class="o">/</span><span class="n">data</span><span class="o">/</span><span class="n">sample</span><span class="o">/</span><span class="n">synthetic</span>
+  <span class="n">processed_dir</span> <span class="o">=</span> <span class="o">.../</span><span class="n">palmwtc</span><span class="o">/</span><span class="n">data</span><span class="o">/</span><span class="n">sample</span><span class="o">/</span><span class="n">Data</span><span class="o">/</span><span class="n">Integrated_QC_Data</span>
+  <span class="n">exports_dir</span>   <span class="o">=</span> <span class="o">.../</span><span class="n">palmwtc</span><span class="o">/</span><span class="n">data</span><span class="o">/</span><span class="n">sample</span><span class="o">/</span><span class="n">exports</span>
+  <span class="n">config_dir</span>    <span class="o">=</span> <span class="o">.../</span><span class="n">palmwtc</span><span class="o">/</span><span class="n">data</span><span class="o">/</span><span class="n">sample</span><span class="o">/</span><span class="n">config</span>
+  <span class="n">extras</span>        <span class="o">=</span> <span class="o">&lt;</span><span class="n">none</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<p>When <code class="docutils literal notranslate"><span class="pre">source=sample</span> <span class="pre">(bundled</span> <span class="pre">synthetic)</span></code> appears, you are working with the
+bundled data. To point palmwtc at your own chamber data, set the
+<code class="docutils literal notranslate"><span class="pre">PALMWTC_DATA_DIR</span></code> environment variable or create a <code class="docutils literal notranslate"><span class="pre">palmwtc.yaml</span></code> config
+file — see the <a class="reference internal" href="tutorials/index.html"><span class="std std-doc">tutorials</span></a> for details.</p>
+<p>Load the raw sensor parquet:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_parquet</span><span class="p">(</span><span class="n">paths</span><span class="o">.</span><span class="n">raw_dir</span> <span class="o">/</span> <span class="s2">&quot;QC_Flagged_Data_synthetic.parquet&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>          <span class="c1"># (20160, 19)  — 7 days × 2880 rows/day × 30 s</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">tolist</span><span class="p">())</span>
+</pre></div>
+</div>
+<p>The dataset has one row per 30-second interval. Columns follow the pattern
+<code class="docutils literal notranslate"><span class="pre">CO2_C1</span></code>, <code class="docutils literal notranslate"><span class="pre">H2O_C1</span></code> (chamber 1) and <code class="docutils literal notranslate"><span class="pre">CO2_C2</span></code>, <code class="docutils literal notranslate"><span class="pre">H2O_C2</span></code> (chamber 2), plus
+temperature, humidity, atmospheric pressure, battery voltage, and existing
+QC flag columns for each chamber.</p>
+</section>
+<hr class="docutils" />
+<section id="quality-control-the-co2-signal">
+<h2>3. Quality-control the CO₂ signal<a class="headerlink" href="#quality-control-the-co2-signal" title="Link to this heading">#</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">QCProcessor</span></code> checks each sensor variable against physical limits, rate-of-change
+thresholds, and a stuck-sensor (persistence) test. It adds a flag column for every
+variable you process:</p>
+<ul class="simple">
+<li><p><strong>0</strong> = good</p></li>
+<li><p><strong>1</strong> = suspect (minor deviation)</p></li>
+<li><p><strong>2</strong> = bad (reject)</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">palmwtc.qc</span><span class="w"> </span><span class="kn">import</span> <span class="n">QCProcessor</span>
+
+<span class="c1"># Define limits for CO2 from chamber 1.</span>
+<span class="c1"># hard = absolute physical bounds (any value outside → flag 2).</span>
+<span class="c1"># soft = expected operating range (outlier scoring uses this range).</span>
+<span class="n">co2_config</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;co2&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">&quot;columns&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;CO2_C1&quot;</span><span class="p">],</span>
+        <span class="s2">&quot;hard&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">300</span><span class="p">,</span> <span class="mi">600</span><span class="p">],</span>          <span class="c1"># ppm — hard physical limits</span>
+        <span class="s2">&quot;soft&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">350</span><span class="p">,</span> <span class="mi">550</span><span class="p">],</span>          <span class="c1"># ppm — expected operating range</span>
+        <span class="s2">&quot;rate_of_change&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;limit&quot;</span><span class="p">:</span> <span class="mi">50</span><span class="p">},</span>   <span class="c1"># max ppm per 30-s step</span>
+        <span class="s2">&quot;persistence&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;window&quot;</span><span class="p">:</span> <span class="mi">5</span><span class="p">},</span>      <span class="c1"># flag if stuck for 5+ steps</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="n">qc</span> <span class="o">=</span> <span class="n">QCProcessor</span><span class="p">(</span><span class="n">df</span><span class="o">=</span><span class="n">df</span><span class="p">,</span> <span class="n">config_dict</span><span class="o">=</span><span class="n">co2_config</span><span class="p">)</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">qc</span><span class="o">.</span><span class="n">process_variable</span><span class="p">(</span><span class="s2">&quot;CO2_C1&quot;</span><span class="p">,</span> <span class="n">random_seed</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+
+<span class="n">flagged_df</span> <span class="o">=</span> <span class="n">qc</span><span class="o">.</span><span class="n">get_processed_dataframe</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">flagged_df</span><span class="p">[[</span><span class="s2">&quot;TIMESTAMP&quot;</span><span class="p">,</span> <span class="s2">&quot;CO2_C1&quot;</span><span class="p">,</span> <span class="s2">&quot;CO2_C1_rule_flag&quot;</span><span class="p">,</span> <span class="s2">&quot;CO2_C1_qc_flag&quot;</span><span class="p">]]</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">5</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>Expected output:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>            <span class="n">TIMESTAMP</span>      <span class="n">CO2_C1</span>  <span class="n">CO2_C1_rule_flag</span>  <span class="n">CO2_C1_qc_flag</span>
+<span class="mi">0</span> <span class="mi">2026</span><span class="o">-</span><span class="mi">03</span><span class="o">-</span><span class="mi">01</span> <span class="mi">00</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mi">00</span>  <span class="mf">401.461633</span>                 <span class="mi">0</span>               <span class="mi">0</span>
+<span class="mi">1</span> <span class="mi">2026</span><span class="o">-</span><span class="mi">03</span><span class="o">-</span><span class="mi">01</span> <span class="mi">00</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mi">30</span>  <span class="mf">401.923752</span>                 <span class="mi">0</span>               <span class="mi">0</span>
+<span class="mi">2</span> <span class="mi">2026</span><span class="o">-</span><span class="mi">03</span><span class="o">-</span><span class="mi">01</span> <span class="mi">00</span><span class="p">:</span><span class="mi">01</span><span class="p">:</span><span class="mi">00</span>  <span class="mf">403.618192</span>                 <span class="mi">0</span>               <span class="mi">0</span>
+<span class="mi">3</span> <span class="mi">2026</span><span class="o">-</span><span class="mi">03</span><span class="o">-</span><span class="mi">01</span> <span class="mi">00</span><span class="p">:</span><span class="mi">01</span><span class="p">:</span><span class="mi">30</span>  <span class="mf">404.694238</span>                 <span class="mi">0</span>               <span class="mi">0</span>
+<span class="mi">4</span> <span class="mi">2026</span><span class="o">-</span><span class="mi">03</span><span class="o">-</span><span class="mi">01</span> <span class="mi">00</span><span class="p">:</span><span class="mi">02</span><span class="p">:</span><span class="mi">00</span>  <span class="mf">404.516029</span>                 <span class="mi">0</span>               <span class="mi">0</span>
+</pre></div>
+</div>
+<p>Check how many points were flagged:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">summary</span> <span class="o">=</span> <span class="n">result</span><span class="p">[</span><span class="s2">&quot;summary&quot;</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Good (flag 0): </span><span class="si">{</span><span class="n">summary</span><span class="p">[</span><span class="s1">&#39;flag_0_count&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2"> (</span><span class="si">{</span><span class="n">summary</span><span class="p">[</span><span class="s1">&#39;flag_0_percent&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2"> %)&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Suspect (flag 1): </span><span class="si">{</span><span class="n">summary</span><span class="p">[</span><span class="s1">&#39;flag_1_count&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2"> (</span><span class="si">{</span><span class="n">summary</span><span class="p">[</span><span class="s1">&#39;flag_1_percent&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> %)&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Bad (flag 2): </span><span class="si">{</span><span class="n">summary</span><span class="p">[</span><span class="s1">&#39;flag_2_count&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2"> (</span><span class="si">{</span><span class="n">summary</span><span class="p">[</span><span class="s1">&#39;flag_2_percent&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> %)&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Expected output (bundled synthetic sample):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Good</span> <span class="p">(</span><span class="n">flag</span> <span class="mi">0</span><span class="p">):</span> <span class="mi">20155</span> <span class="p">(</span><span class="mf">100.0</span> <span class="o">%</span><span class="p">)</span>
+<span class="n">Suspect</span> <span class="p">(</span><span class="n">flag</span> <span class="mi">1</span><span class="p">):</span> <span class="mi">1</span> <span class="p">(</span><span class="mf">0.00</span> <span class="o">%</span><span class="p">)</span>
+<span class="n">Bad</span> <span class="p">(</span><span class="n">flag</span> <span class="mi">2</span><span class="p">):</span> <span class="mi">4</span> <span class="p">(</span><span class="mf">0.02</span> <span class="o">%</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="compute-co2-fluxes">
+<h2>4. Compute CO₂ fluxes<a class="headerlink" href="#compute-co2-fluxes" title="Link to this heading">#</a></h2>
+<p>Each measurement cycle is one closed-chamber period (typically ~5 minutes of
+continuous 30-second readings). palmwtc fits a linear regression to the rising or
+falling CO₂ curve inside each cycle, converts the slope (ppm s⁻¹) to an absolute
+flux (µmol m⁻² s⁻¹), and returns one row per cycle.</p>
+<p>First, prepare the single-chamber data stream:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">palmwtc.flux</span><span class="w"> </span><span class="kn">import</span> <span class="n">prepare_chamber_data</span><span class="p">,</span> <span class="n">calculate_flux_cycles</span>
+
+<span class="c1"># Select chamber 1 columns, apply QC flag filtering, and run WPL correction.</span>
+<span class="n">chamber_df</span> <span class="o">=</span> <span class="n">prepare_chamber_data</span><span class="p">(</span><span class="n">flagged_df</span><span class="p">,</span> <span class="s2">&quot;C1&quot;</span><span class="p">,</span> <span class="n">require_h2o_for_wpl</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Then compute fluxes for every cycle:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">cycles</span> <span class="o">=</span> <span class="n">calculate_flux_cycles</span><span class="p">(</span><span class="n">chamber_df</span><span class="p">,</span> <span class="s2">&quot;Chamber 1&quot;</span><span class="p">,</span> <span class="n">use_multiprocessing</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+<span class="c1"># &quot;flux_date&quot; is the output column name from calculate_flux_cycles.</span>
+<span class="c1"># Rename it to &quot;flux_datetime&quot; — the name that WindowSelector and</span>
+<span class="c1"># run_science_validation expect — so the same DataFrame works for all steps.</span>
+<span class="n">cycles</span> <span class="o">=</span> <span class="n">cycles</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;flux_date&quot;</span><span class="p">:</span> <span class="s2">&quot;flux_datetime&quot;</span><span class="p">})</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">cycles</span><span class="p">[[</span><span class="s2">&quot;cycle_id&quot;</span><span class="p">,</span> <span class="s2">&quot;flux_datetime&quot;</span><span class="p">,</span> <span class="s2">&quot;flux_absolute&quot;</span><span class="p">,</span> <span class="s2">&quot;flux_slope&quot;</span><span class="p">,</span> <span class="s2">&quot;r2&quot;</span><span class="p">,</span> <span class="s2">&quot;qc_flag&quot;</span><span class="p">]]</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">5</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>Expected output (values vary with the synthetic sample):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>   <span class="n">cycle_id</span>       <span class="n">flux_datetime</span>  <span class="n">flux_absolute</span>  <span class="n">flux_slope</span>        <span class="n">r2</span>  <span class="n">qc_flag</span>
+<span class="mi">0</span>         <span class="mi">1</span> <span class="mi">2026</span><span class="o">-</span><span class="mi">03</span><span class="o">-</span><span class="mi">01</span> <span class="mi">00</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mi">00</span>      <span class="o">-</span><span class="mf">2.358445</span>   <span class="o">-</span><span class="mf">0.009627</span>  <span class="mf">0.512461</span>        <span class="mi">0</span>
+<span class="mi">1</span>         <span class="mi">2</span> <span class="mi">2026</span><span class="o">-</span><span class="mi">03</span><span class="o">-</span><span class="mi">03</span> <span class="mi">12</span><span class="p">:</span><span class="mi">45</span><span class="p">:</span><span class="mi">00</span>       <span class="mf">0.036619</span>    <span class="mf">0.000150</span>  <span class="mf">0.109499</span>        <span class="mi">1</span>
+</pre></div>
+</div>
+<p>Key columns:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Column</p></th>
+<th class="head"><p>Unit</p></th>
+<th class="head"><p>Meaning</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">flux_absolute</span></code></p></td>
+<td><p>µmol m⁻² s⁻¹</p></td>
+<td><p>CO₂ flux (negative = uptake by tree)</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">flux_slope</span></code></p></td>
+<td><p>ppm s⁻¹</p></td>
+<td><p>raw CO₂ slope inside the cycle</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">r2</span></code></p></td>
+<td><p>—</p></td>
+<td><p>R² of the linear fit (higher = more linear cycle)</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">qc_flag</span></code></p></td>
+<td><p>0/1/2</p></td>
+<td><p>0 = A-grade, 1 = B-grade, 2 = rejected</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<hr class="docutils" />
+<section id="select-calibration-windows">
+<h2>5. Select calibration windows<a class="headerlink" href="#select-calibration-windows" title="Link to this heading">#</a></h2>
+<p>A calibration window is a consecutive span of high-quality days whose cycle data
+can be used to train the XPalm digital-twin model. <code class="docutils literal notranslate"><span class="pre">WindowSelector</span></code> scores every
+cycle across five components (regression quality, robustness, sensor QC, drift, and
+cross-chamber agreement), then identifies qualifying date ranges.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">palmwtc.windows</span><span class="w"> </span><span class="kn">import</span> <span class="n">WindowSelector</span>
+
+<span class="n">ws</span> <span class="o">=</span> <span class="n">WindowSelector</span><span class="p">(</span><span class="n">cycles</span><span class="p">)</span>
+<span class="n">ws</span><span class="o">.</span><span class="n">score_cycles</span><span class="p">()</span>
+<span class="n">ws</span><span class="o">.</span><span class="n">identify_windows</span><span class="p">()</span>
+<span class="n">ws</span><span class="o">.</span><span class="n">summary</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>After <code class="docutils literal notranslate"><span class="pre">score_cycles()</span></code>, your cycles DataFrame gains a <code class="docutils literal notranslate"><span class="pre">cycle_confidence</span></code> column
+(0–1 scale). After <code class="docutils literal notranslate"><span class="pre">identify_windows()</span></code>, <code class="docutils literal notranslate"><span class="pre">ws.windows_df</span></code> lists every qualifying
+window with its <code class="docutils literal notranslate"><span class="pre">start_date</span></code>, <code class="docutils literal notranslate"><span class="pre">end_date</span></code>, <code class="docutils literal notranslate"><span class="pre">n_cycles</span></code>, and <code class="docutils literal notranslate"><span class="pre">window_score</span></code>.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">ws</span><span class="o">.</span><span class="n">cycles_df</span><span class="p">[[</span><span class="s2">&quot;cycle_id&quot;</span><span class="p">,</span> <span class="s2">&quot;flux_datetime&quot;</span><span class="p">,</span> <span class="s2">&quot;cycle_confidence&quot;</span><span class="p">]]</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">5</span><span class="p">))</span>
+</pre></div>
+</div>
+<blockquote>
+<div><p><strong>Note:</strong> the bundled one-week synthetic sample is too short for the minimum
+5-day window requirement, so <code class="docutils literal notranslate"><span class="pre">ws.windows_df</span></code> will be empty on this dataset.
+Run <code class="docutils literal notranslate"><span class="pre">WindowSelector</span></code> on a real multi-week dataset to see qualifying windows.
+See <code class="docutils literal notranslate"><span class="pre">tutorials/032_Window_Selection_Production.ipynb</span></code> for a worked example.</p>
+</div></blockquote>
+</section>
+<hr class="docutils" />
+<section id="validate-against-ecophysiology-literature">
+<h2>6. Validate against ecophysiology literature<a class="headerlink" href="#validate-against-ecophysiology-literature" title="Link to this heading">#</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">run_science_validation</span></code> runs four tests that check whether your flux data is
+consistent with published values for oil palm:</p>
+<ol class="arabic simple">
+<li><p><strong>Light-response curve</strong> — does Amax fall within the expected range?</p></li>
+<li><p><strong>Temperature response (Q10)</strong> — is the nighttime respiration temperature
+sensitivity between 1.5 and 3.5?</p></li>
+<li><p><strong>Water-use efficiency (WUE)</strong> — does WUE decrease as VPD increases?</p></li>
+<li><p><strong>Inter-chamber agreement</strong> — are the two chambers tracking each other?</p></li>
+</ol>
+<p>The validator needs several columns beyond the basic flux output. In a full
+pipeline run these come from the QC and H₂O steps; here we add them as
+placeholders so the validator can run and demonstrate the scorecard structure:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">palmwtc.validation</span><span class="w"> </span><span class="kn">import</span> <span class="n">run_science_validation</span>
+
+<span class="c1"># Columns required by run_science_validation but not produced by</span>
+<span class="c1"># calculate_flux_cycles alone — in a real run, these come from the full</span>
+<span class="c1"># pipeline (radiation logger, H2O flux, VPD from weather station).</span>
+<span class="n">cycles</span><span class="p">[</span><span class="s2">&quot;Global_Radiation&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="s2">&quot;nan&quot;</span><span class="p">)</span>  <span class="c1"># W m⁻²</span>
+<span class="n">cycles</span><span class="p">[</span><span class="s2">&quot;h2o_slope&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="s2">&quot;nan&quot;</span><span class="p">)</span>         <span class="c1"># mmol m⁻² s⁻¹</span>
+<span class="n">cycles</span><span class="p">[</span><span class="s2">&quot;co2_slope&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">cycles</span><span class="p">[</span><span class="s2">&quot;flux_slope&quot;</span><span class="p">]</span> <span class="c1"># µmol m⁻² s⁻¹ (alias)</span>
+<span class="n">cycles</span><span class="p">[</span><span class="s2">&quot;vpd_kPa&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="s2">&quot;nan&quot;</span><span class="p">)</span>           <span class="c1"># kPa</span>
+
+<span class="n">report</span> <span class="o">=</span> <span class="n">run_science_validation</span><span class="p">(</span><span class="n">cycles</span><span class="p">)</span>
+
+<span class="n">scorecard</span> <span class="o">=</span> <span class="n">report</span><span class="p">[</span><span class="s2">&quot;scorecard&quot;</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Tests passed: </span><span class="si">{</span><span class="n">scorecard</span><span class="p">[</span><span class="s1">&#39;n_pass&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Borderline:   </span><span class="si">{</span><span class="n">scorecard</span><span class="p">[</span><span class="s1">&#39;n_borderline&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Failed:       </span><span class="si">{</span><span class="n">scorecard</span><span class="p">[</span><span class="s1">&#39;n_fail&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Insufficient data (N/A): </span><span class="si">{</span><span class="n">scorecard</span><span class="p">[</span><span class="s1">&#39;n_na&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Expected output (bundled sample — all tests return N/A because the
+one-week dataset has too few cycles to fit any curve):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Tests</span> <span class="n">passed</span><span class="p">:</span> <span class="mi">0</span>
+<span class="n">Borderline</span><span class="p">:</span>   <span class="mi">0</span>
+<span class="n">Failed</span><span class="p">:</span>       <span class="mi">0</span>
+<span class="n">Insufficient</span> <span class="n">data</span> <span class="p">(</span><span class="n">N</span><span class="o">/</span><span class="n">A</span><span class="p">):</span> <span class="mi">7</span>
+</pre></div>
+</div>
+<p>That is the correct scientific response — palmwtc never fabricates a pass.
+Run the validator on at least two weeks of continuous data with radiation,
+temperature, and H₂O columns populated to get meaningful PASS/FAIL results.
+See <code class="docutils literal notranslate"><span class="pre">tutorials/033_Science_Validation.ipynb</span></code> for a full worked example.</p>
+</section>
+<hr class="docutils" />
+<section id="plot-the-flux-heatmap">
+<h2>7. Plot the flux heatmap<a class="headerlink" href="#plot-the-flux-heatmap" title="Link to this heading">#</a></h2>
+<p>The flux heatmap shows mean CO₂ flux by hour-of-day (y-axis) and month-year
+(x-axis). Blue cells indicate uptake (photosynthesis during the day), red cells
+indicate efflux (respiration at night). The diurnal pattern is the first visual
+check that the system is capturing a real biological signal.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">palmwtc.viz</span><span class="w"> </span><span class="kn">import</span> <span class="n">set_style</span><span class="p">,</span> <span class="n">plot_flux_heatmap</span>
+
+<span class="n">set_style</span><span class="p">()</span>   <span class="c1"># apply the palmwtc matplotlib theme</span>
+
+<span class="c1"># plot_flux_heatmap reads the &quot;flux_date&quot; column.</span>
+<span class="c1"># Add it back as an alias of &quot;flux_datetime&quot; so the plot function works.</span>
+<span class="n">cycles</span><span class="p">[</span><span class="s2">&quot;flux_date&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">cycles</span><span class="p">[</span><span class="s2">&quot;flux_datetime&quot;</span><span class="p">]</span>
+
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plot_flux_heatmap</span><span class="p">(</span><span class="n">cycles</span><span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s2">&quot;flux_heatmap.png&quot;</span><span class="p">,</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">150</span><span class="p">,</span> <span class="n">bbox_inches</span><span class="o">=</span><span class="s2">&quot;tight&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>You should see three vertically stacked subplots — one for both chambers combined,
+one for chamber 1, and one for chamber 2. With only one week of synthetic data the
+x-axis will show a single month column, but the diurnal pattern (negative flux
+during the day, near-zero at night) should be visible even in the short sample.</p>
+</section>
+<hr class="docutils" />
+<section id="next-steps">
+<h2>Next steps<a class="headerlink" href="#next-steps" title="Link to this heading">#</a></h2>
+<p>The executable version of this walkthrough — with all outputs already run — is
+in <code class="docutils literal notranslate"><span class="pre">tutorials/000_Integrated_End_to_End.ipynb</span></code> (coming soon).</p>
+<p>For deeper dives into each step, the individual tutorials are good starting points:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">tutorials/020_QC_Rule_Based.ipynb</span></code> — full QC pipeline with multi-variable config</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">tutorials/022_QC_ML_Enhanced.ipynb</span></code> — add ML-assisted outlier detection</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">tutorials/030_Flux_Cycle_Calculation.ipynb</span></code> — flux calculation in detail</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">tutorials/032_Window_Selection_Production.ipynb</span></code> — calibration window selection</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">tutorials/033_Science_Validation.ipynb</span></code> — ecophysiology validation scorecard</p></li>
+</ul>
+<p>To use your own chamber data, set <code class="docutils literal notranslate"><span class="pre">PALMWTC_DATA_DIR</span></code> to your data directory
+or write a <code class="docutils literal notranslate"><span class="pre">palmwtc.yaml</span></code> config file in your working directory, then
+re-run the steps above. The <a class="reference internal" href="science/index.html"><span class="std std-doc">Science Reference</span></a> explains
+the methods and the thresholds behind each QC rule.</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="index.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">palmwtc</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="tutorials/index.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Tutorials</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item"><div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#install">1. Install</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#load-the-bundled-synthetic-sample">2. Load the bundled synthetic sample</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#quality-control-the-co2-signal">3. Quality-control the CO₂ signal</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#compute-co2-fluxes">4. Compute CO₂ fluxes</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#select-calibration-windows">5. Select calibration windows</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#validate-against-ecophysiology-literature">6. Validate against ecophysiology literature</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#plot-the-flux-heatmap">7. Plot the flux heatmap</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#next-steps">Next steps</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Didi Adisaputro
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2026.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

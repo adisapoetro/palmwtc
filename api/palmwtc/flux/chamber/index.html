@@ -1,0 +1,1788 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>palmwtc.flux.chamber &#8212; palmwtc</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../../../../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/styles/sphinx-book-theme.css?v=3c74b3bc" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/togglebutton.css?v=9c3e77be" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/graphviz.css?v=fd3f3429" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../../../../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../../../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="../../../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../../../_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../../../_static/togglebutton.js?v=b8b12719"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'api/palmwtc/flux/chamber/index';</script>
+    <link rel="canonical" href="https://adisapoetro.github.io/palmwtc/api/palmwtc/flux/chamber/index.html" />
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../../../index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">palmwtc</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../../../index.html">
+                    palmwtc
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Getting Started</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../../../quickstart.html">Quickstart — your first flux number in 3 minutes</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../../tutorials/index.html">Tutorials</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorials/010_Data_Integration.html">010 — Core data integration (raw → unified monthly)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorials/011_Weather_vs_Chamber.html">011 — Weather station vs chamber</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorials/020_QC_Rule_Based.html">020 — Rule-based QC</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorials/022_QC_ML_Enhanced.html">022 — ML-enhanced QC (optional)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorials/023_Field_Alert_Report.html">023 — Field alert report</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorials/025_Cross_Chamber_Bias.html">025 — Cross-chamber bias comparison (diagnostic)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorials/026_CO2_H2O_Segmented_Bias.html">026 — CO2/H2O segmented bias comparison (diagnostic)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorials/030_Flux_Cycle_Calculation.html">030 — Flux cycle calculation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorials/031_Window_Selection_Reference.html">031 — High-confidence window selection (reference)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorials/032_Window_Selection_Production.html">032 — Physically grounded window selection (production)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorials/033_Science_Validation.html">033 — Science validation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorials/034_QC_and_Window_Audit.html">034 — QC + window audit (visualization)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorials/035_QC_Threshold_Sensitivity.html">035 — QC threshold sensitivity sweep</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorials/000_End_to_End_Synthetic.html">000 — End-to-end on synthetic data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorials/001_End_to_End_LIBZ.html">001 - End-to-end on LIBZ data (raw .dat -&gt; validation)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorials/010_Data_Integration.html">010 — Core data integration (raw → unified monthly)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorials/011_Weather_vs_Chamber.html">011 — Weather station vs chamber</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorials/020_QC_Rule_Based.html">020 — Rule-based QC</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorials/022_QC_ML_Enhanced.html">022 — ML-enhanced QC (optional)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorials/023_Field_Alert_Report.html">023 — Field alert report</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorials/025_Cross_Chamber_Bias.html">025 — Cross-chamber bias comparison (diagnostic)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorials/026_CO2_H2O_Segmented_Bias.html">026 — CO2/H2O segmented bias comparison (diagnostic)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorials/030_Flux_Cycle_Calculation.html">030 — Flux cycle calculation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorials/031_Window_Selection_Reference.html">031 — High-confidence window selection (reference)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorials/032_Window_Selection_Production.html">032 — Physically grounded window selection (production)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorials/033_Science_Validation.html">033 — Science validation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorials/034_QC_and_Window_Audit.html">034 — QC + window audit (visualization)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorials/035_QC_Threshold_Sensitivity.html">035 — QC threshold sensitivity sweep</a></li>
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Science Reference</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../../../science/index.html">Science Reference</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/adisapoetro/palmwtc" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/adisapoetro/palmwtc/edit/main/docs/api/palmwtc/flux/chamber/index.rst" target="_blank"
+   class="btn btn-sm btn-source-edit-button dropdown-item"
+   title="Suggest edit"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="btn__text-container">Suggest edit</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/adisapoetro/palmwtc/issues/new?title=Issue%20on%20page%20%2Fapi/palmwtc/flux/chamber/index.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../../../_sources/api/palmwtc/flux/chamber/index.rst" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.rst</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button pst-navbar-icon"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm pst-navbar-icon" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>palmwtc.flux.chamber</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pipeline-overview">Pipeline overview</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tree-biophysics-helpers">Tree biophysics helpers</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#wpl-diagnostic-helpers">WPL diagnostic helpers</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#configuration-constants">Configuration constants</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#attributes">Attributes</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#functions">Functions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-contents">Module Contents</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#palmwtc.flux.chamber.DEFAULT_CONFIG"><code class="docutils literal notranslate"><span class="pre">DEFAULT_CONFIG</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#palmwtc.flux.chamber.DEFAULT_CO2_QC_THRESHOLDS"><code class="docutils literal notranslate"><span class="pre">DEFAULT_CO2_QC_THRESHOLDS</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#palmwtc.flux.chamber.NIGHTTIME_CO2_QC_THRESHOLDS"><code class="docutils literal notranslate"><span class="pre">NIGHTTIME_CO2_QC_THRESHOLDS</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#palmwtc.flux.chamber.DEFAULT_H2O_QC_THRESHOLDS"><code class="docutils literal notranslate"><span class="pre">DEFAULT_H2O_QC_THRESHOLDS</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#palmwtc.flux.chamber.NIGHTTIME_H2O_QC_THRESHOLDS"><code class="docutils literal notranslate"><span class="pre">NIGHTTIME_H2O_QC_THRESHOLDS</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#palmwtc.flux.chamber.DEFAULT_WPL_QC_THRESHOLDS"><code class="docutils literal notranslate"><span class="pre">DEFAULT_WPL_QC_THRESHOLDS</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#palmwtc.flux.chamber.apply_wpl_correction"><code class="docutils literal notranslate"><span class="pre">apply_wpl_correction()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#palmwtc.flux.chamber._choose_h2o_column"><code class="docutils literal notranslate"><span class="pre">_choose_h2o_column()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#palmwtc.flux.chamber.prepare_chamber_data"><code class="docutils literal notranslate"><span class="pre">prepare_chamber_data()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#palmwtc.flux.chamber.summarize_wpl_correction"><code class="docutils literal notranslate"><span class="pre">summarize_wpl_correction()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#palmwtc.flux.chamber.build_cycle_wpl_metrics"><code class="docutils literal notranslate"><span class="pre">build_cycle_wpl_metrics()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#palmwtc.flux.chamber.calculate_flux_cycles"><code class="docutils literal notranslate"><span class="pre">calculate_flux_cycles()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#palmwtc.flux.chamber.calculate_h2o_flux_for_cycle"><code class="docutils literal notranslate"><span class="pre">calculate_h2o_flux_for_cycle()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#palmwtc.flux.chamber.score_h2o_flux_qc"><code class="docutils literal notranslate"><span class="pre">score_h2o_flux_qc()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#palmwtc.flux.chamber.calculate_h2o_flux_cycles"><code class="docutils literal notranslate"><span class="pre">calculate_h2o_flux_cycles()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#palmwtc.flux.chamber.load_tree_biophysics"><code class="docutils literal notranslate"><span class="pre">load_tree_biophysics()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#palmwtc.flux.chamber.get_tree_volume_at_date"><code class="docutils literal notranslate"><span class="pre">get_tree_volume_at_date()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#palmwtc.flux.chamber.apply_wpl_qc_overrides"><code class="docutils literal notranslate"><span class="pre">apply_wpl_qc_overrides()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#palmwtc.flux.chamber.compute_closure_confidence"><code class="docutils literal notranslate"><span class="pre">compute_closure_confidence()</span></code></a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="module-palmwtc.flux.chamber">
+<span id="palmwtc-flux-chamber"></span><h1>palmwtc.flux.chamber<a class="headerlink" href="#module-palmwtc.flux.chamber" title="Link to this heading">#</a></h1>
+<p>Chamber data preparation, WPL correction, and per-cycle flux batch computation.</p>
+<p>This module is the entry point for the full CO₂ and H₂O flux calculation
+pipeline for automated whole-tree chambers instrumented with LI-COR LI-850.
+It ties together sensor-stream preparation, WPL dilution correction, cycle
+identification, regression-based flux extraction, QC scoring, and tree
+biophysical data.</p>
+<section id="pipeline-overview">
+<h2>Pipeline overview<a class="headerlink" href="#pipeline-overview" title="Link to this heading">#</a></h2>
+<ol class="arabic simple">
+<li><p><a class="reference internal" href="#palmwtc.flux.chamber.prepare_chamber_data" title="palmwtc.flux.chamber.prepare_chamber_data"><code class="xref py py-func docutils literal notranslate"><span class="pre">prepare_chamber_data()</span></code></a> — selects the correct sensor columns for one
+chamber (<code class="docutils literal notranslate"><span class="pre">C1</span></code> or <code class="docutils literal notranslate"><span class="pre">C2</span></code>), applies QC flag filtering, runs WPL correction,
+and returns a clean DataFrame ready for cycle identification.</p></li>
+<li><p><a class="reference internal" href="#palmwtc.flux.chamber.calculate_flux_cycles" title="palmwtc.flux.chamber.calculate_flux_cycles"><code class="xref py py-func docutils literal notranslate"><span class="pre">calculate_flux_cycles()</span></code></a> — identifies measurement cycles inside the
+prepared DataFrame and runs <a class="reference internal" href="../cycles/index.html#palmwtc.flux.cycles.evaluate_cycle" title="palmwtc.flux.cycles.evaluate_cycle"><code class="xref py py-func docutils literal notranslate"><span class="pre">palmwtc.flux.cycles.evaluate_cycle()</span></code></a>
+on every cycle (in parallel when the dataset is large), returning one row
+per cycle with slope, R², AICc, monotonicity, flux, and QC fields.</p></li>
+<li><p><a class="reference internal" href="#palmwtc.flux.chamber.calculate_h2o_flux_cycles" title="palmwtc.flux.chamber.calculate_h2o_flux_cycles"><code class="xref py py-func docutils literal notranslate"><span class="pre">calculate_h2o_flux_cycles()</span></code></a> — H₂O analogue: uses Theil-Sen + OLS
+regression with relaxed QC thresholds appropriate for water-vapour noise
+levels.</p></li>
+<li><p><a class="reference internal" href="#palmwtc.flux.chamber.compute_closure_confidence" title="palmwtc.flux.chamber.compute_closure_confidence"><code class="xref py py-func docutils literal notranslate"><span class="pre">compute_closure_confidence()</span></code></a> — converts per-cycle R², NRMSE, and
+global radiation into a 0–1 confidence score for chamber closure quality.</p></li>
+</ol>
+</section>
+<section id="tree-biophysics-helpers">
+<h2>Tree biophysics helpers<a class="headerlink" href="#tree-biophysics-helpers" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p><a class="reference internal" href="#palmwtc.flux.chamber.load_tree_biophysics" title="palmwtc.flux.chamber.load_tree_biophysics"><code class="xref py py-func docutils literal notranslate"><span class="pre">load_tree_biophysics()</span></code></a> — reads <code class="docutils literal notranslate"><span class="pre">Vigor_Index_PalmStudio.xlsx</span></code> and
+returns palm geometry time series (height, radius, estimated volume).</p></li>
+<li><p><a class="reference internal" href="#palmwtc.flux.chamber.get_tree_volume_at_date" title="palmwtc.flux.chamber.get_tree_volume_at_date"><code class="xref py py-func docutils literal notranslate"><span class="pre">get_tree_volume_at_date()</span></code></a> — time-interpolates the Vigor Index (m³)
+for a specific tree and date from the biophysics table.</p></li>
+</ul>
+</section>
+<section id="wpl-diagnostic-helpers">
+<h2>WPL diagnostic helpers<a class="headerlink" href="#wpl-diagnostic-helpers" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p><a class="reference internal" href="#palmwtc.flux.chamber.summarize_wpl_correction" title="palmwtc.flux.chamber.summarize_wpl_correction"><code class="xref py py-func docutils literal notranslate"><span class="pre">summarize_wpl_correction()</span></code></a> — dataset-level WPL statistics (median
+factor, p95 relative change, valid-point count).</p></li>
+<li><p><a class="reference internal" href="#palmwtc.flux.chamber.build_cycle_wpl_metrics" title="palmwtc.flux.chamber.build_cycle_wpl_metrics"><code class="xref py py-func docutils literal notranslate"><span class="pre">build_cycle_wpl_metrics()</span></code></a> — cycle-level WPL diagnostics table used
+to detect humidity-driven flux artefacts.</p></li>
+</ul>
+</section>
+<section id="configuration-constants">
+<h2>Configuration constants<a class="headerlink" href="#configuration-constants" title="Link to this heading">#</a></h2>
+<p>All functions accept explicit parameters.  Use the constants below as
+starting points and override what you need:</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#palmwtc.flux.chamber.DEFAULT_CONFIG" title="palmwtc.flux.chamber.DEFAULT_CONFIG"><code class="xref py py-data docutils literal notranslate"><span class="pre">DEFAULT_CONFIG</span></code></a> — cycle detection, regression window, QC flag
+filtering, WPL, and parallel-processing defaults.</p></li>
+<li><p><a class="reference internal" href="#palmwtc.flux.chamber.DEFAULT_CO2_QC_THRESHOLDS" title="palmwtc.flux.chamber.DEFAULT_CO2_QC_THRESHOLDS"><code class="xref py py-data docutils literal notranslate"><span class="pre">DEFAULT_CO2_QC_THRESHOLDS</span></code></a> — daytime CO₂ grading thresholds
+(R², NRMSE, SNR, monotonicity, outlier fraction).</p></li>
+<li><p><a class="reference internal" href="#palmwtc.flux.chamber.NIGHTTIME_CO2_QC_THRESHOLDS" title="palmwtc.flux.chamber.NIGHTTIME_CO2_QC_THRESHOLDS"><code class="xref py py-data docutils literal notranslate"><span class="pre">NIGHTTIME_CO2_QC_THRESHOLDS</span></code></a> — relaxed CO₂ thresholds for cycles
+where Global_Radiation &lt; 10 W m⁻² (respiration-only, smaller dynamic range).</p></li>
+<li><p><a class="reference internal" href="#palmwtc.flux.chamber.DEFAULT_H2O_QC_THRESHOLDS" title="palmwtc.flux.chamber.DEFAULT_H2O_QC_THRESHOLDS"><code class="xref py py-data docutils literal notranslate"><span class="pre">DEFAULT_H2O_QC_THRESHOLDS</span></code></a> — daytime H₂O grading thresholds.</p></li>
+<li><p><a class="reference internal" href="#palmwtc.flux.chamber.NIGHTTIME_H2O_QC_THRESHOLDS" title="palmwtc.flux.chamber.NIGHTTIME_H2O_QC_THRESHOLDS"><code class="xref py py-data docutils literal notranslate"><span class="pre">NIGHTTIME_H2O_QC_THRESHOLDS</span></code></a> — relaxed H₂O thresholds for nighttime
+(near-zero transpiration means tiny, flat H₂O signals are expected).</p></li>
+<li><p><a class="reference internal" href="#palmwtc.flux.chamber.DEFAULT_WPL_QC_THRESHOLDS" title="palmwtc.flux.chamber.DEFAULT_WPL_QC_THRESHOLDS"><code class="xref py py-data docutils literal notranslate"><span class="pre">DEFAULT_WPL_QC_THRESHOLDS</span></code></a> — per-cycle WPL validity thresholds
+(valid-data fraction, p95 relative correction, maximum WPL factor).</p></li>
+</ul>
+<p>Quick start:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">palmwtc.flux.chamber</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
+    <span class="n">prepare_chamber_data</span><span class="p">,</span>
+    <span class="n">calculate_flux_cycles</span><span class="p">,</span>
+    <span class="n">calculate_h2o_flux_cycles</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="c1"># Use default config, override just one key:</span>
+<span class="n">cfg</span> <span class="o">=</span> <span class="p">{</span><span class="o">**</span><span class="n">DEFAULT_CONFIG</span><span class="p">,</span> <span class="s2">&quot;min_points&quot;</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span> <span class="s2">&quot;cycle_gap_sec&quot;</span><span class="p">:</span> <span class="mi">240</span><span class="p">}</span>
+<span class="n">chamber_df</span> <span class="o">=</span> <span class="n">prepare_chamber_data</span><span class="p">(</span><span class="n">raw_df</span><span class="p">,</span> <span class="s2">&quot;C1&quot;</span><span class="p">,</span> <span class="o">**</span><span class="n">cfg</span><span class="p">)</span>
+<span class="n">flux_df</span>    <span class="o">=</span> <span class="n">calculate_flux_cycles</span><span class="p">(</span><span class="n">chamber_df</span><span class="p">,</span> <span class="s2">&quot;Chamber 1&quot;</span><span class="p">,</span> <span class="o">**</span><span class="n">cfg</span><span class="p">)</span>
+<span class="n">h2o_df</span>     <span class="o">=</span> <span class="n">calculate_h2o_flux_cycles</span><span class="p">(</span><span class="n">chamber_df</span><span class="p">,</span> <span class="s2">&quot;Chamber 1&quot;</span><span class="p">,</span> <span class="o">**</span><span class="n">cfg</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="attributes">
+<h2>Attributes<a class="headerlink" href="#attributes" title="Link to this heading">#</a></h2>
+<div class="pst-scrollable-table-container"><table class="autosummary longtable table autosummary">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#palmwtc.flux.chamber.DEFAULT_CONFIG" title="palmwtc.flux.chamber.DEFAULT_CONFIG"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DEFAULT_CONFIG</span></code></a></p></td>
+<td><p>Default pipeline configuration for cycle detection, regression, and WPL.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#palmwtc.flux.chamber.DEFAULT_CO2_QC_THRESHOLDS" title="palmwtc.flux.chamber.DEFAULT_CO2_QC_THRESHOLDS"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DEFAULT_CO2_QC_THRESHOLDS</span></code></a></p></td>
+<td><p>Daytime CO₂ QC grading thresholds for <a class="reference internal" href="../cycles/index.html#palmwtc.flux.cycles.score_cycle" title="palmwtc.flux.cycles.score_cycle"><code class="xref py py-func docutils literal notranslate"><span class="pre">palmwtc.flux.cycles.score_cycle()</span></code></a>.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#palmwtc.flux.chamber.NIGHTTIME_CO2_QC_THRESHOLDS" title="palmwtc.flux.chamber.NIGHTTIME_CO2_QC_THRESHOLDS"><code class="xref py py-obj docutils literal notranslate"><span class="pre">NIGHTTIME_CO2_QC_THRESHOLDS</span></code></a></p></td>
+<td><p>Relaxed CO₂ QC thresholds for nighttime cycles (Global_Radiation &lt; 10 W m⁻²).</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#palmwtc.flux.chamber.DEFAULT_H2O_QC_THRESHOLDS" title="palmwtc.flux.chamber.DEFAULT_H2O_QC_THRESHOLDS"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DEFAULT_H2O_QC_THRESHOLDS</span></code></a></p></td>
+<td><p>Daytime H₂O QC grading thresholds for <a class="reference internal" href="#palmwtc.flux.chamber.score_h2o_flux_qc" title="palmwtc.flux.chamber.score_h2o_flux_qc"><code class="xref py py-func docutils literal notranslate"><span class="pre">score_h2o_flux_qc()</span></code></a>.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#palmwtc.flux.chamber.NIGHTTIME_H2O_QC_THRESHOLDS" title="palmwtc.flux.chamber.NIGHTTIME_H2O_QC_THRESHOLDS"><code class="xref py py-obj docutils literal notranslate"><span class="pre">NIGHTTIME_H2O_QC_THRESHOLDS</span></code></a></p></td>
+<td><p>Relaxed H₂O QC thresholds for nighttime cycles (Global_Radiation &lt; 10 W m⁻²).</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#palmwtc.flux.chamber.DEFAULT_WPL_QC_THRESHOLDS" title="palmwtc.flux.chamber.DEFAULT_WPL_QC_THRESHOLDS"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DEFAULT_WPL_QC_THRESHOLDS</span></code></a></p></td>
+<td><p>Per-cycle WPL correction validity thresholds used by <a class="reference internal" href="#palmwtc.flux.chamber.apply_wpl_qc_overrides" title="palmwtc.flux.chamber.apply_wpl_qc_overrides"><code class="xref py py-func docutils literal notranslate"><span class="pre">apply_wpl_qc_overrides()</span></code></a>.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="functions">
+<h2>Functions<a class="headerlink" href="#functions" title="Link to this heading">#</a></h2>
+<div class="pst-scrollable-table-container"><table class="autosummary longtable table autosummary">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#palmwtc.flux.chamber.apply_wpl_correction" title="palmwtc.flux.chamber.apply_wpl_correction"><code class="xref py py-obj docutils literal notranslate"><span class="pre">apply_wpl_correction</span></code></a>(co2_wet, h2o_mmol_mol)</p></td>
+<td><p>Convert wet CO₂ (ppm) to dry CO₂ using the WPL dilution correction.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#palmwtc.flux.chamber._choose_h2o_column" title="palmwtc.flux.chamber._choose_h2o_column"><code class="xref py py-obj docutils literal notranslate"><span class="pre">_choose_h2o_column</span></code></a>(data, chamber_suffix[, ...])</p></td>
+<td><p>Pick the best available H2O column for <em>chamber_suffix</em>.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#palmwtc.flux.chamber.prepare_chamber_data" title="palmwtc.flux.chamber.prepare_chamber_data"><code class="xref py py-obj docutils literal notranslate"><span class="pre">prepare_chamber_data</span></code></a>(data, chamber_suffix[, ...])</p></td>
+<td><p>Select, filter, and WPL-correct sensor streams for one chamber.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#palmwtc.flux.chamber.summarize_wpl_correction" title="palmwtc.flux.chamber.summarize_wpl_correction"><code class="xref py py-obj docutils literal notranslate"><span class="pre">summarize_wpl_correction</span></code></a>(chamber_df)</p></td>
+<td><p>Return a dataset-level summary of WPL correction statistics.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#palmwtc.flux.chamber.build_cycle_wpl_metrics" title="palmwtc.flux.chamber.build_cycle_wpl_metrics"><code class="xref py py-obj docutils literal notranslate"><span class="pre">build_cycle_wpl_metrics</span></code></a>(chamber_df, chamber_name[, ...])</p></td>
+<td><p>Aggregate WPL correction metrics per measurement cycle.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#palmwtc.flux.chamber.calculate_flux_cycles" title="palmwtc.flux.chamber.calculate_flux_cycles"><code class="xref py py-obj docutils literal notranslate"><span class="pre">calculate_flux_cycles</span></code></a>(chamber_df, chamber_name[, ...])</p></td>
+<td><p>Identify measurement cycles and compute CO₂ flux for each cycle.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#palmwtc.flux.chamber.calculate_h2o_flux_for_cycle" title="palmwtc.flux.chamber.calculate_h2o_flux_for_cycle"><code class="xref py py-obj docutils literal notranslate"><span class="pre">calculate_h2o_flux_for_cycle</span></code></a>(cycle_data[, gas_col, ...])</p></td>
+<td><p>Compute H₂O slope and fit statistics for a single measurement cycle.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#palmwtc.flux.chamber.score_h2o_flux_qc" title="palmwtc.flux.chamber.score_h2o_flux_qc"><code class="xref py py-obj docutils literal notranslate"><span class="pre">score_h2o_flux_qc</span></code></a>(h2o_metrics[, h2o_qc_thresholds, ...])</p></td>
+<td><p>Assign a QC grade to a single H₂O flux cycle.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#palmwtc.flux.chamber.calculate_h2o_flux_cycles" title="palmwtc.flux.chamber.calculate_h2o_flux_cycles"><code class="xref py py-obj docutils literal notranslate"><span class="pre">calculate_h2o_flux_cycles</span></code></a>(chamber_df, chamber_name[, ...])</p></td>
+<td><p>Compute H₂O flux for every cycle in <em>chamber_df</em>.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#palmwtc.flux.chamber.load_tree_biophysics" title="palmwtc.flux.chamber.load_tree_biophysics"><code class="xref py py-obj docutils literal notranslate"><span class="pre">load_tree_biophysics</span></code></a>(base_dir)</p></td>
+<td><p>Load palm tree biophysical parameters from the PalmStudio spreadsheet.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#palmwtc.flux.chamber.get_tree_volume_at_date" title="palmwtc.flux.chamber.get_tree_volume_at_date"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_tree_volume_at_date</span></code></a>(df_vigor, tree_id, target_date)</p></td>
+<td><p>Time-interpolate the Vigor Index (m³) for a tree at a specific date.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#palmwtc.flux.chamber.apply_wpl_qc_overrides" title="palmwtc.flux.chamber.apply_wpl_qc_overrides"><code class="xref py py-obj docutils literal notranslate"><span class="pre">apply_wpl_qc_overrides</span></code></a>(row, model_qc, flux_qc, reason_text)</p></td>
+<td><p>Apply WPL-specific checks and upgrade QC tiers if needed.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#palmwtc.flux.chamber.compute_closure_confidence" title="palmwtc.flux.chamber.compute_closure_confidence"><code class="xref py py-obj docutils literal notranslate"><span class="pre">compute_closure_confidence</span></code></a>(r2, nrmse, global_radiation)</p></td>
+<td><p>Compute a chamber closure confidence score between 0 and 1.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="module-contents">
+<h2>Module Contents<a class="headerlink" href="#module-contents" title="Link to this heading">#</a></h2>
+<dl class="py data">
+<dt class="sig sig-object py" id="palmwtc.flux.chamber.DEFAULT_CONFIG">
+<span class="sig-prename descclassname"><span class="pre">palmwtc.flux.chamber.</span></span><span class="sig-name descname"><span class="pre">DEFAULT_CONFIG</span></span><a class="headerlink" href="#palmwtc.flux.chamber.DEFAULT_CONFIG" title="Link to this definition">#</a></dt>
+<dd><p>Default pipeline configuration for cycle detection, regression, and WPL.</p>
+<p>Pass <code class="docutils literal notranslate"><span class="pre">{**DEFAULT_CONFIG,</span> <span class="pre">&quot;key&quot;:</span> <span class="pre">new_value}</span></code> to any pipeline function to
+override individual settings without losing the other defaults.</p>
+<section id="keys">
+<h3>Keys<a class="headerlink" href="#keys" title="Link to this heading">#</a></h3>
+<dl class="simple">
+<dt>cycle_gap_sec<span class="classifier">int</span></dt><dd><p>Minimum gap in seconds between two successive measurements that
+triggers the start of a new measurement cycle (default <code class="docutils literal notranslate"><span class="pre">300</span></code>).</p>
+</dd>
+<dt>start_cutoff_sec<span class="classifier">int</span></dt><dd><p>Number of seconds to skip from the beginning of a cycle before
+starting the regression window search (default <code class="docutils literal notranslate"><span class="pre">50</span></code>).
+Skips the initial chamber-mixing transient.</p>
+</dd>
+<dt>start_search_sec<span class="classifier">int</span></dt><dd><p>How far into the cycle (seconds) the window-start search extends
+(default <code class="docutils literal notranslate"><span class="pre">60</span></code>).</p>
+</dd>
+<dt>min_points<span class="classifier">int</span></dt><dd><p>Minimum number of valid data points required to attempt a flux
+regression (default <code class="docutils literal notranslate"><span class="pre">20</span></code>).</p>
+</dd>
+<dt>min_duration_sec<span class="classifier">int</span></dt><dd><p>Minimum regression window length in seconds (default <code class="docutils literal notranslate"><span class="pre">180</span></code>).</p>
+</dd>
+<dt>outlier_z<span class="classifier">float</span></dt><dd><p>Z-score threshold for iterative outlier removal before re-fitting
+(default <code class="docutils literal notranslate"><span class="pre">2</span></code>).</p>
+</dd>
+<dt>max_outlier_refit_frac<span class="classifier">float</span></dt><dd><p>Maximum fraction of points that may be removed as outliers; if
+exceeded the original fit is kept (default <code class="docutils literal notranslate"><span class="pre">0.2</span></code>).</p>
+</dd>
+<dt>noise_eps_ppm<span class="classifier">float</span></dt><dd><p>Noise floor in ppm used when computing the monotonicity fraction
+(steps smaller than this are treated as noise, not signal direction,
+default <code class="docutils literal notranslate"><span class="pre">0.5</span></code>).</p>
+</dd>
+<dt>accepted_co2_qc_flags<span class="classifier">list of int</span></dt><dd><p>Only rows whose <code class="docutils literal notranslate"><span class="pre">CO2_{suffix}_qc_flag</span></code> is in this list are kept
+(default <code class="docutils literal notranslate"><span class="pre">[0]</span></code>; <code class="docutils literal notranslate"><span class="pre">None</span></code> keeps all rows).</p>
+</dd>
+<dt>accepted_h2o_qc_flags<span class="classifier">list of int</span></dt><dd><p>Same for <code class="docutils literal notranslate"><span class="pre">H2O_{suffix}_qc_flag</span></code> (default <code class="docutils literal notranslate"><span class="pre">[0,</span> <span class="pre">1]</span></code>; H₂O flag 1
+is a minor sensor warning that still produces usable data).</p>
+</dd>
+<dt>prefer_corrected_h2o<span class="classifier">bool</span></dt><dd><p>When <code class="docutils literal notranslate"><span class="pre">True</span></code>, use <code class="docutils literal notranslate"><span class="pre">H2O_{suffix}_corrected</span></code> over raw
+<code class="docutils literal notranslate"><span class="pre">H2O_{suffix}</span></code> if the corrected column is present (default
+<code class="docutils literal notranslate"><span class="pre">True</span></code>).</p>
+</dd>
+<dt>require_h2o_for_wpl<span class="classifier">bool</span></dt><dd><p>When <code class="docutils literal notranslate"><span class="pre">True</span></code>, <a class="reference internal" href="#palmwtc.flux.chamber.prepare_chamber_data" title="palmwtc.flux.chamber.prepare_chamber_data"><code class="xref py py-func docutils literal notranslate"><span class="pre">prepare_chamber_data()</span></code></a> raises <code class="docutils literal notranslate"><span class="pre">ValueError</span></code>
+if no H₂O column is found and WPL correction is requested (default
+<code class="docutils literal notranslate"><span class="pre">True</span></code>). Set to <code class="docutils literal notranslate"><span class="pre">False</span></code> to fall back to wet CO₂.</p>
+</dd>
+<dt>h2o_valid_range<span class="classifier">tuple of float</span></dt><dd><p>Physical validity bounds for H₂O in mmol mol⁻¹ as <code class="docutils literal notranslate"><span class="pre">(lo,</span> <span class="pre">hi)</span></code>
+(default <code class="docutils literal notranslate"><span class="pre">(0.0,</span> <span class="pre">60.0)</span></code>). Values outside this range are set to
+NaN before WPL correction.</p>
+</dd>
+<dt>max_abs_wpl_rel_change<span class="classifier">float</span></dt><dd><p>Maximum plausible absolute relative WPL correction (default
+<code class="docutils literal notranslate"><span class="pre">0.12</span></code>, i.e. 12 %). Rows with larger corrections get a Flag
+upgrade to 2.</p>
+</dd>
+<dt>use_multiprocessing<span class="classifier">bool</span></dt><dd><p>Use <code class="xref py py-class docutils literal notranslate"><span class="pre">multiprocessing.Pool</span></code> for cycle batches larger than 50
+cycles (default <code class="docutils literal notranslate"><span class="pre">True</span></code>).</p>
+</dd>
+<dt>n_jobs<span class="classifier">int</span></dt><dd><p>Number of parallel worker processes (default <code class="docutils literal notranslate"><span class="pre">min(8,</span> <span class="pre">cpu_count)</span></code>).</p>
+</dd>
+</dl>
+</section>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="palmwtc.flux.chamber.DEFAULT_CO2_QC_THRESHOLDS">
+<span class="sig-prename descclassname"><span class="pre">palmwtc.flux.chamber.</span></span><span class="sig-name descname"><span class="pre">DEFAULT_CO2_QC_THRESHOLDS</span></span><a class="headerlink" href="#palmwtc.flux.chamber.DEFAULT_CO2_QC_THRESHOLDS" title="Link to this definition">#</a></dt>
+<dd><p>Daytime CO₂ QC grading thresholds for <a class="reference internal" href="../cycles/index.html#palmwtc.flux.cycles.score_cycle" title="palmwtc.flux.cycles.score_cycle"><code class="xref py py-func docutils literal notranslate"><span class="pre">palmwtc.flux.cycles.score_cycle()</span></code></a>.</p>
+<p>Each threshold has an <code class="docutils literal notranslate"><span class="pre">_A</span></code> (Grade A boundary) and <code class="docutils literal notranslate"><span class="pre">_B</span></code> (Grade B boundary)
+variant. A cycle that passes all <code class="docutils literal notranslate"><span class="pre">_A</span></code> tests is Grade A (tier 0). A cycle
+that fails one or more <code class="docutils literal notranslate"><span class="pre">_A</span></code> tests but passes all <code class="docutils literal notranslate"><span class="pre">_B</span></code> tests is Grade B
+(tier 1). Failing any <code class="docutils literal notranslate"><span class="pre">_B</span></code> test downgrades to Grade C (tier 2).</p>
+<section id="id1">
+<h3>Keys<a class="headerlink" href="#id1" title="Link to this heading">#</a></h3>
+<dl class="simple">
+<dt>r2_A, r2_B<span class="classifier">float</span></dt><dd><p>Minimum R² of the OLS linear fit. Daytime photosynthesis and respiration
+cycles have large, clean CO₂ signals so the bar is high (0.90 / 0.70).</p>
+</dd>
+<dt>nrmse_A, nrmse_B<span class="classifier">float</span></dt><dd><p>Maximum normalized RMSE (RMSE divided by CO₂ concentration range). Low
+values (0.10 / 0.20) indicate a clean linear trend.</p>
+</dd>
+<dt>snr_A, snr_B<span class="classifier">float</span></dt><dd><p>Minimum signal-to-noise ratio, defined as (<a href="#id56"><span class="problematic" id="id57">|slope|</span></a> × duration) / RMSE.
+Measures whether the CO₂ trend is distinguishable from measurement noise.</p>
+</dd>
+<dt>monotonic_A, monotonic_B<span class="classifier">float</span></dt><dd><p>Minimum fraction of consecutive concentration steps that move in the
+direction of the fitted slope (steps smaller than <code class="docutils literal notranslate"><span class="pre">noise_eps_ppm</span></code> are
+ignored). Daytime CO₂ should rise or fall steadily inside a closed chamber.</p>
+</dd>
+<dt>outlier_A, outlier_B<span class="classifier">float</span></dt><dd><p>Maximum fraction of points removed as statistical outliers before
+re-fitting (0.05 / 0.15).</p>
+</dd>
+<dt>curvature_aicc<span class="classifier">float</span></dt><dd><p>AICc difference (quadratic minus linear) threshold. Values more negative
+than this indicate significant curvature, flagging possible leaks or
+mixing issues. Note: this key is read by
+<a class="reference internal" href="../cycles/index.html#palmwtc.flux.cycles.score_cycle" title="palmwtc.flux.cycles.score_cycle"><code class="xref py py-func docutils literal notranslate"><span class="pre">palmwtc.flux.cycles.score_cycle()</span></code></a>, not by functions in this module
+directly.</p>
+</dd>
+<dt>slope_diff_A, slope_diff_B<span class="classifier">float</span></dt><dd><p>Maximum relative difference between OLS slope and Theil-Sen slope
+(<code class="docutils literal notranslate"><span class="pre">|slope_ols</span> <span class="pre">-</span> <span class="pre">slope_ts|</span> <span class="pre">/</span> <span class="pre">|slope_ols|</span></code>). Large differences indicate
+leverage points or non-linearity.</p>
+</dd>
+<dt>signal_ppm_guard<span class="classifier">float</span></dt><dd><p>Total CO₂ change (ppm) below which the <code class="docutils literal notranslate"><span class="pre">monotonic_A/B</span></code> thresholds are
+scaled down proportionally. Prevents mass rejection of low-flux cycles
+where noise-to-signal ratio is inherently higher.</p>
+</dd>
+</dl>
+</section>
+<section id="see-also">
+<h3>See Also<a class="headerlink" href="#see-also" title="Link to this heading">#</a></h3>
+<p>NIGHTTIME_CO2_QC_THRESHOLDS : Relaxed version for dark/respiration cycles.
+palmwtc.flux.cycles.score_cycle : Function that consumes these thresholds.</p>
+</section>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="palmwtc.flux.chamber.NIGHTTIME_CO2_QC_THRESHOLDS">
+<span class="sig-prename descclassname"><span class="pre">palmwtc.flux.chamber.</span></span><span class="sig-name descname"><span class="pre">NIGHTTIME_CO2_QC_THRESHOLDS</span></span><a class="headerlink" href="#palmwtc.flux.chamber.NIGHTTIME_CO2_QC_THRESHOLDS" title="Link to this definition">#</a></dt>
+<dd><p>Relaxed CO₂ QC thresholds for nighttime cycles (Global_Radiation &lt; 10 W m⁻²).</p>
+<p>This is an alias for <a class="reference internal" href="../cycles/index.html#palmwtc.flux.cycles.NIGHTTIME_QC_THRESHOLDS" title="palmwtc.flux.cycles.NIGHTTIME_QC_THRESHOLDS"><code class="xref py py-data docutils literal notranslate"><span class="pre">palmwtc.flux.cycles.NIGHTTIME_QC_THRESHOLDS</span></code></a>.
+It is exposed here so callers that work only with <a class="reference internal" href="#module-palmwtc.flux.chamber" title="palmwtc.flux.chamber"><code class="xref py py-mod docutils literal notranslate"><span class="pre">palmwtc.flux.chamber</span></code></a>
+do not need to import from the lower-level <a class="reference internal" href="../cycles/index.html#module-palmwtc.flux.cycles" title="palmwtc.flux.cycles"><code class="xref py py-mod docutils literal notranslate"><span class="pre">palmwtc.flux.cycles</span></code></a> module.</p>
+<section id="why-nighttime-cycles-need-relaxed-thresholds">
+<h3>Why nighttime cycles need relaxed thresholds<a class="headerlink" href="#why-nighttime-cycles-need-relaxed-thresholds" title="Link to this heading">#</a></h3>
+<p>During the day, photosynthesis drives a strong, fast CO₂ drawdown inside the
+closed chamber (often 20–100 ppm over 5 minutes). This yields high R², SNR,
+and monotonicity, making the daytime <code class="docutils literal notranslate"><span class="pre">_A</span></code> thresholds easy to meet.</p>
+<p>At night, only leaf + soil respiration remain. CO₂ rise rates are typically
+3–15 ppm over 5 minutes — a much smaller signal that sits closer to instrument
+noise (~0.2–0.5 ppm RMS for LI-COR LI-850). Applying daytime thresholds to
+these cycles rejects most valid nighttime measurements.</p>
+</section>
+<section id="relaxed-values-compared-to-default-co2-qc-thresholds">
+<h3>Relaxed values (compared to <a class="reference internal" href="#palmwtc.flux.chamber.DEFAULT_CO2_QC_THRESHOLDS" title="palmwtc.flux.chamber.DEFAULT_CO2_QC_THRESHOLDS"><code class="xref py py-data docutils literal notranslate"><span class="pre">DEFAULT_CO2_QC_THRESHOLDS</span></code></a>)<a class="headerlink" href="#relaxed-values-compared-to-default-co2-qc-thresholds" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">r2_A</span></code> 0.90 → 0.70, <code class="docutils literal notranslate"><span class="pre">r2_B</span></code> 0.70 → 0.40 — lower R² is expected when
+the signal is small relative to noise.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">snr_A</span></code> 10.0 → 5.0, <code class="docutils literal notranslate"><span class="pre">snr_B</span></code> 3.0 → 2.0 — smaller CO₂ trends mean
+lower SNR even in well-sealed chambers.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">monotonic_A</span></code> 0.80 → 0.50, <code class="docutils literal notranslate"><span class="pre">monotonic_B</span></code> 0.45 → 0.30 — a 5 ppm
+respiration signal with 0.5 ppm noise gives ~50 % monotonicity even when
+the signal is real.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">signal_ppm_guard</span></code> 5.0 → 3.0 — the guard activates earlier for the
+smaller nighttime signals.</p></li>
+</ul>
+</section>
+<section id="id2">
+<h3>See Also<a class="headerlink" href="#id2" title="Link to this heading">#</a></h3>
+<p>DEFAULT_CO2_QC_THRESHOLDS : Daytime thresholds.
+palmwtc.flux.cycles.NIGHTTIME_QC_THRESHOLDS : Canonical source of these values.</p>
+</section>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="palmwtc.flux.chamber.DEFAULT_H2O_QC_THRESHOLDS">
+<span class="sig-prename descclassname"><span class="pre">palmwtc.flux.chamber.</span></span><span class="sig-name descname"><span class="pre">DEFAULT_H2O_QC_THRESHOLDS</span></span><a class="headerlink" href="#palmwtc.flux.chamber.DEFAULT_H2O_QC_THRESHOLDS" title="Link to this definition">#</a></dt>
+<dd><p>Daytime H₂O QC grading thresholds for <a class="reference internal" href="#palmwtc.flux.chamber.score_h2o_flux_qc" title="palmwtc.flux.chamber.score_h2o_flux_qc"><code class="xref py py-func docutils literal notranslate"><span class="pre">score_h2o_flux_qc()</span></code></a>.</p>
+<p>H₂O thresholds are systematically looser than the CO₂ counterparts in
+<a class="reference internal" href="#palmwtc.flux.chamber.DEFAULT_CO2_QC_THRESHOLDS" title="palmwtc.flux.chamber.DEFAULT_CO2_QC_THRESHOLDS"><code class="xref py py-data docutils literal notranslate"><span class="pre">DEFAULT_CO2_QC_THRESHOLDS</span></code></a>. Two reasons:</p>
+<ol class="arabic simple">
+<li><p>The LI-COR LI-850 H₂O channel has higher absolute noise (~0.1–0.2 mmol
+mol⁻¹ RMS) than the CO₂ channel, reducing R² and SNR for the same
+physical signal size.</p></li>
+<li><p>Transpiration signals in humid tropical conditions are often 0.5–3 mmol
+mol⁻¹ over a 5-minute cycle — smaller fractional change than CO₂ during
+active photosynthesis.</p></li>
+</ol>
+<section id="id3">
+<h3>Keys<a class="headerlink" href="#id3" title="Link to this heading">#</a></h3>
+<dl class="simple">
+<dt>r2_A, r2_B<span class="classifier">float</span></dt><dd><p>Minimum R² of the OLS linear fit (0.70 / 0.50).</p>
+</dd>
+<dt>nrmse_A, nrmse_B<span class="classifier">float</span></dt><dd><p>Maximum normalized RMSE (0.15 / 0.25).</p>
+</dd>
+<dt>snr_A, snr_B<span class="classifier">float</span></dt><dd><p>Minimum SNR, computed as (<a href="#id58"><span class="problematic" id="id59">|Theil-Sen slope|</span></a> × duration) / residual std
+(5.0 / 3.0).</p>
+</dd>
+<dt>monotonic_A, monotonic_B<span class="classifier">float</span></dt><dd><p>Minimum fraction of H₂O steps larger than 0.05 mmol mol⁻¹ that move in
+the fitted-slope direction (0.70 / 0.40). The 0.05 mmol mol⁻¹ noise floor
+prevents sensor jitter from deflating the fraction.</p>
+</dd>
+<dt>outlier_A, outlier_B<span class="classifier">float</span></dt><dd><p>Maximum fraction of outlier points allowed before downgrading (0.15 /
+0.25). Looser than CO₂ because H₂O droplets on the optical path can
+cause isolated spikes.</p>
+</dd>
+<dt>signal_mmol_guard<span class="classifier">float</span></dt><dd><p>H₂O concentration range (mmol mol⁻¹) below which <code class="docutils literal notranslate"><span class="pre">nrmse_B</span></code> and
+<code class="docutils literal notranslate"><span class="pre">monotonic_B</span></code> are relaxed proportionally (default 0.3). Prevents mass
+rejection of valid but low-transpiration cycles.</p>
+</dd>
+</dl>
+</section>
+<section id="id4">
+<h3>See Also<a class="headerlink" href="#id4" title="Link to this heading">#</a></h3>
+<p>NIGHTTIME_H2O_QC_THRESHOLDS : Relaxed version for nocturnal cycles.
+score_h2o_flux_qc : Function that consumes these thresholds.</p>
+</section>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="palmwtc.flux.chamber.NIGHTTIME_H2O_QC_THRESHOLDS">
+<span class="sig-prename descclassname"><span class="pre">palmwtc.flux.chamber.</span></span><span class="sig-name descname"><span class="pre">NIGHTTIME_H2O_QC_THRESHOLDS</span></span><a class="headerlink" href="#palmwtc.flux.chamber.NIGHTTIME_H2O_QC_THRESHOLDS" title="Link to this definition">#</a></dt>
+<dd><p>Relaxed H₂O QC thresholds for nighttime cycles (Global_Radiation &lt; 10 W m⁻²).</p>
+<section id="why-nighttime-h2o-needs-the-most-relaxed-thresholds">
+<h3>Why nighttime H₂O needs the most relaxed thresholds<a class="headerlink" href="#why-nighttime-h2o-needs-the-most-relaxed-thresholds" title="Link to this heading">#</a></h3>
+<p>Stomata close at night, so transpiration drops to near zero.  A typical
+nighttime H₂O slope is 0.0–0.1 mmol mol⁻¹ min⁻¹ — often indistinguishable
+from sensor drift.  Applying daytime thresholds to these cycles would grade
+nearly all of them C, making nighttime water-balance closure impossible.
+The physical expectation at night is a <strong>flat or very slowly rising</strong> H₂O
+trace, not a steep linear increase.</p>
+</section>
+<section id="relaxed-values-compared-to-default-h2o-qc-thresholds">
+<h3>Relaxed values (compared to <a class="reference internal" href="#palmwtc.flux.chamber.DEFAULT_H2O_QC_THRESHOLDS" title="palmwtc.flux.chamber.DEFAULT_H2O_QC_THRESHOLDS"><code class="xref py py-data docutils literal notranslate"><span class="pre">DEFAULT_H2O_QC_THRESHOLDS</span></code></a>)<a class="headerlink" href="#relaxed-values-compared-to-default-h2o-qc-thresholds" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">r2_A</span></code> 0.70 → 0.50, <code class="docutils literal notranslate"><span class="pre">r2_B</span></code> 0.50 → 0.25 — a flat trace has R² ≈ 0
+by definition; low R² at night is not a data-quality failure.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">nrmse_A</span></code> 0.15 → 0.25, <code class="docutils literal notranslate"><span class="pre">nrmse_B</span></code> 0.25 → 0.45 — when the H₂O range
+is 0.1–0.2 mmol mol⁻¹, sensor noise dominates NRMSE.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">snr_A</span></code> 5.0 → 3.0, <code class="docutils literal notranslate"><span class="pre">snr_B</span></code> 3.0 → 1.5 — near-zero signal means SNR
+is near noise floor even in a well-sealed chamber.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">monotonic_A</span></code> 0.50 → 0.50, <code class="docutils literal notranslate"><span class="pre">monotonic_B</span></code> 0.40 → 0.30 — random-walk
+noise on a flat trace produces ~50 % monotonicity by chance.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">signal_mmol_guard</span></code> 0.30 → 0.15 — the guard activates at even smaller
+H₂O changes to protect valid low-transpiration cycles.</p></li>
+</ul>
+</section>
+<section id="id5">
+<h3>See Also<a class="headerlink" href="#id5" title="Link to this heading">#</a></h3>
+<p>DEFAULT_H2O_QC_THRESHOLDS : Daytime thresholds.
+score_h2o_flux_qc : Function that applies these thresholds.</p>
+</section>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="palmwtc.flux.chamber.DEFAULT_WPL_QC_THRESHOLDS">
+<span class="sig-prename descclassname"><span class="pre">palmwtc.flux.chamber.</span></span><span class="sig-name descname"><span class="pre">DEFAULT_WPL_QC_THRESHOLDS</span></span><a class="headerlink" href="#palmwtc.flux.chamber.DEFAULT_WPL_QC_THRESHOLDS" title="Link to this definition">#</a></dt>
+<dd><p>Per-cycle WPL correction validity thresholds used by <a class="reference internal" href="#palmwtc.flux.chamber.apply_wpl_qc_overrides" title="palmwtc.flux.chamber.apply_wpl_qc_overrides"><code class="xref py py-func docutils literal notranslate"><span class="pre">apply_wpl_qc_overrides()</span></code></a>.</p>
+<p>These thresholds check whether the WPL correction was well-conditioned for a
+given cycle, not whether the underlying CO₂ flux regression was good. A cycle
+can have perfect R² but still have a poor WPL correction if many H₂O readings
+were out-of-range or the humidity was unusually high.</p>
+<section id="id6">
+<h3>Keys<a class="headerlink" href="#id6" title="Link to this heading">#</a></h3>
+<dl class="simple">
+<dt>valid_frac_A, valid_frac_B<span class="classifier">float</span></dt><dd><p>Minimum fraction of points in the cycle for which a valid WPL factor
+could be computed (i.e. H₂O was within <code class="docutils literal notranslate"><span class="pre">h2o_valid_range</span></code> and non-NaN).
+Grade A requires 98 % coverage; Grade B requires 95 %.</p>
+</dd>
+<dt>rel_change_p95_A, rel_change_p95_B<span class="classifier">float</span></dt><dd><p>95th percentile of the absolute relative WPL correction
+(<code class="docutils literal notranslate"><span class="pre">|wpl_delta_ppm</span> <span class="pre">/</span> <span class="pre">CO2_raw|</span></code>) within the cycle.  Values above 7 %
+indicate unusually large humidity-driven adjustments that can distort
+the flux.  Values above 4 % are flagged as moderate (Grade B).</p>
+</dd>
+<dt>factor_max_B<span class="classifier">float</span></dt><dd><p>Maximum WPL multiplication factor (<code class="docutils literal notranslate"><span class="pre">1</span> <span class="pre">+</span> <span class="pre">χ_w</span> <span class="pre">/</span> <span class="pre">(1000</span> <span class="pre">−</span> <span class="pre">χ_w)</span></code>) seen in
+the cycle.  A factor above 1.08 corresponds to approximately 86 mmol
+mol⁻¹ H₂O (86 % relative humidity at ~30 °C at sea level), which is
+outside the normal operating range and may indicate a wet-sensor event.</p>
+</dd>
+</dl>
+</section>
+<section id="id7">
+<h3>See Also<a class="headerlink" href="#id7" title="Link to this heading">#</a></h3>
+<p>apply_wpl_qc_overrides : Function that applies these thresholds.
+DEFAULT_CONFIG : Contains <code class="docutils literal notranslate"><span class="pre">h2o_valid_range</span></code> and <code class="docutils literal notranslate"><span class="pre">max_abs_wpl_rel_change</span></code></p>
+<blockquote>
+<div><p>which are checked at the point level (before cycle aggregation) by
+<a class="reference internal" href="#palmwtc.flux.chamber.prepare_chamber_data" title="palmwtc.flux.chamber.prepare_chamber_data"><code class="xref py py-func docutils literal notranslate"><span class="pre">prepare_chamber_data()</span></code></a>.</p>
+</div></blockquote>
+</section>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="palmwtc.flux.chamber.apply_wpl_correction">
+<span class="sig-prename descclassname"><span class="pre">palmwtc.flux.chamber.</span></span><span class="sig-name descname"><span class="pre">apply_wpl_correction</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">co2_wet</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">h2o_mmol_mol</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#palmwtc.flux.chamber.apply_wpl_correction" title="Link to this definition">#</a></dt>
+<dd><p>Convert wet CO₂ (ppm) to dry CO₂ using the WPL dilution correction.</p>
+<p>The Webb-Pearman-Leuning (WPL) correction removes the apparent dilution
+of CO₂ caused by the simultaneous presence of water vapour in the air
+sample. The formula is:</p>
+<div class="math notranslate nohighlight">
+\[CO_{2,dry} = CO_{2,wet} \times \left(1 + \frac{\chi_w}{1000 - \chi_w}\right)\]</div>
+<p>where <span class="math notranslate nohighlight">\(\chi_w\)</span> is the H₂O mole fraction in mmol mol⁻¹.</p>
+<p>This is a simplified single-pass WPL for closed-chamber systems where
+temperature and pressure are treated as constant within a cycle.</p>
+<section id="parameters">
+<h3>Parameters<a class="headerlink" href="#parameters" title="Link to this heading">#</a></h3>
+<dl class="simple">
+<dt>co2_wet<span class="classifier">array-like</span></dt><dd><p>Wet CO₂ mole fraction in ppm (µmol mol⁻¹).</p>
+</dd>
+<dt>h2o_mmol_mol<span class="classifier">array-like</span></dt><dd><p>Water vapour mole fraction in mmol mol⁻¹.  Values that would make
+the denominator <code class="docutils literal notranslate"><span class="pre">(1000</span> <span class="pre">-</span> <span class="pre">χ_w)</span></code> non-positive are treated as invalid.</p>
+</dd>
+</dl>
+</section>
+<section id="returns">
+<h3>Returns<a class="headerlink" href="#returns" title="Link to this heading">#</a></h3>
+<dl class="simple">
+<dt>co2_dry<span class="classifier">pd.Series</span></dt><dd><p>Dry CO₂ in ppm.  NaN where either input is NaN or H₂O ≥ 1000 mmol
+mol⁻¹ (physically impossible, but guarded against).</p>
+</dd>
+<dt>factor<span class="classifier">pd.Series</span></dt><dd><p>WPL multiplication factor <code class="docutils literal notranslate"><span class="pre">1</span> <span class="pre">+</span> <span class="pre">χ_w</span> <span class="pre">/</span> <span class="pre">(1000</span> <span class="pre">-</span> <span class="pre">χ_w)</span></code>.  NaN where
+inputs are invalid.</p>
+</dd>
+<dt>valid<span class="classifier">pd.Series of bool</span></dt><dd><p><code class="docutils literal notranslate"><span class="pre">True</span></code> for rows where both inputs were valid and a WPL factor could
+be computed.</p>
+</dd>
+</dl>
+</section>
+<section id="notes">
+<h3>Notes<a class="headerlink" href="#notes" title="Link to this heading">#</a></h3>
+<p>The WPL factor for typical tropical conditions (25 mmol mol⁻¹ H₂O,
+~50 % RH at 30 °C) is approximately 1.026, adding ~2.6 % to the raw CO₂
+reading.  At 40 mmol mol⁻¹ (high humidity), the factor is ~1.042.</p>
+</section>
+<section id="id8">
+<h3>See Also<a class="headerlink" href="#id8" title="Link to this heading">#</a></h3>
+<p>prepare_chamber_data : Calls this function and attaches outputs as columns.</p>
+</section>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="palmwtc.flux.chamber._choose_h2o_column">
+<span class="sig-prename descclassname"><span class="pre">palmwtc.flux.chamber.</span></span><span class="sig-name descname"><span class="pre">_choose_h2o_column</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">chamber_suffix</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">prefer_corrected</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#palmwtc.flux.chamber._choose_h2o_column" title="Link to this definition">#</a></dt>
+<dd><p>Pick the best available H2O column for <em>chamber_suffix</em>.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="palmwtc.flux.chamber.prepare_chamber_data">
+<span class="sig-prename descclassname"><span class="pre">palmwtc.flux.chamber.</span></span><span class="sig-name descname"><span class="pre">prepare_chamber_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">chamber_suffix</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">accepted_co2_qc_flags</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(0,)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">accepted_h2o_qc_flags</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(0,</span> <span class="pre">1)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">prefer_corrected_h2o</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">require_h2o_for_wpl</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">apply_wpl</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">h2o_valid_range</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(0.0,</span> <span class="pre">60.0)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_abs_wpl_rel_change</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.12</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#palmwtc.flux.chamber.prepare_chamber_data" title="Link to this definition">#</a></dt>
+<dd><p>Select, filter, and WPL-correct sensor streams for one chamber.</p>
+<p>This is the first step in the flux pipeline.  It takes the full
+multi-chamber dataset (as loaded by <a class="reference internal" href="../../io/index.html#module-palmwtc.io" title="palmwtc.io"><code class="xref py py-mod docutils literal notranslate"><span class="pre">palmwtc.io</span></code></a>), extracts the
+columns for a single chamber, applies QC flag row-filtering, and runs the
+WPL dilution correction.  The returned DataFrame is the direct input for
+<a class="reference internal" href="#palmwtc.flux.chamber.calculate_flux_cycles" title="palmwtc.flux.chamber.calculate_flux_cycles"><code class="xref py py-func docutils literal notranslate"><span class="pre">calculate_flux_cycles()</span></code></a> and <a class="reference internal" href="#palmwtc.flux.chamber.calculate_h2o_flux_cycles" title="palmwtc.flux.chamber.calculate_h2o_flux_cycles"><code class="xref py py-func docutils literal notranslate"><span class="pre">calculate_h2o_flux_cycles()</span></code></a>.</p>
+<section id="id9">
+<h3>Parameters<a class="headerlink" href="#id9" title="Link to this heading">#</a></h3>
+<dl>
+<dt>data<span class="classifier">pd.DataFrame</span></dt><dd><p>Full QC-flagged dataset.  Expected columns (where <code class="docutils literal notranslate"><span class="pre">{s}</span></code> = suffix):</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">TIMESTAMP</span></code> — datetime column.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">CO2_{s}</span></code> — raw (wet) CO₂ in ppm.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">H2O_{s}</span></code> or <code class="docutils literal notranslate"><span class="pre">H2O_{s}_corrected</span></code> — water vapour in mmol mol⁻¹.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Temp_1_{s}</span></code> — air temperature inside the chamber in °C.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">CO2_{s}_qc_flag</span></code> — integer QC flag for CO₂ (0 = good).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">H2O_{s}_qc_flag</span></code> — integer QC flag for H₂O (0 = good, 1 = minor).</p></li>
+</ul>
+<p>Missing columns are silently skipped; only <code class="docutils literal notranslate"><span class="pre">TIMESTAMP</span></code> and <code class="docutils literal notranslate"><span class="pre">CO2</span></code>
+are required in the output.</p>
+</dd>
+<dt>chamber_suffix<span class="classifier">str</span></dt><dd><p>Chamber identifier appended to column names.  Typically <code class="docutils literal notranslate"><span class="pre">'C1'</span></code> or
+<code class="docutils literal notranslate"><span class="pre">'C2'</span></code> for the two whole-tree chambers.</p>
+</dd>
+<dt>accepted_co2_qc_flags<span class="classifier">list of int or None</span></dt><dd><p>Keep only rows whose <code class="docutils literal notranslate"><span class="pre">CO2_{suffix}_qc_flag</span></code> is in this list.
+Pass <code class="docutils literal notranslate"><span class="pre">None</span></code> to skip CO₂ flag filtering entirely.
+Default from <a class="reference internal" href="#palmwtc.flux.chamber.DEFAULT_CONFIG" title="palmwtc.flux.chamber.DEFAULT_CONFIG"><code class="xref py py-data docutils literal notranslate"><span class="pre">DEFAULT_CONFIG</span></code></a>: <code class="docutils literal notranslate"><span class="pre">[0]</span></code>.</p>
+</dd>
+<dt>accepted_h2o_qc_flags<span class="classifier">list of int or None</span></dt><dd><p>Same for H₂O.  Default from <a class="reference internal" href="#palmwtc.flux.chamber.DEFAULT_CONFIG" title="palmwtc.flux.chamber.DEFAULT_CONFIG"><code class="xref py py-data docutils literal notranslate"><span class="pre">DEFAULT_CONFIG</span></code></a>: <code class="docutils literal notranslate"><span class="pre">[0,</span> <span class="pre">1]</span></code>
+(flag 1 is a minor sensor warning that still yields usable H₂O).</p>
+</dd>
+<dt>prefer_corrected_h2o<span class="classifier">bool</span></dt><dd><p>When <code class="docutils literal notranslate"><span class="pre">True</span></code> (default), use <code class="docutils literal notranslate"><span class="pre">H2O_{suffix}_corrected</span></code> if present;
+fall back to <code class="docutils literal notranslate"><span class="pre">H2O_{suffix}</span></code> otherwise.</p>
+</dd>
+<dt>require_h2o_for_wpl<span class="classifier">bool</span></dt><dd><p>When <code class="docutils literal notranslate"><span class="pre">True</span></code> (default), raise <code class="xref py py-exc docutils literal notranslate"><span class="pre">ValueError</span></code> if no H₂O column
+is found and <code class="docutils literal notranslate"><span class="pre">apply_wpl=True</span></code>.  Set to <code class="docutils literal notranslate"><span class="pre">False</span></code> to fall back to
+the uncorrected wet CO₂ value.</p>
+</dd>
+<dt>apply_wpl<span class="classifier">bool</span></dt><dd><p>When <code class="docutils literal notranslate"><span class="pre">True</span></code> (default), run <a class="reference internal" href="#palmwtc.flux.chamber.apply_wpl_correction" title="palmwtc.flux.chamber.apply_wpl_correction"><code class="xref py py-func docutils literal notranslate"><span class="pre">apply_wpl_correction()</span></code></a> and expose
+diagnostic columns.  When <code class="docutils literal notranslate"><span class="pre">False</span></code>, <code class="docutils literal notranslate"><span class="pre">CO2</span></code> is set equal to
+<code class="docutils literal notranslate"><span class="pre">CO2_raw</span></code> and all WPL columns are NaN/0.</p>
+</dd>
+<dt>h2o_valid_range<span class="classifier">tuple of float</span></dt><dd><p><code class="docutils literal notranslate"><span class="pre">(lo,</span> <span class="pre">hi)</span></code> physical validity range for H₂O in mmol mol⁻¹.
+Values outside this range are set to NaN before WPL correction.
+Default: <code class="docutils literal notranslate"><span class="pre">(0.0,</span> <span class="pre">60.0)</span></code>.</p>
+</dd>
+<dt>max_abs_wpl_rel_change<span class="classifier">float</span></dt><dd><p>Rows where <code class="docutils literal notranslate"><span class="pre">|wpl_delta_ppm</span> <span class="pre">/</span> <span class="pre">CO2_raw|</span></code> exceeds this value get
+their <code class="docutils literal notranslate"><span class="pre">Flag</span></code> upgraded to 2 (bad).  Default: <code class="docutils literal notranslate"><span class="pre">0.12</span></code> (12 %).</p>
+</dd>
+<dt><a href="#id10"><span class="problematic" id="id11">**</span></a>kwargs</dt><dd><p>Extra keyword arguments are accepted but ignored.  This allows
+passing <code class="docutils literal notranslate"><span class="pre">**DEFAULT_CONFIG</span></code> directly without unpacking individual
+keys.</p>
+</dd>
+</dl>
+</section>
+<section id="id12">
+<h3>Returns<a class="headerlink" href="#id12" title="Link to this heading">#</a></h3>
+<dl class="simple">
+<dt>pd.DataFrame</dt><dd><p>One row per retained timestamp, sorted by <code class="docutils literal notranslate"><span class="pre">TIMESTAMP</span></code>, with a
+reset integer index.  Columns:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">TIMESTAMP</span></code> — datetime.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">CO2</span></code> — working CO₂ in ppm: WPL-corrected when possible, raw
+when WPL is disabled or H₂O is unavailable.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">CO2_raw</span></code> — original wet CO₂ measurement in ppm.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">CO2_corrected</span></code> — WPL-corrected CO₂ in ppm (NaN if WPL
+disabled or H₂O missing for a given row).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">H2O</span></code> — water vapour in mmol mol⁻¹ (NaN outside valid range).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Temp</span></code> — air temperature in °C (NaN if column absent in input).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">CO2_Flag</span></code> — original CO₂ hardware QC flag (int).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">H2O_Flag</span></code> — original H₂O hardware QC flag (int).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Flag</span></code> — combined flag: max(CO2_Flag, H2O_Flag), upgraded to 2
+for rows with excessive WPL correction.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">wpl_factor</span></code> — WPL multiplication factor per row (NaN if WPL
+disabled or H₂O missing).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">wpl_valid_input</span></code> — 1 where a valid WPL factor was computed, 0
+otherwise.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">wpl_delta_ppm</span></code> — <code class="docutils literal notranslate"><span class="pre">CO2_corrected</span> <span class="pre">-</span> <span class="pre">CO2_raw</span></code> in ppm.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">wpl_rel_change</span></code> — <code class="docutils literal notranslate"><span class="pre">wpl_delta_ppm</span> <span class="pre">/</span> <span class="pre">CO2_raw</span></code> (dimensionless).</p></li>
+</ul>
+</dd>
+</dl>
+</section>
+<section id="raises">
+<h3>Raises<a class="headerlink" href="#raises" title="Link to this heading">#</a></h3>
+<dl class="simple">
+<dt>ValueError</dt><dd><p>If <code class="docutils literal notranslate"><span class="pre">apply_wpl=True</span></code> and <code class="docutils literal notranslate"><span class="pre">require_h2o_for_wpl=True</span></code> but no H₂O
+column is found for the requested <code class="docutils literal notranslate"><span class="pre">chamber_suffix</span></code>.</p>
+</dd>
+</dl>
+</section>
+<section id="id13">
+<h3>See Also<a class="headerlink" href="#id13" title="Link to this heading">#</a></h3>
+<p>calculate_flux_cycles : Consumes the output of this function for CO₂ flux.
+calculate_h2o_flux_cycles : Consumes the output for H₂O flux.
+summarize_wpl_correction : Computes dataset-level WPL statistics.</p>
+</section>
+<section id="examples">
+<h3>Examples<a class="headerlink" href="#examples" title="Link to this heading">#</a></h3>
+<p># doctest: +SKIP
+# Requires a real multi-chamber DataFrame from palmwtc.io.load_chamber_data.
+chamber_df = prepare_chamber_data(raw_df, “C1”)
+print(chamber_df.columns.tolist())</p>
+</section>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="palmwtc.flux.chamber.summarize_wpl_correction">
+<span class="sig-prename descclassname"><span class="pre">palmwtc.flux.chamber.</span></span><span class="sig-name descname"><span class="pre">summarize_wpl_correction</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">chamber_df</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#palmwtc.flux.chamber.summarize_wpl_correction" title="Link to this definition">#</a></dt>
+<dd><p>Return a dataset-level summary of WPL correction statistics.</p>
+<p>Useful for a quick sanity check: if the median WPL factor or p95
+relative change looks unusual, it may indicate sensor drift, water
+condensation on the optical path, or a humidity calibration issue.</p>
+<section id="id14">
+<h3>Parameters<a class="headerlink" href="#id14" title="Link to this heading">#</a></h3>
+<dl class="simple">
+<dt>chamber_df<span class="classifier">pd.DataFrame</span></dt><dd><p>Output of <a class="reference internal" href="#palmwtc.flux.chamber.prepare_chamber_data" title="palmwtc.flux.chamber.prepare_chamber_data"><code class="xref py py-func docutils literal notranslate"><span class="pre">prepare_chamber_data()</span></code></a>.  Must contain columns
+<code class="docutils literal notranslate"><span class="pre">wpl_delta_ppm</span></code>, <code class="docutils literal notranslate"><span class="pre">wpl_rel_change</span></code>, <code class="docutils literal notranslate"><span class="pre">wpl_factor</span></code>, and
+optionally <code class="docutils literal notranslate"><span class="pre">CO2_corrected</span></code>.</p>
+</dd>
+</dl>
+</section>
+<section id="id15">
+<h3>Returns<a class="headerlink" href="#id15" title="Link to this heading">#</a></h3>
+<dl class="simple">
+<dt>dict</dt><dd><p>Empty dict if <em>chamber_df</em> is empty or missing WPL columns.
+Otherwise, keys are:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">n_points</span></code> — total row count.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">valid_points</span></code> — rows where <code class="docutils literal notranslate"><span class="pre">CO2_corrected</span></code> is not NaN.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">median_factor</span></code> — median WPL multiplication factor.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">median_delta_ppm</span></code> — median WPL additive correction (ppm).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">p95_abs_rel_change</span></code> — 95th percentile of <code class="docutils literal notranslate"><span class="pre">|wpl_rel_change|</span></code>.</p></li>
+</ul>
+</dd>
+</dl>
+</section>
+<section id="id16">
+<h3>See Also<a class="headerlink" href="#id16" title="Link to this heading">#</a></h3>
+<p>build_cycle_wpl_metrics : Per-cycle version of the same diagnostics.
+apply_wpl_qc_overrides : Uses per-cycle metrics to upgrade QC tiers.</p>
+</section>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="palmwtc.flux.chamber.build_cycle_wpl_metrics">
+<span class="sig-prename descclassname"><span class="pre">palmwtc.flux.chamber.</span></span><span class="sig-name descname"><span class="pre">build_cycle_wpl_metrics</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">chamber_df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">chamber_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cycle_gap_sec</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">300</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#palmwtc.flux.chamber.build_cycle_wpl_metrics" title="Link to this definition">#</a></dt>
+<dd><p>Aggregate WPL correction metrics per measurement cycle.</p>
+<p>Produces one row per cycle with mean/max WPL factor, mean/max WPL
+delta, valid-data fraction, p95 relative change, and H₂O statistics.
+These per-cycle values are the input for <a class="reference internal" href="#palmwtc.flux.chamber.apply_wpl_qc_overrides" title="palmwtc.flux.chamber.apply_wpl_qc_overrides"><code class="xref py py-func docutils literal notranslate"><span class="pre">apply_wpl_qc_overrides()</span></code></a>.</p>
+<section id="id17">
+<h3>Parameters<a class="headerlink" href="#id17" title="Link to this heading">#</a></h3>
+<dl class="simple">
+<dt>chamber_df<span class="classifier">pd.DataFrame</span></dt><dd><p>Output of <a class="reference internal" href="#palmwtc.flux.chamber.prepare_chamber_data" title="palmwtc.flux.chamber.prepare_chamber_data"><code class="xref py py-func docutils literal notranslate"><span class="pre">prepare_chamber_data()</span></code></a>.</p>
+</dd>
+<dt>chamber_name<span class="classifier">str</span></dt><dd><p>Chamber label (e.g. <code class="docutils literal notranslate"><span class="pre">'Chamber</span> <span class="pre">1'</span></code>), stored in the output column
+<code class="docutils literal notranslate"><span class="pre">Source_Chamber</span></code>.</p>
+</dd>
+<dt>cycle_gap_sec<span class="classifier">int</span></dt><dd><p>Gap in seconds that marks the boundary between cycles, passed to
+<a class="reference internal" href="../cycles/index.html#palmwtc.flux.cycles.identify_cycles" title="palmwtc.flux.cycles.identify_cycles"><code class="xref py py-func docutils literal notranslate"><span class="pre">palmwtc.flux.cycles.identify_cycles()</span></code></a>.</p>
+</dd>
+</dl>
+</section>
+<section id="id18">
+<h3>Returns<a class="headerlink" href="#id18" title="Link to this heading">#</a></h3>
+<dl>
+<dt>pd.DataFrame</dt><dd><p>One row per cycle.  Columns:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">cycle_id</span></code> — integer cycle identifier.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Source_Chamber</span></code> — <em>chamber_name</em>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">wpl_factor_mean</span></code> — mean WPL factor within the cycle.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">wpl_factor_max</span></code> — maximum WPL factor within the cycle.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">wpl_delta_ppm_mean</span></code> — mean WPL additive correction (ppm).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">wpl_delta_ppm_max</span></code> — maximum WPL additive correction (ppm).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">wpl_valid_fraction</span></code> — fraction of rows with a non-NaN
+<code class="docutils literal notranslate"><span class="pre">CO2_corrected</span></code> value.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">wpl_abs_rel_change_p95</span></code> — 95th percentile of absolute relative
+WPL correction within the cycle.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">h2o_mean</span></code> — mean H₂O (mmol mol⁻¹) within the cycle.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">h2o_max</span></code> — maximum H₂O (mmol mol⁻¹) within the cycle.</p></li>
+</ul>
+<p>Returns an empty DataFrame if <em>chamber_df</em> is empty.</p>
+</dd>
+</dl>
+</section>
+<section id="id19">
+<h3>See Also<a class="headerlink" href="#id19" title="Link to this heading">#</a></h3>
+<p>apply_wpl_qc_overrides : Consumes the per-cycle metrics produced here.
+summarize_wpl_correction : Dataset-level WPL summary.</p>
+</section>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="palmwtc.flux.chamber.calculate_flux_cycles">
+<span class="sig-prename descclassname"><span class="pre">palmwtc.flux.chamber.</span></span><span class="sig-name descname"><span class="pre">calculate_flux_cycles</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">chamber_df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">chamber_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cycle_gap_sec</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">300</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start_cutoff_sec</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">50</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start_search_sec</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">60</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">min_points</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">20</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">min_duration_sec</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">180</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">outlier_z</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_outlier_refit_frac</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">use_multiprocessing</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_jobs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#palmwtc.flux.chamber.calculate_flux_cycles" title="Link to this definition">#</a></dt>
+<dd><p>Identify measurement cycles and compute CO₂ flux for each cycle.</p>
+<p>This is the main CO₂ flux batch function.  It calls
+<a class="reference internal" href="../cycles/index.html#palmwtc.flux.cycles.identify_cycles" title="palmwtc.flux.cycles.identify_cycles"><code class="xref py py-func docutils literal notranslate"><span class="pre">palmwtc.flux.cycles.identify_cycles()</span></code></a> to segment the time series
+into closed-chamber measurement cycles, then dispatches each cycle to
+<a class="reference internal" href="../cycles/index.html#palmwtc.flux.cycles.evaluate_cycle" title="palmwtc.flux.cycles.evaluate_cycle"><code class="xref py py-func docutils literal notranslate"><span class="pre">palmwtc.flux.cycles.evaluate_cycle()</span></code></a> (optionally in parallel via
+<code class="xref py py-class docutils literal notranslate"><span class="pre">multiprocessing.Pool</span></code>).</p>
+<section id="id20">
+<h3>Parameters<a class="headerlink" href="#id20" title="Link to this heading">#</a></h3>
+<dl class="simple">
+<dt>chamber_df<span class="classifier">pd.DataFrame</span></dt><dd><p>Output of <a class="reference internal" href="#palmwtc.flux.chamber.prepare_chamber_data" title="palmwtc.flux.chamber.prepare_chamber_data"><code class="xref py py-func docutils literal notranslate"><span class="pre">prepare_chamber_data()</span></code></a>.  Must contain <code class="docutils literal notranslate"><span class="pre">TIMESTAMP</span></code>,
+<code class="docutils literal notranslate"><span class="pre">CO2</span></code>, and optionally <code class="docutils literal notranslate"><span class="pre">Temp</span></code> and <code class="docutils literal notranslate"><span class="pre">Flag</span></code>.</p>
+</dd>
+<dt>chamber_name<span class="classifier">str</span></dt><dd><p>Human-readable chamber label, stored in the output column
+<code class="docutils literal notranslate"><span class="pre">Source_Chamber</span></code> (e.g. <code class="docutils literal notranslate"><span class="pre">'Chamber</span> <span class="pre">1'</span></code>).</p>
+</dd>
+<dt>cycle_gap_sec<span class="classifier">int</span></dt><dd><p>Time gap in seconds that triggers a new cycle boundary.  Default
+<code class="docutils literal notranslate"><span class="pre">300</span></code> (5 minutes).</p>
+</dd>
+<dt>start_cutoff_sec<span class="classifier">int</span></dt><dd><p>Seconds to skip from cycle start before beginning the regression
+window search.  Removes the initial chamber-mixing transient.
+Default <code class="docutils literal notranslate"><span class="pre">50</span></code>.</p>
+</dd>
+<dt>start_search_sec<span class="classifier">int</span></dt><dd><p>How far into the cycle (seconds) the window-start search extends.
+Default <code class="docutils literal notranslate"><span class="pre">60</span></code>.</p>
+</dd>
+<dt>min_points<span class="classifier">int</span></dt><dd><p>Minimum number of valid points required for a cycle to be processed.
+Default <code class="docutils literal notranslate"><span class="pre">20</span></code>.</p>
+</dd>
+<dt>min_duration_sec<span class="classifier">int</span></dt><dd><p>Minimum regression window length in seconds.  Default <code class="docutils literal notranslate"><span class="pre">180</span></code>.</p>
+</dd>
+<dt>outlier_z<span class="classifier">float</span></dt><dd><p>Z-score threshold for iterative outlier removal.  Default <code class="docutils literal notranslate"><span class="pre">2</span></code>.</p>
+</dd>
+<dt>max_outlier_refit_frac<span class="classifier">float</span></dt><dd><p>Maximum fraction of points that may be removed as outliers; if
+exceeded the original fit is used.  Default <code class="docutils literal notranslate"><span class="pre">0.2</span></code>.</p>
+</dd>
+<dt>use_multiprocessing<span class="classifier">bool</span></dt><dd><p>When <code class="docutils literal notranslate"><span class="pre">True</span></code> and there are more than 50 cycles, process in parallel
+using <code class="xref py py-class docutils literal notranslate"><span class="pre">multiprocessing.Pool</span></code>.  Falls back to serial on any
+multiprocessing error.  Default <code class="docutils literal notranslate"><span class="pre">True</span></code>.</p>
+</dd>
+<dt>n_jobs<span class="classifier">int or None</span></dt><dd><p>Number of parallel workers.  Defaults to <code class="docutils literal notranslate"><span class="pre">min(8,</span> <span class="pre">cpu_count)</span></code>.</p>
+</dd>
+<dt><a href="#id21"><span class="problematic" id="id22">**</span></a>kwargs</dt><dd><p>Absorbed silently so callers can pass <code class="docutils literal notranslate"><span class="pre">**DEFAULT_CONFIG</span></code> directly.</p>
+</dd>
+</dl>
+</section>
+<section id="id23">
+<h3>Returns<a class="headerlink" href="#id23" title="Link to this heading">#</a></h3>
+<dl>
+<dt>pd.DataFrame</dt><dd><p>One row per successfully processed cycle.  Columns (from
+<a class="reference internal" href="../cycles/index.html#palmwtc.flux.cycles.evaluate_cycle" title="palmwtc.flux.cycles.evaluate_cycle"><code class="xref py py-func docutils literal notranslate"><span class="pre">palmwtc.flux.cycles.evaluate_cycle()</span></code></a>):</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">Source_Chamber</span></code> — <em>chamber_name</em>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">cycle_id</span></code> — integer cycle identifier.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">flux_date</span></code> — start timestamp of the cycle.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">cycle_end</span></code> — end timestamp of the cycle.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">cycle_duration_sec</span></code> — total cycle duration in seconds.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">window_start_sec</span></code>, <code class="docutils literal notranslate"><span class="pre">window_end_sec</span></code> — regression window
+boundaries relative to cycle start.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">duration_sec</span></code> — regression window duration in seconds.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">n_points_total</span></code> — total points in the full cycle.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">n_points_used</span></code> — points used in the final regression.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">flux_slope</span></code> — OLS slope of CO₂ vs. time (ppm s⁻¹).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">flux_intercept</span></code> — OLS intercept (ppm).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">r2</span></code> — R² of the OLS linear fit.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">p_value</span></code>, <code class="docutils literal notranslate"><span class="pre">std_err</span></code> — regression statistics.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">rmse</span></code> — root-mean-square error of the fit (ppm).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">nrmse</span></code> — RMSE normalized by the CO₂ range in the window.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">snr</span></code> — signal-to-noise ratio: <code class="docutils literal notranslate"><span class="pre">|slope|</span> <span class="pre">×</span> <span class="pre">duration</span> <span class="pre">/</span> <span class="pre">rmse</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">snr_noise</span></code> — SNR using early-cycle noise estimate (NaN if
+not computed).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">noise_sigma</span></code> — early-cycle noise standard deviation (ppm).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">monotonicity</span></code> — fraction of consecutive CO₂ steps moving in
+the slope direction (noise-filtered).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">outlier_frac</span></code> — fraction of points removed as outliers.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">aicc_linear</span></code>, <code class="docutils literal notranslate"><span class="pre">aicc_quadratic</span></code>, <code class="docutils literal notranslate"><span class="pre">delta_aicc</span></code> — AICc of
+the linear and quadratic fits; large negative <code class="docutils literal notranslate"><span class="pre">delta_aicc</span></code>
+flags curvature.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">slope_ts</span></code>, <code class="docutils literal notranslate"><span class="pre">slope_ts_low</span></code>, <code class="docutils literal notranslate"><span class="pre">slope_ts_high</span></code> — Theil-Sen
+slope and 95 % confidence interval (ppm s⁻¹).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">slope_diff_pct</span></code> — relative difference between OLS and
+Theil-Sen slopes.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">mean_temp</span></code> — mean air temperature in the cycle (°C).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">qc_flag</span></code> — max hardware QC flag in the cycle.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">co2_range</span></code> — CO₂ concentration range in the window (ppm).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">bimodal_flag</span></code> — <code class="docutils literal notranslate"><span class="pre">True</span></code> if a bimodal CO₂ distribution was
+detected (possible closure gap).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">bimodal_gap_ppm</span></code>, <code class="docutils literal notranslate"><span class="pre">bimodal_lower_mean</span></code>,
+<code class="docutils literal notranslate"><span class="pre">bimodal_upper_mean</span></code> — bimodal split statistics.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">flux_absolute</span></code> — absolute flux in µmol m⁻² s⁻¹ computed by
+<a class="reference internal" href="../absolute/index.html#palmwtc.flux.absolute.calculate_absolute_flux" title="palmwtc.flux.absolute.calculate_absolute_flux"><code class="xref py py-func docutils literal notranslate"><span class="pre">palmwtc.flux.absolute.calculate_absolute_flux()</span></code></a>.</p></li>
+</ul>
+<p>Returns an empty DataFrame if <em>chamber_df</em> is empty or contains no
+valid cycles.</p>
+</dd>
+</dl>
+</section>
+<section id="id24">
+<h3>See Also<a class="headerlink" href="#id24" title="Link to this heading">#</a></h3>
+<p>prepare_chamber_data : Produces the required <em>chamber_df</em> input.
+calculate_h2o_flux_cycles : H₂O analogue.
+palmwtc.flux.cycles.evaluate_cycle : Called for each individual cycle.
+palmwtc.flux.cycles.score_cycle : QC scoring applied after this step.</p>
+</section>
+<section id="id25">
+<h3>Examples<a class="headerlink" href="#id25" title="Link to this heading">#</a></h3>
+<p># doctest: +SKIP
+# Requires prepared chamber data from prepare_chamber_data().
+flux_df = calculate_flux_cycles(chamber_df, “Chamber 1”)
+print(flux_df[[“flux_date”, “flux_slope”, “r2”, “flux_absolute”]].head())</p>
+</section>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="palmwtc.flux.chamber.calculate_h2o_flux_for_cycle">
+<span class="sig-prename descclassname"><span class="pre">palmwtc.flux.chamber.</span></span><span class="sig-name descname"><span class="pre">calculate_h2o_flux_for_cycle</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cycle_data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gas_col</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'H2O'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">min_points</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">20</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">min_duration_sec</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">180</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#palmwtc.flux.chamber.calculate_h2o_flux_for_cycle" title="Link to this definition">#</a></dt>
+<dd><p>Compute H₂O slope and fit statistics for a single measurement cycle.</p>
+<p>Uses Theil-Sen regression to estimate the slope (robust to outliers) and
+OLS for R², RMSE, and residual statistics.  SNR is computed as
+<code class="docutils literal notranslate"><span class="pre">|slope_ts</span> <span class="pre">×</span> <span class="pre">duration|</span> <span class="pre">/</span> <span class="pre">residual_std</span></code>, matching the CO₂ definition.
+Monotonicity is computed only on H₂O steps larger than 0.05 mmol mol⁻¹
+(approximately 5× LI-COR H₂O RMS noise) to avoid deflation by sensor
+jitter.</p>
+<section id="id26">
+<h3>Parameters<a class="headerlink" href="#id26" title="Link to this heading">#</a></h3>
+<dl class="simple">
+<dt>cycle_data<span class="classifier">pd.DataFrame</span></dt><dd><p>Single-cycle data slice.  Must contain <code class="docutils literal notranslate"><span class="pre">TIMESTAMP</span></code> and <em>gas_col</em>.</p>
+</dd>
+<dt>gas_col<span class="classifier">str</span></dt><dd><p>Name of the H₂O column (default <code class="docutils literal notranslate"><span class="pre">'H2O'</span></code>).</p>
+</dd>
+<dt>min_points<span class="classifier">int</span></dt><dd><p>Minimum number of non-NaN H₂O values required (default <code class="docutils literal notranslate"><span class="pre">20</span></code>).</p>
+</dd>
+<dt>min_duration_sec<span class="classifier">float</span></dt><dd><p>Minimum span of the cycle in seconds (default <code class="docutils literal notranslate"><span class="pre">180</span></code>).</p>
+</dd>
+</dl>
+</section>
+<section id="id27">
+<h3>Returns<a class="headerlink" href="#id27" title="Link to this heading">#</a></h3>
+<dl class="simple">
+<dt>dict or None</dt><dd><p><code class="docutils literal notranslate"><span class="pre">None</span></code> if the cycle has fewer than <em>min_points</em> valid rows or
+shorter than <em>min_duration_sec</em>.  Otherwise a dict with keys:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">h2o_slope</span></code> — Theil-Sen slope (mmol mol⁻¹ s⁻¹).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">h2o_intercept</span></code> — Theil-Sen intercept (mmol mol⁻¹).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">h2o_r2</span></code> — OLS R² (dimensionless, 0–1).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">h2o_nrmse</span></code> — NRMSE: OLS RMSE divided by H₂O range; NaN if
+range is zero.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">h2o_snr</span></code> — signal-to-noise ratio.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">h2o_outlier_frac</span></code> — fraction of points more than 2.5× MAD
+from the OLS fit.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">h2o_monotonic_frac</span></code> — fraction of noise-filtered consecutive
+steps in the slope direction; NaN if all steps are below the
+noise floor.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">h2o_n_points</span></code> — number of non-NaN points used.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">h2o_duration</span></code> — cycle duration in seconds.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">h2o_conc_mean</span></code> — mean H₂O concentration (mmol mol⁻¹).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">h2o_conc_range</span></code> — H₂O concentration range in the cycle
+(mmol mol⁻¹).</p></li>
+</ul>
+</dd>
+</dl>
+</section>
+<section id="id28">
+<h3>See Also<a class="headerlink" href="#id28" title="Link to this heading">#</a></h3>
+<p>calculate_h2o_flux_cycles : Calls this function for every cycle.
+score_h2o_flux_qc : Uses the returned dict to assign a QC grade.</p>
+</section>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="palmwtc.flux.chamber.score_h2o_flux_qc">
+<span class="sig-prename descclassname"><span class="pre">palmwtc.flux.chamber.</span></span><span class="sig-name descname"><span class="pre">score_h2o_flux_qc</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">h2o_metrics</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">h2o_qc_thresholds</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_nighttime</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#palmwtc.flux.chamber.score_h2o_flux_qc" title="Link to this definition">#</a></dt>
+<dd><p>Assign a QC grade to a single H₂O flux cycle.</p>
+<p>Applies a two-tier threshold system: a cycle that passes all <code class="docutils literal notranslate"><span class="pre">_A</span></code>
+tests is Grade A (tier 0); failing any <code class="docutils literal notranslate"><span class="pre">_A</span></code> test but passing all
+<code class="docutils literal notranslate"><span class="pre">_B</span></code> tests gives Grade B (tier 1); failing any <code class="docutils literal notranslate"><span class="pre">_B</span></code> test gives
+Grade C (tier 2).</p>
+<p>A signal-size guard relaxes the <code class="docutils literal notranslate"><span class="pre">nrmse_B</span></code> and <code class="docutils literal notranslate"><span class="pre">monotonic_B</span></code>
+thresholds proportionally for cycles where the H₂O range is smaller
+than <code class="docutils literal notranslate"><span class="pre">signal_mmol_guard</span></code> — preventing mass rejection of valid but
+low-transpiration cycles.</p>
+<section id="id29">
+<h3>Parameters<a class="headerlink" href="#id29" title="Link to this heading">#</a></h3>
+<dl class="simple">
+<dt>h2o_metrics<span class="classifier">dict or None</span></dt><dd><p>Output of <a class="reference internal" href="#palmwtc.flux.chamber.calculate_h2o_flux_for_cycle" title="palmwtc.flux.chamber.calculate_h2o_flux_for_cycle"><code class="xref py py-func docutils literal notranslate"><span class="pre">calculate_h2o_flux_for_cycle()</span></code></a>.  If <code class="docutils literal notranslate"><span class="pre">None</span></code>,
+returns tier 2 / Grade C with reason <code class="docutils literal notranslate"><span class="pre">'No</span> <span class="pre">valid</span> <span class="pre">H2O</span> <span class="pre">data'</span></code>.</p>
+</dd>
+<dt>h2o_qc_thresholds<span class="classifier">dict or None</span></dt><dd><p>Override the default thresholds.  When <code class="docutils literal notranslate"><span class="pre">None</span></code>, selects
+<a class="reference internal" href="#palmwtc.flux.chamber.NIGHTTIME_H2O_QC_THRESHOLDS" title="palmwtc.flux.chamber.NIGHTTIME_H2O_QC_THRESHOLDS"><code class="xref py py-data docutils literal notranslate"><span class="pre">NIGHTTIME_H2O_QC_THRESHOLDS</span></code></a> if <code class="docutils literal notranslate"><span class="pre">is_nighttime=True</span></code>,
+otherwise <a class="reference internal" href="#palmwtc.flux.chamber.DEFAULT_H2O_QC_THRESHOLDS" title="palmwtc.flux.chamber.DEFAULT_H2O_QC_THRESHOLDS"><code class="xref py py-data docutils literal notranslate"><span class="pre">DEFAULT_H2O_QC_THRESHOLDS</span></code></a>.</p>
+</dd>
+<dt>is_nighttime<span class="classifier">bool</span></dt><dd><p>Switches to the nighttime threshold set when <code class="docutils literal notranslate"><span class="pre">True</span></code> and no
+explicit thresholds are supplied.</p>
+</dd>
+</dl>
+</section>
+<section id="id30">
+<h3>Returns<a class="headerlink" href="#id30" title="Link to this heading">#</a></h3>
+<dl class="simple">
+<dt>tier<span class="classifier">int</span></dt><dd><p>0 for Grade A, 1 for Grade B, 2 for Grade C.</p>
+</dd>
+<dt>label<span class="classifier">str</span></dt><dd><p><code class="docutils literal notranslate"><span class="pre">'A'</span></code>, <code class="docutils literal notranslate"><span class="pre">'B'</span></code>, or <code class="docutils literal notranslate"><span class="pre">'C'</span></code>.</p>
+</dd>
+<dt>reasons<span class="classifier">list of str</span></dt><dd><p>Each failing test appends a human-readable string such as
+<code class="docutils literal notranslate"><span class="pre">'R2=0.45&lt;0.70'</span></code>.  Empty when all tests pass.</p>
+</dd>
+</dl>
+</section>
+<section id="id31">
+<h3>See Also<a class="headerlink" href="#id31" title="Link to this heading">#</a></h3>
+<p>DEFAULT_H2O_QC_THRESHOLDS : Daytime threshold values and key descriptions.
+NIGHTTIME_H2O_QC_THRESHOLDS : Nighttime threshold values.
+calculate_h2o_flux_cycles : Calls this function for every cycle.</p>
+</section>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="palmwtc.flux.chamber.calculate_h2o_flux_cycles">
+<span class="sig-prename descclassname"><span class="pre">palmwtc.flux.chamber.</span></span><span class="sig-name descname"><span class="pre">calculate_h2o_flux_cycles</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">chamber_df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">chamber_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cycle_gap_sec</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">300</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">min_points</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">20</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">min_duration_sec</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">180</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">h2o_qc_thresholds</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#palmwtc.flux.chamber.calculate_h2o_flux_cycles" title="Link to this definition">#</a></dt>
+<dd><p>Compute H₂O flux for every cycle in <em>chamber_df</em>.</p>
+<p>Mirrors <a class="reference internal" href="#palmwtc.flux.chamber.calculate_flux_cycles" title="palmwtc.flux.chamber.calculate_flux_cycles"><code class="xref py py-func docutils literal notranslate"><span class="pre">calculate_flux_cycles()</span></code></a> for water vapour.  For each cycle,
+calls <a class="reference internal" href="#palmwtc.flux.chamber.calculate_h2o_flux_for_cycle" title="palmwtc.flux.chamber.calculate_h2o_flux_for_cycle"><code class="xref py py-func docutils literal notranslate"><span class="pre">calculate_h2o_flux_for_cycle()</span></code></a> and then
+<a class="reference internal" href="#palmwtc.flux.chamber.score_h2o_flux_qc" title="palmwtc.flux.chamber.score_h2o_flux_qc"><code class="xref py py-func docutils literal notranslate"><span class="pre">score_h2o_flux_qc()</span></code></a>, automatically switching to nighttime thresholds
+when Global_Radiation &lt; 10 W m⁻² (or when the cycle starts before 06:00
+or after 18:00, if radiation is not available).</p>
+<section id="id32">
+<h3>Parameters<a class="headerlink" href="#id32" title="Link to this heading">#</a></h3>
+<dl class="simple">
+<dt>chamber_df<span class="classifier">pd.DataFrame</span></dt><dd><p>Output of <a class="reference internal" href="#palmwtc.flux.chamber.prepare_chamber_data" title="palmwtc.flux.chamber.prepare_chamber_data"><code class="xref py py-func docutils literal notranslate"><span class="pre">prepare_chamber_data()</span></code></a>.  Must contain <code class="docutils literal notranslate"><span class="pre">TIMESTAMP</span></code>
+and <code class="docutils literal notranslate"><span class="pre">H2O</span></code>; optionally <code class="docutils literal notranslate"><span class="pre">Global_Radiation</span></code> for nighttime detection.</p>
+</dd>
+<dt>chamber_name<span class="classifier">str</span></dt><dd><p>Chamber label stored in <code class="docutils literal notranslate"><span class="pre">Source_Chamber</span></code> (e.g. <code class="docutils literal notranslate"><span class="pre">'Chamber</span> <span class="pre">1'</span></code>).</p>
+</dd>
+<dt>cycle_gap_sec<span class="classifier">int</span></dt><dd><p>Gap in seconds that marks cycle boundaries.  Default <code class="docutils literal notranslate"><span class="pre">300</span></code>.</p>
+</dd>
+<dt>min_points<span class="classifier">int</span></dt><dd><p>Minimum valid H₂O points required per cycle.  Default <code class="docutils literal notranslate"><span class="pre">20</span></code>.</p>
+</dd>
+<dt>min_duration_sec<span class="classifier">float</span></dt><dd><p>Minimum cycle duration in seconds.  Default <code class="docutils literal notranslate"><span class="pre">180</span></code>.</p>
+</dd>
+<dt>h2o_qc_thresholds<span class="classifier">dict or None</span></dt><dd><p>Override the daytime H₂O thresholds.  Nighttime thresholds are
+always selected automatically from <a class="reference internal" href="#palmwtc.flux.chamber.NIGHTTIME_H2O_QC_THRESHOLDS" title="palmwtc.flux.chamber.NIGHTTIME_H2O_QC_THRESHOLDS"><code class="xref py py-data docutils literal notranslate"><span class="pre">NIGHTTIME_H2O_QC_THRESHOLDS</span></code></a>
+regardless of this parameter.  Default: <a class="reference internal" href="#palmwtc.flux.chamber.DEFAULT_H2O_QC_THRESHOLDS" title="palmwtc.flux.chamber.DEFAULT_H2O_QC_THRESHOLDS"><code class="xref py py-data docutils literal notranslate"><span class="pre">DEFAULT_H2O_QC_THRESHOLDS</span></code></a>.</p>
+</dd>
+<dt><a href="#id33"><span class="problematic" id="id34">**</span></a>kwargs</dt><dd><p>Absorbed silently so callers can pass <code class="docutils literal notranslate"><span class="pre">**DEFAULT_CONFIG</span></code> directly.</p>
+</dd>
+</dl>
+</section>
+<section id="id35">
+<h3>Returns<a class="headerlink" href="#id35" title="Link to this heading">#</a></h3>
+<dl>
+<dt>pd.DataFrame</dt><dd><p>One row per valid cycle.  Columns:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">cycle_id</span></code> — integer cycle identifier.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Source_Chamber</span></code> — <em>chamber_name</em>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">h2o_qc</span></code> — QC tier: 0 = A, 1 = B, 2 = C.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">h2o_qc_label</span></code> — <code class="docutils literal notranslate"><span class="pre">'A'</span></code>, <code class="docutils literal notranslate"><span class="pre">'B'</span></code>, or <code class="docutils literal notranslate"><span class="pre">'C'</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">h2o_qc_reason</span></code> — semicolon-separated failing-test strings.</p></li>
+<li><p>All keys returned by <a class="reference internal" href="#palmwtc.flux.chamber.calculate_h2o_flux_for_cycle" title="palmwtc.flux.chamber.calculate_h2o_flux_for_cycle"><code class="xref py py-func docutils literal notranslate"><span class="pre">calculate_h2o_flux_for_cycle()</span></code></a>:
+<code class="docutils literal notranslate"><span class="pre">h2o_slope</span></code>, <code class="docutils literal notranslate"><span class="pre">h2o_intercept</span></code>, <code class="docutils literal notranslate"><span class="pre">h2o_r2</span></code>, <code class="docutils literal notranslate"><span class="pre">h2o_nrmse</span></code>,
+<code class="docutils literal notranslate"><span class="pre">h2o_snr</span></code>, <code class="docutils literal notranslate"><span class="pre">h2o_outlier_frac</span></code>, <code class="docutils literal notranslate"><span class="pre">h2o_monotonic_frac</span></code>,
+<code class="docutils literal notranslate"><span class="pre">h2o_n_points</span></code>, <code class="docutils literal notranslate"><span class="pre">h2o_duration</span></code>, <code class="docutils literal notranslate"><span class="pre">h2o_conc_mean</span></code>,
+<code class="docutils literal notranslate"><span class="pre">h2o_conc_range</span></code>.</p></li>
+</ul>
+<p>Returns an empty DataFrame if <em>chamber_df</em> is empty, has no <code class="docutils literal notranslate"><span class="pre">H2O</span></code>
+column, or all H₂O values are NaN.</p>
+</dd>
+</dl>
+</section>
+<section id="id36">
+<h3>See Also<a class="headerlink" href="#id36" title="Link to this heading">#</a></h3>
+<p>calculate_flux_cycles : CO₂ analogue.
+prepare_chamber_data : Produces the required <em>chamber_df</em> input.
+score_h2o_flux_qc : H₂O QC grading function.</p>
+</section>
+<section id="id37">
+<h3>Examples<a class="headerlink" href="#id37" title="Link to this heading">#</a></h3>
+<p># doctest: +SKIP
+# Requires prepared chamber data from prepare_chamber_data().
+h2o_df = calculate_h2o_flux_cycles(chamber_df, “Chamber 1”)
+print(h2o_df[[“cycle_id”, “h2o_slope”, “h2o_qc_label”]].head())</p>
+</section>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="palmwtc.flux.chamber.load_tree_biophysics">
+<span class="sig-prename descclassname"><span class="pre">palmwtc.flux.chamber.</span></span><span class="sig-name descname"><span class="pre">load_tree_biophysics</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">base_dir</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#palmwtc.flux.chamber.load_tree_biophysics" title="Link to this definition">#</a></dt>
+<dd><p>Load palm tree biophysical parameters from the PalmStudio spreadsheet.</p>
+<p>Reads <code class="docutils literal notranslate"><span class="pre">Vigor_Index_PalmStudio.xlsx</span></code> (expected at <code class="docutils literal notranslate"><span class="pre">{base_dir}/</span></code>),
+converts Indonesian column names to English, converts measurements from
+centimetres to metres, and extracts the clone identifier from the tree
+ID string.</p>
+<p>The Vigor Index is the estimated above-ground biomass volume (cm³ in the
+spreadsheet, converted to m³ here).  It is computed by PalmStudio from
+measured height and canopy radii.  It is used by
+<a class="reference internal" href="#palmwtc.flux.chamber.get_tree_volume_at_date" title="palmwtc.flux.chamber.get_tree_volume_at_date"><code class="xref py py-func docutils literal notranslate"><span class="pre">get_tree_volume_at_date()</span></code></a> to time-interpolate tree volume for
+any given measurement date.</p>
+<section id="id38">
+<h3>Parameters<a class="headerlink" href="#id38" title="Link to this heading">#</a></h3>
+<dl class="simple">
+<dt>base_dir<span class="classifier">str or Path</span></dt><dd><p>Directory that contains <code class="docutils literal notranslate"><span class="pre">Vigor_Index_PalmStudio.xlsx</span></code>.</p>
+</dd>
+</dl>
+</section>
+<section id="id39">
+<h3>Returns<a class="headerlink" href="#id39" title="Link to this heading">#</a></h3>
+<dl>
+<dt>pd.DataFrame or None</dt><dd><p>One row per measurement visit per tree.  Columns:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">Tree</span> <span class="pre">ID</span></code> — tree identifier string (e.g. <code class="docutils literal notranslate"><span class="pre">'EKA1-001'</span></code>).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Date</span></code> — measurement date (datetime).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Height_m</span></code> — total tree height in metres.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Max_Radius_m</span></code> — maximum canopy radius in metres.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Est_Width_m</span></code> — estimated canopy width (2 × mean radius) in
+metres.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Vigor_Index_m3</span></code> — estimated tree volume in m³ (converted from
+cm³ by dividing by 1 000 000).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Clone</span></code> — clone name extracted from <code class="docutils literal notranslate"><span class="pre">Tree</span> <span class="pre">ID</span></code>
+(e.g. <code class="docutils literal notranslate"><span class="pre">'EKA</span> <span class="pre">1'</span></code>).</p></li>
+</ul>
+<p>Returns <code class="docutils literal notranslate"><span class="pre">None</span></code> (with a printed warning) if the file is not found.</p>
+</dd>
+</dl>
+</section>
+<section id="id40">
+<h3>Notes<a class="headerlink" href="#id40" title="Link to this heading">#</a></h3>
+<p>The spreadsheet uses Indonesian column headings (<code class="docutils literal notranslate"><span class="pre">Tanggal</span></code>,
+<code class="docutils literal notranslate"><span class="pre">Kode</span> <span class="pre">pohon</span></code>, <code class="docutils literal notranslate"><span class="pre">Tinggi</span> <span class="pre">Pohon</span> <span class="pre">(cm)</span></code>).  This function handles the
+renaming automatically.</p>
+</section>
+<section id="id41">
+<h3>See Also<a class="headerlink" href="#id41" title="Link to this heading">#</a></h3>
+<dl class="simple">
+<dt>get_tree_volume_at_date<span class="classifier">Time-interpolates Vigor Index from the table</span></dt><dd><p>returned by this function.</p>
+</dd>
+</dl>
+</section>
+<section id="id42">
+<h3>Examples<a class="headerlink" href="#id42" title="Link to this heading">#</a></h3>
+<p># doctest: +SKIP
+# Requires Vigor_Index_PalmStudio.xlsx in the data directory.
+df_vigor = load_tree_biophysics(“/path/to/data”)
+print(df_vigor[[“Tree ID”, “Date”, “Vigor_Index_m3”]].head())</p>
+</section>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="palmwtc.flux.chamber.get_tree_volume_at_date">
+<span class="sig-prename descclassname"><span class="pre">palmwtc.flux.chamber.</span></span><span class="sig-name descname"><span class="pre">get_tree_volume_at_date</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df_vigor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tree_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">target_date</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#palmwtc.flux.chamber.get_tree_volume_at_date" title="Link to this definition">#</a></dt>
+<dd><p>Time-interpolate the Vigor Index (m³) for a tree at a specific date.</p>
+<p>If an exact measurement exists on <em>target_date</em>, that value is returned
+directly.  Otherwise, the Vigor Index time series for the tree is
+linearly interpolated between the two nearest measurements.  No
+extrapolation is performed — dates outside the measurement range return
+<code class="docutils literal notranslate"><span class="pre">None</span></code> because the time-based interpolation does not fill beyond the
+index boundaries.</p>
+<section id="id43">
+<h3>Parameters<a class="headerlink" href="#id43" title="Link to this heading">#</a></h3>
+<dl class="simple">
+<dt>df_vigor<span class="classifier">pd.DataFrame or None</span></dt><dd><p>Output of <a class="reference internal" href="#palmwtc.flux.chamber.load_tree_biophysics" title="palmwtc.flux.chamber.load_tree_biophysics"><code class="xref py py-func docutils literal notranslate"><span class="pre">load_tree_biophysics()</span></code></a>.  <code class="docutils literal notranslate"><span class="pre">None</span></code> returns <code class="docutils literal notranslate"><span class="pre">None</span></code>
+immediately.</p>
+</dd>
+<dt>tree_id<span class="classifier">str</span></dt><dd><p>Tree identifier matching the <code class="docutils literal notranslate"><span class="pre">Tree</span> <span class="pre">ID</span></code> column in <em>df_vigor</em>
+(e.g. <code class="docutils literal notranslate"><span class="pre">'EKA1-001'</span></code>).</p>
+</dd>
+<dt>target_date<span class="classifier">str or datetime-like</span></dt><dd><p>The date for which to estimate the tree volume.  String values are
+parsed via <code class="xref py py-func docutils literal notranslate"><span class="pre">pandas.to_datetime()</span></code>.</p>
+</dd>
+</dl>
+</section>
+<section id="id44">
+<h3>Returns<a class="headerlink" href="#id44" title="Link to this heading">#</a></h3>
+<dl class="simple">
+<dt>float or None</dt><dd><p>Vigor Index in m³ at <em>target_date</em>, or <code class="docutils literal notranslate"><span class="pre">None</span></code> if <em>df_vigor</em> is
+<code class="docutils literal notranslate"><span class="pre">None</span></code>, <em>tree_id</em> is not found, or the date is outside the
+measured range.</p>
+</dd>
+</dl>
+</section>
+<section id="id45">
+<h3>Notes<a class="headerlink" href="#id45" title="Link to this heading">#</a></h3>
+<p>The interpolation method is pandas <code class="docutils literal notranslate"><span class="pre">'time'</span></code>, which assumes a constant
+growth rate between measurement visits.  Palm canopy volume grows roughly
+monotonically over the study period, so linear interpolation is
+appropriate for the typical visit interval of a few months.</p>
+</section>
+<section id="id46">
+<h3>See Also<a class="headerlink" href="#id46" title="Link to this heading">#</a></h3>
+<p>load_tree_biophysics : Loads and parses the biophysical spreadsheet.</p>
+</section>
+<section id="id47">
+<h3>Examples<a class="headerlink" href="#id47" title="Link to this heading">#</a></h3>
+<p># doctest: +SKIP
+# Requires a DataFrame from load_tree_biophysics().
+vol = get_tree_volume_at_date(df_vigor, “EKA1-001”, “2023-06-15”)
+print(f”Tree volume: {vol:.4f} m3”)</p>
+</section>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="palmwtc.flux.chamber.apply_wpl_qc_overrides">
+<span class="sig-prename descclassname"><span class="pre">palmwtc.flux.chamber.</span></span><span class="sig-name descname"><span class="pre">apply_wpl_qc_overrides</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">row</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">model_qc</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">flux_qc</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">reason_text</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">wpl_qc_thresholds</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">h2o_valid_range</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(0.0,</span> <span class="pre">60.0)</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#palmwtc.flux.chamber.apply_wpl_qc_overrides" title="Link to this definition">#</a></dt>
+<dd><p>Apply WPL-specific checks and upgrade QC tiers if needed.</p>
+<p>Checks whether the WPL correction was well-conditioned for a given cycle
+(sufficient valid H₂O data, reasonable correction magnitude, plausible
+WPL factor).  If any check fails, the <code class="docutils literal notranslate"><span class="pre">model_qc</span></code> and <code class="docutils literal notranslate"><span class="pre">flux_qc</span></code> tiers
+are upgraded (never downgraded) and a reason string is appended.</p>
+<p>This function is called after <a class="reference internal" href="#palmwtc.flux.chamber.build_cycle_wpl_metrics" title="palmwtc.flux.chamber.build_cycle_wpl_metrics"><code class="xref py py-func docutils literal notranslate"><span class="pre">build_cycle_wpl_metrics()</span></code></a> and
+<a class="reference internal" href="../cycles/index.html#palmwtc.flux.cycles.score_cycle" title="palmwtc.flux.cycles.score_cycle"><code class="xref py py-func docutils literal notranslate"><span class="pre">palmwtc.flux.cycles.score_cycle()</span></code></a> in the post-processing pipeline,
+not by <a class="reference internal" href="#palmwtc.flux.chamber.calculate_flux_cycles" title="palmwtc.flux.chamber.calculate_flux_cycles"><code class="xref py py-func docutils literal notranslate"><span class="pre">calculate_flux_cycles()</span></code></a> directly.</p>
+<section id="id48">
+<h3>Parameters<a class="headerlink" href="#id48" title="Link to this heading">#</a></h3>
+<dl class="simple">
+<dt>row<span class="classifier">pd.Series or dict</span></dt><dd><p>A single cycle row containing WPL metrics produced by
+<a class="reference internal" href="#palmwtc.flux.chamber.build_cycle_wpl_metrics" title="palmwtc.flux.chamber.build_cycle_wpl_metrics"><code class="xref py py-func docutils literal notranslate"><span class="pre">build_cycle_wpl_metrics()</span></code></a>: <code class="docutils literal notranslate"><span class="pre">wpl_valid_fraction</span></code>,
+<code class="docutils literal notranslate"><span class="pre">wpl_abs_rel_change_p95</span></code>, <code class="docutils literal notranslate"><span class="pre">wpl_factor_max</span></code>, and <code class="docutils literal notranslate"><span class="pre">h2o_max</span></code>.</p>
+</dd>
+<dt>model_qc<span class="classifier">int</span></dt><dd><p>Current model QC tier (0 = A, 1 = B, 2 = C) to be potentially
+upgraded.</p>
+</dd>
+<dt>flux_qc<span class="classifier">int</span></dt><dd><p>Current flux QC tier to be potentially upgraded.</p>
+</dd>
+<dt>reason_text<span class="classifier">str</span></dt><dd><p>Semicolon-separated QC reasons accumulated so far.  New reasons are
+appended and duplicates are removed.</p>
+</dd>
+<dt>wpl_qc_thresholds<span class="classifier">dict or None</span></dt><dd><p>Override <a class="reference internal" href="#palmwtc.flux.chamber.DEFAULT_WPL_QC_THRESHOLDS" title="palmwtc.flux.chamber.DEFAULT_WPL_QC_THRESHOLDS"><code class="xref py py-data docutils literal notranslate"><span class="pre">DEFAULT_WPL_QC_THRESHOLDS</span></code></a>.</p>
+</dd>
+<dt>h2o_valid_range<span class="classifier">tuple of float</span></dt><dd><p><code class="docutils literal notranslate"><span class="pre">(lo,</span> <span class="pre">hi)</span></code> valid H₂O range in mmol mol⁻¹ (default
+<code class="docutils literal notranslate"><span class="pre">(0.0,</span> <span class="pre">60.0)</span></code>).  H₂O values above <code class="docutils literal notranslate"><span class="pre">hi</span></code> trigger a Grade C
+downgrade.</p>
+</dd>
+</dl>
+</section>
+<section id="id49">
+<h3>Returns<a class="headerlink" href="#id49" title="Link to this heading">#</a></h3>
+<dl class="simple">
+<dt>tuple of (int, int, int, str)</dt><dd><p><code class="docutils literal notranslate"><span class="pre">(model_qc,</span> <span class="pre">flux_qc,</span> <span class="pre">wpl_qc,</span> <span class="pre">reason_text)</span></code> where:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">model_qc</span></code>, <code class="docutils literal notranslate"><span class="pre">flux_qc</span></code> are the (possibly upgraded) input tiers.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">wpl_qc</span></code> is the WPL-specific tier (0, 1, or 2) that drove the
+upgrade.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">reason_text</span></code> is the updated semicolon-separated reason string.</p></li>
+</ul>
+</dd>
+</dl>
+</section>
+<section id="id50">
+<h3>See Also<a class="headerlink" href="#id50" title="Link to this heading">#</a></h3>
+<p>DEFAULT_WPL_QC_THRESHOLDS : Threshold values and key descriptions.
+build_cycle_wpl_metrics : Produces the per-cycle WPL metrics consumed here.</p>
+</section>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="palmwtc.flux.chamber.compute_closure_confidence">
+<span class="sig-prename descclassname"><span class="pre">palmwtc.flux.chamber.</span></span><span class="sig-name descname"><span class="pre">compute_closure_confidence</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">r2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nrmse</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">global_radiation</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rad_max</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">800.0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#palmwtc.flux.chamber.compute_closure_confidence" title="Link to this definition">#</a></dt>
+<dd><p>Compute a chamber closure confidence score between 0 and 1.</p>
+<p>Combines R², NRMSE, and global radiation into a single scalar that
+expresses how confident we are that the chamber was properly sealed
+during a flux cycle.</p>
+<p>Physical reasoning: poor fit quality (low R², high NRMSE) is more
+likely to indicate a physical leak when photosynthetic demand is high
+(bright conditions).  The same poor fit at night or on a cloudy day
+could simply reflect a small signal close to sensor noise.  The score
+therefore penalizes low R² and high NRMSE more strongly when radiation
+is high.</p>
+<section id="formula">
+<h3>Formula<a class="headerlink" href="#formula" title="Link to this heading">#</a></h3>
+<div class="math notranslate nohighlight">
+\[ \begin{align}\begin{aligned}r2\_conf = clip\left(\frac{R^2 - 0.25}{0.94 - 0.25}, 0, 1\right)\\rad\_norm = clip\left(\frac{G}{G_{max}}, 0, 1\right)\\confidence = clip\left(r2\_conf
+    - 0.4 \times rad\_norm \times (1 - r2\_conf)
+    - 0.2 \times rad\_norm \times clip(NRMSE / 0.20, 0, 1),
+0, 1\right)\end{aligned}\end{align} \]</div>
+</section>
+<section id="id51">
+<h3>Parameters<a class="headerlink" href="#id51" title="Link to this heading">#</a></h3>
+<dl class="simple">
+<dt>r2<span class="classifier">float or array-like</span></dt><dd><p>R² of the OLS linear CO₂ vs. time fit (0–1).  NaN is treated as 0.</p>
+</dd>
+<dt>nrmse<span class="classifier">float or array-like</span></dt><dd><p>Normalized RMSE (RMSE / CO₂ range).  NaN is treated as 0.</p>
+</dd>
+<dt>global_radiation<span class="classifier">float or array-like</span></dt><dd><p>Incoming solar radiation in W m⁻².  NaN is treated as 0 (worst-case
+penalty removed).</p>
+</dd>
+<dt>rad_max<span class="classifier">float</span></dt><dd><p>Radiation level at which the radiation penalty is at its maximum.
+Default <code class="docutils literal notranslate"><span class="pre">800.0</span></code> W m⁻² (typical clear-sky midday value in the
+tropics).</p>
+</dd>
+</dl>
+</section>
+<section id="id52">
+<h3>Returns<a class="headerlink" href="#id52" title="Link to this heading">#</a></h3>
+<dl class="simple">
+<dt>float or numpy.ndarray</dt><dd><p>Closure confidence score in [0, 1].  A score near 1 indicates a
+well-sealed chamber with a clean linear CO₂ trend.  A score near 0
+indicates likely leakage or strong non-linearity under high light.</p>
+</dd>
+</dl>
+</section>
+<section id="id53">
+<h3>Notes<a class="headerlink" href="#id53" title="Link to this heading">#</a></h3>
+<p>The R² bounds (0.25 to 0.94) and penalty weights (0.4, 0.2) were
+calibrated against manual inspection of gap-width experiment data.</p>
+</section>
+<section id="id54">
+<h3>See Also<a class="headerlink" href="#id54" title="Link to this heading">#</a></h3>
+<dl class="simple">
+<dt>calculate_flux_cycles<span class="classifier">Produces the R², NRMSE, and radiation values</span></dt><dd><p>consumed here.</p>
+</dd>
+</dl>
+</section>
+<section id="id55">
+<h3>Examples<a class="headerlink" href="#id55" title="Link to this heading">#</a></h3>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">palmwtc.flux.chamber</span><span class="w"> </span><span class="kn">import</span> <span class="n">compute_closure_confidence</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">round</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">compute_closure_confidence</span><span class="p">(</span><span class="mf">0.98</span><span class="p">,</span> <span class="mf">0.03</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">)),</span> <span class="mi">3</span><span class="p">)</span>
+<span class="go">1.0</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">round</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">compute_closure_confidence</span><span class="p">(</span><span class="mf">0.95</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">,</span> <span class="mf">200.0</span><span class="p">)),</span> <span class="mi">3</span><span class="p">)</span>
+<span class="go">0.988</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">round</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">compute_closure_confidence</span><span class="p">(</span><span class="mf">0.50</span><span class="p">,</span> <span class="mf">0.25</span><span class="p">,</span> <span class="mf">600.0</span><span class="p">)),</span> <span class="mi">3</span><span class="p">)</span>
+<span class="go">0.021</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">round</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">compute_closure_confidence</span><span class="p">(</span><span class="mf">0.40</span><span class="p">,</span> <span class="mf">0.30</span><span class="p">,</span> <span class="mf">700.0</span><span class="p">)),</span> <span class="mi">3</span><span class="p">)</span>
+<span class="go">0.0</span>
+</pre></div>
+</div>
+</section>
+</dd></dl>
+
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./api/palmwtc/flux/chamber"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item"><div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pipeline-overview">Pipeline overview</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tree-biophysics-helpers">Tree biophysics helpers</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#wpl-diagnostic-helpers">WPL diagnostic helpers</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#configuration-constants">Configuration constants</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#attributes">Attributes</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#functions">Functions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-contents">Module Contents</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#palmwtc.flux.chamber.DEFAULT_CONFIG"><code class="docutils literal notranslate"><span class="pre">DEFAULT_CONFIG</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#palmwtc.flux.chamber.DEFAULT_CO2_QC_THRESHOLDS"><code class="docutils literal notranslate"><span class="pre">DEFAULT_CO2_QC_THRESHOLDS</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#palmwtc.flux.chamber.NIGHTTIME_CO2_QC_THRESHOLDS"><code class="docutils literal notranslate"><span class="pre">NIGHTTIME_CO2_QC_THRESHOLDS</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#palmwtc.flux.chamber.DEFAULT_H2O_QC_THRESHOLDS"><code class="docutils literal notranslate"><span class="pre">DEFAULT_H2O_QC_THRESHOLDS</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#palmwtc.flux.chamber.NIGHTTIME_H2O_QC_THRESHOLDS"><code class="docutils literal notranslate"><span class="pre">NIGHTTIME_H2O_QC_THRESHOLDS</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#palmwtc.flux.chamber.DEFAULT_WPL_QC_THRESHOLDS"><code class="docutils literal notranslate"><span class="pre">DEFAULT_WPL_QC_THRESHOLDS</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#palmwtc.flux.chamber.apply_wpl_correction"><code class="docutils literal notranslate"><span class="pre">apply_wpl_correction()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#palmwtc.flux.chamber._choose_h2o_column"><code class="docutils literal notranslate"><span class="pre">_choose_h2o_column()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#palmwtc.flux.chamber.prepare_chamber_data"><code class="docutils literal notranslate"><span class="pre">prepare_chamber_data()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#palmwtc.flux.chamber.summarize_wpl_correction"><code class="docutils literal notranslate"><span class="pre">summarize_wpl_correction()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#palmwtc.flux.chamber.build_cycle_wpl_metrics"><code class="docutils literal notranslate"><span class="pre">build_cycle_wpl_metrics()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#palmwtc.flux.chamber.calculate_flux_cycles"><code class="docutils literal notranslate"><span class="pre">calculate_flux_cycles()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#palmwtc.flux.chamber.calculate_h2o_flux_for_cycle"><code class="docutils literal notranslate"><span class="pre">calculate_h2o_flux_for_cycle()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#palmwtc.flux.chamber.score_h2o_flux_qc"><code class="docutils literal notranslate"><span class="pre">score_h2o_flux_qc()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#palmwtc.flux.chamber.calculate_h2o_flux_cycles"><code class="docutils literal notranslate"><span class="pre">calculate_h2o_flux_cycles()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#palmwtc.flux.chamber.load_tree_biophysics"><code class="docutils literal notranslate"><span class="pre">load_tree_biophysics()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#palmwtc.flux.chamber.get_tree_volume_at_date"><code class="docutils literal notranslate"><span class="pre">get_tree_volume_at_date()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#palmwtc.flux.chamber.apply_wpl_qc_overrides"><code class="docutils literal notranslate"><span class="pre">apply_wpl_qc_overrides()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#palmwtc.flux.chamber.compute_closure_confidence"><code class="docutils literal notranslate"><span class="pre">compute_closure_confidence()</span></code></a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Didi Adisaputro
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2026.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../../../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

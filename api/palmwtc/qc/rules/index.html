@@ -1,0 +1,1467 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>palmwtc.qc.rules &#8212; palmwtc</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../../../../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/styles/sphinx-book-theme.css?v=3c74b3bc" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/togglebutton.css?v=9c3e77be" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/graphviz.css?v=fd3f3429" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../../../../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../../../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="../../../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../../../_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../../../_static/togglebutton.js?v=b8b12719"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'api/palmwtc/qc/rules/index';</script>
+    <link rel="canonical" href="https://adisapoetro.github.io/palmwtc/api/palmwtc/qc/rules/index.html" />
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../../../index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">palmwtc</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../../../index.html">
+                    palmwtc
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Getting Started</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../../../quickstart.html">Quickstart — your first flux number in 3 minutes</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../../tutorials/index.html">Tutorials</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorials/010_Data_Integration.html">010 — Core data integration (raw → unified monthly)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorials/011_Weather_vs_Chamber.html">011 — Weather station vs chamber</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorials/020_QC_Rule_Based.html">020 — Rule-based QC</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorials/022_QC_ML_Enhanced.html">022 — ML-enhanced QC (optional)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorials/023_Field_Alert_Report.html">023 — Field alert report</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorials/025_Cross_Chamber_Bias.html">025 — Cross-chamber bias comparison (diagnostic)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorials/026_CO2_H2O_Segmented_Bias.html">026 — CO2/H2O segmented bias comparison (diagnostic)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorials/030_Flux_Cycle_Calculation.html">030 — Flux cycle calculation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorials/031_Window_Selection_Reference.html">031 — High-confidence window selection (reference)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorials/032_Window_Selection_Production.html">032 — Physically grounded window selection (production)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorials/033_Science_Validation.html">033 — Science validation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorials/034_QC_and_Window_Audit.html">034 — QC + window audit (visualization)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorials/035_QC_Threshold_Sensitivity.html">035 — QC threshold sensitivity sweep</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorials/000_End_to_End_Synthetic.html">000 — End-to-end on synthetic data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorials/001_End_to_End_LIBZ.html">001 - End-to-end on LIBZ data (raw .dat -&gt; validation)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorials/010_Data_Integration.html">010 — Core data integration (raw → unified monthly)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorials/011_Weather_vs_Chamber.html">011 — Weather station vs chamber</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorials/020_QC_Rule_Based.html">020 — Rule-based QC</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorials/022_QC_ML_Enhanced.html">022 — ML-enhanced QC (optional)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorials/023_Field_Alert_Report.html">023 — Field alert report</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorials/025_Cross_Chamber_Bias.html">025 — Cross-chamber bias comparison (diagnostic)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorials/026_CO2_H2O_Segmented_Bias.html">026 — CO2/H2O segmented bias comparison (diagnostic)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorials/030_Flux_Cycle_Calculation.html">030 — Flux cycle calculation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorials/031_Window_Selection_Reference.html">031 — High-confidence window selection (reference)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorials/032_Window_Selection_Production.html">032 — Physically grounded window selection (production)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorials/033_Science_Validation.html">033 — Science validation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorials/034_QC_and_Window_Audit.html">034 — QC + window audit (visualization)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorials/035_QC_Threshold_Sensitivity.html">035 — QC threshold sensitivity sweep</a></li>
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Science Reference</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../../../science/index.html">Science Reference</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/adisapoetro/palmwtc" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/adisapoetro/palmwtc/edit/main/docs/api/palmwtc/qc/rules/index.rst" target="_blank"
+   class="btn btn-sm btn-source-edit-button dropdown-item"
+   title="Suggest edit"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="btn__text-container">Suggest edit</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/adisapoetro/palmwtc/issues/new?title=Issue%20on%20page%20%2Fapi/palmwtc/qc/rules/index.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../../../_sources/api/palmwtc/qc/rules/index.rst" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.rst</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button pst-navbar-icon"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm pst-navbar-icon" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>palmwtc.qc.rules</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#functions">Functions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-contents">Module Contents</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#palmwtc.qc.rules.apply_physical_bounds_flags"><code class="docutils literal notranslate"><span class="pre">apply_physical_bounds_flags()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#palmwtc.qc.rules.apply_iqr_flags"><code class="docutils literal notranslate"><span class="pre">apply_iqr_flags()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#palmwtc.qc.rules.combine_qc_flags"><code class="docutils literal notranslate"><span class="pre">combine_qc_flags()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#palmwtc.qc.rules.generate_qc_summary"><code class="docutils literal notranslate"><span class="pre">generate_qc_summary()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#palmwtc.qc.rules.get_variable_config"><code class="docutils literal notranslate"><span class="pre">get_variable_config()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#palmwtc.qc.rules.apply_rate_of_change_flags"><code class="docutils literal notranslate"><span class="pre">apply_rate_of_change_flags()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#palmwtc.qc.rules.apply_persistence_flags"><code class="docutils literal notranslate"><span class="pre">apply_persistence_flags()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#palmwtc.qc.rules.apply_battery_proxy_flags"><code class="docutils literal notranslate"><span class="pre">apply_battery_proxy_flags()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#palmwtc.qc.rules._load_sensor_exclusions"><code class="docutils literal notranslate"><span class="pre">_load_sensor_exclusions()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#palmwtc.qc.rules.apply_sensor_exclusion_flags"><code class="docutils literal notranslate"><span class="pre">apply_sensor_exclusion_flags()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#palmwtc.qc.rules.generate_exclusion_recommendations"><code class="docutils literal notranslate"><span class="pre">generate_exclusion_recommendations()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#palmwtc.qc.rules.process_variable_qc"><code class="docutils literal notranslate"><span class="pre">process_variable_qc()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#palmwtc.qc.rules.add_cycle_id"><code class="docutils literal notranslate"><span class="pre">add_cycle_id()</span></code></a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="module-palmwtc.qc.rules">
+<span id="palmwtc-qc-rules"></span><h1>palmwtc.qc.rules<a class="headerlink" href="#module-palmwtc.qc.rules" title="Link to this heading">#</a></h1>
+<p>Rule-based QC flag generators for whole-tree chamber sensor streams.</p>
+<p>Each function in this module takes one sensor variable’s time series
+(plus its variable config) and returns either a flag <code class="docutils literal notranslate"><span class="pre">pd.Series</span></code> or
+the input frame augmented with per-row QC flag information. Rules cover:</p>
+<ul class="simple">
+<li><p>Physical bounds (hard and soft limits from sensor specifications).</p></li>
+<li><p>Statistical outliers (IQR-based, column-wise).</p></li>
+<li><p>Rate of change (spike detection between consecutive samples).</p></li>
+<li><p>Persistence (stuck / flat-line detection over a rolling time window).</p></li>
+<li><p>Battery-voltage proxy (data-logger health propagated to measurements).</p></li>
+<li><p>Sensor date-range exclusions (maintenance windows, sensor swapouts).</p></li>
+</ul>
+<p>Flag values carry a three-level severity scale:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">0</span></code> — Good: within all bounds, no anomaly detected.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">1</span></code> — Suspect: outside soft bounds or flagged by IQR / RoC /
+persistence; use with caution.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">2</span></code> — Bad: outside hard bounds or inside an exclusion window;
+exclude from flux calculations.</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">combine_qc_flags</span></code> merges per-rule flag series into a single mask per
+variable. <code class="docutils literal notranslate"><span class="pre">process_variable_qc</span></code> orchestrates all rule checks in order
+for one variable and returns a dict of individual plus combined flags.</p>
+<p>Tuned for the LI-COR LI-850 gas analyser (CO₂, H₂O) inside a
+whole-tree chamber around an individual oil palm, plus soil sensors at
+5, 15, 30, 60, and 80 cm depths (Campbell CS616 / CS655 type).</p>
+<section id="functions">
+<h2>Functions<a class="headerlink" href="#functions" title="Link to this heading">#</a></h2>
+<div class="pst-scrollable-table-container"><table class="autosummary longtable table autosummary">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#palmwtc.qc.rules.apply_physical_bounds_flags" title="palmwtc.qc.rules.apply_physical_bounds_flags"><code class="xref py py-obj docutils literal notranslate"><span class="pre">apply_physical_bounds_flags</span></code></a>(df, var_name, config)</p></td>
+<td><p>Flag rows where a variable falls outside its physical bounds.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#palmwtc.qc.rules.apply_iqr_flags" title="palmwtc.qc.rules.apply_iqr_flags"><code class="xref py py-obj docutils literal notranslate"><span class="pre">apply_iqr_flags</span></code></a>(df, var_name[, iqr_factor])</p></td>
+<td><p>Flag statistical outliers using the interquartile range (IQR) method.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#palmwtc.qc.rules.combine_qc_flags" title="palmwtc.qc.rules.combine_qc_flags"><code class="xref py py-obj docutils literal notranslate"><span class="pre">combine_qc_flags</span></code></a>(bounds_flags, iqr_flags[, roc_flags, ...])</p></td>
+<td><p>Merge per-rule flag series into a single combined quality flag.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#palmwtc.qc.rules.generate_qc_summary" title="palmwtc.qc.rules.generate_qc_summary"><code class="xref py py-obj docutils literal notranslate"><span class="pre">generate_qc_summary</span></code></a>(df, flag_column)</p></td>
+<td><p>Count and summarise flag levels for one QC flag column.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#palmwtc.qc.rules.get_variable_config" title="palmwtc.qc.rules.get_variable_config"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_variable_config</span></code></a>(var_name, var_config_dict)</p></td>
+<td><p>Look up the QC configuration for a specific variable column name.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#palmwtc.qc.rules.apply_rate_of_change_flags" title="palmwtc.qc.rules.apply_rate_of_change_flags"><code class="xref py py-obj docutils literal notranslate"><span class="pre">apply_rate_of_change_flags</span></code></a>(df, var_name, config)</p></td>
+<td><p>Flag rows where consecutive-sample change exceeds a spike limit.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#palmwtc.qc.rules.apply_persistence_flags" title="palmwtc.qc.rules.apply_persistence_flags"><code class="xref py py-obj docutils literal notranslate"><span class="pre">apply_persistence_flags</span></code></a>(df, var_name, config)</p></td>
+<td><p>Flag rows where a variable shows no meaningful variation (flat line).</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#palmwtc.qc.rules.apply_battery_proxy_flags" title="palmwtc.qc.rules.apply_battery_proxy_flags"><code class="xref py py-obj docutils literal notranslate"><span class="pre">apply_battery_proxy_flags</span></code></a>(df, battery_proxy_config)</p></td>
+<td><p>Propagate data-logger battery health flags to dependent measurements.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#palmwtc.qc.rules._load_sensor_exclusions" title="palmwtc.qc.rules._load_sensor_exclusions"><code class="xref py py-obj docutils literal notranslate"><span class="pre">_load_sensor_exclusions</span></code></a>([config_path])</p></td>
+<td><p>Load sensor exclusion windows from YAML config.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#palmwtc.qc.rules.apply_sensor_exclusion_flags" title="palmwtc.qc.rules.apply_sensor_exclusion_flags"><code class="xref py py-obj docutils literal notranslate"><span class="pre">apply_sensor_exclusion_flags</span></code></a>(df, var_name[, config_path])</p></td>
+<td><p>Flag rows that fall inside a sensor maintenance or swap-out window.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#palmwtc.qc.rules.generate_exclusion_recommendations" title="palmwtc.qc.rules.generate_exclusion_recommendations"><code class="xref py py-obj docutils literal notranslate"><span class="pre">generate_exclusion_recommendations</span></code></a>([audit_path, ...])</p></td>
+<td><p>Auto-detect exclusion windows from a cross-chamber agreement audit.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#palmwtc.qc.rules.process_variable_qc" title="palmwtc.qc.rules.process_variable_qc"><code class="xref py py-obj docutils literal notranslate"><span class="pre">process_variable_qc</span></code></a>(df, var_name, var_config_dict[, ...])</p></td>
+<td><p>Run all QC rule checks for one variable and return combined flags.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#palmwtc.qc.rules.add_cycle_id" title="palmwtc.qc.rules.add_cycle_id"><code class="xref py py-obj docutils literal notranslate"><span class="pre">add_cycle_id</span></code></a>(df[, time_col, gap_threshold_sec])</p></td>
+<td><p>Assign a sequential cycle ID to rows based on time gaps.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="module-contents">
+<h2>Module Contents<a class="headerlink" href="#module-contents" title="Link to this heading">#</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="palmwtc.qc.rules.apply_physical_bounds_flags">
+<span class="sig-prename descclassname"><span class="pre">palmwtc.qc.rules.</span></span><span class="sig-name descname"><span class="pre">apply_physical_bounds_flags</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">var_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">config</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#palmwtc.qc.rules.apply_physical_bounds_flags" title="Link to this definition">#</a></dt>
+<dd><p>Flag rows where a variable falls outside its physical bounds.</p>
+<p>Compares each value of <code class="docutils literal notranslate"><span class="pre">var_name</span></code> in <code class="docutils literal notranslate"><span class="pre">df</span></code> against hard and soft
+limits defined in the variable config. Hard bounds represent absolute
+sensor limits (saturation, cable disconnect); soft bounds represent
+expected operating range under normal field conditions.</p>
+<section id="parameters">
+<h3>Parameters<a class="headerlink" href="#parameters" title="Link to this heading">#</a></h3>
+<dl>
+<dt>df<span class="classifier">pd.DataFrame</span></dt><dd><p>Time-indexed sensor data. Must contain at least the column
+<code class="docutils literal notranslate"><span class="pre">var_name</span></code>. Non-numeric values are coerced to <code class="docutils literal notranslate"><span class="pre">NaN</span></code> and
+treated as missing (not flagged).</p>
+</dd>
+<dt>var_name<span class="classifier">str</span></dt><dd><p>Name of the column in <code class="docutils literal notranslate"><span class="pre">df</span></code> to check
+(e.g. <code class="docutils literal notranslate"><span class="pre">&quot;CO2_C1&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;SWC_C1_15cm&quot;</span></code>).</p>
+</dd>
+<dt>config<span class="classifier">dict</span></dt><dd><p>Variable config dict. Recognised keys:</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">&quot;hard&quot;</span></code><span class="classifier">list of [low, high], optional</span></dt><dd><p>Absolute sensor limits in native units. Values outside this
+range receive flag <code class="docutils literal notranslate"><span class="pre">2</span></code> (Bad).</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">&quot;soft&quot;</span></code><span class="classifier">list of [low, high], optional</span></dt><dd><p>Expected operating limits in native units. Values outside
+soft but inside hard receive flag <code class="docutils literal notranslate"><span class="pre">1</span></code> (Suspect).</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</section>
+<section id="returns">
+<h3>Returns<a class="headerlink" href="#returns" title="Link to this heading">#</a></h3>
+<dl class="simple">
+<dt>pd.Series</dt><dd><p>Integer flag series aligned to <code class="docutils literal notranslate"><span class="pre">df.index</span></code>:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">0</span></code> — within soft bounds (or no bounds configured).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">1</span></code> — outside soft bounds but within hard bounds (Suspect).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">2</span></code> — outside hard bounds (Bad).</p></li>
+</ul>
+</dd>
+</dl>
+</section>
+<section id="notes">
+<h3>Notes<a class="headerlink" href="#notes" title="Link to this heading">#</a></h3>
+<p>Both <code class="docutils literal notranslate"><span class="pre">&quot;hard&quot;</span></code> and <code class="docutils literal notranslate"><span class="pre">&quot;soft&quot;</span></code> keys are optional. If only <code class="docutils literal notranslate"><span class="pre">&quot;hard&quot;</span></code>
+is present, there are no Suspect flags — values are either 0 or 2.
+If only <code class="docutils literal notranslate"><span class="pre">&quot;soft&quot;</span></code> is present, there are no Bad flags.</p>
+<p>For the LI-850 CO₂ channel (range 0-20 000 ppm), typical hard
+limits are <code class="docutils literal notranslate"><span class="pre">[0,</span> <span class="pre">20000]</span></code> and soft limits are <code class="docutils literal notranslate"><span class="pre">[350,</span> <span class="pre">2000]</span></code> for
+tropical oil-palm chambers.</p>
+</section>
+<section id="examples">
+<h3>Examples<a class="headerlink" href="#examples" title="Link to this heading">#</a></h3>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s2">&quot;CO2_C1&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mf">300.0</span><span class="p">,</span> <span class="mf">1500.0</span><span class="p">,</span> <span class="mf">25000.0</span><span class="p">]})</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">cfg</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;hard&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">20000.0</span><span class="p">],</span> <span class="s2">&quot;soft&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mf">350.0</span><span class="p">,</span> <span class="mf">2000.0</span><span class="p">]}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">flags</span> <span class="o">=</span> <span class="n">apply_physical_bounds_flags</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="s2">&quot;CO2_C1&quot;</span><span class="p">,</span> <span class="n">cfg</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">flags</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+<span class="go">[1, 0, 2]</span>
+</pre></div>
+</div>
+</section>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="palmwtc.qc.rules.apply_iqr_flags">
+<span class="sig-prename descclassname"><span class="pre">palmwtc.qc.rules.</span></span><span class="sig-name descname"><span class="pre">apply_iqr_flags</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">var_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">iqr_factor</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.5</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#palmwtc.qc.rules.apply_iqr_flags" title="Link to this definition">#</a></dt>
+<dd><p>Flag statistical outliers using the interquartile range (IQR) method.</p>
+<p>Computes Q1, Q3, and IQR over all valid (non-NaN) rows in the
+column, then flags values outside <code class="docutils literal notranslate"><span class="pre">[Q1</span> <span class="pre">-</span> <span class="pre">k*IQR,</span> <span class="pre">Q3</span> <span class="pre">+</span> <span class="pre">k*IQR]</span></code>
+where <code class="docutils literal notranslate"><span class="pre">k</span> <span class="pre">=</span> <span class="pre">iqr_factor</span></code>.</p>
+<section id="id1">
+<h3>Parameters<a class="headerlink" href="#id1" title="Link to this heading">#</a></h3>
+<dl class="simple">
+<dt>df<span class="classifier">pd.DataFrame</span></dt><dd><p>Time-indexed sensor data. Must contain at least the column
+<code class="docutils literal notranslate"><span class="pre">var_name</span></code>. Non-numeric values are coerced to <code class="docutils literal notranslate"><span class="pre">NaN</span></code>.</p>
+</dd>
+<dt>var_name<span class="classifier">str</span></dt><dd><p>Name of the column in <code class="docutils literal notranslate"><span class="pre">df</span></code> to check
+(e.g. <code class="docutils literal notranslate"><span class="pre">&quot;H2O_C1&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;AirTC_Avg&quot;</span></code>).</p>
+</dd>
+<dt>iqr_factor<span class="classifier">float, optional</span></dt><dd><p>Multiplier applied to the IQR to define the outlier fence.
+Default <code class="docutils literal notranslate"><span class="pre">1.5</span></code> (the classic Tukey fence). Use a larger value
+(e.g. <code class="docutils literal notranslate"><span class="pre">3.0</span></code>) for variables with heavy right tails such as
+soil CO₂ efflux.</p>
+</dd>
+</dl>
+</section>
+<section id="id2">
+<h3>Returns<a class="headerlink" href="#id2" title="Link to this heading">#</a></h3>
+<dl class="simple">
+<dt>pd.Series</dt><dd><p>Integer flag series aligned to <code class="docutils literal notranslate"><span class="pre">df.index</span></code>:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">0</span></code> — within the IQR fence (Good).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">1</span></code> — outside the IQR fence (Suspect).</p></li>
+</ul>
+</dd>
+</dl>
+</section>
+<section id="id3">
+<h3>Notes<a class="headerlink" href="#id3" title="Link to this heading">#</a></h3>
+<p>IQR-based flagging assumes a roughly symmetric distribution. Tropical
+chamber CO₂ is typically log-normal within a day, so this is a
+coarse filter intended to catch orders-of-magnitude anomalies rather
+than subtle drift. At least 4 valid data points are required;
+fewer returns all zeros. If all values are identical (IQR = 0) the
+function also returns all zeros to avoid flagging constant series
+that may represent a gap period.</p>
+</section>
+<section id="id4">
+<h3>Examples<a class="headerlink" href="#id4" title="Link to this heading">#</a></h3>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s2">&quot;CO2_C1&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mf">400.0</span><span class="p">,</span> <span class="mf">410.0</span><span class="p">,</span> <span class="mf">405.0</span><span class="p">,</span> <span class="mf">395.0</span><span class="p">,</span> <span class="mf">9999.0</span><span class="p">]})</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">flags</span> <span class="o">=</span> <span class="n">apply_iqr_flags</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="s2">&quot;CO2_C1&quot;</span><span class="p">,</span> <span class="n">iqr_factor</span><span class="o">=</span><span class="mf">1.5</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">flags</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+<span class="go">[0, 0, 0, 0, 1]</span>
+</pre></div>
+</div>
+</section>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="palmwtc.qc.rules.combine_qc_flags">
+<span class="sig-prename descclassname"><span class="pre">palmwtc.qc.rules.</span></span><span class="sig-name descname"><span class="pre">combine_qc_flags</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">bounds_flags</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">iqr_flags</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">roc_flags</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">persistence_flags</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#palmwtc.qc.rules.combine_qc_flags" title="Link to this definition">#</a></dt>
+<dd><p>Merge per-rule flag series into a single combined quality flag.</p>
+<p>Applies a worst-case (maximum) merge logic with priority ordering:</p>
+<ol class="arabic simple">
+<li><p>Physical bounds flags set the base (can produce flag 2).</p></li>
+<li><p>IQR, rate-of-change, and persistence flags elevate 0 → 1.</p></li>
+<li><p>A flag 2 value is never demoted to 1 or 0.</p></li>
+</ol>
+<section id="id5">
+<h3>Parameters<a class="headerlink" href="#id5" title="Link to this heading">#</a></h3>
+<dl class="simple">
+<dt>bounds_flags<span class="classifier">pd.Series</span></dt><dd><p>Flags from the physical bounds check (values 0, 1, or 2).
+Used as the starting base for the merge.</p>
+</dd>
+<dt>iqr_flags<span class="classifier">pd.Series</span></dt><dd><p>Flags from the IQR outlier check (values 0 or 1).
+Must share the same index as <code class="docutils literal notranslate"><span class="pre">bounds_flags</span></code>.</p>
+</dd>
+<dt>roc_flags<span class="classifier">pd.Series, optional</span></dt><dd><p>Flags from the rate-of-change (spike) check (values 0 or 1).
+If <code class="docutils literal notranslate"><span class="pre">None</span></code>, treated as all zeros.</p>
+</dd>
+<dt>persistence_flags<span class="classifier">pd.Series, optional</span></dt><dd><p>Flags from the persistence (flat-line) check (values 0 or 1).
+If <code class="docutils literal notranslate"><span class="pre">None</span></code>, treated as all zeros.</p>
+</dd>
+</dl>
+</section>
+<section id="id6">
+<h3>Returns<a class="headerlink" href="#id6" title="Link to this heading">#</a></h3>
+<dl class="simple">
+<dt>pd.Series</dt><dd><p>Combined integer flag series (0, 1, or 2) aligned to
+<code class="docutils literal notranslate"><span class="pre">bounds_flags.index</span></code>.</p>
+</dd>
+</dl>
+</section>
+<section id="id7">
+<h3>Examples<a class="headerlink" href="#id7" title="Link to this heading">#</a></h3>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">bounds</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">iqr</span>    <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">roc</span>    <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">combined</span> <span class="o">=</span> <span class="n">combine_qc_flags</span><span class="p">(</span><span class="n">bounds</span><span class="p">,</span> <span class="n">iqr</span><span class="p">,</span> <span class="n">roc_flags</span><span class="o">=</span><span class="n">roc</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">combined</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+<span class="go">[0, 2, 1, 1]</span>
+</pre></div>
+</div>
+</section>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="palmwtc.qc.rules.generate_qc_summary">
+<span class="sig-prename descclassname"><span class="pre">palmwtc.qc.rules.</span></span><span class="sig-name descname"><span class="pre">generate_qc_summary</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">flag_column</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#palmwtc.qc.rules.generate_qc_summary" title="Link to this definition">#</a></dt>
+<dd><p>Count and summarise flag levels for one QC flag column.</p>
+<section id="id8">
+<h3>Parameters<a class="headerlink" href="#id8" title="Link to this heading">#</a></h3>
+<dl class="simple">
+<dt>df<span class="classifier">pd.DataFrame</span></dt><dd><p>Data frame containing at least the column <code class="docutils literal notranslate"><span class="pre">flag_column</span></code>.</p>
+</dd>
+<dt>flag_column<span class="classifier">str</span></dt><dd><p>Name of the integer flag column to summarise
+(e.g. <code class="docutils literal notranslate"><span class="pre">&quot;CO2_C1_rule_flag&quot;</span></code>).</p>
+</dd>
+</dl>
+</section>
+<section id="id9">
+<h3>Returns<a class="headerlink" href="#id9" title="Link to this heading">#</a></h3>
+<dl>
+<dt>dict</dt><dd><p>Summary statistics with the following keys:</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">&quot;total_points&quot;</span></code><span class="classifier">int</span></dt><dd><p>Total number of rows.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">&quot;flag_0_count&quot;</span></code><span class="classifier">int</span></dt><dd><p>Number of rows with flag 0 (Good).</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">&quot;flag_1_count&quot;</span></code><span class="classifier">int</span></dt><dd><p>Number of rows with flag 1 (Suspect).</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">&quot;flag_2_count&quot;</span></code><span class="classifier">int</span></dt><dd><p>Number of rows with flag 2 (Bad).</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">&quot;flag_0_percent&quot;</span></code><span class="classifier">float</span></dt><dd><p>Percentage of rows with flag 0.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">&quot;flag_1_percent&quot;</span></code><span class="classifier">float</span></dt><dd><p>Percentage of rows with flag 1.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">&quot;flag_2_percent&quot;</span></code><span class="classifier">float</span></dt><dd><p>Percentage of rows with flag 2.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</section>
+<section id="id10">
+<h3>Examples<a class="headerlink" href="#id10" title="Link to this heading">#</a></h3>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s2">&quot;CO2_rule_flag&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">]})</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">s</span> <span class="o">=</span> <span class="n">generate_qc_summary</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="s2">&quot;CO2_rule_flag&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">s</span><span class="p">[</span><span class="s2">&quot;total_points&quot;</span><span class="p">],</span> <span class="n">s</span><span class="p">[</span><span class="s2">&quot;flag_0_count&quot;</span><span class="p">],</span> <span class="n">s</span><span class="p">[</span><span class="s2">&quot;flag_1_count&quot;</span><span class="p">],</span> <span class="n">s</span><span class="p">[</span><span class="s2">&quot;flag_2_count&quot;</span><span class="p">]</span>
+<span class="go">(5, 3, 1, 1)</span>
+</pre></div>
+</div>
+</section>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="palmwtc.qc.rules.get_variable_config">
+<span class="sig-prename descclassname"><span class="pre">palmwtc.qc.rules.</span></span><span class="sig-name descname"><span class="pre">get_variable_config</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">var_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">var_config_dict</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#palmwtc.qc.rules.get_variable_config" title="Link to this definition">#</a></dt>
+<dd><p>Look up the QC configuration for a specific variable column name.</p>
+<p>Handles both direct column-name matches (e.g. <code class="docutils literal notranslate"><span class="pre">&quot;CO2_C1&quot;</span></code>) and
+prefix-pattern matches used for soil sensor arrays
+(e.g. <code class="docutils literal notranslate"><span class="pre">&quot;SWC_C1&quot;</span></code> matching columns like <code class="docutils literal notranslate"><span class="pre">&quot;SWC_C1_5cm&quot;</span></code>).</p>
+<section id="id11">
+<h3>Parameters<a class="headerlink" href="#id11" title="Link to this heading">#</a></h3>
+<dl class="simple">
+<dt>var_name<span class="classifier">str</span></dt><dd><p>Variable column name to look up (e.g. <code class="docutils literal notranslate"><span class="pre">&quot;CO2_C1&quot;</span></code>,
+<code class="docutils literal notranslate"><span class="pre">&quot;SWC_C1_30cm&quot;</span></code>).</p>
+</dd>
+<dt>var_config_dict<span class="classifier">dict</span></dt><dd><p>Variable configuration dictionary, typically loaded from
+<code class="docutils literal notranslate"><span class="pre">variable_config.json</span></code>. Each entry is either:</p>
+<ul class="simple">
+<li><p>A config with <code class="docutils literal notranslate"><span class="pre">&quot;columns&quot;:</span> <span class="pre">[...]</span></code> — list of exact column names
+that share this config.</p></li>
+<li><p>A config with <code class="docutils literal notranslate"><span class="pre">&quot;pattern&quot;:</span> <span class="pre">&quot;&lt;prefix&gt;&quot;</span></code> — all columns whose
+name starts with <code class="docutils literal notranslate"><span class="pre">&quot;&lt;prefix&gt;_&quot;</span></code> share this config.</p></li>
+</ul>
+</dd>
+</dl>
+</section>
+<section id="id12">
+<h3>Returns<a class="headerlink" href="#id12" title="Link to this heading">#</a></h3>
+<dl class="simple">
+<dt>dict or None</dt><dd><p>Configuration dict for the variable if found, otherwise <code class="docutils literal notranslate"><span class="pre">None</span></code>.</p>
+</dd>
+</dl>
+</section>
+<section id="id13">
+<h3>Notes<a class="headerlink" href="#id13" title="Link to this heading">#</a></h3>
+<p>Direct column matches are checked before pattern matches. If a
+variable matches both, the direct match wins.</p>
+</section>
+<section id="id14">
+<h3>Examples<a class="headerlink" href="#id14" title="Link to this heading">#</a></h3>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">cfg_dict</span> <span class="o">=</span> <span class="p">{</span>
+<span class="gp">... </span>    <span class="s2">&quot;co2&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;columns&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;CO2_C1&quot;</span><span class="p">,</span> <span class="s2">&quot;CO2_C2&quot;</span><span class="p">],</span> <span class="s2">&quot;hard&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">20000</span><span class="p">]},</span>
+<span class="gp">... </span>    <span class="s2">&quot;swc&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;pattern&quot;</span><span class="p">:</span> <span class="s2">&quot;SWC_C1&quot;</span><span class="p">,</span> <span class="s2">&quot;hard&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.8</span><span class="p">]},</span>
+<span class="gp">... </span><span class="p">}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">get_variable_config</span><span class="p">(</span><span class="s2">&quot;CO2_C1&quot;</span><span class="p">,</span> <span class="n">cfg_dict</span><span class="p">)</span>
+<span class="go">{&#39;columns&#39;: [&#39;CO2_C1&#39;, &#39;CO2_C2&#39;], &#39;hard&#39;: [0, 20000]}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">get_variable_config</span><span class="p">(</span><span class="s2">&quot;SWC_C1_30cm&quot;</span><span class="p">,</span> <span class="n">cfg_dict</span><span class="p">)</span>
+<span class="go">{&#39;pattern&#39;: &#39;SWC_C1&#39;, &#39;hard&#39;: [0.0, 0.8]}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">get_variable_config</span><span class="p">(</span><span class="s2">&quot;Temp_air&quot;</span><span class="p">,</span> <span class="n">cfg_dict</span><span class="p">)</span> <span class="ow">is</span> <span class="kc">None</span>
+<span class="go">True</span>
+</pre></div>
+</div>
+</section>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="palmwtc.qc.rules.apply_rate_of_change_flags">
+<span class="sig-prename descclassname"><span class="pre">palmwtc.qc.rules.</span></span><span class="sig-name descname"><span class="pre">apply_rate_of_change_flags</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">var_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">config</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#palmwtc.qc.rules.apply_rate_of_change_flags" title="Link to this definition">#</a></dt>
+<dd><p>Flag rows where consecutive-sample change exceeds a spike limit.</p>
+<p>Computes the absolute first-difference of the column and compares it
+against a configured <code class="docutils literal notranslate"><span class="pre">rate_of_change.limit</span></code>. Accounts for time
+gaps (e.g. chamber open periods) by skipping the check at transitions
+where the elapsed time exceeds three times the typical sampling
+interval.</p>
+<section id="id15">
+<h3>Parameters<a class="headerlink" href="#id15" title="Link to this heading">#</a></h3>
+<dl>
+<dt>df<span class="classifier">pd.DataFrame</span></dt><dd><p>Time-indexed sensor data with a <code class="docutils literal notranslate"><span class="pre">pd.DatetimeIndex</span></code> (preferred).
+Must contain at least the column <code class="docutils literal notranslate"><span class="pre">var_name</span></code>. Non-numeric values
+are coerced to <code class="docutils literal notranslate"><span class="pre">NaN</span></code>.</p>
+</dd>
+<dt>var_name<span class="classifier">str</span></dt><dd><p>Name of the column in <code class="docutils literal notranslate"><span class="pre">df</span></code> to check
+(e.g. <code class="docutils literal notranslate"><span class="pre">&quot;CO2_C1&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;AirTC_Avg&quot;</span></code>).</p>
+</dd>
+<dt>config<span class="classifier">dict</span></dt><dd><p>Variable config dict. Recognised key:</p>
+<dl>
+<dt><code class="docutils literal notranslate"><span class="pre">&quot;rate_of_change&quot;</span></code><span class="classifier">dict, optional</span></dt><dd><p>Sub-dict with:</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">&quot;limit&quot;</span></code><span class="classifier">float</span></dt><dd><p>Maximum allowed absolute change between consecutive
+samples in native units. If missing, the check is
+skipped and all flags return 0.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd>
+</dl>
+</section>
+<section id="id16">
+<h3>Returns<a class="headerlink" href="#id16" title="Link to this heading">#</a></h3>
+<dl class="simple">
+<dt>pd.Series</dt><dd><p>Integer flag series aligned to <code class="docutils literal notranslate"><span class="pre">df.index</span></code>:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">0</span></code> — change within the allowed limit (Good).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">1</span></code> — change exceeds the limit (Suspect spike).</p></li>
+</ul>
+</dd>
+</dl>
+</section>
+<section id="id17">
+<h3>Notes<a class="headerlink" href="#id17" title="Link to this heading">#</a></h3>
+<p>The gap-aware logic estimates the typical sampling interval as the
+median of all consecutive time differences. Differences larger than
+3 times that median are treated as legitimate data gaps rather than
+physical spikes and are excluded from flagging. For 4-second chamber
+data this means jumps across gaps longer than 12 seconds are never
+flagged as spikes; for 15-minute soil data the threshold is 45
+minutes.</p>
+</section>
+<section id="id18">
+<h3>Examples<a class="headerlink" href="#id18" title="Link to this heading">#</a></h3>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">idx</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">date_range</span><span class="p">(</span><span class="s2">&quot;2024-01-01&quot;</span><span class="p">,</span> <span class="n">periods</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">freq</span><span class="o">=</span><span class="s2">&quot;4s&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s2">&quot;CO2_C1&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mf">400.0</span><span class="p">,</span> <span class="mf">401.0</span><span class="p">,</span> <span class="mf">500.0</span><span class="p">,</span> <span class="mf">402.0</span><span class="p">,</span> <span class="mf">403.0</span><span class="p">]},</span> <span class="n">index</span><span class="o">=</span><span class="n">idx</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">cfg</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;rate_of_change&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;limit&quot;</span><span class="p">:</span> <span class="mf">20.0</span><span class="p">}}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">flags</span> <span class="o">=</span> <span class="n">apply_rate_of_change_flags</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="s2">&quot;CO2_C1&quot;</span><span class="p">,</span> <span class="n">cfg</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">flags</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+<span class="go">[0, 0, 1, 1, 0]</span>
+</pre></div>
+</div>
+</section>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="palmwtc.qc.rules.apply_persistence_flags">
+<span class="sig-prename descclassname"><span class="pre">palmwtc.qc.rules.</span></span><span class="sig-name descname"><span class="pre">apply_persistence_flags</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">var_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">config</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#palmwtc.qc.rules.apply_persistence_flags" title="Link to this definition">#</a></dt>
+<dd><p>Flag rows where a variable shows no meaningful variation (flat line).</p>
+<p>Computes the rolling max-minus-min range over a backward-looking
+time window and flags rows where that range is at or below an
+epsilon threshold. A persistently flat sensor reading usually
+indicates a stuck analogue output, a disconnected probe, or a
+data-logger averaging artefact.</p>
+<section id="id19">
+<h3>Parameters<a class="headerlink" href="#id19" title="Link to this heading">#</a></h3>
+<dl>
+<dt>df<span class="classifier">pd.DataFrame</span></dt><dd><p>Time-indexed sensor data with a <code class="docutils literal notranslate"><span class="pre">pd.DatetimeIndex</span></code> (required
+for the time-based rolling window). Must contain at least the
+column <code class="docutils literal notranslate"><span class="pre">var_name</span></code>. Non-numeric values are coerced to <code class="docutils literal notranslate"><span class="pre">NaN</span></code>.</p>
+</dd>
+<dt>var_name<span class="classifier">str</span></dt><dd><p>Name of the column in <code class="docutils literal notranslate"><span class="pre">df</span></code> to check
+(e.g. <code class="docutils literal notranslate"><span class="pre">&quot;CO2_C1&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;SWC_C1_5cm&quot;</span></code>).</p>
+</dd>
+<dt>config<span class="classifier">dict</span></dt><dd><p>Variable config dict. Recognised key:</p>
+<dl>
+<dt><code class="docutils literal notranslate"><span class="pre">&quot;persistence&quot;</span></code><span class="classifier">dict, optional</span></dt><dd><p>Sub-dict with:</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">&quot;window_hours&quot;</span></code><span class="classifier">float</span></dt><dd><p>Rolling window length in hours. If missing the check is
+skipped and all flags return 0.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">&quot;epsilon&quot;</span></code><span class="classifier">float, optional</span></dt><dd><p>Maximum range (max - min) that is still considered flat.
+Default <code class="docutils literal notranslate"><span class="pre">0.0</span></code> (exact equality required). Set higher
+for noisy sensors, e.g. <code class="docutils literal notranslate"><span class="pre">0.01</span></code> for SWC.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd>
+</dl>
+</section>
+<section id="id20">
+<h3>Returns<a class="headerlink" href="#id20" title="Link to this heading">#</a></h3>
+<dl class="simple">
+<dt>pd.Series</dt><dd><p>Integer flag series aligned to <code class="docutils literal notranslate"><span class="pre">df.index</span></code>:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">0</span></code> — normal variation within the window (Good).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">1</span></code> — range within the window is &lt;= epsilon (Suspect flat).</p></li>
+</ul>
+</dd>
+</dl>
+</section>
+<section id="id21">
+<h3>Notes<a class="headerlink" href="#id21" title="Link to this heading">#</a></h3>
+<p>A row is flagged when the <em>entire backward-looking window ending at
+that row</em> had suspiciously low variation. This means the flag
+appears at the end of a flat sequence, not at its start.
+Short sequences at the beginning of a file that are shorter than
+<code class="docutils literal notranslate"><span class="pre">window_hours</span></code> use <code class="docutils literal notranslate"><span class="pre">min_periods=1</span></code> and may receive false positives
+if the variable genuinely does not change during the initial window.</p>
+</section>
+<section id="id22">
+<h3>Examples<a class="headerlink" href="#id22" title="Link to this heading">#</a></h3>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">idx</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">date_range</span><span class="p">(</span><span class="s2">&quot;2024-01-01&quot;</span><span class="p">,</span> <span class="n">periods</span><span class="o">=</span><span class="mi">6</span><span class="p">,</span> <span class="n">freq</span><span class="o">=</span><span class="s2">&quot;30min&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">vals</span> <span class="o">=</span> <span class="p">[</span><span class="mf">400.0</span><span class="p">,</span> <span class="mf">400.0</span><span class="p">,</span> <span class="mf">400.0</span><span class="p">,</span> <span class="mf">400.0</span><span class="p">,</span> <span class="mf">400.0</span><span class="p">,</span> <span class="mf">500.0</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s2">&quot;CO2_C1&quot;</span><span class="p">:</span> <span class="n">vals</span><span class="p">},</span> <span class="n">index</span><span class="o">=</span><span class="n">idx</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">cfg</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;persistence&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;window_hours&quot;</span><span class="p">:</span> <span class="mf">1.5</span><span class="p">,</span> <span class="s2">&quot;epsilon&quot;</span><span class="p">:</span> <span class="mf">0.01</span><span class="p">}}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">flags</span> <span class="o">=</span> <span class="n">apply_persistence_flags</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="s2">&quot;CO2_C1&quot;</span><span class="p">,</span> <span class="n">cfg</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">flags</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+<span class="go">[1, 1, 1, 1, 1, 0]</span>
+</pre></div>
+</div>
+</section>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="palmwtc.qc.rules.apply_battery_proxy_flags">
+<span class="sig-prename descclassname"><span class="pre">palmwtc.qc.rules.</span></span><span class="sig-name descname"><span class="pre">apply_battery_proxy_flags</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">battery_proxy_config</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#palmwtc.qc.rules.apply_battery_proxy_flags" title="Link to this definition">#</a></dt>
+<dd><p>Propagate data-logger battery health flags to dependent measurements.</p>
+<p>For each configured battery sensor column: when the battery voltage
+falls below a warning threshold, dependent measurement variables are
+elevated to Suspect (flag 1); below a bad threshold they are elevated
+to Bad (flag 2). Existing flag 2 values are never demoted.</p>
+<section id="id23">
+<h3>Parameters<a class="headerlink" href="#id23" title="Link to this heading">#</a></h3>
+<dl>
+<dt>df<span class="classifier">pd.DataFrame</span></dt><dd><p>DataFrame containing battery voltage columns and, for each
+target variable, both a <code class="docutils literal notranslate"><span class="pre">{var}_rule_flag</span></code> column and
+optionally a <code class="docutils literal notranslate"><span class="pre">{var}_qc_flag</span></code> column. Modified in place.</p>
+</dd>
+<dt>battery_proxy_config<span class="classifier">dict</span></dt><dd><p>The <code class="docutils literal notranslate"><span class="pre">&quot;battery_proxy&quot;</span></code> section from the variable config JSON.
+Expected structure:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="s2">&quot;sensors&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="s2">&quot;&lt;batt_col&gt;&quot;</span><span class="p">:</span> <span class="p">{</span>
+      <span class="s2">&quot;warn_below&quot;</span><span class="p">:</span> <span class="o">&lt;</span><span class="nb">float</span><span class="o">&gt;</span><span class="p">,</span>
+      <span class="s2">&quot;bad_below&quot;</span><span class="p">:</span> <span class="o">&lt;</span><span class="nb">float</span><span class="o">&gt;</span><span class="p">,</span>
+      <span class="s2">&quot;targets&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;&lt;var1&gt;&quot;</span><span class="p">,</span> <span class="s2">&quot;&lt;var2&gt;&quot;</span><span class="p">,</span> <span class="o">...</span><span class="p">]</span>
+    <span class="p">},</span>
+    <span class="o">...</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Where:</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">&quot;&lt;batt_col&gt;&quot;</span></code><span class="classifier">str</span></dt><dd><p>Column name of the battery voltage sensor
+(e.g. <code class="docutils literal notranslate"><span class="pre">&quot;BattV_Min&quot;</span></code>).</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">&quot;warn_below&quot;</span></code><span class="classifier">float</span></dt><dd><p>Voltage threshold in volts below which target flags are
+elevated to 1 (Suspect).</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">&quot;bad_below&quot;</span></code><span class="classifier">float</span></dt><dd><p>Voltage threshold in volts below which target flags are
+elevated to 2 (Bad).</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">&quot;targets&quot;</span></code><span class="classifier">list of str</span></dt><dd><p>Variable names whose <code class="docutils literal notranslate"><span class="pre">{var}_rule_flag</span></code> columns are updated
+when the battery voltage is low.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</section>
+<section id="id24">
+<h3>Returns<a class="headerlink" href="#id24" title="Link to this heading">#</a></h3>
+<dl class="simple">
+<dt>dict</dt><dd><p><code class="docutils literal notranslate"><span class="pre">{batt_col:</span> <span class="pre">{&quot;warn_count&quot;:</span> <span class="pre">int,</span> <span class="pre">&quot;bad_count&quot;:</span> <span class="pre">int,</span>
+<span class="pre">&quot;targets_updated&quot;:</span> <span class="pre">list}}</span></code> — one entry per configured battery
+sensor, reporting how many rows were affected at each severity
+level and which target variables were updated.</p>
+</dd>
+</dl>
+</section>
+<section id="id25">
+<h3>Notes<a class="headerlink" href="#id25" title="Link to this heading">#</a></h3>
+<p>Battery-voltage proxy flagging matters in the whole-tree chamber
+setup because the data-logger (CR1000X) runs from a 12 V sealed
+lead-acid battery charged by a small solar panel. During cloudy
+multi-day periods the battery can drop enough to cause the LI-850
+to produce noisy or clipped readings before the logger shuts down.
+Flagging those measurements proactively prevents erroneous
+flux estimates.</p>
+</section>
+<section id="id26">
+<h3>Examples<a class="headerlink" href="#id26" title="Link to this heading">#</a></h3>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
+<span class="gp">... </span>    <span class="s2">&quot;BattV_Min&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mf">12.5</span><span class="p">,</span> <span class="mf">11.5</span><span class="p">,</span> <span class="mf">10.8</span><span class="p">],</span>
+<span class="gp">... </span>    <span class="s2">&quot;CO2_C1_rule_flag&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+<span class="gp">... </span>    <span class="s2">&quot;CO2_C1_qc_flag&quot;</span><span class="p">:</span>   <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+<span class="gp">... </span><span class="p">})</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">batt_cfg</span> <span class="o">=</span> <span class="p">{</span>
+<span class="gp">... </span>    <span class="s2">&quot;sensors&quot;</span><span class="p">:</span> <span class="p">{</span>
+<span class="gp">... </span>        <span class="s2">&quot;BattV_Min&quot;</span><span class="p">:</span> <span class="p">{</span>
+<span class="gp">... </span>            <span class="s2">&quot;warn_below&quot;</span><span class="p">:</span> <span class="mf">11.8</span><span class="p">,</span>
+<span class="gp">... </span>            <span class="s2">&quot;bad_below&quot;</span><span class="p">:</span> <span class="mf">11.0</span><span class="p">,</span>
+<span class="gp">... </span>            <span class="s2">&quot;targets&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;CO2_C1&quot;</span><span class="p">],</span>
+<span class="gp">... </span>        <span class="p">}</span>
+<span class="gp">... </span>    <span class="p">}</span>
+<span class="gp">... </span><span class="p">}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">result</span> <span class="o">=</span> <span class="n">apply_battery_proxy_flags</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">batt_cfg</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;CO2_C1_rule_flag&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+<span class="go">[0, 1, 2]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">result</span><span class="p">[</span><span class="s2">&quot;BattV_Min&quot;</span><span class="p">][</span><span class="s2">&quot;warn_count&quot;</span><span class="p">]</span>
+<span class="go">2</span>
+</pre></div>
+</div>
+</section>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="palmwtc.qc.rules._load_sensor_exclusions">
+<span class="sig-prename descclassname"><span class="pre">palmwtc.qc.rules.</span></span><span class="sig-name descname"><span class="pre">_load_sensor_exclusions</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">config_path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#palmwtc.qc.rules._load_sensor_exclusions" title="Link to this definition">#</a></dt>
+<dd><p>Load sensor exclusion windows from YAML config.</p>
+<section id="id27">
+<h3>Parameters<a class="headerlink" href="#id27" title="Link to this heading">#</a></h3>
+<dl class="simple">
+<dt>config_path<span class="classifier">str or Path, optional</span></dt><dd><p>Path to sensor_exclusions.yaml. Defaults to config/sensor_exclusions.yaml
+relative to the project root.</p>
+</dd>
+</dl>
+</section>
+<section id="id28">
+<h3>Returns<a class="headerlink" href="#id28" title="Link to this heading">#</a></h3>
+<dl class="simple">
+<dt>dict</dt><dd><p><code class="docutils literal notranslate"><span class="pre">{column_name:</span> <span class="pre">[{&quot;start&quot;:</span> <span class="pre">str,</span> <span class="pre">&quot;end&quot;:</span> <span class="pre">str,</span> <span class="pre">&quot;flag&quot;:</span> <span class="pre">int,</span> <span class="pre">&quot;reason&quot;:</span> <span class="pre">str,</span> <span class="pre">&quot;source&quot;:</span> <span class="pre">str},</span> <span class="pre">...]}</span></code>
+Empty dict if file not found.</p>
+</dd>
+</dl>
+</section>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="palmwtc.qc.rules.apply_sensor_exclusion_flags">
+<span class="sig-prename descclassname"><span class="pre">palmwtc.qc.rules.</span></span><span class="sig-name descname"><span class="pre">apply_sensor_exclusion_flags</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">var_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">config_path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#palmwtc.qc.rules.apply_sensor_exclusion_flags" title="Link to this definition">#</a></dt>
+<dd><p>Flag rows that fall inside a sensor maintenance or swap-out window.</p>
+<p>Reads exclusion windows from <code class="docutils literal notranslate"><span class="pre">config/sensor_exclusions.yaml</span></code> and
+flags every row whose timestamp is inside any window defined for
+<code class="docutils literal notranslate"><span class="pre">var_name</span></code>. This step is applied before other QC rules so that
+hardware-verified bad periods are always marked Bad (flag 2)
+regardless of what the IQR or physical-bounds checks produce.</p>
+<section id="id29">
+<h3>Parameters<a class="headerlink" href="#id29" title="Link to this heading">#</a></h3>
+<dl class="simple">
+<dt>df<span class="classifier">pd.DataFrame</span></dt><dd><p>DataFrame with a <code class="docutils literal notranslate"><span class="pre">pd.DatetimeIndex</span></code>. Row timestamps are
+compared directly against window boundaries.</p>
+</dd>
+<dt>var_name<span class="classifier">str</span></dt><dd><p>Column name to look up in the exclusion config
+(e.g. <code class="docutils literal notranslate"><span class="pre">&quot;CO2_C1&quot;</span></code>).</p>
+</dd>
+<dt>config_path<span class="classifier">str or Path, optional</span></dt><dd><p>Override path to <code class="docutils literal notranslate"><span class="pre">sensor_exclusions.yaml</span></code>. If <code class="docutils literal notranslate"><span class="pre">None</span></code>, the
+file is resolved relative to the package <code class="docutils literal notranslate"><span class="pre">config/</span></code> directory.</p>
+</dd>
+</dl>
+</section>
+<section id="id30">
+<h3>Returns<a class="headerlink" href="#id30" title="Link to this heading">#</a></h3>
+<dl class="simple">
+<dt>pd.Series</dt><dd><p>Integer flag series aligned to <code class="docutils literal notranslate"><span class="pre">df.index</span></code>:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">0</span></code> — no exclusion window applies.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">1</span></code> or <code class="docutils literal notranslate"><span class="pre">2</span></code> — per the <code class="docutils literal notranslate"><span class="pre">flag</span></code> field in the YAML config
+(most windows use <code class="docutils literal notranslate"><span class="pre">2</span></code> for Bad).</p></li>
+</ul>
+</dd>
+</dl>
+</section>
+<section id="id31">
+<h3>Notes<a class="headerlink" href="#id31" title="Link to this heading">#</a></h3>
+<p>Exclusion windows are inclusive on both start and end dates (end date
+extended to 23:59:59 to cover sub-daily data). Within each window,
+flags are only ever elevated — existing higher flags are preserved.</p>
+<p>The YAML config structure for one variable:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sensor_exclusions</span><span class="p">:</span>
+  <span class="n">CO2_C1</span><span class="p">:</span>
+    <span class="o">-</span> <span class="n">start</span><span class="p">:</span> <span class="s2">&quot;2024-03-10&quot;</span>
+      <span class="n">end</span><span class="p">:</span>   <span class="s2">&quot;2024-03-14&quot;</span>
+      <span class="n">flag</span><span class="p">:</span>  <span class="mi">2</span>
+      <span class="n">reason</span><span class="p">:</span> <span class="s2">&quot;Sensor removed for cleaning&quot;</span>
+      <span class="n">source</span><span class="p">:</span> <span class="s2">&quot;manual&quot;</span>
+</pre></div>
+</div>
+</section>
+<section id="id32">
+<h3>Examples<a class="headerlink" href="#id32" title="Link to this heading">#</a></h3>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span><span class="w"> </span><span class="nn">tempfile</span><span class="o">,</span><span class="w"> </span><span class="nn">os</span><span class="o">,</span><span class="w"> </span><span class="nn">textwrap</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">yaml_txt</span> <span class="o">=</span> <span class="n">textwrap</span><span class="o">.</span><span class="n">dedent</span><span class="p">(</span><span class="s1">&#39;&#39;&#39;</span>
+<span class="gp">... </span><span class="s1">    sensor_exclusions:</span>
+<span class="gp">... </span><span class="s1">      CO2_C1:</span>
+<span class="gp">... </span><span class="s1">        - start: &quot;2024-01-02&quot;</span>
+<span class="gp">... </span><span class="s1">          end:   &quot;2024-01-02&quot;</span>
+<span class="gp">... </span><span class="s1">          flag:  2</span>
+<span class="gp">... </span><span class="s1">          reason: &quot;test&quot;</span>
+<span class="gp">... </span><span class="s1">          source: &quot;manual&quot;</span>
+<span class="gp">... </span><span class="s1">&#39;&#39;&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">with</span> <span class="n">tempfile</span><span class="o">.</span><span class="n">NamedTemporaryFile</span><span class="p">(</span><span class="n">mode</span><span class="o">=</span><span class="s2">&quot;w&quot;</span><span class="p">,</span> <span class="n">suffix</span><span class="o">=</span><span class="s2">&quot;.yaml&quot;</span><span class="p">,</span> <span class="n">delete</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+<span class="gp">... </span>    <span class="n">_</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">yaml_txt</span><span class="p">)</span>
+<span class="gp">... </span>    <span class="n">tmp</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">name</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">idx</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">date_range</span><span class="p">(</span><span class="s2">&quot;2024-01-01&quot;</span><span class="p">,</span> <span class="n">periods</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">freq</span><span class="o">=</span><span class="s2">&quot;1D&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s2">&quot;CO2_C1&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mf">400.0</span><span class="p">,</span> <span class="mf">500.0</span><span class="p">,</span> <span class="mf">410.0</span><span class="p">]},</span> <span class="n">index</span><span class="o">=</span><span class="n">idx</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">flags</span> <span class="o">=</span> <span class="n">apply_sensor_exclusion_flags</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="s2">&quot;CO2_C1&quot;</span><span class="p">,</span> <span class="n">config_path</span><span class="o">=</span><span class="n">tmp</span><span class="p">)</span>
+<span class="go">    Exclusion: CO2_C1 2024-01-02 → 2024-01-02 (flag=2, 1 rows) — test</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">flags</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+<span class="go">[0, 2, 0]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">os</span><span class="o">.</span><span class="n">unlink</span><span class="p">(</span><span class="n">tmp</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="palmwtc.qc.rules.generate_exclusion_recommendations">
+<span class="sig-prename descclassname"><span class="pre">palmwtc.qc.rules.</span></span><span class="sig-name descname"><span class="pre">generate_exclusion_recommendations</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">audit_path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">config_path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">agreement_threshold</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.3</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">write</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#palmwtc.qc.rules.generate_exclusion_recommendations" title="Link to this definition">#</a></dt>
+<dd><p>Auto-detect exclusion windows from a cross-chamber agreement audit.</p>
+<p>Reads a regime-audit CSV that records per-regime cross-chamber
+agreement scores and drift-slope warnings. Identifies regimes where
+agreement is poor, merges contiguous bad regimes into date windows,
+and returns per-sensor exclusion recommendations. Optionally writes
+the merged recommendations to <code class="docutils literal notranslate"><span class="pre">config/sensor_exclusions.yaml</span></code>
+while preserving any <code class="docutils literal notranslate"><span class="pre">source:</span> <span class="pre">&quot;manual&quot;</span></code> entries already there.</p>
+<section id="id33">
+<h3>Parameters<a class="headerlink" href="#id33" title="Link to this heading">#</a></h3>
+<dl class="simple">
+<dt>audit_path<span class="classifier">str or Path, optional</span></dt><dd><p>Path to the regime audit CSV
+(e.g. <code class="docutils literal notranslate"><span class="pre">Data/Integrated_QC_Data/026_regime_audit.csv</span></code>).
+Auto-resolved relative to the package root if <code class="docutils literal notranslate"><span class="pre">None</span></code>.</p>
+</dd>
+<dt>config_path<span class="classifier">str or Path, optional</span></dt><dd><p>Path to <code class="docutils literal notranslate"><span class="pre">sensor_exclusions.yaml</span></code> for writing. Auto-resolved
+relative to the package root if <code class="docutils literal notranslate"><span class="pre">None</span></code>.</p>
+</dd>
+<dt>agreement_threshold<span class="classifier">float, optional</span></dt><dd><p>Regimes with <code class="docutils literal notranslate"><span class="pre">agreement_score</span> <span class="pre">&lt;</span> <span class="pre">threshold</span></code> OR
+<code class="docutils literal notranslate"><span class="pre">slope_warning=True</span></code> are considered bad. Default <code class="docutils literal notranslate"><span class="pre">0.3</span></code>.</p>
+</dd>
+<dt>write<span class="classifier">bool, optional</span></dt><dd><p>If <code class="docutils literal notranslate"><span class="pre">True</span></code>, write merged recommendations to the YAML config
+file (preserving <code class="docutils literal notranslate"><span class="pre">source:</span> <span class="pre">&quot;manual&quot;</span></code> entries). Default
+<code class="docutils literal notranslate"><span class="pre">False</span></code> (dry-run, returns dict only).</p>
+</dd>
+</dl>
+</section>
+<section id="id34">
+<h3>Returns<a class="headerlink" href="#id34" title="Link to this heading">#</a></h3>
+<dl>
+<dt>dict</dt><dd><p><code class="docutils literal notranslate"><span class="pre">{sensor_col:</span> <span class="pre">[{&quot;start&quot;:</span> <span class="pre">str,</span> <span class="pre">&quot;end&quot;:</span> <span class="pre">str,</span> <span class="pre">&quot;flag&quot;:</span> <span class="pre">2,</span>
+<span class="pre">&quot;reason&quot;:</span> <span class="pre">str,</span> <span class="pre">&quot;regimes&quot;:</span> <span class="pre">list,</span> <span class="pre">&quot;source&quot;:</span> <span class="pre">&quot;026_regime_audit&quot;},</span>
+<span class="pre">...]}</span></code></p>
+<p>Where <code class="docutils literal notranslate"><span class="pre">sensor_col</span></code> is the chamber column to exclude
+(e.g. <code class="docutils literal notranslate"><span class="pre">&quot;CO2_C2&quot;</span></code>), <code class="docutils literal notranslate"><span class="pre">&quot;start&quot;</span></code> and <code class="docutils literal notranslate"><span class="pre">&quot;end&quot;</span></code> are
+<code class="docutils literal notranslate"><span class="pre">&quot;YYYY-MM-DD&quot;</span></code> strings covering the merged bad window, and
+<code class="docutils literal notranslate"><span class="pre">&quot;regimes&quot;</span></code> is a list of per-regime metadata dicts.</p>
+</dd>
+</dl>
+</section>
+<section id="id35">
+<h3>Notes<a class="headerlink" href="#id35" title="Link to this heading">#</a></h3>
+<p>The regime audit CSV is expected to have at least these columns:
+<code class="docutils literal notranslate"><span class="pre">agreement_score</span></code>, <code class="docutils literal notranslate"><span class="pre">slope_warning</span></code>, <code class="docutils literal notranslate"><span class="pre">start</span></code>, <code class="docutils literal notranslate"><span class="pre">end</span></code>,
+<code class="docutils literal notranslate"><span class="pre">variable</span></code>, <code class="docutils literal notranslate"><span class="pre">reference</span></code>, <code class="docutils literal notranslate"><span class="pre">regime</span></code>, <code class="docutils literal notranslate"><span class="pre">slope</span></code>.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">reference</span></code> column indicates which chamber had the more
+reliable reading during that regime. The <em>other</em> chamber’s column is
+the one recommended for exclusion.</p>
+<p>Contiguous regimes (gap &lt;= 1 day) are merged into a single window to
+avoid fragmented exclusion entries.</p>
+</section>
+<section id="id36">
+<h3>Examples<a class="headerlink" href="#id36" title="Link to this heading">#</a></h3>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">generate_exclusion_recommendations</span><span class="p">(</span>
+<span class="gp">... </span>    <span class="n">audit_path</span><span class="o">=</span><span class="s2">&quot;/path/to/026_regime_audit.csv&quot;</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">agreement_threshold</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">write</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+<span class="gp">... </span><span class="p">)</span>  
+<span class="go">{}</span>
+</pre></div>
+</div>
+</section>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="palmwtc.qc.rules.process_variable_qc">
+<span class="sig-prename descclassname"><span class="pre">palmwtc.qc.rules.</span></span><span class="sig-name descname"><span class="pre">process_variable_qc</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">var_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">var_config_dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">random_seed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">skip_persistence_for</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">skip_rate_of_change_for</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">use_sensor_exclusions</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">exclusion_config_path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#palmwtc.qc.rules.process_variable_qc" title="Link to this definition">#</a></dt>
+<dd><p>Run all QC rule checks for one variable and return combined flags.</p>
+<p>Orchestrates the full QC pipeline in order:</p>
+<ol class="arabic simple">
+<li><p>Sensor exclusion windows (optional; flag 2 never demoted).</p></li>
+<li><p>Physical bounds (hard and soft limits).</p></li>
+<li><p>IQR-based outlier detection.</p></li>
+<li><p>Rate-of-change (spike) detection.</p></li>
+<li><p>Persistence (flat-line) detection.</p></li>
+<li><p>Combine all flags into a single worst-case flag per row.</p></li>
+</ol>
+<section id="id37">
+<h3>Parameters<a class="headerlink" href="#id37" title="Link to this heading">#</a></h3>
+<dl class="simple">
+<dt>df<span class="classifier">pd.DataFrame</span></dt><dd><p>Time-indexed sensor data. Must contain at least the column
+<code class="docutils literal notranslate"><span class="pre">var_name</span></code>. Non-numeric values in <code class="docutils literal notranslate"><span class="pre">var_name</span></code> are coerced to
+<code class="docutils literal notranslate"><span class="pre">NaN</span></code>.</p>
+</dd>
+<dt>var_name<span class="classifier">str</span></dt><dd><p>Name of the column in <code class="docutils literal notranslate"><span class="pre">df</span></code> to process
+(e.g. <code class="docutils literal notranslate"><span class="pre">&quot;CO2_C1&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;SWC_C1_15cm&quot;</span></code>).</p>
+</dd>
+<dt>var_config_dict<span class="classifier">dict</span></dt><dd><p>Variable configuration dictionary (typically from
+<code class="docutils literal notranslate"><span class="pre">variable_config.json</span></code>). Passed to <code class="docutils literal notranslate"><span class="pre">get_variable_config</span></code>
+to look up the per-variable config block.</p>
+</dd>
+<dt>random_seed<span class="classifier">int, optional</span></dt><dd><p>Accepted for API compatibility but not used. Has no effect.</p>
+</dd>
+<dt>skip_persistence_for<span class="classifier">list of str, optional</span></dt><dd><p>If <code class="docutils literal notranslate"><span class="pre">var_name</span></code> is in this list, the persistence check is
+skipped and its flags default to 0. Useful for variables with
+naturally flat periods (e.g. soil temperature at depth).</p>
+</dd>
+<dt>skip_rate_of_change_for<span class="classifier">list of str, optional</span></dt><dd><p>If <code class="docutils literal notranslate"><span class="pre">var_name</span></code> is in this list, the rate-of-change check is
+skipped and its flags default to 0. Useful for variables where
+fast step-changes are physically expected (e.g. chamber CO₂
+at cycle transitions).</p>
+</dd>
+<dt>use_sensor_exclusions<span class="classifier">bool, optional</span></dt><dd><p>If <code class="docutils literal notranslate"><span class="pre">True</span></code>, load and apply date-range exclusion windows from
+<code class="docutils literal notranslate"><span class="pre">config/sensor_exclusions.yaml</span></code> before other QC checks.
+Default <code class="docutils literal notranslate"><span class="pre">False</span></code>.</p>
+</dd>
+<dt>exclusion_config_path<span class="classifier">str or Path, optional</span></dt><dd><p>Override path to <code class="docutils literal notranslate"><span class="pre">sensor_exclusions.yaml</span></code>. Only used when
+<code class="docutils literal notranslate"><span class="pre">use_sensor_exclusions=True</span></code>.</p>
+</dd>
+</dl>
+</section>
+<section id="id38">
+<h3>Returns<a class="headerlink" href="#id38" title="Link to this heading">#</a></h3>
+<dl>
+<dt>dict</dt><dd><p>Dictionary with the following keys:</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">&quot;final_flags&quot;</span></code><span class="classifier">pd.Series</span></dt><dd><p>Combined worst-case flag (0, 1, or 2) for each row.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">&quot;exclusion_flags&quot;</span></code><span class="classifier">pd.Series</span></dt><dd><p>Flags from sensor exclusion windows (0, 1, or 2).</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">&quot;bounds_flags&quot;</span></code><span class="classifier">pd.Series</span></dt><dd><p>Flags from physical bounds check (0, 1, or 2).</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">&quot;iqr_flags&quot;</span></code><span class="classifier">pd.Series</span></dt><dd><p>Flags from IQR outlier check (0 or 1).</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">&quot;roc_flags&quot;</span></code><span class="classifier">pd.Series</span></dt><dd><p>Flags from rate-of-change check (0 or 1).</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">&quot;persistence_flags&quot;</span></code><span class="classifier">pd.Series</span></dt><dd><p>Flags from persistence check (0 or 1).</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">&quot;summary&quot;</span></code><span class="classifier">dict</span></dt><dd><p>Counts and percentages per flag level from
+<code class="docutils literal notranslate"><span class="pre">generate_qc_summary</span></code>.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">&quot;config&quot;</span></code><span class="classifier">dict</span></dt><dd><p>The variable config block that was used (absent when no
+config was found for <code class="docutils literal notranslate"><span class="pre">var_name</span></code>).</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</section>
+<section id="id39">
+<h3>Notes<a class="headerlink" href="#id39" title="Link to this heading">#</a></h3>
+<p>When no config is found for <code class="docutils literal notranslate"><span class="pre">var_name</span></code> in <code class="docutils literal notranslate"><span class="pre">var_config_dict</span></code>, a
+warning is printed and all flag series are returned as zeros (no
+filtering applied). This allows the pipeline to proceed even for
+variables without explicit configuration.</p>
+</section>
+<section id="id40">
+<h3>Examples<a class="headerlink" href="#id40" title="Link to this heading">#</a></h3>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">idx</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">date_range</span><span class="p">(</span><span class="s2">&quot;2024-01-01&quot;</span><span class="p">,</span> <span class="n">periods</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">freq</span><span class="o">=</span><span class="s2">&quot;4s&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s2">&quot;CO2_C1&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mf">400.0</span><span class="p">,</span> <span class="mf">405.0</span><span class="p">,</span> <span class="mf">402.0</span><span class="p">,</span> <span class="mf">410.0</span><span class="p">,</span> <span class="mf">50000.0</span><span class="p">]},</span> <span class="n">index</span><span class="o">=</span><span class="n">idx</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">cfg</span> <span class="o">=</span> <span class="p">{</span>
+<span class="gp">... </span>    <span class="s2">&quot;co2&quot;</span><span class="p">:</span> <span class="p">{</span>
+<span class="gp">... </span>        <span class="s2">&quot;columns&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;CO2_C1&quot;</span><span class="p">],</span>
+<span class="gp">... </span>        <span class="s2">&quot;hard&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">20000.0</span><span class="p">],</span>
+<span class="gp">... </span>        <span class="s2">&quot;soft&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mf">350.0</span><span class="p">,</span> <span class="mf">2000.0</span><span class="p">],</span>
+<span class="gp">... </span>    <span class="p">}</span>
+<span class="gp">... </span><span class="p">}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">result</span> <span class="o">=</span> <span class="n">process_variable_qc</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="s2">&quot;CO2_C1&quot;</span><span class="p">,</span> <span class="n">cfg</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">result</span><span class="p">[</span><span class="s2">&quot;final_flags&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+<span class="go">[0, 0, 0, 0, 2]</span>
+</pre></div>
+</div>
+</section>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="palmwtc.qc.rules.add_cycle_id">
+<span class="sig-prename descclassname"><span class="pre">palmwtc.qc.rules.</span></span><span class="sig-name descname"><span class="pre">add_cycle_id</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time_col</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'TIMESTAMP'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gap_threshold_sec</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">300</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#palmwtc.qc.rules.add_cycle_id" title="Link to this definition">#</a></dt>
+<dd><p>Assign a sequential cycle ID to rows based on time gaps.</p>
+<p>A new measurement cycle begins whenever the time difference between
+consecutive rows exceeds <code class="docutils literal notranslate"><span class="pre">gap_threshold_sec</span></code> seconds. In the
+whole-tree chamber setup, each automated flux measurement cycle is
+separated from the next by a ventilation period during which the
+chamber is open; those open periods create gaps in the logged data.</p>
+<section id="id41">
+<h3>Parameters<a class="headerlink" href="#id41" title="Link to this heading">#</a></h3>
+<dl class="simple">
+<dt>df<span class="classifier">pd.DataFrame</span></dt><dd><p>Sensor data. The function works with either a <code class="docutils literal notranslate"><span class="pre">TIMESTAMP</span></code>
+column (or another column given by <code class="docutils literal notranslate"><span class="pre">time_col</span></code>) or a
+<code class="docutils literal notranslate"><span class="pre">pd.DatetimeIndex</span></code>. If neither is present a warning is printed
+and <code class="docutils literal notranslate"><span class="pre">df</span></code> is returned unchanged.</p>
+</dd>
+<dt>time_col<span class="classifier">str, optional</span></dt><dd><p>Name of the timestamp column. Default <code class="docutils literal notranslate"><span class="pre">&quot;TIMESTAMP&quot;</span></code>.</p>
+</dd>
+<dt>gap_threshold_sec<span class="classifier">float, optional</span></dt><dd><p>Minimum gap duration in seconds that triggers a new cycle ID.
+Default <code class="docutils literal notranslate"><span class="pre">300</span></code> (5 minutes). Set lower for higher-frequency data
+or shorter ventilation periods.</p>
+</dd>
+</dl>
+</section>
+<section id="id42">
+<h3>Returns<a class="headerlink" href="#id42" title="Link to this heading">#</a></h3>
+<dl class="simple">
+<dt>pd.DataFrame</dt><dd><p>Copy of <code class="docutils literal notranslate"><span class="pre">df</span></code> with an added integer column <code class="docutils literal notranslate"><span class="pre">&quot;cycle_id&quot;</span></code>
+starting at 1 and incrementing at each detected gap.</p>
+</dd>
+</dl>
+</section>
+<section id="id43">
+<h3>Notes<a class="headerlink" href="#id43" title="Link to this heading">#</a></h3>
+<p>The first row always starts cycle 1 (its time-diff is <code class="docutils literal notranslate"><span class="pre">NaT</span></code>/NaN).
+Cycle IDs are contiguous integers; they do not encode absolute time
+or date.</p>
+</section>
+<section id="id44">
+<h3>Examples<a class="headerlink" href="#id44" title="Link to this heading">#</a></h3>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">idx</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">date_range</span><span class="p">(</span><span class="s2">&quot;2024-01-01&quot;</span><span class="p">,</span> <span class="n">periods</span><span class="o">=</span><span class="mi">6</span><span class="p">,</span> <span class="n">freq</span><span class="o">=</span><span class="s2">&quot;4s&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s2">&quot;CO2_C1&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mf">400.0</span><span class="p">]</span> <span class="o">*</span> <span class="mi">6</span><span class="p">},</span> <span class="n">index</span><span class="o">=</span><span class="n">idx</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">df_with_gap</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:</span><span class="mi">3</span><span class="p">],</span> <span class="n">df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">3</span><span class="p">:]</span><span class="o">.</span><span class="n">shift</span><span class="p">(</span><span class="n">freq</span><span class="o">=</span><span class="s2">&quot;10min&quot;</span><span class="p">)])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">result</span> <span class="o">=</span> <span class="n">add_cycle_id</span><span class="p">(</span><span class="n">df_with_gap</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">result</span><span class="p">[</span><span class="s2">&quot;cycle_id&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+<span class="go">[1, 1, 1, 2, 2, 2]</span>
+</pre></div>
+</div>
+</section>
+</dd></dl>
+
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./api/palmwtc/qc/rules"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item"><div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#functions">Functions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-contents">Module Contents</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#palmwtc.qc.rules.apply_physical_bounds_flags"><code class="docutils literal notranslate"><span class="pre">apply_physical_bounds_flags()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#palmwtc.qc.rules.apply_iqr_flags"><code class="docutils literal notranslate"><span class="pre">apply_iqr_flags()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#palmwtc.qc.rules.combine_qc_flags"><code class="docutils literal notranslate"><span class="pre">combine_qc_flags()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#palmwtc.qc.rules.generate_qc_summary"><code class="docutils literal notranslate"><span class="pre">generate_qc_summary()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#palmwtc.qc.rules.get_variable_config"><code class="docutils literal notranslate"><span class="pre">get_variable_config()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#palmwtc.qc.rules.apply_rate_of_change_flags"><code class="docutils literal notranslate"><span class="pre">apply_rate_of_change_flags()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#palmwtc.qc.rules.apply_persistence_flags"><code class="docutils literal notranslate"><span class="pre">apply_persistence_flags()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#palmwtc.qc.rules.apply_battery_proxy_flags"><code class="docutils literal notranslate"><span class="pre">apply_battery_proxy_flags()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#palmwtc.qc.rules._load_sensor_exclusions"><code class="docutils literal notranslate"><span class="pre">_load_sensor_exclusions()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#palmwtc.qc.rules.apply_sensor_exclusion_flags"><code class="docutils literal notranslate"><span class="pre">apply_sensor_exclusion_flags()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#palmwtc.qc.rules.generate_exclusion_recommendations"><code class="docutils literal notranslate"><span class="pre">generate_exclusion_recommendations()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#palmwtc.qc.rules.process_variable_qc"><code class="docutils literal notranslate"><span class="pre">process_variable_qc()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#palmwtc.qc.rules.add_cycle_id"><code class="docutils literal notranslate"><span class="pre">add_cycle_id()</span></code></a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Didi Adisaputro
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2026.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../../../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

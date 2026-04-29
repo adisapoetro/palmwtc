@@ -1,0 +1,855 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>palmwtc.viz.diagnostics &#8212; palmwtc</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../../../../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/styles/sphinx-book-theme.css?v=3c74b3bc" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/togglebutton.css?v=9c3e77be" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/graphviz.css?v=fd3f3429" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../../../../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../../../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="../../../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../../../_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../../../_static/togglebutton.js?v=b8b12719"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'api/palmwtc/viz/diagnostics/index';</script>
+    <link rel="canonical" href="https://adisapoetro.github.io/palmwtc/api/palmwtc/viz/diagnostics/index.html" />
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../../../index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">palmwtc</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../../../index.html">
+                    palmwtc
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Getting Started</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../../../quickstart.html">Quickstart — your first flux number in 3 minutes</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../../tutorials/index.html">Tutorials</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorials/010_Data_Integration.html">010 — Core data integration (raw → unified monthly)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorials/011_Weather_vs_Chamber.html">011 — Weather station vs chamber</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorials/020_QC_Rule_Based.html">020 — Rule-based QC</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorials/022_QC_ML_Enhanced.html">022 — ML-enhanced QC (optional)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorials/023_Field_Alert_Report.html">023 — Field alert report</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorials/025_Cross_Chamber_Bias.html">025 — Cross-chamber bias comparison (diagnostic)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorials/026_CO2_H2O_Segmented_Bias.html">026 — CO2/H2O segmented bias comparison (diagnostic)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorials/030_Flux_Cycle_Calculation.html">030 — Flux cycle calculation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorials/031_Window_Selection_Reference.html">031 — High-confidence window selection (reference)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorials/032_Window_Selection_Production.html">032 — Physically grounded window selection (production)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorials/033_Science_Validation.html">033 — Science validation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorials/034_QC_and_Window_Audit.html">034 — QC + window audit (visualization)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorials/035_QC_Threshold_Sensitivity.html">035 — QC threshold sensitivity sweep</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorials/000_End_to_End_Synthetic.html">000 — End-to-end on synthetic data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorials/001_End_to_End_LIBZ.html">001 - End-to-end on LIBZ data (raw .dat -&gt; validation)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorials/010_Data_Integration.html">010 — Core data integration (raw → unified monthly)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorials/011_Weather_vs_Chamber.html">011 — Weather station vs chamber</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorials/020_QC_Rule_Based.html">020 — Rule-based QC</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorials/022_QC_ML_Enhanced.html">022 — ML-enhanced QC (optional)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorials/023_Field_Alert_Report.html">023 — Field alert report</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorials/025_Cross_Chamber_Bias.html">025 — Cross-chamber bias comparison (diagnostic)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorials/026_CO2_H2O_Segmented_Bias.html">026 — CO2/H2O segmented bias comparison (diagnostic)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorials/030_Flux_Cycle_Calculation.html">030 — Flux cycle calculation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorials/031_Window_Selection_Reference.html">031 — High-confidence window selection (reference)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorials/032_Window_Selection_Production.html">032 — Physically grounded window selection (production)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorials/033_Science_Validation.html">033 — Science validation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorials/034_QC_and_Window_Audit.html">034 — QC + window audit (visualization)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorials/035_QC_Threshold_Sensitivity.html">035 — QC threshold sensitivity sweep</a></li>
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Science Reference</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../../../science/index.html">Science Reference</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/adisapoetro/palmwtc" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/adisapoetro/palmwtc/edit/main/docs/api/palmwtc/viz/diagnostics/index.rst" target="_blank"
+   class="btn btn-sm btn-source-edit-button dropdown-item"
+   title="Suggest edit"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="btn__text-container">Suggest edit</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/adisapoetro/palmwtc/issues/new?title=Issue%20on%20page%20%2Fapi/palmwtc/viz/diagnostics/index.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../../../_sources/api/palmwtc/viz/diagnostics/index.rst" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.rst</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button pst-navbar-icon"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm pst-navbar-icon" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>palmwtc.viz.diagnostics</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#public-functions">Public functions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#functions">Functions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-contents">Module Contents</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#palmwtc.viz.diagnostics.plot_chamber_resizing_validation"><code class="docutils literal notranslate"><span class="pre">plot_chamber_resizing_validation()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#palmwtc.viz.diagnostics.plot_cycle_diagnostics"><code class="docutils literal notranslate"><span class="pre">plot_cycle_diagnostics()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#palmwtc.viz.diagnostics.plot_specific_cycle"><code class="docutils literal notranslate"><span class="pre">plot_specific_cycle()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#palmwtc.viz.diagnostics.plot_cycle_by_id"><code class="docutils literal notranslate"><span class="pre">plot_cycle_by_id()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#palmwtc.viz.diagnostics.show_sample_cycles"><code class="docutils literal notranslate"><span class="pre">show_sample_cycles()</span></code></a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="module-palmwtc.viz.diagnostics">
+<span id="palmwtc-viz-diagnostics"></span><h1>palmwtc.viz.diagnostics<a class="headerlink" href="#module-palmwtc.viz.diagnostics" title="Link to this heading">#</a></h1>
+<p>Cycle-level diagnostic plots for chamber flux QC review.</p>
+<p>Provides functions to inspect individual measurement cycles from the
+whole-tree chamber flux pipeline.  Each function creates a matplotlib
+figure showing CO₂ concentration traces, regression fits, and residuals
+so that flux quality can be reviewed visually.</p>
+<section id="public-functions">
+<h2>Public functions<a class="headerlink" href="#public-functions" title="Link to this heading">#</a></h2>
+<dl class="simple">
+<dt><a class="reference internal" href="#palmwtc.viz.diagnostics.plot_chamber_resizing_validation" title="palmwtc.viz.diagnostics.plot_chamber_resizing_validation"><code class="xref py py-func docutils literal notranslate"><span class="pre">plot_chamber_resizing_validation()</span></code></a></dt><dd><p>Time-series scatter around the chamber resizing event with a
+rolling-mean trend and a vertical marker at the resize date.</p>
+</dd>
+<dt><a class="reference internal" href="#palmwtc.viz.diagnostics.plot_cycle_diagnostics" title="palmwtc.viz.diagnostics.plot_cycle_diagnostics"><code class="xref py py-func docutils literal notranslate"><span class="pre">plot_cycle_diagnostics()</span></code></a></dt><dd><p>Fit + residual panels for a single cycle, with optional WPL
+correction labelling.</p>
+</dd>
+<dt><a class="reference internal" href="#palmwtc.viz.diagnostics.plot_specific_cycle" title="palmwtc.viz.diagnostics.plot_specific_cycle"><code class="xref py py-func docutils literal notranslate"><span class="pre">plot_specific_cycle()</span></code></a></dt><dd><p>Locate a cycle by chamber name and datetime string, then call
+<a class="reference internal" href="#palmwtc.viz.diagnostics.plot_cycle_diagnostics" title="palmwtc.viz.diagnostics.plot_cycle_diagnostics"><code class="xref py py-func docutils literal notranslate"><span class="pre">plot_cycle_diagnostics()</span></code></a>.</p>
+</dd>
+<dt><a class="reference internal" href="#palmwtc.viz.diagnostics.plot_cycle_by_id" title="palmwtc.viz.diagnostics.plot_cycle_by_id"><code class="xref py py-func docutils literal notranslate"><span class="pre">plot_cycle_by_id()</span></code></a></dt><dd><p>Locate a cycle by chamber name and integer cycle ID, then call
+<a class="reference internal" href="#palmwtc.viz.diagnostics.plot_cycle_diagnostics" title="palmwtc.viz.diagnostics.plot_cycle_diagnostics"><code class="xref py py-func docutils literal notranslate"><span class="pre">plot_cycle_diagnostics()</span></code></a>.</p>
+</dd>
+<dt><a class="reference internal" href="#palmwtc.viz.diagnostics.show_sample_cycles" title="palmwtc.viz.diagnostics.show_sample_cycles"><code class="xref py py-func docutils literal notranslate"><span class="pre">show_sample_cycles()</span></code></a></dt><dd><p>Draw <code class="docutils literal notranslate"><span class="pre">n</span></code> random cycles from a QC tier and plot each one.</p>
+</dd>
+</dl>
+</section>
+<section id="functions">
+<h2>Functions<a class="headerlink" href="#functions" title="Link to this heading">#</a></h2>
+<div class="pst-scrollable-table-container"><table class="autosummary longtable table autosummary">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#palmwtc.viz.diagnostics.plot_chamber_resizing_validation" title="palmwtc.viz.diagnostics.plot_chamber_resizing_validation"><code class="xref py py-obj docutils literal notranslate"><span class="pre">plot_chamber_resizing_validation</span></code></a>(...)</p></td>
+<td><p>Plot the flux signal in a ±60-day window around the chamber resizing date.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#palmwtc.viz.diagnostics.plot_cycle_diagnostics" title="palmwtc.viz.diagnostics.plot_cycle_diagnostics"><code class="xref py py-obj docutils literal notranslate"><span class="pre">plot_cycle_diagnostics</span></code></a>(→ None)</p></td>
+<td><p>Plot a single flux cycle with its fit line, residuals, and QC metadata.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#palmwtc.viz.diagnostics.plot_specific_cycle" title="palmwtc.viz.diagnostics.plot_specific_cycle"><code class="xref py py-obj docutils literal notranslate"><span class="pre">plot_specific_cycle</span></code></a>(→ None)</p></td>
+<td><p>Plot diagnostics for a cycle identified by chamber name and datetime string.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#palmwtc.viz.diagnostics.plot_cycle_by_id" title="palmwtc.viz.diagnostics.plot_cycle_by_id"><code class="xref py py-obj docutils literal notranslate"><span class="pre">plot_cycle_by_id</span></code></a>(→ None)</p></td>
+<td><p>Plot diagnostics for a cycle identified by chamber name and cycle ID.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#palmwtc.viz.diagnostics.show_sample_cycles" title="palmwtc.viz.diagnostics.show_sample_cycles"><code class="xref py py-obj docutils literal notranslate"><span class="pre">show_sample_cycles</span></code></a>(→ None)</p></td>
+<td><p>Plot a random sample of cycles from a given QC tier.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="module-contents">
+<h2>Module Contents<a class="headerlink" href="#module-contents" title="Link to this heading">#</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="palmwtc.viz.diagnostics.plot_chamber_resizing_validation">
+<span class="sig-prename descclassname"><span class="pre">palmwtc.viz.diagnostics.</span></span><span class="sig-name descname"><span class="pre">plot_chamber_resizing_validation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">flux_df</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">pandas.DataFrame</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">resize_date</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'2025-07-01'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">variable</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'flux_absolute'</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">matplotlib.pyplot.Figure</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></span><a class="headerlink" href="#palmwtc.viz.diagnostics.plot_chamber_resizing_validation" title="Link to this definition">#</a></dt>
+<dd><p>Plot the flux signal in a ±60-day window around the chamber resizing date.</p>
+<p>Creates one subplot per chamber (stacked vertically) showing the chosen
+flux variable as a scatter plot, a 50-point centred rolling-mean trend
+line, and a vertical dashed line marking the resize date.  Use this to
+check for artefacts (step changes, drift) introduced by the physical
+chamber adjustment.</p>
+<section id="parameters">
+<h3>Parameters<a class="headerlink" href="#parameters" title="Link to this heading">#</a></h3>
+<dl>
+<dt>flux_df<span class="classifier">pandas.DataFrame</span></dt><dd><p>Flux results table.  Must contain columns:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">flux_date</span></code> (datetime64) — timestamp of each flux cycle.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Source_Chamber</span></code> (str) — chamber identifier
+(e.g. <code class="docutils literal notranslate"><span class="pre">&quot;Chamber</span> <span class="pre">1&quot;</span></code>).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&lt;variable&gt;</span></code> (float) — the flux column to plot.</p></li>
+</ul>
+</dd>
+<dt>resize_date<span class="classifier">str, default <code class="docutils literal notranslate"><span class="pre">&quot;2025-07-01&quot;</span></code></span></dt><dd><p>ISO-format date string for the chamber resizing event.  Passed to
+<code class="xref py py-func docutils literal notranslate"><span class="pre">pandas.to_datetime()</span></code>.</p>
+</dd>
+<dt>variable<span class="classifier">str, default <code class="docutils literal notranslate"><span class="pre">&quot;flux_absolute&quot;</span></code></span></dt><dd><p>Name of the column in <em>flux_df</em> to plot on the y-axis.</p>
+</dd>
+</dl>
+</section>
+<section id="returns">
+<h3>Returns<a class="headerlink" href="#returns" title="Link to this heading">#</a></h3>
+<dl class="simple">
+<dt>matplotlib.figure.Figure or None</dt><dd><p>The figure object, or <code class="docutils literal notranslate"><span class="pre">None</span></code> if <em>flux_df</em> is empty or no data
+falls within the ±60-day window.</p>
+</dd>
+</dl>
+</section>
+<section id="notes">
+<h3>Notes<a class="headerlink" href="#notes" title="Link to this heading">#</a></h3>
+<p>The rolling trend uses a window of 50 cycles centred on each point.
+This smooths noise without over-fitting at the edges of the window.</p>
+</section>
+<section id="examples">
+<h3>Examples<a class="headerlink" href="#examples" title="Link to this heading">#</a></h3>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">palmwtc.viz.diagnostics</span><span class="w"> </span><span class="kn">import</span> <span class="n">plot_chamber_resizing_validation</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">fig</span> <span class="o">=</span> <span class="n">plot_chamber_resizing_validation</span><span class="p">(</span><span class="n">flux_df</span><span class="p">,</span> <span class="n">resize_date</span><span class="o">=</span><span class="s2">&quot;2025-07-01&quot;</span><span class="p">)</span>  
+</pre></div>
+</div>
+</section>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="palmwtc.viz.diagnostics.plot_cycle_diagnostics">
+<span class="sig-prename descclassname"><span class="pre">palmwtc.viz.diagnostics.</span></span><span class="sig-name descname"><span class="pre">plot_cycle_diagnostics</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">raw_df</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">pandas.DataFrame</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">flux_row</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">pandas.Series</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">apply_wpl</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#palmwtc.viz.diagnostics.plot_cycle_diagnostics" title="Link to this definition">#</a></dt>
+<dd><p>Plot a single flux cycle with its fit line, residuals, and QC metadata.</p>
+<p>Produces a 1x2 figure:</p>
+<ul class="simple">
+<li><p><strong>Left panel</strong> — CO₂ concentration vs. time.  Shows the raw wet CO₂
+signal (gray, if available), the dry (or WPL-corrected) CO₂ used for
+fitting (blue), the fitting window subset (orange), and the regression
+fit line (red dashed).</p></li>
+<li><p><strong>Right panel</strong> — Residuals of the fit within the fitting window.</p></li>
+</ul>
+<p>After displaying the figure, prints the QC reason string and, when
+<em>apply_wpl</em> is <code class="docutils literal notranslate"><span class="pre">True</span></code> and <code class="docutils literal notranslate"><span class="pre">wpl_delta_ppm</span></code> is present in <em>raw_df</em>,
+also prints the median WPL delta and 95th-percentile relative change.</p>
+<section id="id1">
+<h3>Parameters<a class="headerlink" href="#id1" title="Link to this heading">#</a></h3>
+<dl class="simple">
+<dt>raw_df<span class="classifier">pandas.DataFrame</span></dt><dd><p>Raw chamber time-series.  Must contain columns:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">TIMESTAMP</span></code> (datetime64) — measurement time.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">CO2</span></code> (float) — dry (or WPL-corrected) CO₂ concentration (ppm).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">CO2_raw</span></code> (float, optional) — uncorrected wet CO₂ concentration
+(ppm).  Plotted in gray if present.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">wpl_delta_ppm</span></code> (float, optional) — WPL correction magnitude.
+Printed if <em>apply_wpl</em> is <code class="docutils literal notranslate"><span class="pre">True</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">wpl_rel_change</span></code> (float, optional) — relative WPL change.
+Printed if <em>apply_wpl</em> is <code class="docutils literal notranslate"><span class="pre">True</span></code>.</p></li>
+</ul>
+</dd>
+<dt>flux_row<span class="classifier">pandas.Series</span></dt><dd><p>Single row from a flux results DataFrame.  Must contain:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">flux_date</span></code> (datetime64) — cycle start time.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">cycle_duration_sec</span></code> (float) — cycle length in seconds.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">window_start_sec</span></code> (float) — fit window start offset (s).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">window_end_sec</span></code> (float) — fit window end offset (s).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">flux_slope</span></code> (float) — regression slope (ppm s⁻¹).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">flux_intercept</span></code> (float) — regression intercept (ppm).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">flux_qc_label</span></code> (str) — QC tier label.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">cycle_id</span></code> (int or float) — unique cycle identifier.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Source_Chamber</span></code> (str) — chamber name.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">qc_reason</span></code> (str, optional) — human-readable QC reason.</p></li>
+</ul>
+</dd>
+<dt>apply_wpl<span class="classifier">bool, default False</span></dt><dd><p>If <code class="docutils literal notranslate"><span class="pre">True</span></code>, label the CO₂ trace as WPL-corrected and print WPL
+summary statistics after the plot.</p>
+</dd>
+</dl>
+</section>
+<section id="id2">
+<h3>Returns<a class="headerlink" href="#id2" title="Link to this heading">#</a></h3>
+<dl class="simple">
+<dt>None</dt><dd><p>Displays the figure inline (calls <code class="xref py py-func docutils literal notranslate"><span class="pre">matplotlib.pyplot.show()</span></code>)
+and prints QC metadata to stdout.  Does not return the figure object.</p>
+</dd>
+</dl>
+</section>
+<section id="id3">
+<h3>Notes<a class="headerlink" href="#id3" title="Link to this heading">#</a></h3>
+<p>The function returns early (prints a message, no figure) if no raw data
+falls within the cycle window, or if the fitting window subset is empty.</p>
+</section>
+<section id="id4">
+<h3>Examples<a class="headerlink" href="#id4" title="Link to this heading">#</a></h3>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">palmwtc.viz.diagnostics</span><span class="w"> </span><span class="kn">import</span> <span class="n">plot_cycle_diagnostics</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">plot_cycle_diagnostics</span><span class="p">(</span><span class="n">raw_df</span><span class="p">,</span> <span class="n">flux_row</span><span class="p">)</span>  
+</pre></div>
+</div>
+</section>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="palmwtc.viz.diagnostics.plot_specific_cycle">
+<span class="sig-prename descclassname"><span class="pre">palmwtc.viz.diagnostics.</span></span><span class="sig-name descname"><span class="pre">plot_specific_cycle</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">pandas.DataFrame</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">raw_lookup</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">chamber</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">date_str</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">apply_wpl</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#palmwtc.viz.diagnostics.plot_specific_cycle" title="Link to this definition">#</a></dt>
+<dd><p>Plot diagnostics for a cycle identified by chamber name and datetime string.</p>
+<p>Finds the cycle in <em>data</em> whose <code class="docutils literal notranslate"><span class="pre">flux_date</span></code> is closest to <em>date_str</em>
+(within 2 seconds), then delegates to <a class="reference internal" href="#palmwtc.viz.diagnostics.plot_cycle_diagnostics" title="palmwtc.viz.diagnostics.plot_cycle_diagnostics"><code class="xref py py-func docutils literal notranslate"><span class="pre">plot_cycle_diagnostics()</span></code></a>.</p>
+<section id="id5">
+<h3>Parameters<a class="headerlink" href="#id5" title="Link to this heading">#</a></h3>
+<dl class="simple">
+<dt>data<span class="classifier">pandas.DataFrame</span></dt><dd><p>Flux results table.  Must contain <code class="docutils literal notranslate"><span class="pre">Source_Chamber</span></code> (str) and
+<code class="docutils literal notranslate"><span class="pre">flux_date</span></code> (datetime64) columns.</p>
+</dd>
+<dt>raw_lookup<span class="classifier">dict[str, pandas.DataFrame]</span></dt><dd><p>Mapping from chamber name to the corresponding raw time-series
+DataFrame.  Same structure as the <em>raw_df</em> argument of
+<a class="reference internal" href="#palmwtc.viz.diagnostics.plot_cycle_diagnostics" title="palmwtc.viz.diagnostics.plot_cycle_diagnostics"><code class="xref py py-func docutils literal notranslate"><span class="pre">plot_cycle_diagnostics()</span></code></a>.</p>
+</dd>
+<dt>chamber<span class="classifier">str</span></dt><dd><p>Chamber name to filter on (e.g. <code class="docutils literal notranslate"><span class="pre">&quot;Chamber</span> <span class="pre">1&quot;</span></code>).</p>
+</dd>
+<dt>date_str<span class="classifier">str</span></dt><dd><p>Target datetime in <code class="docutils literal notranslate"><span class="pre">&quot;DD/MM/YY</span> <span class="pre">HH:MM:SS&quot;</span></code> format (day-first).</p>
+</dd>
+<dt>apply_wpl<span class="classifier">bool, default False</span></dt><dd><p>Forwarded to <a class="reference internal" href="#palmwtc.viz.diagnostics.plot_cycle_diagnostics" title="palmwtc.viz.diagnostics.plot_cycle_diagnostics"><code class="xref py py-func docutils literal notranslate"><span class="pre">plot_cycle_diagnostics()</span></code></a>.</p>
+</dd>
+</dl>
+</section>
+<section id="id6">
+<h3>Returns<a class="headerlink" href="#id6" title="Link to this heading">#</a></h3>
+<dl class="simple">
+<dt>None</dt><dd><p>Calls <a class="reference internal" href="#palmwtc.viz.diagnostics.plot_cycle_diagnostics" title="palmwtc.viz.diagnostics.plot_cycle_diagnostics"><code class="xref py py-func docutils literal notranslate"><span class="pre">plot_cycle_diagnostics()</span></code></a> and returns nothing.  Prints
+an informative message if the cycle or raw data cannot be found.</p>
+</dd>
+</dl>
+</section>
+<section id="id7">
+<h3>Notes<a class="headerlink" href="#id7" title="Link to this heading">#</a></h3>
+<p>The 2-second tolerance on <code class="docutils literal notranslate"><span class="pre">flux_date</span></code> matching covers the rounding
+that may occur when timestamps are stored at 1 Hz resolution.</p>
+</section>
+<section id="id8">
+<h3>Examples<a class="headerlink" href="#id8" title="Link to this heading">#</a></h3>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">palmwtc.viz.diagnostics</span><span class="w"> </span><span class="kn">import</span> <span class="n">plot_specific_cycle</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">plot_specific_cycle</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">raw_lookup</span><span class="p">,</span> <span class="s2">&quot;Chamber 1&quot;</span><span class="p">,</span> <span class="s2">&quot;01/07/25 08:30:00&quot;</span><span class="p">)</span>  
+</pre></div>
+</div>
+</section>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="palmwtc.viz.diagnostics.plot_cycle_by_id">
+<span class="sig-prename descclassname"><span class="pre">palmwtc.viz.diagnostics.</span></span><span class="sig-name descname"><span class="pre">plot_cycle_by_id</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">pandas.DataFrame</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">raw_lookup</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">chamber</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cycle_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">apply_wpl</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#palmwtc.viz.diagnostics.plot_cycle_by_id" title="Link to this definition">#</a></dt>
+<dd><p>Plot diagnostics for a cycle identified by chamber name and cycle ID.</p>
+<p>Finds the row in <em>data</em> matching <em>chamber</em> and <em>cycle_id</em>, then
+delegates to <a class="reference internal" href="#palmwtc.viz.diagnostics.plot_cycle_diagnostics" title="palmwtc.viz.diagnostics.plot_cycle_diagnostics"><code class="xref py py-func docutils literal notranslate"><span class="pre">plot_cycle_diagnostics()</span></code></a>.</p>
+<section id="id9">
+<h3>Parameters<a class="headerlink" href="#id9" title="Link to this heading">#</a></h3>
+<dl class="simple">
+<dt>data<span class="classifier">pandas.DataFrame</span></dt><dd><p>Flux results table.  Must contain <code class="docutils literal notranslate"><span class="pre">Source_Chamber</span></code> (str) and
+<code class="docutils literal notranslate"><span class="pre">cycle_id</span></code> (int or float) columns.</p>
+</dd>
+<dt>raw_lookup<span class="classifier">dict[str, pandas.DataFrame]</span></dt><dd><p>Mapping from chamber name to raw time-series DataFrame.</p>
+</dd>
+<dt>chamber<span class="classifier">str</span></dt><dd><p>Chamber name (e.g. <code class="docutils literal notranslate"><span class="pre">&quot;Chamber</span> <span class="pre">1&quot;</span></code>).</p>
+</dd>
+<dt>cycle_id<span class="classifier">int or float</span></dt><dd><p>Numeric cycle identifier.  Compared with
+<code class="xref py py-func docutils literal notranslate"><span class="pre">numpy.isclose()</span></code> to handle floating-point IDs.</p>
+</dd>
+<dt>apply_wpl<span class="classifier">bool, default False</span></dt><dd><p>Forwarded to <a class="reference internal" href="#palmwtc.viz.diagnostics.plot_cycle_diagnostics" title="palmwtc.viz.diagnostics.plot_cycle_diagnostics"><code class="xref py py-func docutils literal notranslate"><span class="pre">plot_cycle_diagnostics()</span></code></a>.</p>
+</dd>
+</dl>
+</section>
+<section id="id10">
+<h3>Returns<a class="headerlink" href="#id10" title="Link to this heading">#</a></h3>
+<dl class="simple">
+<dt>None</dt><dd><p>Calls <a class="reference internal" href="#palmwtc.viz.diagnostics.plot_cycle_diagnostics" title="palmwtc.viz.diagnostics.plot_cycle_diagnostics"><code class="xref py py-func docutils literal notranslate"><span class="pre">plot_cycle_diagnostics()</span></code></a> and returns nothing.  Prints
+an informative message if the cycle or raw data cannot be found.</p>
+</dd>
+</dl>
+</section>
+<section id="id11">
+<h3>Examples<a class="headerlink" href="#id11" title="Link to this heading">#</a></h3>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">palmwtc.viz.diagnostics</span><span class="w"> </span><span class="kn">import</span> <span class="n">plot_cycle_by_id</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">plot_cycle_by_id</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">raw_lookup</span><span class="p">,</span> <span class="s2">&quot;Chamber 1&quot;</span><span class="p">,</span> <span class="n">cycle_id</span><span class="o">=</span><span class="mi">1042</span><span class="p">)</span>  
+</pre></div>
+</div>
+</section>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="palmwtc.viz.diagnostics.show_sample_cycles">
+<span class="sig-prename descclassname"><span class="pre">palmwtc.viz.diagnostics.</span></span><span class="sig-name descname"><span class="pre">show_sample_cycles</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">pandas.DataFrame</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">raw_lookup</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tier</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seed</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">42</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">label</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">apply_wpl</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#palmwtc.viz.diagnostics.show_sample_cycles" title="Link to this definition">#</a></dt>
+<dd><p>Plot a random sample of cycles from a given QC tier.</p>
+<p>Randomly draws up to <em>n</em> cycles from the rows where <code class="docutils literal notranslate"><span class="pre">flux_qc</span> <span class="pre">==</span> <span class="pre">tier</span></code>
+and calls <a class="reference internal" href="#palmwtc.viz.diagnostics.plot_cycle_diagnostics" title="palmwtc.viz.diagnostics.plot_cycle_diagnostics"><code class="xref py py-func docutils literal notranslate"><span class="pre">plot_cycle_diagnostics()</span></code></a> for each one.</p>
+<section id="id12">
+<h3>Parameters<a class="headerlink" href="#id12" title="Link to this heading">#</a></h3>
+<dl class="simple">
+<dt>data<span class="classifier">pandas.DataFrame</span></dt><dd><p>Flux results table.  Must contain <code class="docutils literal notranslate"><span class="pre">flux_qc</span></code> (int or str) and
+<code class="docutils literal notranslate"><span class="pre">Source_Chamber</span></code> (str) columns, plus all columns required by
+<a class="reference internal" href="#palmwtc.viz.diagnostics.plot_cycle_diagnostics" title="palmwtc.viz.diagnostics.plot_cycle_diagnostics"><code class="xref py py-func docutils literal notranslate"><span class="pre">plot_cycle_diagnostics()</span></code></a>.</p>
+</dd>
+<dt>raw_lookup<span class="classifier">dict[str, pandas.DataFrame]</span></dt><dd><p>Mapping from chamber name to raw time-series DataFrame.</p>
+</dd>
+<dt>tier<span class="classifier">int or str</span></dt><dd><p>QC tier value to filter on (e.g. <code class="docutils literal notranslate"><span class="pre">1</span></code>, <code class="docutils literal notranslate"><span class="pre">2</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;HQ&quot;</span></code>).</p>
+</dd>
+<dt>n<span class="classifier">int, default 5</span></dt><dd><p>Maximum number of cycles to plot.  If fewer than <em>n</em> cycles exist
+in the tier, all available cycles are shown.</p>
+</dd>
+<dt>seed<span class="classifier">int, default 42</span></dt><dd><p>Random seed passed to <code class="xref py py-meth docutils literal notranslate"><span class="pre">pandas.DataFrame.sample()</span></code> for
+reproducible sampling.</p>
+</dd>
+<dt>label<span class="classifier">str or None, default None</span></dt><dd><p>Display label for the printed header.  Defaults to
+<code class="docutils literal notranslate"><span class="pre">&quot;QC</span> <span class="pre">tier</span> <span class="pre">&lt;tier&gt;&quot;</span></code> when <code class="docutils literal notranslate"><span class="pre">None</span></code>.</p>
+</dd>
+<dt>apply_wpl<span class="classifier">bool, default False</span></dt><dd><p>Forwarded to <a class="reference internal" href="#palmwtc.viz.diagnostics.plot_cycle_diagnostics" title="palmwtc.viz.diagnostics.plot_cycle_diagnostics"><code class="xref py py-func docutils literal notranslate"><span class="pre">plot_cycle_diagnostics()</span></code></a> for each cycle.</p>
+</dd>
+</dl>
+</section>
+<section id="id13">
+<h3>Returns<a class="headerlink" href="#id13" title="Link to this heading">#</a></h3>
+<dl class="simple">
+<dt>None</dt><dd><p>Calls <a class="reference internal" href="#palmwtc.viz.diagnostics.plot_cycle_diagnostics" title="palmwtc.viz.diagnostics.plot_cycle_diagnostics"><code class="xref py py-func docutils literal notranslate"><span class="pre">plot_cycle_diagnostics()</span></code></a> for each sampled cycle.
+Prints a header line and skips chambers with no raw data loaded.</p>
+</dd>
+</dl>
+</section>
+<section id="id14">
+<h3>Examples<a class="headerlink" href="#id14" title="Link to this heading">#</a></h3>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">palmwtc.viz.diagnostics</span><span class="w"> </span><span class="kn">import</span> <span class="n">show_sample_cycles</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">show_sample_cycles</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">raw_lookup</span><span class="p">,</span> <span class="n">tier</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">seed</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>  
+</pre></div>
+</div>
+</section>
+</dd></dl>
+
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./api/palmwtc/viz/diagnostics"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item"><div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#public-functions">Public functions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#functions">Functions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-contents">Module Contents</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#palmwtc.viz.diagnostics.plot_chamber_resizing_validation"><code class="docutils literal notranslate"><span class="pre">plot_chamber_resizing_validation()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#palmwtc.viz.diagnostics.plot_cycle_diagnostics"><code class="docutils literal notranslate"><span class="pre">plot_cycle_diagnostics()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#palmwtc.viz.diagnostics.plot_specific_cycle"><code class="docutils literal notranslate"><span class="pre">plot_specific_cycle()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#palmwtc.viz.diagnostics.plot_cycle_by_id"><code class="docutils literal notranslate"><span class="pre">plot_cycle_by_id()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#palmwtc.viz.diagnostics.show_sample_cycles"><code class="docutils literal notranslate"><span class="pre">show_sample_cycles()</span></code></a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Didi Adisaputro
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2026.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../../../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

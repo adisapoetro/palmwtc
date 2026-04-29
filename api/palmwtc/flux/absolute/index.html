@@ -1,0 +1,882 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>palmwtc.flux.absolute &#8212; palmwtc</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../../../../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/styles/sphinx-book-theme.css?v=3c74b3bc" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/togglebutton.css?v=9c3e77be" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/graphviz.css?v=fd3f3429" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../../../../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../../../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="../../../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../../../_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../../../_static/togglebutton.js?v=b8b12719"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'api/palmwtc/flux/absolute/index';</script>
+    <link rel="canonical" href="https://adisapoetro.github.io/palmwtc/api/palmwtc/flux/absolute/index.html" />
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../../../index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">palmwtc</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../../../index.html">
+                    palmwtc
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Getting Started</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../../../quickstart.html">Quickstart — your first flux number in 3 minutes</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../../tutorials/index.html">Tutorials</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorials/010_Data_Integration.html">010 — Core data integration (raw → unified monthly)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorials/011_Weather_vs_Chamber.html">011 — Weather station vs chamber</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorials/020_QC_Rule_Based.html">020 — Rule-based QC</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorials/022_QC_ML_Enhanced.html">022 — ML-enhanced QC (optional)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorials/023_Field_Alert_Report.html">023 — Field alert report</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorials/025_Cross_Chamber_Bias.html">025 — Cross-chamber bias comparison (diagnostic)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorials/026_CO2_H2O_Segmented_Bias.html">026 — CO2/H2O segmented bias comparison (diagnostic)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorials/030_Flux_Cycle_Calculation.html">030 — Flux cycle calculation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorials/031_Window_Selection_Reference.html">031 — High-confidence window selection (reference)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorials/032_Window_Selection_Production.html">032 — Physically grounded window selection (production)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorials/033_Science_Validation.html">033 — Science validation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorials/034_QC_and_Window_Audit.html">034 — QC + window audit (visualization)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorials/035_QC_Threshold_Sensitivity.html">035 — QC threshold sensitivity sweep</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorials/000_End_to_End_Synthetic.html">000 — End-to-end on synthetic data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorials/001_End_to_End_LIBZ.html">001 - End-to-end on LIBZ data (raw .dat -&gt; validation)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorials/010_Data_Integration.html">010 — Core data integration (raw → unified monthly)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorials/011_Weather_vs_Chamber.html">011 — Weather station vs chamber</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorials/020_QC_Rule_Based.html">020 — Rule-based QC</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorials/022_QC_ML_Enhanced.html">022 — ML-enhanced QC (optional)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorials/023_Field_Alert_Report.html">023 — Field alert report</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorials/025_Cross_Chamber_Bias.html">025 — Cross-chamber bias comparison (diagnostic)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorials/026_CO2_H2O_Segmented_Bias.html">026 — CO2/H2O segmented bias comparison (diagnostic)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorials/030_Flux_Cycle_Calculation.html">030 — Flux cycle calculation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorials/031_Window_Selection_Reference.html">031 — High-confidence window selection (reference)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorials/032_Window_Selection_Production.html">032 — Physically grounded window selection (production)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorials/033_Science_Validation.html">033 — Science validation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorials/034_QC_and_Window_Audit.html">034 — QC + window audit (visualization)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorials/035_QC_Threshold_Sensitivity.html">035 — QC threshold sensitivity sweep</a></li>
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Science Reference</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../../../science/index.html">Science Reference</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/adisapoetro/palmwtc" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/adisapoetro/palmwtc/edit/main/docs/api/palmwtc/flux/absolute/index.rst" target="_blank"
+   class="btn btn-sm btn-source-edit-button dropdown-item"
+   title="Suggest edit"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="btn__text-container">Suggest edit</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/adisapoetro/palmwtc/issues/new?title=Issue%20on%20page%20%2Fapi/palmwtc/flux/absolute/index.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../../../_sources/api/palmwtc/flux/absolute/index.rst" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.rst</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button pst-navbar-icon"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm pst-navbar-icon" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>palmwtc.flux.absolute</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#public-api">Public API</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#functions">Functions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-contents">Module Contents</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#palmwtc.flux.absolute.calculate_absolute_flux"><code class="docutils literal notranslate"><span class="pre">calculate_absolute_flux()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#palmwtc.flux.absolute.calculate_h2o_absolute_flux"><code class="docutils literal notranslate"><span class="pre">calculate_h2o_absolute_flux()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#palmwtc.flux.absolute.calculate_flux_for_chamber"><code class="docutils literal notranslate"><span class="pre">calculate_flux_for_chamber()</span></code></a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="module-palmwtc.flux.absolute">
+<span id="palmwtc-flux-absolute"></span><h1>palmwtc.flux.absolute<a class="headerlink" href="#module-palmwtc.flux.absolute" title="Link to this heading">#</a></h1>
+<p>Absolute CO₂ and H₂O fluxes from whole-tree chamber cycles.</p>
+<p>Converts chamber-internal concentration slopes (ppm s⁻¹ for CO₂,
+mmol mol⁻¹ s⁻¹ for H₂O) into absolute fluxes (µmol m⁻² s⁻¹ for CO₂,
+mmol m⁻² s⁻¹ for H₂O) at the tree’s ground-footprint basis.</p>
+<p>The conversion uses the ideal gas law <code class="docutils literal notranslate"><span class="pre">n/V</span> <span class="pre">=</span> <span class="pre">P/(RT)</span></code> to find the
+molar air density (mol m⁻³), then multiplies by the effective chamber
+height (volume / ground area) and the measured concentration slope:</p>
+<blockquote>
+<div><p>flux = slope × (P / RT) × (V_net / A)</p>
+</div></blockquote>
+<p>with:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">P</span></code> = standard atmospheric pressure, 101 325 Pa (constant; not
+read from the row).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">T</span></code> = chamber air temperature during the cycle (<code class="docutils literal notranslate"><span class="pre">mean_temp</span></code>
+column, °C → K). Defaults to 25 °C when the column is absent or NaN.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">R</span></code> = universal gas constant, 8.314 J mol⁻¹ K⁻¹.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">V_net</span></code> = net chamber volume after subtracting the optional tree
+volume correction (m³).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">A</span></code> = chamber ground-footprint area (m²).</p></li>
+</ul>
+<p><strong>Chamber resize schedule</strong> (palms grew, chambers were enlarged):</p>
+<ul class="simple">
+<li><p>Before 2025-07-01: 2 × 2 × 2 m → V = 8 m³, A = 4 m², h = 2 m.</p></li>
+<li><p>From 2025-07-01 onward: 6 × 4 × 4 m → V = 96 m³, A = 16 m², h = 6 m.</p></li>
+</ul>
+<p><strong>Optional tree-volume correction</strong>: when <code class="docutils literal notranslate"><span class="pre">tree_volume</span></code> is present in
+the row, it is subtracted from the base chamber volume before computing
+the flux. This gives the scientifically correct air-volume estimate
+(palm trunk and fronds displace some of the enclosed air). The column
+defaults to 0 when absent or NaN, keeping output bit-equivalent with the
+pre-correction baseline.</p>
+<section id="public-api">
+<h2>Public API<a class="headerlink" href="#public-api" title="Link to this heading">#</a></h2>
+<p>calculate_absolute_flux : CO₂ flux (µmol m⁻² s⁻¹).
+calculate_h2o_absolute_flux : H₂O flux (mmol m⁻² s⁻¹).
+calculate_flux_for_chamber : Identify cycles, fit slopes, and apply</p>
+<blockquote>
+<div><p><code class="docutils literal notranslate"><span class="pre">calculate_absolute_flux</span></code> for a single chamber DataFrame (legacy
+helper; not used by the active 030/033/080 pipeline but retained
+for API compatibility).</p>
+</div></blockquote>
+</section>
+<section id="functions">
+<h2>Functions<a class="headerlink" href="#functions" title="Link to this heading">#</a></h2>
+<div class="pst-scrollable-table-container"><table class="autosummary longtable table autosummary">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#palmwtc.flux.absolute.calculate_absolute_flux" title="palmwtc.flux.absolute.calculate_absolute_flux"><code class="xref py py-obj docutils literal notranslate"><span class="pre">calculate_absolute_flux</span></code></a>(→ float)</p></td>
+<td><p>Compute the absolute CO₂ flux from a chamber-cycle slope.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#palmwtc.flux.absolute.calculate_h2o_absolute_flux" title="palmwtc.flux.absolute.calculate_h2o_absolute_flux"><code class="xref py py-obj docutils literal notranslate"><span class="pre">calculate_h2o_absolute_flux</span></code></a>(→ float)</p></td>
+<td><p>Compute the absolute H₂O flux from a chamber-cycle slope.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#palmwtc.flux.absolute.calculate_flux_for_chamber" title="palmwtc.flux.absolute.calculate_flux_for_chamber"><code class="xref py py-obj docutils literal notranslate"><span class="pre">calculate_flux_for_chamber</span></code></a>(chamber_df, chamber_name[, ...])</p></td>
+<td><p>Identify cycles and compute absolute CO₂ flux for one chamber.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="module-contents">
+<h2>Module Contents<a class="headerlink" href="#module-contents" title="Link to this heading">#</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="palmwtc.flux.absolute.calculate_absolute_flux">
+<span class="sig-prename descclassname"><span class="pre">palmwtc.flux.absolute.</span></span><span class="sig-name descname"><span class="pre">calculate_absolute_flux</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">row</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">pandas.Series</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="headerlink" href="#palmwtc.flux.absolute.calculate_absolute_flux" title="Link to this definition">#</a></dt>
+<dd><p>Compute the absolute CO₂ flux from a chamber-cycle slope.</p>
+<p>Converts a CO₂ concentration rate measured inside a closed whole-tree
+chamber (ppm s⁻¹) into an absolute flux on the tree’s ground-footprint
+basis (µmol m⁻² s⁻¹). Chamber volume is selected from the measurement
+date because the chambers were resized as the palms grew.</p>
+<section id="parameters">
+<h3>Parameters<a class="headerlink" href="#parameters" title="Link to this heading">#</a></h3>
+<dl>
+<dt>row<span class="classifier">pd.Series</span></dt><dd><p>One row of a chamber-cycle table. Must contain:</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">flux_slope</span></code><span class="classifier">float</span></dt><dd><p>CO₂ concentration rate during closure (ppm s⁻¹). Negative when
+the tree is releasing CO₂ (net respiration); positive when CO₂
+is being consumed.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">flux_date</span></code><span class="classifier">pd.Timestamp</span></dt><dd><p>When the cycle was measured. Used to pick chamber volume from
+the internal resize schedule. If absent, returns <code class="docutils literal notranslate"><span class="pre">numpy.nan</span></code>.</p>
+</dd>
+</dl>
+<p>Optional columns (safe to omit):</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">mean_temp</span></code><span class="classifier">float, default 25.0</span></dt><dd><p>Chamber-internal air temperature during the cycle (°C).
+Falls back to 25 °C when absent or NaN.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">tree_volume</span></code><span class="classifier">float, default 0.0</span></dt><dd><p>Estimated palm trunk + frond volume (m³) to subtract from the
+base chamber volume. Falls back to 0 when absent or NaN.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</section>
+<section id="returns">
+<h3>Returns<a class="headerlink" href="#returns" title="Link to this heading">#</a></h3>
+<dl>
+<dt>float</dt><dd><p>Absolute CO₂ flux in µmol m⁻² s⁻¹ (whole-tree ground-footprint
+basis).</p>
+<p><strong>Sign convention</strong>: negative = net CO₂ release by the tree
+(respiration &gt; photosynthesis); positive = net CO₂ uptake.
+This mirrors the sign of <code class="docutils literal notranslate"><span class="pre">flux_slope</span></code>.</p>
+</dd>
+</dl>
+</section>
+<section id="raises">
+<h3>Raises<a class="headerlink" href="#raises" title="Link to this heading">#</a></h3>
+<dl class="simple">
+<dt>KeyError</dt><dd><p>If <code class="docutils literal notranslate"><span class="pre">flux_slope</span></code> is missing from <code class="docutils literal notranslate"><span class="pre">row</span></code>.</p>
+</dd>
+</dl>
+</section>
+<section id="notes">
+<h3>Notes<a class="headerlink" href="#notes" title="Link to this heading">#</a></h3>
+<p>The conversion formula is:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>flux = flux_slope × (P_std / (R × T_K)) × (V_net / A)
+</pre></div>
+</div>
+<p>where <code class="docutils literal notranslate"><span class="pre">P_std</span> <span class="pre">=</span> <span class="pre">101325</span> <span class="pre">Pa</span></code> (constant), <code class="docutils literal notranslate"><span class="pre">R</span> <span class="pre">=</span> <span class="pre">8.314</span> <span class="pre">J</span> <span class="pre">mol⁻¹</span> <span class="pre">K⁻¹</span></code>,
+<code class="docutils literal notranslate"><span class="pre">T_K</span> <span class="pre">=</span> <span class="pre">mean_temp</span> <span class="pre">+</span> <span class="pre">273.15</span></code>.</p>
+<p>Because <code class="docutils literal notranslate"><span class="pre">flux_slope</span></code> is in ppm s⁻¹ (= 10⁻⁶ mol mol⁻¹ s⁻¹) and the
+molar air density <code class="docutils literal notranslate"><span class="pre">P/(RT)</span></code> is in mol m⁻³, the product gives
+10⁻⁶ mol m⁻² s⁻¹ = µmol m⁻² s⁻¹ directly.</p>
+<p>Chamber volume comes from the hard-coded resize schedule (cutoff
+2025-07-01). The optional <code class="docutils literal notranslate"><span class="pre">tree_volume</span></code> subtraction is clamped so
+the net volume never falls below 0.1 m³.</p>
+</section>
+<section id="examples">
+<h3>Examples<a class="headerlink" href="#examples" title="Link to this heading">#</a></h3>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">palmwtc.flux.absolute</span><span class="w"> </span><span class="kn">import</span> <span class="n">calculate_absolute_flux</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">row</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">({</span>
+<span class="gp">... </span>    <span class="s1">&#39;flux_slope&#39;</span><span class="p">:</span> <span class="o">-</span><span class="mf">0.5</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="s1">&#39;flux_date&#39;</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">Timestamp</span><span class="p">(</span><span class="s1">&#39;2024-06-15&#39;</span><span class="p">),</span>
+<span class="gp">... </span>    <span class="s1">&#39;mean_temp&#39;</span><span class="p">:</span> <span class="mf">28.0</span><span class="p">,</span>
+<span class="gp">... </span><span class="p">})</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">round</span><span class="p">(</span><span class="n">calculate_absolute_flux</span><span class="p">(</span><span class="n">row</span><span class="p">),</span> <span class="mi">2</span><span class="p">)</span>
+<span class="go">-40.47</span>
+</pre></div>
+</div>
+<p>A missing <code class="docutils literal notranslate"><span class="pre">flux_date</span></code> returns NaN (the cycle cannot be assigned to
+a chamber size):</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">row_no_date</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">({</span><span class="s1">&#39;flux_slope&#39;</span><span class="p">:</span> <span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="s1">&#39;mean_temp&#39;</span><span class="p">:</span> <span class="mf">28.0</span><span class="p">})</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">bool</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">calculate_absolute_flux</span><span class="p">(</span><span class="n">row_no_date</span><span class="p">)))</span>
+<span class="go">True</span>
+</pre></div>
+</div>
+</section>
+<section id="see-also">
+<h3>See Also<a class="headerlink" href="#see-also" title="Link to this heading">#</a></h3>
+<p>calculate_h2o_absolute_flux : Water-vapour analogue of this function.
+palmwtc.flux.cycles.calculate_flux_cycles : Batch version applying</p>
+<blockquote>
+<div><p>this per-cycle to a full cycles DataFrame.</p>
+</div></blockquote>
+</section>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="palmwtc.flux.absolute.calculate_h2o_absolute_flux">
+<span class="sig-prename descclassname"><span class="pre">palmwtc.flux.absolute.</span></span><span class="sig-name descname"><span class="pre">calculate_h2o_absolute_flux</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">row</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">pandas.Series</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="headerlink" href="#palmwtc.flux.absolute.calculate_h2o_absolute_flux" title="Link to this definition">#</a></dt>
+<dd><p>Compute the absolute H₂O flux from a chamber-cycle slope.</p>
+<p>Converts a water-vapour mixing-ratio rate measured inside a closed
+whole-tree chamber (mmol mol⁻¹ s⁻¹) into an absolute flux on the tree’s
+ground-footprint basis (mmol m⁻² s⁻¹). Uses the same chamber geometry
+and ideal-gas-law conversion as <a class="reference internal" href="#palmwtc.flux.absolute.calculate_absolute_flux" title="palmwtc.flux.absolute.calculate_absolute_flux"><code class="xref py py-func docutils literal notranslate"><span class="pre">calculate_absolute_flux()</span></code></a>.</p>
+<section id="id1">
+<h3>Parameters<a class="headerlink" href="#id1" title="Link to this heading">#</a></h3>
+<dl>
+<dt>row<span class="classifier">pd.Series</span></dt><dd><p>One row of a chamber-cycle table. Must contain:</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">h2o_slope</span></code><span class="classifier">float</span></dt><dd><p>H₂O mixing-ratio rate during closure (mmol mol⁻¹ s⁻¹). Positive
+when water vapour is accumulating inside the chamber
+(transpiration). If absent or NaN, returns <code class="docutils literal notranslate"><span class="pre">numpy.nan</span></code>.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">flux_date</span></code><span class="classifier">pd.Timestamp</span></dt><dd><p>When the cycle was measured. Used to pick chamber volume from
+the internal resize schedule. If absent, returns <code class="docutils literal notranslate"><span class="pre">numpy.nan</span></code>.</p>
+</dd>
+</dl>
+<p>Optional columns (safe to omit):</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">mean_temp</span></code><span class="classifier">float, default 25.0</span></dt><dd><p>Chamber-internal air temperature during the cycle (°C).
+Falls back to 25 °C when absent or NaN.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">tree_volume</span></code><span class="classifier">float, default 0.0</span></dt><dd><p>Estimated palm trunk + frond volume (m³) to subtract from the
+base chamber volume. Falls back to 0 when absent or NaN.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</section>
+<section id="id2">
+<h3>Returns<a class="headerlink" href="#id2" title="Link to this heading">#</a></h3>
+<dl>
+<dt>float</dt><dd><p>Absolute H₂O flux in mmol m⁻² s⁻¹ (whole-tree ground-footprint
+basis).</p>
+<p><strong>Sign convention</strong>: positive = net water-vapour release by the
+tree (transpiration); negative = net condensation.
+This mirrors the sign of <code class="docutils literal notranslate"><span class="pre">h2o_slope</span></code>.</p>
+<p>Returns <code class="docutils literal notranslate"><span class="pre">numpy.nan</span></code> if <code class="docutils literal notranslate"><span class="pre">h2o_slope</span></code> or <code class="docutils literal notranslate"><span class="pre">flux_date</span></code> is
+missing / NaN.</p>
+</dd>
+</dl>
+</section>
+<section id="id3">
+<h3>Notes<a class="headerlink" href="#id3" title="Link to this heading">#</a></h3>
+<p>The conversion formula is identical to that of
+<a class="reference internal" href="#palmwtc.flux.absolute.calculate_absolute_flux" title="palmwtc.flux.absolute.calculate_absolute_flux"><code class="xref py py-func docutils literal notranslate"><span class="pre">calculate_absolute_flux()</span></code></a>:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>flux = h2o_slope × (P_std / (R × T_K)) × (V_net / A)
+</pre></div>
+</div>
+<p>where <code class="docutils literal notranslate"><span class="pre">P_std</span> <span class="pre">=</span> <span class="pre">101325</span> <span class="pre">Pa</span></code>, <code class="docutils literal notranslate"><span class="pre">R</span> <span class="pre">=</span> <span class="pre">8.314</span> <span class="pre">J</span> <span class="pre">mol⁻¹</span> <span class="pre">K⁻¹</span></code>.</p>
+<p>Because <code class="docutils literal notranslate"><span class="pre">h2o_slope</span></code> is already in mmol mol⁻¹ s⁻¹ (= 10⁻³ mol mol⁻¹ s⁻¹)
+and the molar air density <code class="docutils literal notranslate"><span class="pre">P/(RT)</span></code> is in mol m⁻³, the product gives
+10⁻³ mol m⁻² s⁻¹ = mmol m⁻² s⁻¹ directly (no additional unit
+conversion needed).</p>
+<p>Chamber volume comes from the same date-based resize schedule used
+by <a class="reference internal" href="#palmwtc.flux.absolute.calculate_absolute_flux" title="palmwtc.flux.absolute.calculate_absolute_flux"><code class="xref py py-func docutils literal notranslate"><span class="pre">calculate_absolute_flux()</span></code></a> (cutoff 2025-07-01).</p>
+</section>
+<section id="id4">
+<h3>Examples<a class="headerlink" href="#id4" title="Link to this heading">#</a></h3>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">palmwtc.flux.absolute</span><span class="w"> </span><span class="kn">import</span> <span class="n">calculate_h2o_absolute_flux</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">row</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">({</span>
+<span class="gp">... </span>    <span class="s1">&#39;h2o_slope&#39;</span><span class="p">:</span> <span class="mf">0.1</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="s1">&#39;flux_date&#39;</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">Timestamp</span><span class="p">(</span><span class="s1">&#39;2024-06-15&#39;</span><span class="p">),</span>
+<span class="gp">... </span>    <span class="s1">&#39;mean_temp&#39;</span><span class="p">:</span> <span class="mf">28.0</span><span class="p">,</span>
+<span class="gp">... </span><span class="p">})</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">round</span><span class="p">(</span><span class="n">calculate_h2o_absolute_flux</span><span class="p">(</span><span class="n">row</span><span class="p">),</span> <span class="mi">2</span><span class="p">)</span>
+<span class="go">8.09</span>
+</pre></div>
+</div>
+<p>A missing <code class="docutils literal notranslate"><span class="pre">h2o_slope</span></code> returns NaN:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">row_no_slope</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">({</span>
+<span class="gp">... </span>    <span class="s1">&#39;flux_date&#39;</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">Timestamp</span><span class="p">(</span><span class="s1">&#39;2024-06-15&#39;</span><span class="p">),</span>
+<span class="gp">... </span>    <span class="s1">&#39;mean_temp&#39;</span><span class="p">:</span> <span class="mf">28.0</span><span class="p">,</span>
+<span class="gp">... </span><span class="p">})</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">bool</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">calculate_h2o_absolute_flux</span><span class="p">(</span><span class="n">row_no_slope</span><span class="p">)))</span>
+<span class="go">True</span>
+</pre></div>
+</div>
+</section>
+<section id="id5">
+<h3>See Also<a class="headerlink" href="#id5" title="Link to this heading">#</a></h3>
+<p>calculate_absolute_flux : CO₂ analogue of this function.
+palmwtc.flux.cycles.calculate_flux_cycles : Batch version applying</p>
+<blockquote>
+<div><p>CO₂ flux per-cycle to a full cycles DataFrame.</p>
+</div></blockquote>
+</section>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="palmwtc.flux.absolute.calculate_flux_for_chamber">
+<span class="sig-prename descclassname"><span class="pre">palmwtc.flux.absolute.</span></span><span class="sig-name descname"><span class="pre">calculate_flux_for_chamber</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">chamber_df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">chamber_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">temp_col</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'Temp'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">min_points</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">min_r2</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start_cutoff</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">50</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#palmwtc.flux.absolute.calculate_flux_for_chamber" title="Link to this definition">#</a></dt>
+<dd><p>Identify cycles and compute absolute CO₂ flux for one chamber.</p>
+<p>Segments a raw time-series DataFrame into closure cycles (gaps
+&gt; 300 s mark a new cycle), fits a linear slope to the CO₂
+concentration over each cycle, then converts those slopes to
+absolute fluxes using <a class="reference internal" href="#palmwtc.flux.absolute.calculate_absolute_flux" title="palmwtc.flux.absolute.calculate_absolute_flux"><code class="xref py py-func docutils literal notranslate"><span class="pre">calculate_absolute_flux()</span></code></a>.</p>
+<p>This is a legacy convenience wrapper retained for API compatibility.
+The active pipeline (notebooks 030/033/080) uses
+<code class="xref py py-func docutils literal notranslate"><span class="pre">palmwtc.flux.cycles.calculate_flux_cycles()</span></code> instead.</p>
+<section id="id6">
+<h3>Parameters<a class="headerlink" href="#id6" title="Link to this heading">#</a></h3>
+<dl>
+<dt>chamber_df<span class="classifier">pd.DataFrame</span></dt><dd><p>Raw time-series for a single chamber. Expected columns:</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">TIMESTAMP</span></code><span class="classifier">datetime-like</span></dt><dd><p>Measurement time (used to detect cycle boundaries and to
+set <code class="docutils literal notranslate"><span class="pre">flux_date</span></code> on the output).</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">CO2</span></code><span class="classifier">float</span></dt><dd><p>CO₂ concentration (ppm).</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">{temp_col}</span></code><span class="classifier">float, optional</span></dt><dd><p>Chamber air temperature (°C). Column name set by the
+<code class="docutils literal notranslate"><span class="pre">temp_col</span></code> argument.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">Flag</span></code><span class="classifier">int, optional</span></dt><dd><p>QC flag. Maximum flag value within the cycle is recorded as
+<code class="docutils literal notranslate"><span class="pre">qc_flag</span></code> in the output.</p>
+</dd>
+</dl>
+</dd>
+<dt>chamber_name<span class="classifier">str</span></dt><dd><p>Label for this chamber, used in progress messages and the
+<code class="docutils literal notranslate"><span class="pre">Source_Chamber</span></code> column of the output.</p>
+</dd>
+<dt>temp_col<span class="classifier">str, default <code class="docutils literal notranslate"><span class="pre">&quot;Temp&quot;</span></code></span></dt><dd><p>Name of the temperature column in <code class="docutils literal notranslate"><span class="pre">chamber_df</span></code>.</p>
+</dd>
+<dt>min_points<span class="classifier">int, default 5</span></dt><dd><p>Minimum number of measurements (after the start cutoff) required
+to fit a slope. Cycles with fewer points are skipped.</p>
+</dd>
+<dt>min_r2<span class="classifier">float, default 0.0</span></dt><dd><p>Minimum R² threshold. Cycles below this value are skipped.
+Default 0.0 accepts all slopes regardless of fit quality.</p>
+</dd>
+<dt>start_cutoff<span class="classifier">int, default 50</span></dt><dd><p>Seconds to ignore from the start of each cycle before fitting
+the slope. Removes the initial mixing transient.</p>
+</dd>
+</dl>
+</section>
+<section id="id7">
+<h3>Returns<a class="headerlink" href="#id7" title="Link to this heading">#</a></h3>
+<dl>
+<dt>pd.DataFrame</dt><dd><p>One row per accepted cycle, with columns:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">Source_Chamber</span></code> : chamber label.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">cycle_id</span></code> : sequential integer.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">flux_date</span></code> : cycle start timestamp.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">flux_slope</span></code> : CO₂ slope (ppm s⁻¹) from linear regression.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">r_squared</span></code> : R² of the regression.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">mean_temp</span></code> : mean chamber temperature (°C) over the cycle.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">qc_flag</span></code> : maximum QC flag value in the cycle.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">n_points</span></code> : number of data points used.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">duration_sec</span></code> : seconds from the start-cutoff to the last
+point used.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">flux_absolute</span></code> : absolute CO₂ flux (µmol m⁻² s⁻¹) from
+<a class="reference internal" href="#palmwtc.flux.absolute.calculate_absolute_flux" title="palmwtc.flux.absolute.calculate_absolute_flux"><code class="xref py py-func docutils literal notranslate"><span class="pre">calculate_absolute_flux()</span></code></a>.</p></li>
+</ul>
+<p>Returns an empty DataFrame if <code class="docutils literal notranslate"><span class="pre">chamber_df</span></code> is empty or no
+cycles pass the quality thresholds.</p>
+</dd>
+</dl>
+</section>
+<section id="id8">
+<h3>See Also<a class="headerlink" href="#id8" title="Link to this heading">#</a></h3>
+<p>calculate_absolute_flux : Per-row conversion used internally.
+palmwtc.flux.cycles.calculate_flux_cycles : Preferred batch</p>
+<blockquote>
+<div><p>pipeline replacement for this function.</p>
+</div></blockquote>
+</section>
+</dd></dl>
+
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./api/palmwtc/flux/absolute"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item"><div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#public-api">Public API</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#functions">Functions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-contents">Module Contents</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#palmwtc.flux.absolute.calculate_absolute_flux"><code class="docutils literal notranslate"><span class="pre">calculate_absolute_flux()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#palmwtc.flux.absolute.calculate_h2o_absolute_flux"><code class="docutils literal notranslate"><span class="pre">calculate_h2o_absolute_flux()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#palmwtc.flux.absolute.calculate_flux_for_chamber"><code class="docutils literal notranslate"><span class="pre">calculate_flux_for_chamber()</span></code></a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Didi Adisaputro
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2026.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../../../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
