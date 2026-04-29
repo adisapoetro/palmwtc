@@ -34,6 +34,7 @@ Design notes
   "not anomalous"), matching the inline notebook implementation
   exactly.
 """
+
 from __future__ import annotations
 
 from typing import Any
@@ -57,7 +58,7 @@ DEFAULT_ADVANCED_OUTLIER_CONFIG: dict[str, Any] = {
     "tif_max_samples": 10_000,
     "tif_contamination": 0.05,
     # --- STL ---
-    "stl_period": 24,            # hours per diurnal cycle
+    "stl_period": 24,  # hours per diurnal cycle
     "stl_robust": True,
     "stl_soft_iqr_mult": 2.0,
     "stl_hard_iqr_mult": 3.5,
@@ -65,17 +66,17 @@ DEFAULT_ADVANCED_OUTLIER_CONFIG: dict[str, Any] = {
     "stl_inner_iter": 2,
     "stl_outer_iter": 7,
     # --- Rolling Z-score ---
-    "rz_window_cycles": 12,      # ~3h at 1 cycle/15min
+    "rz_window_cycles": 12,  # ~3h at 1 cycle/15min
     "rz_min_periods": 4,
     "rz_threshold": 3.0,
     # --- Ensemble weights (must sum to 1.0) ---
     "ensemble_weights": {
-        "ml_if":  0.15,
+        "ml_if": 0.15,
         "ml_mcd": 0.15,
-        "lof":    0.20,
-        "tif":    0.15,
-        "stl":    0.20,
-        "rz":     0.15,
+        "lof": 0.20,
+        "tif": 0.15,
+        "stl": 0.20,
+        "rz": 0.15,
     },
     "ensemble_flag_threshold": 0.65,
     # --- Training (consumed by detectors not in this module) ---
@@ -107,10 +108,10 @@ def _stl_one_chamber(ch_df, chamber, slope_col, cfg):
     result = {
         "chamber": chamber,
         "index": ch_df.index,
-        "stl_residual":        pd.Series(np.nan, index=ch_df.index),
+        "stl_residual": pd.Series(np.nan, index=ch_df.index),
         "stl_residual_zscore": pd.Series(np.nan, index=ch_df.index),
-        "stl_soft_flag":       pd.Series(0,       index=ch_df.index),
-        "stl_hard_flag":       pd.Series(0,       index=ch_df.index),
+        "stl_soft_flag": pd.Series(0, index=ch_df.index),
+        "stl_hard_flag": pd.Series(0, index=ch_df.index),
     }
 
     hourly = (
@@ -160,11 +161,7 @@ def _stl_one_chamber(ch_df, chamber, slope_col, cfg):
         }
     ).sort_values("_hour_bin")
 
-    ch_sorted = (
-        ch_df.assign(_hour_bin=_hour_bin)
-        .sort_values("_hour_bin")
-        .reset_index()
-    )
+    ch_sorted = ch_df.assign(_hour_bin=_hour_bin).sort_values("_hour_bin").reset_index()
     merged = pd.merge_asof(
         ch_sorted[["index", "_hour_bin"]],
         stl_hourly_df,
@@ -240,15 +237,10 @@ def compute_stl_residual_scores(
         out[col] = 0
 
     chambers = (
-        out["Source_Chamber"].unique().tolist()
-        if "Source_Chamber" in out.columns
-        else ["all"]
+        out["Source_Chamber"].unique().tolist() if "Source_Chamber" in out.columns else ["all"]
     )
 
-    ch_dfs = [
-        out[out["Source_Chamber"] == ch] if ch != "all" else out
-        for ch in chambers
-    ]
+    ch_dfs = [out[out["Source_Chamber"] == ch] if ch != "all" else out for ch in chambers]
     results = Parallel(n_jobs=min(len(chambers), 2), backend="loky")(
         delayed(_stl_one_chamber)(ch_df, ch, slope_col, cfg)
         for ch_df, ch in zip(ch_dfs, chambers, strict=False)
@@ -256,10 +248,10 @@ def compute_stl_residual_scores(
 
     for res in results:
         idx = res["index"]
-        out.loc[idx, "stl_residual"]        = res["stl_residual"].values
+        out.loc[idx, "stl_residual"] = res["stl_residual"].values
         out.loc[idx, "stl_residual_zscore"] = res["stl_residual_zscore"].values
-        out.loc[idx, "stl_soft_flag"]       = res["stl_soft_flag"].values
-        out.loc[idx, "stl_hard_flag"]       = res["stl_hard_flag"].values
+        out.loc[idx, "stl_soft_flag"] = res["stl_soft_flag"].values
+        out.loc[idx, "stl_hard_flag"] = res["stl_hard_flag"].values
 
     return out
 
@@ -305,9 +297,7 @@ def compute_rolling_zscore(
     out["rolling_zscore_flag"] = 0
 
     chambers = (
-        out["Source_Chamber"].unique().tolist()
-        if "Source_Chamber" in out.columns
-        else ["all"]
+        out["Source_Chamber"].unique().tolist() if "Source_Chamber" in out.columns else ["all"]
     )
     w = cfg["rz_window_cycles"]
     min_p = cfg["rz_min_periods"]
@@ -328,9 +318,7 @@ def compute_rolling_zscore(
         z = (slopes - roll_mean) / roll_std_safe
 
         out.loc[ch_mask, "rolling_zscore"] = z.values
-        out.loc[ch_mask, "rolling_zscore_flag"] = (
-            (z.abs() > thr).fillna(0).astype(int).values
-        )
+        out.loc[ch_mask, "rolling_zscore_flag"] = (z.abs() > thr).fillna(0).astype(int).values
 
     return out
 
@@ -342,12 +330,12 @@ def compute_rolling_zscore(
 
 _DETECTOR_MAP = {
     # key: (column, higher_is_worse)  —  None == symmetric (use |abs| then rank)
-    "ml_if":  ("ml_if_score",        False),
-    "ml_mcd": ("ml_mcd_dist",        True),
-    "lof":    ("lof_score",          False),
-    "tif":    ("tif_score",          False),
-    "stl":    ("stl_residual_zscore", None),
-    "rz":     ("rolling_zscore",     None),
+    "ml_if": ("ml_if_score", False),
+    "ml_mcd": ("ml_mcd_dist", True),
+    "lof": ("lof_score", False),
+    "tif": ("tif_score", False),
+    "stl": ("stl_residual_zscore", None),
+    "rz": ("rolling_zscore", None),
 }
 
 

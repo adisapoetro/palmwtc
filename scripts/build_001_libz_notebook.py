@@ -126,7 +126,6 @@ threshold sensitivity sweep + visualisations
   a few minutes for QC + cycles + ML + validation).
 """
     ),
-
     # ── 1. Setup ──────────────────────────────────────────────────────────────
     _md(
         """
@@ -206,7 +205,6 @@ print(f"  config_dir    : {config_dir}")
 print(f"palmwtc version : {palmwtc.__version__}")
 """
     ),
-
     # ── 2. Discover raw .dat dirs ─────────────────────────────────────────────
     _md(
         """
@@ -227,7 +225,6 @@ for sensor, entries in sensor_dirs.items():
     print(f"  {sensor:<14} {len(entries):>3} dirs")
 """
     ),
-
     # ── 3. Demonstrate raw TOA5 .dat API on one sensor ────────────────────────
     _md(
         """
@@ -258,7 +255,6 @@ print(f"  time range: {c1_df['TIMESTAMP'].min()}  ->  {c1_df['TIMESTAMP'].max()}
 print(f"  columns: {sorted(c1_df.columns.tolist())[:10]} ...")
 """
     ),
-
     # ── 4. Load the integrated monthly CSVs (the production starting point) ──
     _md(
         """
@@ -292,7 +288,6 @@ print(f"df_raw: {df_raw.shape[0]:,} rows  x  {df_raw.shape[1]} columns")
 print(f"Time range: {df_raw['TIMESTAMP'].min()}  ->  {df_raw['TIMESTAMP'].max()}")
 """
     ),
-
     # ── 5. (Optional) regenerate monthly CSVs from df_raw ─────────────────────
     _md(
         """
@@ -319,7 +314,6 @@ else:
           "(no disk write).")
 """
     ),
-
     # ── 6. Data integrity report ──────────────────────────────────────────────
     _md(
         """
@@ -340,7 +334,6 @@ integrity = data_integrity_report(df_raw)
 integrity.head(20)
 """
     ),
-
     # ── 7. Rule-based QC across the full sensor set ───────────────────────────
     _md(
         """
@@ -410,7 +403,6 @@ keep_cols = [c for c in
 summary[keep_cols].sort_index()
 """
     ),
-
     # ── 8. Flux cycles per chamber ────────────────────────────────────────────
     _md(
         """
@@ -455,7 +447,6 @@ cycles_all[
 ].head()
 """
     ),
-
     # ── 9. ML anomaly overlay (toggleable) ────────────────────────────────────
     _md(
         """
@@ -505,7 +496,6 @@ else:
           "(downstream uses rule-based flags only).")
 """
     ),
-
     # ── 10. Calibration windows ───────────────────────────────────────────────
     _md(
         """
@@ -531,7 +521,6 @@ n_high_conf = int((ws.cycles_df["cycle_confidence"] >= 0.65).sum())
 print(f"\\nCycles with cycle_confidence >= 0.65: {n_high_conf:,}")
 """
     ),
-
     # ── 11. Science validation ────────────────────────────────────────────────
     _md(
         """
@@ -572,7 +561,6 @@ pd.DataFrame({
 })
 """
     ),
-
     # ── 12. Threshold sensitivity sweep ───────────────────────────────────────
     _md(
         """
@@ -607,7 +595,6 @@ for thresh in (0.50, 0.65, 0.80):
 pd.DataFrame(sweep)
 """
     ),
-
     # ── 13. Visualisations ────────────────────────────────────────────────────
     _md(
         """
@@ -659,7 +646,6 @@ fig3 = plot_tropical_seasonal_diurnal(cycles_for_viz)
 fig3    # None if insufficient data span
 """
     ),
-
     # ── 14. Where the artefacts live ──────────────────────────────────────────
     _md(
         """
@@ -695,7 +681,6 @@ print(f"USE_ML_QC            : {USE_ML_QC}")
 print(f"EXPORT_MONTHLY       : {EXPORT_MONTHLY}")
 """
     ),
-
     # ── 15. What this notebook does NOT cover ─────────────────────────────────
     _md(
         """

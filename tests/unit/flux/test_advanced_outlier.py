@@ -9,6 +9,7 @@ Covers the three functions ported from research/notebooks/030 in palmwtc 0.4.0:
 The tests build small synthetic cycle-level frames so each function's
 behaviour is easy to verify by inspection.
 """
+
 from __future__ import annotations
 
 import numpy as np
@@ -77,7 +78,9 @@ def test_default_config_has_expected_top_level_keys():
 
 def test_default_ensemble_weights_sum_to_one():
     weights = DEFAULT_ADVANCED_OUTLIER_CONFIG["ensemble_weights"]
-    assert weights == pytest.approx({"ml_if": 0.15, "ml_mcd": 0.15, "lof": 0.20, "tif": 0.15, "stl": 0.20, "rz": 0.15})
+    assert weights == pytest.approx(
+        {"ml_if": 0.15, "ml_mcd": 0.15, "lof": 0.20, "tif": 0.15, "stl": 0.20, "rz": 0.15}
+    )
     assert sum(weights.values()) == pytest.approx(1.0)
 
 
@@ -89,7 +92,9 @@ def test_default_ensemble_weights_sum_to_one():
 def test_compute_stl_residual_scores_returns_expected_columns():
     df = _two_chamber_diurnal(n_hours=96, seed=0)
     out = compute_stl_residual_scores(df)
-    assert {"stl_residual", "stl_residual_zscore", "stl_soft_flag", "stl_hard_flag"}.issubset(out.columns)
+    assert {"stl_residual", "stl_residual_zscore", "stl_soft_flag", "stl_hard_flag"}.issubset(
+        out.columns
+    )
 
 
 def test_compute_stl_residual_scores_does_not_mutate_input():
@@ -173,7 +178,13 @@ def test_compute_ensemble_score_with_only_stl_and_rz():
 def test_compute_ensemble_score_handles_empty_frame():
     """Empty input must not raise."""
     df = pd.DataFrame(
-        columns=["Source_Chamber", "flux_datetime", "flux_slope", "stl_residual_zscore", "rolling_zscore"]
+        columns=[
+            "Source_Chamber",
+            "flux_datetime",
+            "flux_slope",
+            "stl_residual_zscore",
+            "rolling_zscore",
+        ]
     )
     out = compute_ensemble_score(df)
     assert "anomaly_ensemble_score" in out.columns
@@ -211,6 +222,5 @@ def test_compute_ensemble_score_higher_for_more_anomalous_inputs():
     spike_score = out.loc[6, "anomaly_ensemble_score"]
     others = out.loc[[0, 1, 2, 3, 4, 5, 7, 8, 9], "anomaly_ensemble_score"]
     assert spike_score > others.max(), (
-        f"spike anomaly_ensemble_score {spike_score} should exceed all others "
-        f"(max {others.max()})"
+        f"spike anomaly_ensemble_score {spike_score} should exceed all others (max {others.max()})"
     )

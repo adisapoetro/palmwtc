@@ -468,8 +468,8 @@ def test_load_radiation_data_parses_dash_dash_as_nan(tmp_path: Path) -> None:
         {
             "TIMESTAMP": pd.date_range("2024-01-01", periods=4, freq="h"),
             "Global_Radiation": [100.0, "--", 200.0, "-"],
-            "Temp - °C":        [25.0, "--", 26.5, "-"],
-            "Hum - %":          [80.0, 82.0, "--", 85.0],
+            "Temp - °C": [25.0, "--", 26.5, "-"],
+            "Hum - %": [80.0, 82.0, "--", 85.0],
         }
     ).to_excel(f, index=False)
 
@@ -478,8 +478,7 @@ def test_load_radiation_data_parses_dash_dash_as_nan(tmp_path: Path) -> None:
 
     # Global_Radiation must be numeric with NaN where the markers were.
     assert pd.api.types.is_numeric_dtype(df["Global_Radiation"]), (
-        f"Global_Radiation should be numeric after the fix, got "
-        f"{df['Global_Radiation'].dtype}"
+        f"Global_Radiation should be numeric after the fix, got {df['Global_Radiation'].dtype}"
     )
     assert df["Global_Radiation"].isna().sum() == 2
     assert df["Global_Radiation"].dropna().tolist() == [100.0, 200.0]
@@ -488,12 +487,10 @@ def test_load_radiation_data_parses_dash_dash_as_nan(tmp_path: Path) -> None:
     # writes (which is what failed before the fix) succeed without an
     # ArrowInvalid.  We don't assert their exact values here — just dtype.
     assert pd.api.types.is_numeric_dtype(df["Temp - °C"]), (
-        f"'Temp - °C' should be numeric after the fix, got "
-        f"{df['Temp - °C'].dtype}"
+        f"'Temp - °C' should be numeric after the fix, got {df['Temp - °C'].dtype}"
     )
     assert pd.api.types.is_numeric_dtype(df["Hum - %"]), (
-        f"'Hum - %' should be numeric after the fix, got "
-        f"{df['Hum - %'].dtype}"
+        f"'Hum - %' should be numeric after the fix, got {df['Hum - %'].dtype}"
     )
 
     # Smoke check: the resulting frame must be writeable as parquet.
