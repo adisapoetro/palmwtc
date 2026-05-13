@@ -6,6 +6,16 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+### Changed
+
+- `docs/_static/example_chamber_libz.png` — upgraded the README chamber
+  illustration to add a sensor-pole detail panel (sonic anemometers at
+  0.75/1.50/2.25 m, T/RH + LI-850 air inlets at 1.125/1.875 m) and an
+  underground sensor panel (TEROS-21 + Watermark at 0.15/0.48/0.80/2.00/
+  3.50 m). File path unchanged, so the README and any external links
+  continue to resolve. Same illustration style as the previous figure;
+  re-encoded with palette quantization to keep the file ~350 KB.
+
 ## [0.4.3] — 2026-04-28
 
 Metadata-only follow-up to v0.4.2. Fixes the PyPI display so the
