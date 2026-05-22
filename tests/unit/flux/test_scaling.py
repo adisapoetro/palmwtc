@@ -26,10 +26,17 @@ import pandas as pd
 import pytest
 
 from palmwtc.flux.scaling import (
+    LEAFLET_SHAPE_FACTOR,
+    MEAN_LEAFLET_FACTOR,
+    MIN_RACHIS_FRACTION_OF_POS1,
+    MIN_RACHIS_LENGTH_M,
     add_par_estimates,
     calculate_lai_effective,
     estimate_leaf_area,
+    estimate_leaf_area_corley,
     estimate_par_from_radiation,
+    juvenile_combined_leaflet_params,
+    per_rank_rachis_lengths_m,
     scale_to_leaf_basis,
 )
 
@@ -78,6 +85,176 @@ def test_estimate_leaf_area_array_input() -> None:
 def test_estimate_leaf_area_unknown_method_raises() -> None:
     with pytest.raises(ValueError, match="Unknown method"):
         estimate_leaf_area(10, method="bogus")
+
+
+# ---------------------------------------------------------------------------
+# per_rank_rachis_lengths_m
+# ---------------------------------------------------------------------------
+
+# Canonical VPalm leaflet allometry used across the per-rank Corley tests.
+# Numbers chosen so each per-leaflet area multiplication can be reproduced by
+# hand from the formulas in estimate_leaf_area_corley.
+_VPALM_BASE_PARAMS: dict[str, float] = {
+    "leaflets_nb_max": 100.0,
+    "leaflets_nb_slope": 0.25,
+    "leaflets_nb_inflexion": 2.0,
+    "leaflet_length_at_b_intercept": 0.6,
+    "leaflet_length_at_b_slope": 0.05,
+    "leaflet_width_at_b_intercept": 0.06,
+    "leaflet_width_at_b_slope": 0.0,
+}
+
+
+def test_per_rank_rachis_linear_interpolation_anchors_and_between() -> None:
+    out = per_rank_rachis_lengths_m(5, {1: 1.4, 3: 1.2, 9: 0.9})
+    # rank 1 = pos1, rank 3 = pos3 exactly; rank 2 is midpoint of (1.4, 1.2)
+    np.testing.assert_allclose(out[:3], [1.4, 1.3, 1.2], rtol=1e-12, atol=1e-12)
+    # ranks 4 & 5 interpolate along the rank-3 → rank-9 slope (-0.05/rank)
+    assert out[3] == pytest.approx(1.2 + (1.2 - 0.9) / (3.0 - 9.0) * (4 - 3))
+    assert out[4] == pytest.approx(1.2 + (1.2 - 0.9) / (3.0 - 9.0) * (5 - 3))
+
+
+def test_per_rank_rachis_extrapolation_floored_past_rank_9() -> None:
+    # Steep decay would push later ranks below the floor; the floor must hold.
+    out = per_rank_rachis_lengths_m(20, {1: 1.4, 3: 1.2, 9: 0.9})
+    floor = max(MIN_RACHIS_LENGTH_M, MIN_RACHIS_FRACTION_OF_POS1 * 1.4)
+    assert (out[9:] >= floor - 1e-12).all()
+    # And the curve never exceeds pos1 (newest rank is longest in this regime).
+    assert out.max() == pytest.approx(1.4, abs=1e-12)
+
+
+def test_per_rank_rachis_fallback_when_pos9_missing() -> None:
+    # pos9 missing → falls back to pos3 → ranks 3..9 form a flat segment at pos3.
+    out_missing = per_rank_rachis_lengths_m(9, {1: 1.4, 3: 1.2})
+    out_explicit = per_rank_rachis_lengths_m(9, {1: 1.4, 3: 1.2, 9: 1.2})
+    np.testing.assert_allclose(out_missing, out_explicit, rtol=1e-12, atol=1e-12)
+
+
+def test_per_rank_rachis_fallback_when_pos3_and_pos9_missing() -> None:
+    # Both pos3 and pos9 fall back to pos1 → constant curve at pos1.
+    out = per_rank_rachis_lengths_m(7, {1: 1.4})
+    np.testing.assert_allclose(out, np.full(7, 1.4), rtol=1e-12, atol=1e-12)
+
+
+def test_per_rank_rachis_requires_finite_pos1() -> None:
+    with pytest.raises(ValueError, match="rank-1 anchor"):
+        per_rank_rachis_lengths_m(5, {1: float("nan"), 3: 1.0, 9: 0.5})
+    with pytest.raises(ValueError, match="rank-1 anchor"):
+        per_rank_rachis_lengths_m(5, {3: 1.0, 9: 0.5})
+
+
+def test_per_rank_rachis_requires_positive_n_leaves() -> None:
+    with pytest.raises(ValueError, match="positive integer"):
+        per_rank_rachis_lengths_m(0, {1: 1.4})
+
+
+# ---------------------------------------------------------------------------
+# juvenile_combined_leaflet_params
+# ---------------------------------------------------------------------------
+
+
+def test_juvenile_combined_halves_three_keys_only() -> None:
+    juv = juvenile_combined_leaflet_params(_VPALM_BASE_PARAMS)
+    assert juv["leaflets_nb_max"] == 50.0
+    assert juv["leaflet_length_at_b_slope"] == pytest.approx(0.025, abs=1e-12)
+    assert juv["leaflet_width_at_b_slope"] == 0.0  # halved 0.0 stays 0.0
+    # Other params unchanged.
+    for k in (
+        "leaflets_nb_slope",
+        "leaflets_nb_inflexion",
+        "leaflet_length_at_b_intercept",
+        "leaflet_width_at_b_intercept",
+    ):
+        assert juv[k] == _VPALM_BASE_PARAMS[k]
+
+
+def test_juvenile_combined_marks_placeholder() -> None:
+    juv = juvenile_combined_leaflet_params(_VPALM_BASE_PARAMS)
+    assert "_juvenile_placeholder" in juv
+    assert "halved" in juv["_juvenile_placeholder"]
+
+
+def test_juvenile_combined_does_not_mutate_input() -> None:
+    snapshot = dict(_VPALM_BASE_PARAMS)
+    juvenile_combined_leaflet_params(_VPALM_BASE_PARAMS)
+    assert snapshot == _VPALM_BASE_PARAMS
+
+
+def test_juvenile_combined_missing_keys_raises() -> None:
+    bad = {k: v for k, v in _VPALM_BASE_PARAMS.items() if k != "leaflets_nb_max"}
+    with pytest.raises(KeyError, match="leaflets_nb_max"):
+        juvenile_combined_leaflet_params(bad)
+
+
+# ---------------------------------------------------------------------------
+# estimate_leaf_area_corley
+# ---------------------------------------------------------------------------
+
+
+def test_estimate_leaf_area_corley_single_rank_matches_hand_calculation() -> None:
+    """Single-rank case with hand-computable inputs.
+
+    For n_leaves=1, pos1=2.0 m, _VPALM_BASE_PARAMS:
+      rachis = 2.0
+      n_leaflets = 100 / (1 + exp(-0.25*(2.0-2.0))) = 50
+      ll_b = 0.6 + 0.05*2.0 = 0.7
+      lw_b = 0.06 + 0.0*2.0 = 0.06
+      ll_mean = 0.85*0.7 = 0.595
+      lw_mean = 0.85*0.06 = 0.051
+      la_per_leaflet = 0.595*0.051*0.55 = 0.01668975
+      total = 50 * 0.01668975 = 0.8344875
+    """
+    area = estimate_leaf_area_corley(1, {1: 2.0}, _VPALM_BASE_PARAMS)
+    expected = 50.0 * (0.85 * 0.7) * (0.85 * 0.06) * LEAFLET_SHAPE_FACTOR
+    assert area == pytest.approx(expected, abs=1e-12, rel=1e-12)
+    # Sanity: same as the literal arithmetic.
+    assert area == pytest.approx(0.8344875, abs=1e-9)
+
+
+def test_estimate_leaf_area_corley_uses_mean_factor_squared() -> None:
+    """Per-leaflet area carries (MEAN_LEAFLET_FACTOR)**2 * LEAFLET_SHAPE_FACTOR."""
+    area = estimate_leaf_area_corley(1, {1: 2.0}, _VPALM_BASE_PARAMS)
+    ll_b = 0.7
+    lw_b = 0.06
+    la_per_leaflet = (MEAN_LEAFLET_FACTOR**2) * ll_b * lw_b * LEAFLET_SHAPE_FACTOR
+    assert area == pytest.approx(50.0 * la_per_leaflet, abs=1e-12, rel=1e-12)
+
+
+def test_estimate_leaf_area_corley_juvenile_lower_than_mature() -> None:
+    """Halving leaflet count + slopes must shrink total leaf area."""
+    juv = juvenile_combined_leaflet_params(_VPALM_BASE_PARAMS)
+    mature_area = estimate_leaf_area_corley(20, {1: 1.45, 3: 1.30, 9: 1.05}, _VPALM_BASE_PARAMS)
+    juv_area = estimate_leaf_area_corley(20, {1: 1.45, 3: 1.30, 9: 1.05}, juv)
+    assert juv_area > 0
+    assert juv_area < mature_area
+    # The ratio is bounded above by leaflet_count_ratio × leaflet_length_ratio
+    # because the width slope is zero in _VPALM_BASE_PARAMS.
+    assert juv_area / mature_area < 0.6  # well below the mature curve
+
+
+def test_estimate_leaf_area_corley_increases_with_n_leaves() -> None:
+    p = _VPALM_BASE_PARAMS
+    a1 = estimate_leaf_area_corley(1, {1: 1.5, 3: 1.3, 9: 1.0}, p)
+    a5 = estimate_leaf_area_corley(5, {1: 1.5, 3: 1.3, 9: 1.0}, p)
+    a30 = estimate_leaf_area_corley(30, {1: 1.5, 3: 1.3, 9: 1.0}, p)
+    assert a1 < a5 < a30
+
+
+def test_estimate_leaf_area_corley_missing_vpalm_key_raises() -> None:
+    bad = {k: v for k, v in _VPALM_BASE_PARAMS.items() if k != "leaflets_nb_slope"}
+    with pytest.raises(ValueError, match="leaflets_nb_slope"):
+        estimate_leaf_area_corley(5, {1: 1.4, 3: 1.2, 9: 0.9}, bad)
+
+
+def test_estimate_leaf_area_corley_requires_finite_pos1() -> None:
+    with pytest.raises(ValueError, match="rank-1 anchor"):
+        estimate_leaf_area_corley(5, {1: float("nan"), 3: 1.2, 9: 0.9}, _VPALM_BASE_PARAMS)
+
+
+def test_estimate_leaf_area_corley_returns_float() -> None:
+    out = estimate_leaf_area_corley(10, {1: 1.4, 3: 1.2, 9: 0.9}, _VPALM_BASE_PARAMS)
+    assert isinstance(out, float)
+    assert out > 0
 
 
 # ---------------------------------------------------------------------------

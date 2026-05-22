@@ -6,6 +6,51 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+## [0.4.4] — 2026-05-22
+
+Adds a juvenile-aware, opt-in leaf-area estimator for whole-tree-chamber
+oil palm work. Addresses the 5–10× LAI over-estimate produced by
+`estimate_leaf_area(method="conservative")` (4 m² leaf⁻¹) on juvenile
+palms — the source of the §6.1 carbon-budget closure error reported by
+the flux_chamber research workspace. No existing API changes; downstream
+code that calls `estimate_leaf_area` continues to produce identical
+numbers.
+
+### Added
+
+- `palmwtc.flux.estimate_leaf_area_corley(n_leaves, rachis_length_by_rank,
+  leaflet_params)` — per-rank leaflet-level Corley/Hardon allometry. Builds
+  a per-rank rachis-length curve from three measured anchors (rank 1/3/9,
+  linear interpolation in between, floored extrapolation past rank 9),
+  applies the VPalm logistic on leaflet count plus linear leaflet length/
+  width-at-B-point relations, then sums per-rank frond areas. Output is
+  total palm leaf area in m².
+- `palmwtc.flux.per_rank_rachis_lengths_m(n_leaves, rachis_length_by_rank)` —
+  helper that exposes the per-rank curve for diagnostics. Returns a
+  1-D `np.ndarray` of length `n_leaves`.
+- `palmwtc.flux.juvenile_combined_leaflet_params(mature_params)` —
+  convenience factory that halves `leaflets_nb_max` plus the leaflet
+  length/width slopes of a mature VPalm parameter dict, producing the
+  juvenile-combined placeholder used by `estimate_leaf_area_corley`
+  until a calibrated juvenile leaflet survey is available. The returned
+  dict carries a `_juvenile_placeholder` marker so downstream code can
+  detect the placeholder.
+- Module constants `LEAFLET_SHAPE_FACTOR` (0.55, Hardon 1969),
+  `MEAN_LEAFLET_FACTOR` (0.85, along-rachis mean approximation),
+  `MIN_RACHIS_LENGTH_M` (0.5 m, extrapolation floor), and
+  `MIN_RACHIS_FRACTION_OF_POS1` (0.5, extrapolation floor as fraction
+  of rank 1) on `palmwtc.flux.scaling`.
+
+### Notes
+
+- The new estimator is **opt-in**. The legacy `estimate_leaf_area`
+  function and its `method` parameter remain unchanged; the
+  `"conservative"` default is preserved.
+- The halved-mature juvenile placeholder is the only LAI variant
+  inside the 0.5–4 juvenile target range across both LIBZ chamber
+  palms (Ch1 LAI_canopy ≈ 2.51, Ch2 ≈ 2.68). It is intended to be
+  superseded by a calibrated juvenile leaflet survey when available.
+
 ## [0.4.3] — 2026-04-28
 
 Metadata-only follow-up to v0.4.2. Fixes the PyPI display so the
