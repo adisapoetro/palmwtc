@@ -1,23 +1,25 @@
 {
   "project": "palmwtc",
-  "updated": "2026-05-17",
+  "updated": "2026-05-28",
   "status": {
-    "phase": "v0.4.3",
-    "phase_label": "PyPI library, stable (released; chamber-illustration docs branch open)",
+    "phase": "v0.4.4 Stage A landed locally",
+    "phase_label": "PyPI library; 0.4.3 released; 0.4.4 (juvenile-aware LAI fix) landed on feat/lai-corley-juvenile 2026-05-22 (commit 9eb5bd5) but NOT yet released to PyPI (Stage B paused); chamber-illustration docs branch still open",
     "percent_done": 90,
-    "one_liner": "Released 0.4.3 (metadata cleanup — PyPI Author display fix per CHANGELOG 7.1). CI green since PRs #34/#35 (2026-04-29). Branch docs/chamber-illustration-with-sensor-detail open with sensor-pole + soil-sensor detail."
+    "one_liner": "Stage A of LAI Option C v3 landed locally as 0.4.4 (commit 9eb5bd5, 2026-05-22): adds juvenile-aware estimate_leaf_area_corley + per_rank_rachis_lengths_m + juvenile_combined_leaflet_params; 17 new unit tests, 546 total passing, ruff clean, CHANGELOG bumped. Existing estimate_leaf_area default unchanged. Stage B (push to origin + PyPI release of 0.4.4 + cascade to research/sandbox pins) paused awaiting user authorization."
   },
   "blockers": [],
   "next_milestone": {
-    "label": "Merge chamber-illustration docs PR; cut 0.4.4 if substantive",
-    "target_date": "2026-05-25"
+    "label": "Stage B for 0.4.4 (push/PR/PyPI release + research/sandbox pin cascade); merge chamber-illustration docs PR",
+    "target_date": "2026-05-31"
   },
   "decisions": [
+    {"date": "2026-05-22", "decision": "LAI Option C v3 Stage A landed on feat/lai-corley-juvenile (commit 9eb5bd5): 0.4.4 bump adds juvenile-aware estimate_leaf_area_corley + per_rank_rachis_lengths_m + juvenile_combined_leaflet_params (halved-mature placeholder marked _juvenile_placeholder); existing estimate_leaf_area + conservative default untouched; 17 new tests / 546 total pytest passed / 0 failed; ruff clean", "why": "implements the LAI cross-repo landing plan (research/temp/100_lai_iteration/LAI_LANDING_PLAN.md) as opt-in new functions, preserving §1.2 behaviour preservation. Staged locally so user reviews diff before Stage B (PyPI is append-only per §7.1 — wrong release locks in permanently)"},
     {"date": "2026-04-29", "decision": "Close ruff CI red via per-file-ignores (notebooks) + ruff format sweep (PR #34 + #35)", "why": "Long-standing red was blocking routine merges; mypy stays continue-on-error (warn-only)"},
     {"date": "2026-04-28", "decision": "Strip Co-Authored-By: Claude trailers from history via git filter-branch + force-push", "why": "Owner wants GitHub Contributors panel to show only their account; 9 commits affected, backup at backup/pre-claude-cleanup-20260428"},
     {"date": "2026-04-25", "decision": "Move under flux_chamber/ umbrella (cutover 2026-04-24)", "why": "Three-repo consolidation; palmwtc/.venv rebuilt with uv sync to fix stale absolute paths from editable-install"}
   ],
   "in_flight": [
+    {"text": "Stage B of LAI fix: push feat/lai-corley-juvenile to origin + PyPI release of 0.4.4 + cascade research/sandbox pin bumps — paused awaiting user authorization", "kind": "release"},
     {"text": "Chamber illustration with sensor-pole + soil-sensor detail", "kind": "docs", "branch": "docs/chamber-illustration-with-sensor-detail"}
   ],
   "test_status": {
