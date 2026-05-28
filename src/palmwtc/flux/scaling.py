@@ -12,6 +12,18 @@ Public API
   from the PalmStudio biophysical spreadsheet.
 - :func:`estimate_leaf_area` — convert leaf count to total leaf area (m²)
   using age-appropriate area-per-leaf assumptions for chamber oil palms.
+- :func:`estimate_leaf_area_corley` — per-rank leaflet-level Corley/Hardon
+  allometry from three measured rachis-length anchors (rank 1/3/9). Opt-in
+  juvenile-aware estimator that takes per-rank rachis lengths + VPalm
+  leaflet coefficients and returns total leaf area (m²) per palm.
+- :func:`per_rank_rachis_lengths_m` — build a per-rank rachis-length curve
+  from three anchors (linear interpolation between, floored extrapolation
+  past rank 9). Exposed for diagnostics.
+- :func:`juvenile_combined_leaflet_params` — convenience factory that
+  halves ``leaflets_nb_max`` + the length/width slopes of a mature VPalm
+  parameter dict, producing the juvenile-combined placeholder used by
+  ``estimate_leaf_area_corley`` until a calibrated juvenile leaflet
+  parameter survey is available.
 - :func:`calculate_lai_effective` — match biophysical measurements to flux
   dates by temporal proximity and compute LAI = leaf_area / floor_area.
 - :func:`scale_to_leaf_basis` — divide ground-area fluxes by LAI to obtain
@@ -181,6 +193,338 @@ def estimate_leaf_area(
         raise ValueError(f"Unknown method: {method}")
 
     return total_area
+
+
+# ---------------------------------------------------------------------------
+# Per-rank Corley LAI (juvenile-aware, opt-in)
+# ---------------------------------------------------------------------------
+# Constants from the Hardon-Williams-Watson 1969 / VPalm leaflet allometry.
+# These are biology-of-the-leaflet constants, not site-specific.
+
+#: Leaflet shape factor (Hardon, Williams & Watson 1969). Multiplied by the
+#: leaflet length × width product to obtain leaflet area.
+LEAFLET_SHAPE_FACTOR = 0.55
+
+#: Mean leaflet length / width along the rachis as a fraction of the value at
+#: the B-point (Perez et al. 2016 ``MEAN_LEAFLET_FACTOR``).  Approximates
+#: VPalm's full relative-position integral; accurate to ~10 %.
+MEAN_LEAFLET_FACTOR = 0.85
+
+#: Floor for extrapolated rachis lengths past rank 9 (juvenile fronds should
+#: not be shorter than 50 cm in practice).
+MIN_RACHIS_LENGTH_M = 0.5
+
+#: Extrapolated rachis lengths past rank 9 are also floored at this fraction
+#: of the rank-1 anchor.
+MIN_RACHIS_FRACTION_OF_POS1 = 0.5
+
+#: VPalm leaflet parameter keys consumed by :func:`estimate_leaf_area_corley`.
+_VPALM_LEAFLET_PARAM_KEYS = (
+    "leaflets_nb_max",
+    "leaflets_nb_slope",
+    "leaflets_nb_inflexion",
+    "leaflet_length_at_b_intercept",
+    "leaflet_length_at_b_slope",
+    "leaflet_width_at_b_intercept",
+    "leaflet_width_at_b_slope",
+)
+
+
+def per_rank_rachis_lengths_m(
+    n_leaves: int,
+    rachis_length_by_rank: dict[int, float],
+) -> np.ndarray:
+    """Build a per-rank rachis-length curve from three measured anchors.
+
+    Returns an array of length ``n_leaves`` giving the rachis length (m) at
+    each rank, with rank 1 = newest (top of canopy) and rank ``n_leaves`` =
+    oldest.  Anchors are taken at ranks 1, 3, 9; values between anchors are
+    linearly interpolated; ranks above 9 are linearly extrapolated using the
+    rank-3 → rank-9 slope and floored at
+    ``max(MIN_RACHIS_LENGTH_M, MIN_RACHIS_FRACTION_OF_POS1 * pos1)``.
+
+    Parameters
+    ----------
+    n_leaves : int
+        Total number of leaves (fronds) on the palm.  Must be ≥ 1.
+    rachis_length_by_rank : dict[int, float]
+        Mapping with at least key ``1`` (rachis length at rank 1, in metres).
+        Keys ``3`` and ``9`` are optional; if missing or non-finite they
+        fall back to the next-lower rank that is present (rank 9 → rank 3 →
+        rank 1).  Extra keys are ignored.
+
+    Returns
+    -------
+    np.ndarray
+        1-D array of length ``n_leaves`` with the rachis length at each rank.
+
+    Raises
+    ------
+    ValueError
+        If *n_leaves* < 1, or if rank 1 is missing / non-finite.
+
+    Notes
+    -----
+    The per-rank decay between measured anchors is a linear placeholder for
+    the true (likely Gompertz / saturating) profile.  For palms with
+    ``n_leaves`` much larger than 9 most fronds are in the extrapolated
+    region; the floor prevents the curve from producing absurdly tiny
+    rachis lengths at high rank.
+
+    Examples
+    --------
+    >>> r = per_rank_rachis_lengths_m(5, {1: 1.4, 3: 1.2, 9: 0.9})
+    >>> [round(float(v), 3) for v in r]
+    [1.4, 1.3, 1.2, 1.15, 1.1]
+
+    Past rank 9 the curve falls along the rank-3 → rank-9 slope, but is
+    floored:
+
+    >>> r = per_rank_rachis_lengths_m(12, {1: 1.4, 3: 1.2, 9: 0.9})
+    >>> floor = max(0.5, 0.5 * 1.4)
+    >>> round(float(r[-1]), 3) >= round(floor, 3)
+    True
+    """
+    if not isinstance(n_leaves, (int, np.integer)) or n_leaves < 1:
+        raise ValueError(f"n_leaves must be a positive integer; got {n_leaves!r}")
+
+    pos1 = float(rachis_length_by_rank.get(1, np.nan))
+    pos3 = float(rachis_length_by_rank.get(3, np.nan))
+    pos9 = float(rachis_length_by_rank.get(9, np.nan))
+
+    if not np.isfinite(pos1):
+        raise ValueError(
+            "rachis_length_by_rank must include a finite rank-1 anchor (key 1); "
+            f"got {rachis_length_by_rank!r}"
+        )
+
+    # Fallbacks for missing higher-rank anchors.
+    if not np.isfinite(pos3):
+        pos3 = pos1
+    if not np.isfinite(pos9):
+        pos9 = pos3
+
+    n = int(n_leaves)
+    ranks = np.arange(1, n + 1, dtype=float)
+    out = np.empty(n, dtype=float)
+
+    slope_1_3 = (pos3 - pos1) / (3.0 - 1.0)
+    slope_3_9 = (pos9 - pos3) / (9.0 - 3.0)
+    extrap_floor = max(MIN_RACHIS_LENGTH_M, MIN_RACHIS_FRACTION_OF_POS1 * pos1)
+
+    for i, r in enumerate(ranks):
+        if r <= 1.0:
+            out[i] = pos1
+        elif r <= 3.0:
+            out[i] = pos1 + slope_1_3 * (r - 1.0)
+        elif r <= 9.0:
+            out[i] = pos3 + slope_3_9 * (r - 3.0)
+        else:
+            val = pos9 + slope_3_9 * (r - 9.0)
+            out[i] = max(val, extrap_floor)
+
+    return out
+
+
+def juvenile_combined_leaflet_params(mature_params: dict) -> dict:
+    """Return a juvenile-combined placeholder of a mature VPalm parameter dict.
+
+    Halves ``leaflets_nb_max`` and the two leaflet length/width slopes,
+    leaving the other coefficients unchanged.  This matches the
+    ``juvenile_combined`` variant in the per-rank Corley LAI study v3 (the
+    only variant that produced LAI inside the juvenile 0.5–4 target range
+    for both LIBZ chamber palms).
+
+    Parameters
+    ----------
+    mature_params : dict
+        VPalm leaflet allometry coefficients.  Must contain at least the
+        keys listed in :data:`_VPALM_LEAFLET_PARAM_KEYS`.
+
+    Returns
+    -------
+    dict
+        Shallow copy of *mature_params* with ``leaflets_nb_max``,
+        ``leaflet_length_at_b_slope`` and ``leaflet_width_at_b_slope``
+        halved.  All other keys are passed through unchanged.
+
+    Notes
+    -----
+    This is a **placeholder** for a properly-calibrated juvenile leaflet
+    parameter set (the eventual output of a juvenile leaflet-survey).
+    Until that survey is available, the halved-mature placeholder is
+    documented explicitly in the returned dict via the
+    ``"_juvenile_placeholder"`` flag so downstream code can detect it.
+
+    Examples
+    --------
+    >>> mature = {
+    ...     "leaflets_nb_max": 170.0,
+    ...     "leaflets_nb_slope": 0.25,
+    ...     "leaflets_nb_inflexion": 2.3,
+    ...     "leaflet_length_at_b_intercept": 0.61,
+    ...     "leaflet_length_at_b_slope": 0.054,
+    ...     "leaflet_width_at_b_intercept": 0.063,
+    ...     "leaflet_width_at_b_slope": -0.004,
+    ... }
+    >>> juv = juvenile_combined_leaflet_params(mature)
+    >>> juv["leaflets_nb_max"]
+    85.0
+    >>> juv["leaflet_length_at_b_slope"]
+    0.027
+    >>> juv["_juvenile_placeholder"]
+    'juvenile_combined (halved leaflets_nb_max + length/width slopes)'
+    """
+    missing = [k for k in _VPALM_LEAFLET_PARAM_KEYS if k not in mature_params]
+    if missing:
+        raise KeyError(f"mature_params is missing required VPalm leaflet keys: {missing}")
+    juv = dict(mature_params)
+    juv["leaflets_nb_max"] = mature_params["leaflets_nb_max"] * 0.5
+    juv["leaflet_length_at_b_slope"] = mature_params["leaflet_length_at_b_slope"] * 0.5
+    juv["leaflet_width_at_b_slope"] = mature_params["leaflet_width_at_b_slope"] * 0.5
+    juv["_juvenile_placeholder"] = (
+        "juvenile_combined (halved leaflets_nb_max + length/width slopes)"
+    )
+    return juv
+
+
+def estimate_leaf_area_corley(
+    n_leaves: int,
+    rachis_length_by_rank: dict[int, float],
+    leaflet_params: dict,
+) -> float:
+    """Estimate total palm leaf area (m²) via per-rank leaflet-level allometry.
+
+    Implements the Corley/Hardon leaflet-level integration on a per-rank
+    rachis-length curve.  For each rank ``r = 1..n_leaves`` the rachis
+    length is taken from :func:`per_rank_rachis_lengths_m`, the leaflet
+    count is computed from a logistic of rachis length (VPalm), leaflet
+    length and width at the B-point are linear functions of rachis
+    length, and the per-leaflet area is
+
+    .. math::
+
+        A_{leaflet} = (0.85 \\cdot L_{b})(0.85 \\cdot W_{b}) \\cdot 0.55
+
+    The per-frond area is leaflet count × per-leaflet area, and the total
+    palm leaf area is the sum across all ranks.
+
+    This estimator is the **juvenile-aware opt-in** path landed in
+    palmwtc 0.4.4 to address the 5–10× LAI over-estimate produced by the
+    legacy ``estimate_leaf_area(method="conservative")`` (4 m² per leaf)
+    on juvenile chamber palms.  Use :func:`juvenile_combined_leaflet_params`
+    to halve a mature VPalm parameter dict for the placeholder
+    juvenile parameter set; pass calibrated juvenile coefficients directly
+    once a juvenile leaflet-survey is available.
+
+    Parameters
+    ----------
+    n_leaves : int
+        Total number of live fronds on the palm.  Must be ≥ 1.
+    rachis_length_by_rank : dict[int, float]
+        Per-rank rachis-length anchors in metres.  Must contain key ``1``
+        (rachis length at rank 1, the newest frond); keys ``3`` and ``9``
+        are optional and fall back to the next-lower rank if missing
+        (rank 9 → rank 3 → rank 1).  Extra keys are ignored.
+    leaflet_params : dict
+        VPalm leaflet allometry coefficients.  Required keys:
+
+        - ``leaflets_nb_max`` — logistic ceiling on leaflet count.
+        - ``leaflets_nb_slope`` — logistic slope (m⁻¹).
+        - ``leaflets_nb_inflexion`` — logistic inflexion (m).
+        - ``leaflet_length_at_b_intercept`` — leaflet length intercept (m).
+        - ``leaflet_length_at_b_slope`` — leaflet length slope (dimensionless).
+        - ``leaflet_width_at_b_intercept`` — leaflet width intercept (m).
+        - ``leaflet_width_at_b_slope`` — leaflet width slope (dimensionless).
+
+    Returns
+    -------
+    float
+        Total leaf area (m²) summed across all ranks.
+
+    Raises
+    ------
+    ValueError
+        If *n_leaves* < 1, if rank 1 is missing / non-finite, or if any
+        required VPalm key is missing from *leaflet_params*.
+
+    See Also
+    --------
+    estimate_leaf_area : Legacy area-per-leaf estimator (4 m² leaf⁻¹ at
+        ``method="conservative"``).  Kept as the default for backward
+        compatibility; over-estimates LAI by 5–10× on juvenile palms.
+    juvenile_combined_leaflet_params : Convenience factory for the
+        halved-mature placeholder juvenile parameter set.
+    per_rank_rachis_lengths_m : Helper that builds the per-rank curve.
+
+    References
+    ----------
+    Corley, R. H. V. & Tinker, P. B. (2016). *The Oil Palm*, 5th ed.
+        Wiley-Blackwell.
+    Hardon, J. J., Williams, C. N. & Watson, I. (1969). Leaf area and
+        yield in the oil palm in Malaya. *Experimental Agriculture*,
+        5(1), 25–32. https://doi.org/10.1017/S0014479700001514
+    Henson, I. E. (1991). Limitations to gas exchange, growth and yield of
+        young oil palm by soil water supply and atmospheric drought.
+        *Transactions of the Malaysian Society of Plant Physiology*, 3,
+        39–51.
+    Perez, R. P. A., Dauzat, J., Pallas, B., Lamour, J., Verley, P.,
+        Caliman, J.-P., Costes, E. & Faivre, R. (2016). Designing oil
+        palm architectural ideotypes for optimal light interception and
+        carbon assimilation through a sensitivity analysis of leaf traits.
+        *Annals of Botany*, 118(7), 1213–1228.
+        https://doi.org/10.1093/aob/mcw214
+
+    Examples
+    --------
+    Hand-computable single-rank case (n_leaves=1, only rank 1 in play):
+
+    >>> params = {
+    ...     "leaflets_nb_max": 100.0,
+    ...     "leaflets_nb_slope": 0.25,
+    ...     "leaflets_nb_inflexion": 2.0,
+    ...     "leaflet_length_at_b_intercept": 0.6,
+    ...     "leaflet_length_at_b_slope": 0.05,
+    ...     "leaflet_width_at_b_intercept": 0.06,
+    ...     "leaflet_width_at_b_slope": 0.0,
+    ... }
+    >>> area = estimate_leaf_area_corley(1, {1: 2.0}, params)
+    >>> round(area, 4)
+    0.8345
+
+    Three-anchor curve, juvenile-combined placeholder:
+
+    >>> juv = juvenile_combined_leaflet_params(params)
+    >>> area = estimate_leaf_area_corley(
+    ...     20, {1: 1.45, 3: 1.30, 9: 1.05}, juv
+    ... )
+    >>> area > 0
+    True
+    """
+    missing = [k for k in _VPALM_LEAFLET_PARAM_KEYS if k not in leaflet_params]
+    if missing:
+        raise ValueError(f"leaflet_params is missing required VPalm keys: {missing}")
+
+    rachis = per_rank_rachis_lengths_m(n_leaves, rachis_length_by_rank)
+    rachis = np.clip(rachis, 1e-3, None)
+
+    nb_max = float(leaflet_params["leaflets_nb_max"])
+    nb_slope = float(leaflet_params["leaflets_nb_slope"])
+    nb_inflex = float(leaflet_params["leaflets_nb_inflexion"])
+    ll_int = float(leaflet_params["leaflet_length_at_b_intercept"])
+    ll_slope = float(leaflet_params["leaflet_length_at_b_slope"])
+    lw_int = float(leaflet_params["leaflet_width_at_b_intercept"])
+    lw_slope = float(leaflet_params["leaflet_width_at_b_slope"])
+
+    n_leaflets = nb_max / (1.0 + np.exp(-nb_slope * (rachis - nb_inflex)))
+    ll_b = np.clip(ll_int + ll_slope * rachis, 1e-4, None)
+    lw_b = np.clip(lw_int + lw_slope * rachis, 1e-4, None)
+
+    ll_mean = MEAN_LEAFLET_FACTOR * ll_b
+    lw_mean = MEAN_LEAFLET_FACTOR * lw_b
+    la_per_leaflet = ll_mean * lw_mean * LEAFLET_SHAPE_FACTOR
+    la_per_frond = n_leaflets * la_per_leaflet
+    return float(np.sum(la_per_frond))
 
 
 def calculate_lai_effective(

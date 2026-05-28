@@ -1,0 +1,122 @@
+{
+  "project": "palmwtc",
+  "fullName": "palmwtc — public Python library for whole-tree-chamber CO2/H2O fluxes",
+  "version": "0.4.3",
+  "updated": "2026-05-19",
+  "purpose": "Public, MIT-licensed Python library that transforms raw automated whole-tree-chamber measurements (LI-COR LI-850 gas analyzer + ancillary sensors) into validated CO2 and H2O fluxes through a four-stage pipeline: quality control (rules + ML + drift) → flux calculation (cycle-based, chamber-aware scaling) → calibration window selection → ecophysiological validation. Distributed on PyPI as the reference implementation of the whole-tree chamber workflow for individual oil-palm trees; outputs feed the XPalm digital-twin calibration in the sibling digital_twin/ subrepo. Provides a library API, a Typer CLI (`palmwtc run`, `palmwtc info`), and tutorial notebooks.",
+  "isNot": [
+    "Not a flux-tower or eddy-covariance system — operates on closed whole-tree chambers around individual trees",
+    "Not a general-purpose vegetation library — calibrated for oil-palm ecophysiology and the LI-COR LI-850",
+    "Not an analysis or notebook collection — tutorials are thin narrative shells around library calls",
+    "Not a Streamlit dashboard application — the dashboard layer was removed in v0.2.0 and is out of scope",
+    "Not a data archive — bundled data is synthetic only; raw LIBZ chamber data lives privately in ../research/"
+  ],
+  "atAGlance": {
+    "Language": "Python 3.11–3.13 (`uv` for env, `hatchling` build backend)",
+    "Install": "pip install palmwtc  (extras: [ml] scikit-learn QC · [gpu] torch/MPS · [all])",
+    "Entry points": "CLI: `palmwtc run`, `palmwtc info` · Library: `from palmwtc.qc import QCProcessor`, `from palmwtc.flux import calculate_flux_cycles`",
+    "Tests": "446 test functions across tests/unit/ and tests/integration/ (pytest markers: slow, integration, requires_real_data, requires_gpu)",
+    "Release": "0.4.3 (2026-04-28); Zenodo concept DOI 10.5281/zenodo.19680893"
+  },
+  "layers": [
+    {
+      "id": "L4",
+      "name": "Interface",
+      "purpose": "CLI + tutorial notebooks. All entry points to the library.",
+      "modules": [
+        {"path": "src/palmwtc/cli.py", "role": "Typer CLI — `palmwtc run`, `palmwtc info`"},
+        {"path": "src/palmwtc/notebooks_runner.py", "role": "papermill orchestrator for notebook mode"},
+        {"path": "src/palmwtc/notebooks/", "role": "000 (synthetic demo) + 001 (real LIBZ) + 010–035 thin tutorial placeholders"}
+      ]
+    },
+    {
+      "id": "L3",
+      "name": "Config + Orchestration",
+      "purpose": "Path/config resolution and pipeline glue. No algorithms.",
+      "modules": [
+        {"path": "src/palmwtc/config.py", "role": "DataPaths — path resolution chain: kwarg → CLI flag → env var → palmwtc.yaml → ~/.palmwtc/config.yaml → bundled sample"},
+        {"path": "src/palmwtc/pipeline.py", "role": "run_step() / run_pipeline() — orchestrates qc → flux → windows → validation"}
+      ]
+    },
+    {
+      "id": "L2",
+      "name": "Domain modules (core algorithms)",
+      "purpose": "Pure algorithmic packages. Each subpackage owns one pipeline stage.",
+      "modules": [
+        {"path": "src/palmwtc/qc/", "role": "Quality control: rules, breakpoints (ruptures), drift (windstats), ML anomaly, processor, reporting"},
+        {"path": "src/palmwtc/flux/", "role": "Flux calc: absolute CO2/H2O, cycle-based, chamber-aware scaling, advanced outlier detection, day/cycle scoring"},
+        {"path": "src/palmwtc/windows/", "role": "Calibration window selection (WindowSelector)"},
+        {"path": "src/palmwtc/validation/", "role": "Ecophysiological validation against literature bounds (science.py)"},
+        {"path": "src/palmwtc/hardware/", "role": "Optional GPU/MPS accelerators (torch, cuML, scikit-learn toggles)"}
+      ]
+    },
+    {
+      "id": "L1",
+      "name": "I/O + bundled data",
+      "purpose": "Loaders, path helpers, cloud adapters, and the bundled synthetic sample.",
+      "modules": [
+        {"path": "src/palmwtc/io/", "role": "Loaders: load_from_multiple_dirs, load_monthly_data, load_radiation_data; path helpers; cloud adapters"},
+        {"path": "src/palmwtc/data/sample/synthetic/", "role": "Bundled synthetic sample (deterministic, seed=42; 1 week × 30 s, 2 chambers, ~3 MB parquet)"},
+        {"path": "src/palmwtc/viz/", "role": "matplotlib static plots + plotly interactive (timeseries, QC diagnostics, threshold sweeps)"}
+      ]
+    }
+  ],
+  "dataContracts": [
+    {
+      "name": "Raw chamber cycles (input)",
+      "description": "CSV or Parquet — rows = 30-second chamber cycles; columns = CO2/H2O concentrations, air T/RH, pressure, battery proxy, optional ML features. Logical→physical column mapping in variable_config.json.",
+      "schema": {
+        "rows": "30s cycle samples",
+        "key_columns": ["timestamp", "chamber_id", "CO2_C1/C2", "H2O_C1/C2", "Tair", "RH", "P"],
+        "config_mapping": "variable_config.json maps logical names (\"CO2\") → physical columns ([\"CO2_C1\",\"CO2_C2\"])"
+      }
+    },
+    {
+      "name": "QC output (flagged data)",
+      "description": "Parquet — original columns + new `*_flag` columns (0=pass, 1=suspect, 2=fail, 3=unknown). Written to processed_dir by QCProcessor.process_variable().",
+      "schema": {"adds": "<var>_flag columns per QC'd variable", "dtype": "uint8"}
+    },
+    {
+      "name": "Flux output (validated cycles)",
+      "description": "Parquet — one row per validated cycle. Filters from ~88k raw cycles to ~61k canonical baseline via day/cycle scoring.",
+      "schema": {
+        "columns": ["cycle_id", "chamber_id", "co2_flux_umol_m2_s", "h2o_flux_mmol_m2_s", "day_score", "qc_flags", "derivation_metadata"]
+      }
+    },
+    {
+      "name": "Configuration (YAML)",
+      "description": "palmwtc.yaml at project root or ~/.palmwtc/config.yaml; env override PALMWTC_DATA_DIR / PALMWTC_CONFIG.",
+      "schema": {
+        "top_level": ["site (libz|cige)", "raw_dir", "processed_dir", "config_dir", "exports_dir"],
+        "variable_config": "per-variable dict with columns, units, physical-QC bounds"
+      }
+    }
+  ],
+  "privacyPosture": {
+    "License": "MIT",
+    "Public repository": "github.com/adisapoetro/palmwtc",
+    "Release artifacts": "PyPI + Zenodo (auto-published on tag, once Zenodo toggle enabled — one-time user action)",
+    "Bundled data": "Synthetic sample only — no LIBZ raw measurements",
+    "Telemetry": "none — no analytics, no version checks, no API calls",
+    "CI hygiene": "git ls-files checks prevent credentials or LIBZ data from entering history",
+    "ADR": "palmwtc is public by design. Raw LIBZ chamber data lives only in the private ../research/ workspace and is never imported, vendored, or referenced by SHA in this repo."
+  },
+  "rules": [
+    "Behaviour preservation on ports/refactors: function signatures and numeric outputs stay identical; only `import` statements change. Parity tests load originals via importlib.util.spec_from_file_location and assert numeric/series equality to 1e-12. Never delete a parity test.",
+    "System language: never use 'flux tower' or 'eddy covariance' in docs, plot titles, commit messages, or release notes. This is a whole-tree CHAMBER system.",
+    "Thin tutorial notebooks: all algorithmic logic lives in palmwtc.*; tutorials are ≤30 cells with ≤30 lines of non-import code per cell. Generated deterministically via scripts/build_*_notebooks.py with nbformat — never hand-edited.",
+    "No invented data: every numerical claim traces to file.py:line, an executed notebook output, or a cited publication. If data insufficient, return 'N/A'.",
+    "Public-by-default hygiene: check `git ls-files` before every commit. Never commit LIBZ raw data, internal presentations, credentials, or Co-Authored-By: Claude trailers (history scrubbed 2026-04-28).",
+    "PyPI Author display: `pyproject.toml [project] authors` must be name-only (no inline email). Email goes in `[project] maintainers`. Verify wheel metadata before `uv publish` — PyPI is append-only.",
+    "Tutorial paths: never hardcode `/Users/<name>/...` even behind env-var fallbacks. Real-data tutorials require ONE env var (PALMWTC_LIBZ_DATA_ROOT) and fail-fast with a helpful message.",
+    "Always run `python architecture/build.py` after editing architecture.json or pulse.json."
+  ],
+  "generatedFrom": [
+    "palmwtc/CLAUDE.md (gitignored; loaded from local FS)",
+    "palmwtc/architecture/pulse.json",
+    "palmwtc/pyproject.toml",
+    "palmwtc/README.md",
+    "palmwtc/CHANGELOG.md",
+    "palmwtc/src/ + tests/ directory walk (2026-05-19)"
+  ]
+}
