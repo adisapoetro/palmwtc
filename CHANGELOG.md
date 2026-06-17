@@ -6,6 +6,13 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+### Changed
+
+- Replaced the example whole-tree-chamber illustration
+  (`docs/_static/example_chamber_libz.png`, shown in the README) with a real
+  Blender render of the current chamber in its closed and open states, plus
+  the above/below-ground sensor layout. Docs-only; no code or API change.
+
 ## [0.4.4] — 2026-05-22
 
 Adds a juvenile-aware, opt-in leaf-area estimator for whole-tree-chamber
