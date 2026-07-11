@@ -62,3 +62,9 @@ secrets/
 
 # AI-assistant instructions — kept local, not committed to the public repo.
 CLAUDE.md
+
+# AI / agent scaffolding — local-only, never pushed (2026-07-11)
+AGENTS.md
+GEMINI.md
+.claude/
+architecture/
