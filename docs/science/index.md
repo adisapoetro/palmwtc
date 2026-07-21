@@ -13,13 +13,15 @@ raw cycles ──► QC ──► flux ──► windows ──► validation
 
 Each stage is described in detail in the corresponding tutorial notebook
 under [tutorials/](../tutorials/index.md). The integrated end-to-end run is
-covered in [tutorials/000](../tutorials/000_Integrated_End_to_End.ipynb).
+covered in [tutorials/000](../tutorials/000_End_to_End_Synthetic.ipynb).
 
 ## Method references
 
-- **Whole-tree-chamber method**: Medlyn, B. E. *et al.* (2016).
-  Pinpointing drivers of widespread declines in Australian streamflow.
-  *Global Change Biology*, 22(8), 2834–2851.
+- **Whole-tree-chamber (WTC) method**: automated whole-tree chambers enclose
+  an entire plant to measure its gas exchange directly, at single-tree scale.
+  *(Primary WTC-methods citation to be added — a previously listed reference
+  (Medlyn et al. 2016) was an Australian-streamflow paper cited in error and has
+  been removed.)*
 - **CO₂ flux closure (Amax bounds)**: literature canopy-basis Amax
   15–35 µmol m⁻² ground s⁻¹ (Lamade & Bouillet 2005).
 - **Q10 respiration**: 1.4–2.5 (literature range, tropical canopy).

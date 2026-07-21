@@ -1,8 +1,9 @@
 # Quickstart — your first flux number in 3 minutes
 
 palmwtc is a Python library for automated whole-tree chamber measurements
-on individual oil palm trees. Each chamber encloses one tree and measures
-CO₂ and H₂O concentrations every 30 seconds using a LI-COR LI-850 analyser.
+on individual perennial-crop trees (oil palm is the reference crop). Each
+chamber encloses one tree and measures CO₂ and H₂O concentrations every 30
+seconds using a LI-COR LI-850 analyser.
 This guide takes you from installation to a validated CO₂ flux number using
 the bundled synthetic sample — no field data required.
 
@@ -292,7 +293,7 @@ during the day, near-zero at night) should be visible even in the short sample.
 ## Next steps
 
 The executable version of this walkthrough — with all outputs already run — is
-in `tutorials/000_Integrated_End_to_End.ipynb` (coming soon).
+in `tutorials/000_End_to_End_Synthetic.ipynb`.
 
 For deeper dives into each step, the individual tutorials are good starting points:
 

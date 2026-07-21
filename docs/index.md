@@ -1,11 +1,11 @@
 # palmwtc
 
-**Automated whole-tree chamber workflow for oil-palm ecophysiology.**
+**Automated whole-tree chamber workflow for perennial-crop ecophysiology.**
 
-`palmwtc` is the data-processing and analysis pipeline for the first
-automated whole-tree chamber (WTC) sized to enclose individual oil palm trees,
-deployed at the LIBZ field site (Riau, Indonesia) and instrumented with
-LI-COR LI-850 gas analyzers.
+`palmwtc` is a data-processing and analysis pipeline for automated whole-tree
+chambers (WTC) that enclose an individual perennial-crop tree. Its reference
+deployment is the first such chamber built for oil palm, at the LIBZ field site
+(Riau, Indonesia), instrumented with LI-COR LI-850 gas analyzers.
 
 It transforms raw chamber cycles into validated CO₂ and H₂O fluxes,
 applies multi-stage quality control (rules + breakpoints + ML outliers),
