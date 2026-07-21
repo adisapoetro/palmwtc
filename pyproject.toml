@@ -4,8 +4,8 @@ build-backend = "hatchling.build"
 
 [project]
 name = "palmwtc"
-version = "0.4.4"
-description = "Automated whole-tree chamber workflow for oil-palm ecophysiology — QC, flux calculation, science validation."
+version = "0.4.5"
+description = "Automated whole-tree chamber workflow for perennial-crop ecophysiology — QC, flux calculation, science validation. Reference deployment: oil palm."
 readme = "README.md"
 requires-python = ">=3.11,<3.14"
 license = { file = "LICENSE" }
@@ -25,6 +25,7 @@ keywords = [
     "ecophysiology",
     "flux-chamber",
     "whole-tree-chamber",
+    "perennial-crops",
     "oil-palm",
     "co2-flux",
     "h2o-flux",

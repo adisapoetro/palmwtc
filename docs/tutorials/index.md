@@ -7,7 +7,7 @@ thin wrapper around the library API: `DataPaths.resolve()` →
 
 ## Recommended starting point
 
-**[000 — Integrated end-to-end](000_Integrated_End_to_End.ipynb)** runs
+**[000 — Integrated end-to-end](000_End_to_End_Synthetic.ipynb)** runs
 the full pipeline (qc → flux → windows → validation → plot) in a single
 notebook against the bundled synthetic sample. Markdown cells explain
 the scientific meaning of each step. New users should open this first
@@ -45,7 +45,7 @@ before diving into the per-stage tutorials below.
 :maxdepth: 1
 :hidden:
 
-000_Integrated_End_to_End
+000_End_to_End_Synthetic
 010_Data_Integration
 011_Weather_vs_Chamber
 020_QC_Rule_Based

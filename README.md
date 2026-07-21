@@ -1,6 +1,6 @@
 # palmwtc
 
-**Automated whole-tree chamber workflow for oil-palm ecophysiology.**
+**Automated whole-tree chamber workflow for perennial-crop ecophysiology.**
 
 [![PyPI](https://img.shields.io/pypi/v/palmwtc.svg)](https://pypi.org/project/palmwtc/)
 [![Python](https://img.shields.io/pypi/pyversions/palmwtc.svg)](https://pypi.org/project/palmwtc/)
@@ -8,12 +8,12 @@
 [![CI](https://github.com/adisapoetro/palmwtc/actions/workflows/ci.yml/badge.svg)](https://github.com/adisapoetro/palmwtc/actions/workflows/ci.yml)
 [![DOI](https://zenodo.org/badge/1213667337.svg)](https://doi.org/10.5281/zenodo.19680893)
 
-`palmwtc` is the data-processing and analysis pipeline for the first
-automated whole-tree chamber (WTC) sized to enclose individual oil palm trees,
-deployed at the LIBZ field site (Riau, Indonesia) and instrumented with
-LI-COR LI-850 gas analyzers. It transforms raw sensor cycles into validated
-CO₂ and H₂O fluxes, applies multi-stage quality control, and produces inputs
-for the XPalm digital-twin calibration pipeline.
+`palmwtc` is a data-processing and analysis pipeline for automated whole-tree
+chambers (WTC) that enclose an individual perennial-crop tree. Its reference
+deployment is the first such chamber built for oil palm, at the LIBZ field site
+(Riau, Indonesia), instrumented with LI-COR LI-850 gas analyzers. It transforms
+raw sensor cycles into validated CO₂ and H₂O fluxes, applies multi-stage quality
+control, and produces inputs for the XPalm digital-twin calibration pipeline.
 
 ## What it does
 
@@ -78,7 +78,7 @@ its own version DOI (visible on the [Zenodo record](https://zenodo.org/records/1
   author  = {Adisaputro, Didi and Raharjo, Doni Artanto},
   title   = {palmwtc: Automated whole-tree chamber workflow for oil-palm ecophysiology},
   year    = {2026},
-  version = {0.4.3},
+  version = {0.4.5},
   doi     = {10.5281/zenodo.19680893},
   url     = {https://github.com/adisapoetro/palmwtc},
 }
@@ -94,8 +94,10 @@ single-tree behaviour. `palmwtc` is built around a different instrument: an
 *automated whole-tree chamber*, sized and ventilated to enclose an individual
 mature oil palm, with an LI-COR LI-850 gas analyzer cycling open and closed on
 a programmed schedule. This is, to our knowledge, the first WTC deployment for
-oil palm — the WTC method was previously applied to temperate broadleaf
-species (Medlyn et al. 2016).
+oil palm; the WTC method was previously applied to temperate broadleaf
+species.<!-- TODO(author): add the correct primary WTC-methods citation here.
+The previously listed "Medlyn et al. 2016" reference was an Australian-streamflow
+paper cited in error and has been removed. -->
 
 ### What does an automated whole-tree chamber look like?
 

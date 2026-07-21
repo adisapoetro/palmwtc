@@ -252,7 +252,9 @@ During the day, photosynthesis drives a strong, fast CO₂ drawdown inside the
 closed chamber (often 20–100 ppm over 5 minutes). This yields high R², SNR,
 and monotonicity, making the daytime ``_A`` thresholds easy to meet.
 
-At night, only leaf + soil respiration remain. CO₂ rise rates are typically
+At night, only plant (leaf + stem) respiration remains — the chamber is
+bottom-sealed against the soil, so there is no soil respiration in the signal.
+CO₂ rise rates are typically
 3–15 ppm over 5 minutes — a much smaller signal that sits closer to instrument
 noise (~0.2–0.5 ppm RMS for LI-COR LI-850). Applying daytime thresholds to
 these cycles rejects most valid nighttime measurements.

@@ -6,12 +6,35 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+## [0.4.5] — 2026-07-21
+
+Documentation-only release. Generalizes the package's user-facing framing from
+oil-palm-specific to perennial-crop language (oil palm retained as the named
+reference deployment) and fixes several documentation defects. No code, API,
+or behaviour change.
+
 ### Changed
 
+- Generalized user-facing wording from oil-palm-specific to perennial-crop
+  framing across the README, docs landing page, quickstart, and package
+  `description`/`keywords`. Oil palm is retained as the named reference
+  deployment. Wording/metadata only; no code or API change.
 - Replaced the example whole-tree-chamber illustration
   (`docs/_static/example_chamber_libz.png`, shown in the README) with a real
   Blender render of the current chamber in its closed and open states, plus
   the above/below-ground sensor layout. Docs-only; no code or API change.
+- Clarified the night-respiration docstring in `palmwtc.flux.chamber` to note
+  the chamber is bottom-sealed against the soil (no soil-respiration component
+  in the nighttime signal). Docstring prose only.
+
+### Fixed
+
+- Corrected broken tutorial cross-references pointing at the renamed
+  `000_Integrated_End_to_End` notebook; they now resolve to
+  `000_End_to_End_Synthetic` (docs: Science Reference, Tutorials, Quickstart).
+- Removed an incorrect whole-tree-chamber method citation (an unrelated
+  Australian-streamflow paper) from the README and Science Reference; the
+  correct primary WTC-methods reference is pending.
 
 ## [0.4.4] — 2026-05-22
 
